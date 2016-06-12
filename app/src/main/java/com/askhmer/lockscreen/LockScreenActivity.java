@@ -1,8 +1,10 @@
 package com.askhmer.lockscreen;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -10,9 +12,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.askhmer.lockscreen.utils.LockscreenService;
 import com.askhmer.lockscreen.utils.LockscreenUtils;
+import com.askhmer.lockscreen.utils.ToggleSwitchButtonByDy;
 
 public class LockScreenActivity extends Activity implements
 		LockscreenUtils.OnLockStatusChangedListener {
@@ -38,6 +42,7 @@ public class LockScreenActivity extends Activity implements
 		super.onAttachedToWindow();
 	}
 
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -73,6 +78,20 @@ public class LockScreenActivity extends Activity implements
 			}
 
 		}
+		ToggleSwitchButtonByDy toggle = (ToggleSwitchButtonByDy) findViewById(R.id.toggle);
+		toggle.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
+			@Override
+			public void toggledUp() {
+				unlockHomeButton();
+			}
+
+			@Override
+			public void toggledDown() {
+				Toast.makeText(LockScreenActivity.this, "2", Toast.LENGTH_SHORT).show();
+			}
+		});
+
+		toggle.setRotation(90.0f);
 	}
 
 	private void init() {
@@ -114,7 +133,7 @@ public class LockScreenActivity extends Activity implements
 
 	// Handle button clicks
 	@Override
-	public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
 
 		if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)
 				|| (keyCode == KeyEvent.KEYCODE_POWER)
