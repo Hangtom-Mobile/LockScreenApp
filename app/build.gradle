@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.askhmer.lockscreen"
-        minSdkVersion 8
+        minSdkVersion 15
         targetSdkVersion 8
     }
 
@@ -20,4 +20,5 @@ android {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'co.aenterhy:toggleswitch:1.0.0'
 }
