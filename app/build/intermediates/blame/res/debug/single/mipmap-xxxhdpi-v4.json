@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\soklundy\\AndroidStudioProjects\\LockScreenApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\soklundy\\AndroidStudioProjects\\LockScreenApp\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
         "merged": "C:\\Users\\Longdy\\hangtom\\Android\\LockScreenApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi-v4\\ic_launcher.png",
         "source": "C:\\Users\\Longdy\\hangtom\\Android\\LockScreenApp\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },

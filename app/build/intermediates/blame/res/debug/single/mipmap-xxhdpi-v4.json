@@ -1,10 +1,14 @@
 [
     {
+        "merged": "C:\\Users\\Longdy\\hangtom\\Android\\LockScreenApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\Longdy\\hangtom\\Android\\LockScreenApp\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
         "merged": "C:\\Users\\Longdy\\AndroidStudioProjects\\LockScreenApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi-v4\\ic_launcher.png",
         "source": "C:\\Users\\Longdy\\AndroidStudioProjects\\LockScreenApp\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     },
     {
-        "merged": "C:\\Users\\Longdy\\hangtom\\Android\\LockScreenApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi-v4\\ic_launcher.png",
-        "source": "C:\\Users\\Longdy\\hangtom\\Android\\LockScreenApp\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\soklundy\\AndroidStudioProjects\\LockScreenApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi-v4\\ic_launcher.png",
+        "source": "C:\\Users\\soklundy\\AndroidStudioProjects\\LockScreenApp\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     }
 ]
