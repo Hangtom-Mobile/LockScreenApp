@@ -22,7 +22,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="outerRadius">130dp</item>
         <item name="handleDrawable">@drawable/ic_launcher</item>
-        <item name="upper">@android:drawable/ic_menu_crop</item>
+        <item name="upper">@drawable/ic_unlock</item>
         <item name="bottom">@drawable/ic_browser</item>
     </style>
 </resources>
