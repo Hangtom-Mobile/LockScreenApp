@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.askhmer.lockscreen.LockScreenActivity;
+import com.askhmer.lockscreen.activity.LockScreenActivity;
 
 public class LockscreenIntentReceiver extends BroadcastReceiver {
 

@@ -1,4 +1,4 @@
-package com.askhmer.lockscreen;
+package com.askhmer.lockscreen.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -6,17 +6,21 @@ import android.app.KeyguardManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.askhmer.lockscreen.R;
+import com.askhmer.lockscreen.adapter.FullScreenImageAdapter;
 import com.askhmer.lockscreen.utils.LockscreenService;
 import com.askhmer.lockscreen.utils.LockscreenUtils;
 import com.askhmer.lockscreen.utils.ToggleSwitchButtonByDy;
+
+import java.util.ArrayList;
 
 public class LockScreenActivity extends Activity implements
 		LockscreenUtils.OnLockStatusChangedListener {
@@ -27,6 +31,16 @@ public class LockScreenActivity extends Activity implements
 	// Member variables
 	private LockscreenUtils mLockscreenUtils;
 
+//	private int imgTest = R.drawable.ic_launcher;
+//	private RecyclerView mRecyclerView;
+//	private LockScreenAdapter adapter;
+
+	private ViewPager imageViewPager;
+	private FullScreenImageAdapter fullScreenImageAdapter;
+
+//	private ArrayList<CompanyDto> arrList;
+
+	private ArrayList<String> pathFile;
 	// Set appropriate flags to make the screen appear over the keyguard
 	@Override
 	public void onAttachedToWindow() {
@@ -92,19 +106,52 @@ public class LockScreenActivity extends Activity implements
 		});
 
 		toggle.setRotation(90.0f);
+
+//****************************
+// 		did by Longdy
+//****************************
+
+//		arrList = new ArrayList<>();
+
+		// Setup layout manager for mBlogList and column count
+//		final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+
+		// Control orientation of the mBlogList
+//		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+//		layoutManager.scrollToPosition(0);
+
+		// Attach layout manager
+//		mRecyclerView.setLayoutManager(layoutManager);
+//
+//		adapter = new LockScreenAdapter(arrList);
+//		mRecyclerView.setAdapter(adapter);
+
+		pathFile = new ArrayList<>();
+		pathFile.add("https://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/leisa_christmas_false_color.png?itok=Jxf0IlS4");
+		pathFile.add("http://science-all.com/images/wallpapers/image/image-6.jpg");
+		pathFile.add("https://support.files.wordpress.com/2009/07/pigeony.jpg?w=688");
+
+		fullScreenImageAdapter = new FullScreenImageAdapter(this,pathFile);
+		imageViewPager.setAdapter(fullScreenImageAdapter);
+
 	}
 
 	private void init() {
 		mLockscreenUtils = new LockscreenUtils();
-		btnUnlock = (Button) findViewById(R.id.btnUnlock);
-		btnUnlock.setOnClickListener(new View.OnClickListener() {
+//		btnUnlock = (Button) findViewById(R.id.btnUnlock);
+//		btnUnlock.setOnClickListener(new View.OnClickListener() {
+//
+//			@Override
+//			public void onClick(View v) {
+//				// unlock home button and then screen on button press
+//				unlockHomeButton();
+//			}
+//		});
 
-			@Override
-			public void onClick(View v) {
-				// unlock home button and then screen on button press
-				unlockHomeButton();
-			}
-		});
+//		mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+		imageViewPager = (ViewPager) findViewById(R.id.view_pager);
+
 	}
 
 	// Handle events of calls and unlock screen if necessary
@@ -207,5 +254,16 @@ public class LockScreenActivity extends Activity implements
 	{
 		finish();
 	}
+
+
+/*
+	public void listItem(){
+		for (int i = 0; i<15; i++){
+			CompanyDto item = new CompanyDto();
+			item.setImgTest(imgTest);
+			arrList.add(item);
+		}
+	}
+*/
 
 }
