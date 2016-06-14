@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center">
-
         <!--
             <view
                 android:id="@+id/recycler_view"
@@ -17,18 +16,46 @@
                 android:layout_centerInParent="true" />
         -->
 
-        <com.askhmer.lockscreen.utils.VerticalViewPager
-            android:id="@+id/view_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <com.askhmer.lockscreen.utils.VerticalViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="40dp"
+        android:text="Test"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/shift"
+        android:textSize="15dp"
+        android:text="test"
+        android:layout_marginTop="35dp"
 
-        <com.askhmer.lockscreen.utils.ToggleSwitchButtonByDy
-            android:id="@+id/toggle"
-            style="@style/ToggleSwitchButton"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="-460dp"/>
+        android:layout_toRightOf="@+id/time"
+        android:textColor="@color/white"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@drawable/black_transparate"
+        android:layout_height="210dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true">
+    </LinearLayout>
+
+    <com.askhmer.lockscreen.utils.ToggleSwitchButtonByDy
+        android:id="@+id/toggle"
+        style="@style/ToggleSwitchButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-460dp"/>
 
 
 </RelativeLayout>

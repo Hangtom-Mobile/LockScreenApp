@@ -12,6 +12,7 @@ import android.telephony.TelephonyManager;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.askhmer.lockscreen.R;
@@ -20,7 +21,9 @@ import com.askhmer.lockscreen.utils.LockscreenService;
 import com.askhmer.lockscreen.utils.LockscreenUtils;
 import com.askhmer.lockscreen.utils.ToggleSwitchButtonByDy;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class LockScreenActivity extends Activity implements
 		LockscreenUtils.OnLockStatusChangedListener {
@@ -133,6 +136,12 @@ public class LockScreenActivity extends Activity implements
 
 		fullScreenImageAdapter = new FullScreenImageAdapter(this,pathFile);
 		imageViewPager.setAdapter(fullScreenImageAdapter);
+
+		Thread myThread = null;
+
+		Runnable runnable = new CountDownRunner();
+		myThread= new Thread(runnable);
+		myThread.start();
 
 	}
 
@@ -265,5 +274,45 @@ public class LockScreenActivity extends Activity implements
 		}
 	}
 */
+	public String getShiftOfDate(Calendar cal){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm a");
+		String fullDateFormat = dateFormat.format(cal.getTime());
+		return fullDateFormat.substring(fullDateFormat.length() - 2);
+	}
+
+	public void doWork() {
+		runOnUiThread(new Runnable() {
+			public void run() {
+				try{
+					TextView txtCurrentTime = (TextView)findViewById(R.id.time);
+					TextView txtCurrentShift = (TextView)findViewById(R.id.shift);
+
+					SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
+					Calendar cal = Calendar.getInstance();
+
+					String time = dateFormat.format(cal.getTime());
+
+					txtCurrentTime.setText(time.substring(0,time.length()-3));
+					txtCurrentShift.setText(getShiftOfDate(cal).toUpperCase());
+
+				}catch (Exception e) {}
+			}
+		});
+	}
+
+	class CountDownRunner implements Runnable{
+		// @Override
+		public void run() {
+			while(!Thread.currentThread().isInterrupted()){
+				try {
+					doWork();
+					Thread.sleep(6000);
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}catch(Exception e){
+				}
+			}
+		}
+	}
 
 }
