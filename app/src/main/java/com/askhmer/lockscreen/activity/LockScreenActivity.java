@@ -130,9 +130,9 @@ public class LockScreenActivity extends Activity implements
 //		mRecyclerView.setAdapter(adapter);
 
 		pathFile = new ArrayList<>();
-		pathFile.add("https://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/leisa_christmas_false_color.png?itok=Jxf0IlS4");
-		pathFile.add("http://science-all.com/images/wallpapers/image/image-6.jpg");
-		pathFile.add("https://support.files.wordpress.com/2009/07/pigeony.jpg?w=688");
+		pathFile.add("http://www.americanodream.com/wp-content/uploads/2015/11/heather60070.jpg");
+		pathFile.add("https://s-media-cache-ak0.pinimg.com/736x/78/6a/9f/786a9fffb761f3e1a927e1270a30d10f.jpg");
+		pathFile.add("http://www.pdnonline.com/static/content_images/505greff-LoneTreeSunset.jpg");
 
 		fullScreenImageAdapter = new FullScreenImageAdapter(this,pathFile);
 		imageViewPager.setAdapter(fullScreenImageAdapter);
