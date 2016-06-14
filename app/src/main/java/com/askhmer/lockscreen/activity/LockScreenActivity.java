@@ -53,7 +53,6 @@ public class LockScreenActivity extends Activity implements
 		this.getWindow().addFlags(
 				WindowManager.LayoutParams.FLAG_FULLSCREEN
 						| WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-						| WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 						| WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
 						);
 
@@ -145,6 +144,8 @@ public class LockScreenActivity extends Activity implements
 		Runnable runnable = new CountDownRunner();
 		myThread= new Thread(runnable);
 		myThread.start();
+
+
 	}
 
 	private void init() {
@@ -201,7 +202,7 @@ public class LockScreenActivity extends Activity implements
 		}
 		if ((keyCode == KeyEvent.KEYCODE_HOME)) {
 
-			return true;
+			return false;
 		}
 
 		return false;
@@ -217,7 +218,7 @@ public class LockScreenActivity extends Activity implements
 		}
 		if ((event.getKeyCode() == KeyEvent.KEYCODE_HOME)) {
 
-			return true;
+			return false;
 		}
 		return false;
 	}
@@ -259,7 +260,7 @@ public class LockScreenActivity extends Activity implements
 		KeyguardManager.KeyguardLock mKL = mKM.newKeyguardLock("IN");
 		mKL.reenableKeyguard();
 	}
-	
+
 	//Simply unlock device by finishing the activity
 	private void unlockDevice()
 	{
