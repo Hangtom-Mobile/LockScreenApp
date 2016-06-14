@@ -30,7 +30,8 @@ public class LockscreenUtils {
 	public void lock(Activity activity) {
 		if (mOverlayDialog == null) {
 			mOverlayDialog = new OverlayDialog(activity);
-			mOverlayDialog.show();
+			mOverlayDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+//			mOverlayDialog.show();
 			mLockStatusChangedListener = (OnLockStatusChangedListener) activity;
 		}
 	}
@@ -69,6 +70,7 @@ public class LockscreenUtils {
 			getWindow().setAttributes(params);
 			getWindow().setFlags(LayoutParams.FLAG_SHOW_WHEN_LOCKED | LayoutParams.FLAG_NOT_TOUCH_MODAL,
 					0xffffff);
+
 			setOwnerActivity(activity);
 			setCancelable(false);
 		}
