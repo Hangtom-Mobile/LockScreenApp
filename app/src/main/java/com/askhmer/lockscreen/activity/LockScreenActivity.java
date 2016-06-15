@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -13,10 +14,10 @@ import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.askhmer.lockscreen.R;
 import com.askhmer.lockscreen.adapter.FullScreenImageAdapter;
+import com.askhmer.lockscreen.model.CompanyDto;
 import com.askhmer.lockscreen.utils.LockscreenService;
 import com.askhmer.lockscreen.utils.LockscreenUtils;
 import com.askhmer.lockscreen.utils.ToggleSwitchButtonByDy;
@@ -43,7 +44,7 @@ public class LockScreenActivity extends Activity implements
 
 //	private ArrayList<CompanyDto> arrList;
 
-	private ArrayList<String> pathFile;
+	private ArrayList<CompanyDto> pathFile;
 	// Set appropriate flags to make the screen appear over the keyguard
 	@Override
 	public void onAttachedToWindow() {
@@ -95,21 +96,6 @@ public class LockScreenActivity extends Activity implements
 			}
 
 		}
-		ToggleSwitchButtonByDy toggle = (ToggleSwitchButtonByDy) findViewById(R.id.toggle);
-		toggle.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
-			@Override
-			public void toggledUp() {
-				unlockHomeButton();
-			}
-
-			@Override
-			public void toggledDown() {
-				Toast.makeText(LockScreenActivity.this, "2", Toast.LENGTH_SHORT).show();
-			}
-		});
-
-		toggle.setRotation(90.0f);
-
 //****************************
 // 		did by Longdy
 //****************************
@@ -129,20 +115,36 @@ public class LockScreenActivity extends Activity implements
 //		adapter = new LockScreenAdapter(arrList);
 //		mRecyclerView.setAdapter(adapter);
 
-		pathFile = new ArrayList<>();
-		pathFile.add("http://www.americanodream.com/wp-content/uploads/2015/11/heather60070.jpg");
-		pathFile.add("https://s-media-cache-ak0.pinimg.com/736x/78/6a/9f/786a9fffb761f3e1a927e1270a30d10f.jpg");
-		pathFile.add("http://www.pdnonline.com/static/content_images/505greff-LoneTreeSunset.jpg");
+		pathFile = new ArrayList<CompanyDto>();
+		pathFile.add(new CompanyDto("http://www.americanodream.com/wp-content/uploads/2015/11/heather60070.jpg","http://github.com/"));
+		pathFile.add(new CompanyDto("https://s-media-cache-ak0.pinimg.com/736x/78/6a/9f/786a9fffb761f3e1a927e1270a30d10f.jpg","https://www.youtube.com/"));
+		pathFile.add(new CompanyDto("http://www.pdnonline.com/static/content_images/505greff-LoneTreeSunset.jpg","http://www.apple.com/"));
 
 		fullScreenImageAdapter = new FullScreenImageAdapter(this,pathFile);
 		imageViewPager.setAdapter(fullScreenImageAdapter);
+
+		ToggleSwitchButtonByDy toggle = (ToggleSwitchButtonByDy) findViewById(R.id.toggle);
+		toggle.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
+			@Override
+			public void toggledUp() {
+				unlockHomeButton();
+			}
+
+			@Override
+			public void toggledDown() {
+				String url = pathFile.get(imageViewPager.getCurrentItem()).getUrlWebsite();
+				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+				startActivity(browserIntent);
+			}
+		});
+
+		toggle.setRotation(90.0f);
 
 		Thread myThread = null;
 
 		Runnable runnable = new CountDownRunner();
 		myThread= new Thread(runnable);
 		myThread.start();
-
 	}
 
 	private void init() {

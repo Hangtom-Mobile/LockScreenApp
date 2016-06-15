@@ -7,7 +7,16 @@ public class CompanyDto {
     private int companyId;
     private String companyName;
     private String bannerImage;
+    private String urlWebsite;
     private int imgTest;
+
+    public String getUrlWebsite() {
+        return urlWebsite;
+    }
+
+    public void setUrlWebsite(String urlWebsite) {
+        this.urlWebsite = urlWebsite;
+    }
 
     public int getCompanyId() {
         return companyId;
@@ -39,5 +48,10 @@ public class CompanyDto {
 
     public void setImgTest(int imgTest) {
         this.imgTest = imgTest;
+    }
+
+    public CompanyDto(String bannerImage, String urlWebsite){
+        this.bannerImage = bannerImage;
+        this.urlWebsite = urlWebsite;
     }
 }
