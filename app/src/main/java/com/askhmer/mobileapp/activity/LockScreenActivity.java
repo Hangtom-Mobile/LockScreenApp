@@ -20,6 +20,7 @@ import com.askhmer.mobileapp.adapter.FullScreenImageAdapter;
 import com.askhmer.mobileapp.model.CompanyDto;
 import com.askhmer.mobileapp.utils.LockscreenService;
 import com.askhmer.mobileapp.utils.LockscreenUtils;
+import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 import com.askhmer.mobileapp.utils.ToggleSwitchButtonByDy;
 
 import java.text.SimpleDateFormat;
@@ -41,6 +42,9 @@ public class LockScreenActivity extends Activity implements
 
 	private ViewPager imageViewPager;
 	private FullScreenImageAdapter fullScreenImageAdapter;
+
+
+	private SharedPreferencesFile mSharedPref;
 
 //	private ArrayList<CompanyDto> arrList;
 
@@ -67,6 +71,8 @@ public class LockScreenActivity extends Activity implements
 		setContentView(R.layout.activity_lockscreen);
 
 		init();
+		mSharedPref = SharedPreferencesFile.newInstance(this, SharedPreferencesFile.PREFER_KEY);
+		mSharedPref.putBooleanSharedPreference(SharedPreferencesFile.PREFER_KEY, true);
 
 
 		// unlock screen in case of app get killed by system
@@ -164,9 +170,9 @@ public class LockScreenActivity extends Activity implements
 
 //		mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-			Intent i = new Intent(LockScreenActivity.this, WebviewActivity.class);
-			startActivity(i);
-			overridePendingTransition(0,0);
+//			Intent i = new Intent(LockScreenActivity.this, WebviewActivity.class);
+//			startActivity(i);
+//			overridePendingTransition(0,0);
 
 
 		imageViewPager = (ViewPager) findViewById(R.id.view_pager);

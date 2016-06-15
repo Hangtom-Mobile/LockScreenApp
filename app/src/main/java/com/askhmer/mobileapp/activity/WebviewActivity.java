@@ -3,6 +3,7 @@ package com.askhmer.mobileapp.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,11 +16,13 @@ import android.widget.Toast;
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.constant.Constant;
 import com.askhmer.mobileapp.utils.NetworkUtil;
+import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 
 public class WebviewActivity extends Activity {
 
     private WebView webview;
     private final String URL_ASKHMER = Constant.MAIN_URL;
+    private SharedPreferencesFile mSharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,16 @@ public class WebviewActivity extends Activity {
         });
 
         checkInternetCon();
+        mSharedPref  = SharedPreferencesFile.newInstance(this, SharedPreferencesFile.PREFER_KEY);
+
+        // Restore preferences
+        boolean lockScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.PREFER_KEY);
+
+        if(!lockScreen==true){
+            Intent i = new Intent(WebviewActivity.this, LockScreenActivity.class);
+            startActivity(i);
+        }
+
 
         webview.setWebViewClient(new WebViewClient() {      //prevent open browser
             @Override
