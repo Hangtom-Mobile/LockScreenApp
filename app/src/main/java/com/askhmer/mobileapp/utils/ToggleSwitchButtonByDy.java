@@ -1,4 +1,4 @@
-package com.askhmer.lockscreen.utils;
+package com.askhmer.mobileapp.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -9,7 +9,7 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.askhmer.lockscreen.R;
+import com.askhmer.mobileapp.R;
 
 import co.aenterhy.toggleswitch.TargetDrawable;
 

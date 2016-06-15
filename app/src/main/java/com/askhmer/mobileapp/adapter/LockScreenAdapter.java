@@ -1,4 +1,4 @@
-package com.askhmer.lockscreen.adapter;
+package com.askhmer.mobileapp.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.askhmer.lockscreen.R;
-import com.askhmer.lockscreen.model.CompanyDto;
+import com.askhmer.mobileapp.R;
+import com.askhmer.mobileapp.model.CompanyDto;
 
 import java.util.List;
 

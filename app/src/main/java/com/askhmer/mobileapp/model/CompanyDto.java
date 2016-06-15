@@ -1,4 +1,4 @@
-package com.askhmer.lockscreen.model;
+package com.askhmer.mobileapp.model;
 
 /**
  * Created by Longdy on 6/11/2016.

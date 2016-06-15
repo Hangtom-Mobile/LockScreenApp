@@ -1,4 +1,4 @@
-package com.askhmer.lockscreen.utils;
+package com.askhmer.mobileapp.utils;
 
 import android.app.Notification;
 import android.app.Service;
@@ -8,7 +8,7 @@ import android.content.IntentFilter;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 
-import com.askhmer.lockscreen.R;
+import com.askhmer.mobileapp.R;
 
 public class LockscreenService extends Service {
 

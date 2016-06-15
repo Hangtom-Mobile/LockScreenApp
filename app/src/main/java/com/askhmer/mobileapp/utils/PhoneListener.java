@@ -1,4 +1,4 @@
-package com.askhmer.lockscreen.utils;
+package com.askhmer.mobileapp.utils;
 
 import android.content.Context;
 import android.content.Intent;

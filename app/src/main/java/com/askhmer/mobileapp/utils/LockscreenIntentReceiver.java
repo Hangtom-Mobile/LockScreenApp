@@ -1,4 +1,4 @@
-package com.askhmer.lockscreen.utils;
+package com.askhmer.mobileapp.utils;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
-import com.askhmer.lockscreen.activity.LockScreenActivity;
+import com.askhmer.mobileapp.activity.LockScreenActivity;
 
 public class LockscreenIntentReceiver extends BroadcastReceiver {
 

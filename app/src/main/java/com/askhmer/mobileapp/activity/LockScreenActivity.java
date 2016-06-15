@@ -1,4 +1,4 @@
-package com.askhmer.lockscreen.activity;
+package com.askhmer.mobileapp.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -15,12 +15,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.askhmer.lockscreen.R;
-import com.askhmer.lockscreen.adapter.FullScreenImageAdapter;
-import com.askhmer.lockscreen.model.CompanyDto;
-import com.askhmer.lockscreen.utils.LockscreenService;
-import com.askhmer.lockscreen.utils.LockscreenUtils;
-import com.askhmer.lockscreen.utils.ToggleSwitchButtonByDy;
+import com.askhmer.mobileapp.R;
+import com.askhmer.mobileapp.adapter.FullScreenImageAdapter;
+import com.askhmer.mobileapp.model.CompanyDto;
+import com.askhmer.mobileapp.utils.LockscreenService;
+import com.askhmer.mobileapp.utils.LockscreenUtils;
+import com.askhmer.mobileapp.utils.ToggleSwitchButtonByDy;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -67,6 +67,7 @@ public class LockScreenActivity extends Activity implements
 		setContentView(R.layout.activity_lockscreen);
 
 		init();
+
 
 		// unlock screen in case of app get killed by system
 		if (getIntent() != null && getIntent().hasExtra("kill")
@@ -115,9 +116,9 @@ public class LockScreenActivity extends Activity implements
 //		mRecyclerView.setAdapter(adapter);
 
 		pathFile = new ArrayList<CompanyDto>();
-		pathFile.add(new CompanyDto("http://www.americanodream.com/wp-content/uploads/2015/11/heather60070.jpg","http://github.com/"));
-		pathFile.add(new CompanyDto("https://s-media-cache-ak0.pinimg.com/736x/78/6a/9f/786a9fffb761f3e1a927e1270a30d10f.jpg","https://www.youtube.com/"));
-		pathFile.add(new CompanyDto("http://www.pdnonline.com/static/content_images/505greff-LoneTreeSunset.jpg","http://www.apple.com/"));
+//		pathFile.add(new CompanyDto("http://www.americanodream.com/wp-content/uploads/2015/11/heather60070.jpg","http://github.com/"));
+//		pathFile.add(new CompanyDto("https://s-media-cache-ak0.pinimg.com/736x/78/6a/9f/786a9fffb761f3e1a927e1270a30d10f.jpg","https://www.youtube.com/"));
+//		pathFile.add(new CompanyDto("http://www.pdnonline.com/static/content_images/505greff-LoneTreeSunset.jpg","http://www.apple.com/"));
 		pathFile.add(new CompanyDto("http://www.askhmer.com/img/KakaoTalk_20160614_165114077.jpg","http://www.apple.com/"));
 
 		fullScreenImageAdapter = new FullScreenImageAdapter(this,pathFile);
@@ -162,6 +163,11 @@ public class LockScreenActivity extends Activity implements
 //		});
 
 //		mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+			Intent i = new Intent(LockScreenActivity.this, WebviewActivity.class);
+			startActivity(i);
+			overridePendingTransition(0,0);
+
 
 		imageViewPager = (ViewPager) findViewById(R.id.view_pager);
 

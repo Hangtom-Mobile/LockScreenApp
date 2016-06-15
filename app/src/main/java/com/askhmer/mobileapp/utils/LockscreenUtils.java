@@ -1,4 +1,4 @@
-package com.askhmer.lockscreen.utils;
+package com.askhmer.mobileapp.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,7 +7,7 @@ import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 
-import com.askhmer.lockscreen.R;
+import com.askhmer.mobileapp.R;
 
 public class LockscreenUtils {
 

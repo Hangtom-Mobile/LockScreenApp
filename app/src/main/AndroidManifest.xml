@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.askhmer.lockscreen"
+    package="com.askhmer.mobileapp"
     android:versionCode="3"
     android:versionName="1.2" >
 
@@ -12,13 +12,14 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/askhmer_logo"
         android:label="@string/app_name" >
 
         <activity
-            android:name=".activity.LockScreenActivity"
+            android:name="com.askhmer.mobileapp.activity.LockScreenActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:launchMode="singleTask"
@@ -31,11 +32,16 @@
             </intent-filter>
         </activity>
 
-        <service android:name="com.askhmer.lockscreen.utils.LockscreenService" >
+        <activity android:name=".activity.WebviewActivity"
+            android:theme="@android:style/Theme.NoTitleBar">
+
+        </activity>
+
+        <service android:name="com.askhmer.mobileapp.utils.LockscreenService" >
         </service>
 
         <receiver
-            android:name="com.askhmer.lockscreen.utils.LockscreenIntentReceiver"
+            android:name="com.askhmer.mobileapp.utils.LockscreenIntentReceiver"
             android:enabled="true" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

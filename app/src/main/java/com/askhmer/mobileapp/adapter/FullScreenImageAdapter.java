@@ -1,4 +1,4 @@
-package com.askhmer.lockscreen.adapter;
+package com.askhmer.mobileapp.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.askhmer.lockscreen.R;
-import com.askhmer.lockscreen.model.CompanyDto;
+import com.askhmer.mobileapp.R;
+import com.askhmer.mobileapp.model.CompanyDto;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
