@@ -286,6 +286,7 @@ public class LockScreenActivity extends Activity implements
 				try{
 					TextView txtCurrentTime = (TextView)findViewById(R.id.time);
 					TextView txtCurrentShift = (TextView)findViewById(R.id.shift);
+					TextView txtCurrentDate = (TextView)findViewById(R.id.date);
 
 					SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
 					Calendar cal = Calendar.getInstance();
@@ -294,6 +295,7 @@ public class LockScreenActivity extends Activity implements
 
 					txtCurrentTime.setText(time.substring(0,time.length()-3));
 					txtCurrentShift.setText(getShiftOfDate(cal).toUpperCase());
+					txtCurrentDate.setText(new SimpleDateFormat("dd/MM/yy").format(cal.getTime()));
 
 				}catch (Exception e) {}
 			}
