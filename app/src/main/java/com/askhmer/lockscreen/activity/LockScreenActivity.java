@@ -118,6 +118,7 @@ public class LockScreenActivity extends Activity implements
 		pathFile.add(new CompanyDto("http://www.americanodream.com/wp-content/uploads/2015/11/heather60070.jpg","http://github.com/"));
 		pathFile.add(new CompanyDto("https://s-media-cache-ak0.pinimg.com/736x/78/6a/9f/786a9fffb761f3e1a927e1270a30d10f.jpg","https://www.youtube.com/"));
 		pathFile.add(new CompanyDto("http://www.pdnonline.com/static/content_images/505greff-LoneTreeSunset.jpg","http://www.apple.com/"));
+		pathFile.add(new CompanyDto("http://www.askhmer.com/img/KakaoTalk_20160614_165114077.jpg","http://www.apple.com/"));
 
 		fullScreenImageAdapter = new FullScreenImageAdapter(this,pathFile);
 		imageViewPager.setAdapter(fullScreenImageAdapter);

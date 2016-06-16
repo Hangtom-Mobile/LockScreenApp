@@ -16,6 +16,12 @@
                 android:layout_centerInParent="true" />
         -->
 
+
+    <com.askhmer.lockscreen.utils.VerticalViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:background="@drawable/black_transparate"
@@ -23,11 +29,6 @@
         android:rotation="180"
         android:orientation="horizontal">
     </LinearLayout>
-
-    <com.askhmer.lockscreen.utils.VerticalViewPager
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/time"
