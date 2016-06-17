@@ -2,6 +2,7 @@ package com.askhmer.mobileapp.utils;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.PowerManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
@@ -21,7 +22,10 @@ public class PhoneListener extends PhoneStateListener{
     public void onCallStateChanged(int state, String incomingNumber) {
 
         super.onCallStateChanged(state, incomingNumber);
-       if ((state != TelephonyManager.CALL_STATE_OFFHOOK)) {
+        PowerManager pm = (PowerManager)
+               context.getSystemService(Context.POWER_SERVICE);
+        boolean isScreenOn = pm.isScreenOn();
+       if ((state != TelephonyManager.CALL_STATE_OFFHOOK) && (!isScreenOn)) {
            if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)
                    || intent.getAction().equals(Intent.ACTION_SCREEN_ON)
                    || intent.getAction().equals(Intent.ACTION_BOOT_COMPLETED)) {
