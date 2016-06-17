@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.webkit.WebChromeClient;
@@ -18,7 +19,7 @@ import com.askhmer.mobileapp.constant.Constant;
 import com.askhmer.mobileapp.utils.NetworkUtil;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 
-public class WebviewActivity extends Activity {
+public class WebviewActivity extends Activity implements SwipeRefreshLayout.OnRefreshListener {
 
     private WebView webview;
     private final String URL_ASKHMER = Constant.MAIN_URL;
@@ -73,6 +74,8 @@ public class WebviewActivity extends Activity {
                 Log.e("onFailingUrl :", failingUrl);
             }
         });
+        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setOnRefreshListener(this);
         webview.loadUrl(URL_ASKHMER);
     }
 
@@ -111,5 +114,10 @@ public class WebviewActivity extends Activity {
             finish();
         }
         return super.onKeyDown(keyCode,event);
+    }
+
+    @Override
+    public void onRefresh() {
+        webview.loadUrl(URL_ASKHMER);
     }
 }

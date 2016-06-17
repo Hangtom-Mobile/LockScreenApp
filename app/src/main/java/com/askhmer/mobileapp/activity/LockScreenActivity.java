@@ -36,10 +36,6 @@ public class LockScreenActivity extends Activity implements
 	// Member variables
 	private LockscreenUtils mLockscreenUtils;
 
-//	private int imgTest = R.drawable.ic_launcher;
-//	private RecyclerView mRecyclerView;
-//	private LockScreenAdapter adapter;
-
 	private ViewPager imageViewPager;
 	private FullScreenImageAdapter fullScreenImageAdapter;
 
@@ -102,24 +98,6 @@ public class LockScreenActivity extends Activity implements
 			}
 
 		}
-//****************************
-// 		did by Longdy
-//****************************
-
-//		arrList = new ArrayList<>();
-
-		// Setup layout manager for mBlogList and column count
-//		final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-
-		// Control orientation of the mBlogList
-//		layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-//		layoutManager.scrollToPosition(0);
-
-		// Attach layout manager
-//		mRecyclerView.setLayoutManager(layoutManager);
-//
-//		adapter = new LockScreenAdapter(arrList);
-//		mRecyclerView.setAdapter(adapter);
 
 		pathFile = new ArrayList<CompanyDto>();
 //		pathFile.add(new CompanyDto("http://www.americanodream.com/wp-content/uploads/2015/11/heather60070.jpg","http://github.com/"));
