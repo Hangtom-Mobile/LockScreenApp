@@ -136,25 +136,7 @@ public class LockScreenActivity extends Activity implements
 
 	private void init() {
 		mLockscreenUtils = new LockscreenUtils();
-//		btnUnlock = (Button) findViewById(R.id.btnUnlock);
-//		btnUnlock.setOnClickListener(new View.OnClickListener() {
-//
-//			@Override
-//			public void onClick(View v) {
-//				// unlock home button and then screen on button press
-//				unlockHomeButton();
-//			}
-//		});
-
-//		mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
-//			Intent i = new Intent(LockScreenActivity.this, WebviewActivity.class);
-//			startActivity(i);
-//			overridePendingTransition(0,0);
-
-
 		imageViewPager = (ViewPager) findViewById(R.id.view_pager);
-
 	}
 
 	// Handle events of calls and unlock screen if necessary
