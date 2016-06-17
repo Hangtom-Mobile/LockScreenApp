@@ -24,6 +24,7 @@ public class WebviewActivity extends Activity implements SwipeRefreshLayout.OnRe
     private WebView webview;
     private final String URL_ASKHMER = Constant.MAIN_URL;
     private SharedPreferencesFile mSharedPref;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +75,7 @@ public class WebviewActivity extends Activity implements SwipeRefreshLayout.OnRe
                 Log.e("onFailingUrl :", failingUrl);
             }
         });
-        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
         swipeRefreshLayout.setOnRefreshListener(this);
         webview.loadUrl(URL_ASKHMER);
     }
@@ -118,6 +119,7 @@ public class WebviewActivity extends Activity implements SwipeRefreshLayout.OnRe
 
     @Override
     public void onRefresh() {
-        webview.loadUrl(URL_ASKHMER);
+        webview.loadUrl(webview.getUrl());
+        swipeRefreshLayout.setRefreshing(false);
     }
 }
