@@ -56,6 +56,9 @@
         <activity
             android:name=".activity.Information"
             android:label="@string/title_activity_information"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.Age"
             android:theme="@style/AppTheme">
 
         </activity>
@@ -67,6 +70,9 @@
         </activity>
         <activity android:name=".activity.Gender"
             android:label="@string/title_activity_information"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity android:name=".activity.Location"
             android:theme="@style/AppTheme">
 
         </activity>
