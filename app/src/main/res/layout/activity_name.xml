@@ -64,7 +64,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="20dp"
-                        android:src="@drawable/list2"
+                        android:src="@drawable/list3"
                         android:scaleType="fitCenter"/>
                     <TextView
                         android:layout_width="130dp"
