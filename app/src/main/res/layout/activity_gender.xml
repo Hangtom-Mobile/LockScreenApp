@@ -80,67 +80,54 @@
                     android:background="@color/white"
                     android:padding="15dp">
 
-                    <!--cash silde id-->
-
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Cash Silde Id"
+                        android:textAlignment="textStart"
                         android:textSize="12dp"
                         android:textStyle="bold"
-                        android:layout_marginBottom="10dp"/>
-
-                      <EditText
-                        android:id="@+id/e_cash_id"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-
-                    <TextView
-                        android:id="@+id/ve_slide_id"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="At Least 4 characters"
-                        android:visibility="gone"
-                        android:textColor="@android:color/holo_red_dark" />
-
-                    <!--password-->
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Password"
-                        android:textStyle="bold"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"/>
-
-                    <EditText
-                        android:id="@+id/e_password"
-                        android:hint="Password at least 8 charactor"
-                        android:textColorHint="@color/hintColor"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"/>
-
-                    <TextView
-                        android:id="@+id/ve_pass_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:visibility="gone"
-                        android:textColor="@android:color/holo_red_dark"/>
-
-                    <EditText
-                        android:id="@+id/e_con_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:textColorHint="@color/hintColor"
-                        android:hint="Confirm password"/>
+                        android:layout_marginBottom="10dp"
+                        android:text="Select your Gender"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.7">
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <RadioGroup
+                            android:id="@+id/radioSex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/radioMale"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:text=""
+
+                                android:layout_marginRight="30dp"
+                                android:button="@android:color/transparent"
+                                android:background="@drawable/radio_button_boy_selector"/>
+
+                            <RadioButton
+                                android:id="@+id/radioFemale"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:text=""
+                                android:layout_marginLeft="30dp"
+                                android:button="@android:color/transparent"
+                                android:background="@drawable/radio_button_girl_selector"/>
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="110dp">
 
                         <Button
                             android:id="@+id/bttn_next"
