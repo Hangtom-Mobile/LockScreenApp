@@ -8,4 +8,31 @@
     <string name="title_activity_information">Information</string>
     <string name="title_activity_main">MainActivity</string>
 
+    <string-array name="list_province">
+        <item>Phnom Penh</item>
+        <item>Siem Reap</item>
+        <item>Ta Khmao</item>
+        <item>Battambang</item>
+        <item>Sihanoukville</item>
+        <item>Kampong Cham</item>
+        <item>Tboung Khmum</item>
+        <item>Krong Kep</item>
+        <item>Kampot</item>
+        <item>Koh Kong</item>
+        <item>Banteay Meanchey</item>
+        <item>Kampong Chhnang</item>
+        <item>Kampong Speu</item>
+        <item>Kampong Thom</item>
+        <item>Kratié</item>
+        <item>Mondulkiri</item>
+        <item>Oddar Meanchey</item>
+        <item>Pailin</item>
+        <item>Preah Vihear</item>
+        <item>Prey Veng</item>
+        <item>Ratanakiri</item>
+        <item>Stung Treng</item>
+        <item>Svay Rieng</item>
+        <item>Takéo</item>
+    </string-array>
+
 </resources>
