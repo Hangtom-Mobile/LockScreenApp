@@ -45,7 +45,7 @@ public class WebviewActivity extends Activity implements SwipeRefreshLayout.OnRe
         });
 
         checkInternetCon();
-        mSharedPref  = SharedPreferencesFile.newInstance(this, SharedPreferencesFile.PREFER_KEY);
+        mSharedPref  = SharedPreferencesFile.newInstance(this, SharedPreferencesFile.FILE_INFORMATION_TEMP);
 
         // Restore preferences
         boolean lockScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.PREFER_KEY);
