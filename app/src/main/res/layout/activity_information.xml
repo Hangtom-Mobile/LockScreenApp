@@ -66,11 +66,6 @@
                         android:layout_height="20dp"
                         android:src="@drawable/list2"
                         android:scaleType="fitCenter"/>
-                    <TextView
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:text="This is test text. This is test text..."
-                        android:gravity="center"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -125,7 +120,7 @@
                         android:id="@+id/ve_pass_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="Password at least 8 characters"
                         android:visibility="gone"
                         android:textColor="@android:color/holo_red_dark"/>
 

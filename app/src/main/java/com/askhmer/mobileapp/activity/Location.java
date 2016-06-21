@@ -1,19 +1,23 @@
 package com.askhmer.mobileapp.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.askhmer.mobileapp.R;
+import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 
 public class Location extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Spinner location;
+    private SharedPreferencesFile mSharedPreferencesFile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +27,8 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        mSharedPreferencesFile = SharedPreferencesFile.newInstance(getApplicationContext(), SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        Button button =  (Button)findViewById(R.id.bttn_next);
         location = (Spinner) findViewById(R.id.sp_location);
         location.setPrompt("Select year location!!!");
 
@@ -36,6 +42,15 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
         // attaching data adapter to spinner
         location.setAdapter(dataAdapter);
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), WebviewActivity.class);
+                mSharedPreferencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_LOCATION, location.getSelectedItem().toString());
+                mSharedPreferencesFile.putBooleanSharedPreference(SharedPreferencesFile.IS_OPEN_INFORMATION_SCREEN_KEY, true);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

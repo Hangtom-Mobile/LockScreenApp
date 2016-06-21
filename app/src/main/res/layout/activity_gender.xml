@@ -66,11 +66,6 @@
                         android:layout_height="20dp"
                         android:src="@drawable/list4"
                         android:scaleType="fitCenter"/>
-                    <TextView
-                        android:layout_width="130dp"
-                        android:layout_height="wrap_content"
-                        android:text="This is test text. This is test text..."
-                        android:gravity="center"/>
 
                 </LinearLayout>
                 <LinearLayout

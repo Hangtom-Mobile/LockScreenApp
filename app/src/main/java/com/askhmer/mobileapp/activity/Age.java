@@ -1,22 +1,27 @@
 package com.askhmer.mobileapp.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.askhmer.mobileapp.R;
+import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Age extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Spinner year;
-
+    private SharedPreferencesFile mSharedPrefrencesFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +32,7 @@ public class Age extends AppCompatActivity implements AdapterView.OnItemSelected
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        mSharedPrefrencesFile = SharedPreferencesFile.newInstance(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         year = (Spinner) findViewById(R.id.sp_year);
         year.setPrompt("Select year you was born!!!");
 
@@ -43,6 +49,23 @@ public class Age extends AppCompatActivity implements AdapterView.OnItemSelected
 
         // attaching data adapter to spinner
         year.setAdapter(dataAdapter);
+
+        final Button button = (Button)findViewById(R.id.bttn_next);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar now = Calendar.getInstance();
+                Intent intent = new Intent(getApplicationContext(), Location.class);
+
+                int currentyear = now.get(Calendar.YEAR);
+                int userYear = Integer.parseInt(year.getSelectedItem().toString());
+                int resultYear = currentyear - userYear;
+
+                Log.d("yearAge", resultYear + "");
+                mSharedPrefrencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_AGE, resultYear+"");
+                startActivity(intent);
+            }
+        });
 
 
 /*
