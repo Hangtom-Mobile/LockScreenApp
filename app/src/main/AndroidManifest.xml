@@ -32,11 +32,6 @@
             android:name=".activity.WebviewActivity"
             android:theme="@android:style/Theme.NoTitleBar">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 
@@ -52,7 +47,15 @@
 
         <activity
             android:name=".activity.PhoneNumber"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".activity.Information"
             android:label="@string/title_activity_information"
