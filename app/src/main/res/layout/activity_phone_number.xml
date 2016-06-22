@@ -89,6 +89,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"/>
+                    <TextView
+                        android:id="@+id/ve_phone_num"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="You need to input your phone number"
+                        android:visibility="gone"
+                        android:textColor="@android:color/holo_red_dark" />
                 </LinearLayout>
 
 
