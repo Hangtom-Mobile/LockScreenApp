@@ -90,4 +90,12 @@ public class SharedPreferencesFile {
     public int getIntSharedPreference(String perferFileName, String perferKey){
         return mSettings.getInt(perferKey, 0);
     }
+
+    /**
+     *
+     */
+    public void deleteSharedPreference(){
+        mEditor.clear();
+        mEditor.commit();
+    }
 }

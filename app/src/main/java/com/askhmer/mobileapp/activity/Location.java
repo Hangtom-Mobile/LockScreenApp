@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,13 +11,24 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.askhmer.mobileapp.R;
+import com.askhmer.mobileapp.network.API;
+import com.askhmer.mobileapp.network.MySingleton;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Location extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Spinner location;
     private SharedPreferencesFile mSharedPreferencesFile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,18 +55,14 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("testing",String.valueOf(location.getSelectedItemId()+1));
-                Intent intent = new Intent(getApplicationContext(), WebviewActivity.class);
-                mSharedPreferencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_LOCATION, String.valueOf(location.getSelectedItemId()+1));
-                mSharedPreferencesFile.putBooleanSharedPreference(SharedPreferencesFile.IS_OPEN_INFORMATION_SCREEN_KEY, true);
-                startActivity(intent);
+                mSharedPreferencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_LOCATION, String.valueOf(location.getSelectedItemId() + 1));
+                submitToServer();
             }
         });
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
         // Showing selected spinner item
         Toast.makeText(view.getContext(), "Selected: " +id, Toast.LENGTH_LONG).show();
     }
@@ -66,4 +72,48 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
 
     }
 
+    public void submitToServer() {
+        final String phone_num = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PHONE);
+        final String cash_slide_id = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID);
+        final String cash_password = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD);
+        final String mb_name = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_NAME);
+        final String mb_sex = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_GENDER);
+        final String mb_age  = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_AGE);
+        final String mb_location  = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_LOCATION);
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, API.REGISTER,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.contains("110")) {
+                            mSharedPreferencesFile.putBooleanSharedPreference(SharedPreferencesFile.IS_OPEN_INFORMATION_SCREEN_KEY, true);
+                            Intent intent = new Intent(getApplicationContext(), WebviewActivity.class);
+                            startActivity(intent);
+                        }else {
+                            mSharedPreferencesFile.deleteSharedPreference();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Location.this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("phone_num", phone_num);
+                params.put("cash_slide_id", cash_slide_id);
+                params.put("cash_password", cash_password);
+                params.put("mb_name", mb_name);
+                params.put("mb_sex", mb_sex);
+                params.put("mb_age", mb_age);
+                params.put("mb_location", mb_location);
+                params.put("token_id", "876590272");
+                return params;
+            }
+        };
+        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
+    }
 }
