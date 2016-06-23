@@ -20,6 +20,7 @@ import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.network.API;
 import com.askhmer.mobileapp.network.MySingleton;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
+import com.askhmer.mobileapp.utils.TokenGenerator;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -110,7 +111,7 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
                 params.put("mb_sex", mb_sex);
                 params.put("mb_age", mb_age);
                 params.put("mb_location", mb_location);
-                params.put("token_id", "876590272");
+                params.put("token_id", new TokenGenerator().resultTokenId());
                 return params;
             }
         };

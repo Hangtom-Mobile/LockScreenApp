@@ -11,4 +11,5 @@ public class API {
      * API url
      */
     public static final String REGISTER = BASEURL + "register_form_api.php";
+    public static final String CHECKCASHSLIDEID = BASEURL + "mb_id_chk_api.php";
 }

@@ -10,14 +10,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.askhmer.mobileapp.R;
+import com.askhmer.mobileapp.network.API;
+import com.askhmer.mobileapp.network.MySingleton;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 public class Information extends AppCompatActivity {
 
-    TextView vePassId;
-    TextView veSlideId;
+    private TextView vePassId;
+    private TextView veSlideId;
+    private EditText editCashId;
+    private EditText editPassword;
     private SharedPreferencesFile mSharedPrefrencesFile;
 
     @Override
@@ -30,8 +44,8 @@ public class Information extends AppCompatActivity {
 
         mSharedPrefrencesFile = SharedPreferencesFile.newInstance(getApplicationContext(), SharedPreferencesFile.FILE_INFORMATION_TEMP);
         Button button = (Button)findViewById(R.id.bttn_next);
-        final EditText editCashId = (EditText)findViewById(R.id.e_cash_id);
-        final EditText editPassword = (EditText)findViewById(R.id.e_password);
+        editCashId  = (EditText)findViewById(R.id.e_cash_id);
+        editPassword = (EditText)findViewById(R.id.e_password);
         vePassId = (TextView)findViewById(R.id.ve_pass_id);
         veSlideId = (TextView) findViewById(R.id.ve_slide_id);
 
@@ -52,7 +66,7 @@ public class Information extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 String id = editTextCashSlideId.getText().toString();
 
-                if (id.length() < 4) {
+                if (id.length() < 4 || id.contains(" ") || hasSymbol(id)) {
                     veSlideId.setVisibility(View.VISIBLE);
                 } else {
                     veSlideId.setVisibility(View.GONE);
@@ -130,18 +144,57 @@ public class Information extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if ((vePassId.getVisibility() == View.GONE) && (veSlideId.getVisibility() == View.GONE)) {
-                    if ((editCashId.getText().toString().isEmpty()) && (editPassword.getText().toString().isEmpty()) && (editTextConPassword.getText().toString().isEmpty())) {
+                    if (editCashId.getText().toString().isEmpty()) {
                         veSlideId.setVisibility(View.VISIBLE);
+                    }else if ((editPassword.getText().toString().isEmpty()) || (editTextConPassword.getText().toString().isEmpty())) {
                         vePassId.setVisibility(View.VISIBLE);
                     }else {
-                        Intent i = new Intent(getApplicationContext(), Name.class);
-                        mSharedPrefrencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID, editCashId.getText().toString());
-                        mSharedPrefrencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD, editPassword.getText().toString());
-                        startActivity(i);
+                        checkCashSlideId();
                     }
                 }
             }
         });
     }
 
+    public void checkCashSlideId(){
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, API.CHECKCASHSLIDEID,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.contains("112")) {
+                            veSlideId.setText("Id already have");
+                            veSlideId.setVisibility(View.VISIBLE);
+                        }else {
+                            Intent i = new Intent(getApplicationContext(), Name.class);
+                            mSharedPrefrencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID, editCashId.getText().toString());
+                            mSharedPrefrencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD, editPassword.getText().toString());
+                            startActivity(i);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Information.this, "Error", Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("cash_slide_id", editCashId.getText().toString());
+                return params;
+            }
+        };
+        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+    /**
+     * this method if str have symbol will return true
+     * @param str
+     * @return
+     */
+    public boolean hasSymbol(String str){
+        Pattern p = Pattern.compile("[^a-zA-Z0-9]");
+        return p.matcher(str).find();
+    }
 }

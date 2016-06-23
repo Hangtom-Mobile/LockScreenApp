@@ -94,7 +94,7 @@
                         android:id="@+id/ve_slide_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="At Least 4 characters"
+                        android:text="At Least 4 characters and not allow space, symbol"
                         android:visibility="gone"
                         android:textColor="@android:color/holo_red_dark" />
 
