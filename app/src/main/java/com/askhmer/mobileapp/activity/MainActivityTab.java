@@ -68,7 +68,7 @@ public class MainActivityTab extends AppCompatActivity {
                 R.drawable.home_on,
                 R.drawable.portal,
                 R.drawable.money,
-                R.drawable.preferences
+                R.drawable.preferences_n
         };
 
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
