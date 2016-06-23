@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#1565C0</color>
-    <color name="colorPrimaryDark">#0D47A1</color>
-    <color name="colorAccent">#3BB960</color>
+    <color name="colorPrimary">#222222</color>
+    <color name="colorPrimaryDark">#121212</color>
+    <color name="colorAccent">#fff534</color>
 
     <color name="yellow">#F5DC49</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="hintColor">#bababa</color>
+
+    <color name="btn_tap_off">#d9d9d9</color>
     
 </resources>

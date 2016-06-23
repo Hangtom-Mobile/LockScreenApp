@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
@@ -36,4 +36,18 @@
         <item name="upper">@drawable/ic_unlock</item>
         <item name="bottom">@drawable/ic_browser</item>
     </style>
+
+    <style name="MyTabTheme" parent="MyTabTheme.Base">
+
+    </style>
+
+    <style name="MyTabTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar" tools:ignore="NewApi">false</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
 </resources>
