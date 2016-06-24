@@ -17,6 +17,7 @@ public class SharedPreferencesFile {
     public static final String KEY_INFORMATION_TEMP_AGE = "KEY_INFORMATION_TEMP_AGE";
     public static final String KEY_INFORMATION_TEMP_LOCATION = "KEY_INFORMATION_TEMP_LOCATION";
     public static final String IS_OPEN_INFORMATION_SCREEN_KEY = "IS_OPEN_INFORMATION_SCREEN_KEY";
+    public static final String KEY_INFORMATION_TEMP_TOKEN = "KEY_INFORMATION_TEMP_TOKEN";
 
 
     private Context mContext;

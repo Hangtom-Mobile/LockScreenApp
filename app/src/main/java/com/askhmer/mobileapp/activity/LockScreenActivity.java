@@ -10,22 +10,40 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Cache;
+import com.android.volley.NetworkResponse;
+import com.android.volley.NoConnectionError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.adapter.FullScreenImageAdapter;
-import com.askhmer.mobileapp.model.CompanyDto;
+import com.askhmer.mobileapp.model.LockScreenBackgroundDto;
+import com.askhmer.mobileapp.network.API;
+import com.askhmer.mobileapp.network.CheckInternet;
+import com.askhmer.mobileapp.network.MySingleton;
 import com.askhmer.mobileapp.utils.LockscreenService;
 import com.askhmer.mobileapp.utils.LockscreenUtils;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 import com.askhmer.mobileapp.utils.ToggleSwitchButtonByDy;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LockScreenActivity extends Activity implements
 		LockscreenUtils.OnLockStatusChangedListener {
@@ -44,7 +62,7 @@ public class LockScreenActivity extends Activity implements
 
 //	private ArrayList<CompanyDto> arrList;
 
-	private ArrayList<CompanyDto> pathFile;
+	private ArrayList<LockScreenBackgroundDto> pathFile;
 	// Set appropriate flags to make the screen appear over the keyguard
 	@Override
 	public void onAttachedToWindow() {
@@ -65,11 +83,10 @@ public class LockScreenActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_lockscreen);
-
 		init();
+
 		mSharedPref = SharedPreferencesFile.newInstance(this, SharedPreferencesFile.PREFER_KEY);
 		mSharedPref.putBooleanSharedPreference(SharedPreferencesFile.PREFER_KEY, true);
-
 
 		// unlock screen in case of app get killed by system
 		if (getIntent() != null && getIntent().hasExtra("kill")
@@ -99,27 +116,42 @@ public class LockScreenActivity extends Activity implements
 
 		}
 
-		pathFile = new ArrayList<CompanyDto>();
-//		pathFile.add(new CompanyDto("http://www.americanodream.com/wp-content/uploads/2015/11/heather60070.jpg","http://github.com/"));
-//		pathFile.add(new CompanyDto("https://s-media-cache-ak0.pinimg.com/736x/78/6a/9f/786a9fffb761f3e1a927e1270a30d10f.jpg","https://www.youtube.com/"));
-//		pathFile.add(new CompanyDto("http://www.pdnonline.com/static/content_images/505greff-LoneTreeSunset.jpg","http://www.apple.com/"));
-		pathFile.add(new CompanyDto("http://www.askhmer.com/img/KakaoTalk_20160614_165114077.jpg","http://www.apple.com/"));
-
-		fullScreenImageAdapter = new FullScreenImageAdapter(this,pathFile);
-		imageViewPager.setAdapter(fullScreenImageAdapter);
-
+		/*request to server*/
+		if (new CheckInternet().isConnect(getApplicationContext()) == true) {
+			lockScreenRequestServer();
+		}else {
+			pathFile = new ArrayList<LockScreenBackgroundDto>();
+		}
 		ToggleSwitchButtonByDy toggle = (ToggleSwitchButtonByDy) findViewById(R.id.toggle);
 		toggle.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
 			@Override
 			public void toggledUp() {
+				if (new CheckInternet().isConnect(getApplicationContext()) == true) {
+					if (pathFile != null) {
+						String unlockPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockBasicPrice();
+						String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
+						requestPointToServer("right", "lock_basic_price", unlockPrice, uId);
+					}
+				}
 				unlockHomeButton();
 			}
 
 			@Override
 			public void toggledDown() {
-				String url = pathFile.get(imageViewPager.getCurrentItem()).getUrlWebsite();
-				Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-				startActivity(browserIntent);
+				if (pathFile != null){
+								String url = pathFile.get(imageViewPager.getCurrentItem()).getWebUrl();
+					String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
+					String urlPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockViewPrice();
+					Log.d("imageURl",url);
+
+					if (!url.isEmpty()) {
+						if (new CheckInternet().isConnect(getApplicationContext()) == true) {
+							requestPointToServer("left","lock_view_price",urlPrice,uId);
+						}
+						Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+						startActivity(browserIntent);
+					}
+				}
 			}
 		});
 
@@ -130,7 +162,6 @@ public class LockScreenActivity extends Activity implements
 		Runnable runnable = new CountDownRunner();
 		myThread= new Thread(runnable);
 		myThread.start();
-
 
 	}
 
@@ -250,7 +281,7 @@ public class LockScreenActivity extends Activity implements
 		}
 	}
 */
-	public String getShiftOfDate(Calendar cal){
+	public String getShiftOfDate(Calendar cal) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm a");
 		String fullDateFormat = dateFormat.format(cal.getTime());
 		return fullDateFormat.substring(fullDateFormat.length() - 2);
@@ -259,21 +290,22 @@ public class LockScreenActivity extends Activity implements
 	public void doWork() {
 		runOnUiThread(new Runnable() {
 			public void run() {
-				try{
-					TextView txtCurrentTime = (TextView)findViewById(R.id.time);
-					TextView txtCurrentShift = (TextView)findViewById(R.id.shift);
-					TextView txtCurrentDate = (TextView)findViewById(R.id.date);
+				try {
+					TextView txtCurrentTime = (TextView) findViewById(R.id.time);
+					TextView txtCurrentShift = (TextView) findViewById(R.id.shift);
+					TextView txtCurrentDate = (TextView) findViewById(R.id.date);
 
 					SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm a");
 					Calendar cal = Calendar.getInstance();
 
 					String time = dateFormat.format(cal.getTime());
 
-					txtCurrentTime.setText(time.substring(0,time.length()-3));
+					txtCurrentTime.setText(time.substring(0, time.length() - 3));
 					txtCurrentShift.setText(getShiftOfDate(cal).toUpperCase());
 					txtCurrentDate.setText(new SimpleDateFormat("dd/MM/yy").format(cal.getTime()));
 
-				}catch (Exception e) {}
+				} catch (Exception e) {
+				}
 			}
 		});
 	}
@@ -293,4 +325,117 @@ public class LockScreenActivity extends Activity implements
 		}
 	}
 
+	public void lockScreenRequestServer() {
+		pathFile = new ArrayList<LockScreenBackgroundDto>();
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://www.askhmer.com/locknet/locknet_api.php",
+				new Response.Listener<String>() {
+					@Override
+					public void onResponse(String response) {
+						if (!response.isEmpty()) {
+							try {
+								JSONObject jsonObj = new JSONObject(response);
+								LockScreenBackgroundDto dto = new LockScreenBackgroundDto();
+								dto.setuId(jsonObj.getString("uid"));
+								dto.setLockBasicPrice(jsonObj.getString("lock_basic_price"));
+								dto.setLockViewPrice(jsonObj.getString("lock_view_price"));
+								dto.setImageUrl(jsonObj.getString("image"));
+								dto.setWebUrl(jsonObj.getString("url"));
+								pathFile.add(dto);
+								fullScreenImageAdapter.notifyDataSetChanged();
+							} catch (JSONException e) {
+								e.printStackTrace();
+							}
+						}else {
+							Toast.makeText(LockScreenActivity.this, "No data", Toast.LENGTH_SHORT).show();
+						}
+					}
+				}, new Response.ErrorListener() {
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				Log.d("ErroVelloy",error.toString());
+				Toast.makeText(LockScreenActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+			}
+		}){
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				Map<String, String> params = new HashMap<>();
+				params.put("cash_slide_id", mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID));
+				return params;
+			}
+			@Override
+			public void deliverError(VolleyError error) {
+				if (error instanceof NoConnectionError) {
+					Cache.Entry entry = this.getCacheEntry();
+					if(entry != null) {
+						Response<String> response = parseNetworkResponse(new NetworkResponse(entry.data, entry.responseHeaders));
+						deliverResponse(response.result);
+						return;
+					}
+				}
+				super.deliverError(error);
+			}
+		};
+		MySingleton.getInstance(this).addToRequestQueue(stringRequest);
+		fullScreenImageAdapter = new FullScreenImageAdapter(this,pathFile);
+		imageViewPager.setAdapter(fullScreenImageAdapter);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Log.e("Activity_test","on resume");
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		Log.e("Activity_test", "on start");
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		lockScreenRequestServer();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		Log.e("Activity_test", "on onDestroy");
+	}
+
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		Log.e("Activity_test", "on onRestart");
+	}
+
+	public void requestPointToServer(final String sliding, final String keyOfPoint, final String point, final String uId){
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, API.REQUESTPOINT,
+				new Response.Listener<String>() {
+					@Override
+					public void onResponse(String response) {
+							Log.d("responeData",response);
+					}
+				}, new Response.ErrorListener() {
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				Log.d("ErroVelloy",error.toString());
+				Toast.makeText(LockScreenActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+			}
+		}){
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				Map<String, String> params = new HashMap<>();
+				params.put("cash_slide_id", mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID));
+				params.put("cash_password", mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD));
+				params.put("token_id", mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_TOKEN));
+				params.put("sliding", sliding);
+				params.put("uid", uId);
+				params.put(keyOfPoint, point);
+				return params;
+			}
+		};
+		MySingleton.getInstance(this).addToRequestQueue(stringRequest);
+	}
 }

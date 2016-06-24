@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.askhmer.mobileapp.R;
-import com.askhmer.mobileapp.model.CompanyDto;
+import com.askhmer.mobileapp.model.LockScreenBackgroundDto;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -22,12 +22,12 @@ import java.util.ArrayList;
 public class FullScreenImageAdapter extends PagerAdapter {
 
     private Activity _activity;
-    private ArrayList<CompanyDto> _imagePaths;
+    private ArrayList<LockScreenBackgroundDto> _imagePaths;
     private LayoutInflater inflater;
 
     // constructor
     public FullScreenImageAdapter(Activity activity,
-                                  ArrayList<CompanyDto> imagePaths) {
+                                  ArrayList<LockScreenBackgroundDto> imagePaths) {
         this._activity = activity;
         this._imagePaths = imagePaths;
     }
@@ -50,7 +50,7 @@ public class FullScreenImageAdapter extends PagerAdapter {
 
         imgDisplay = (ImageView) viewLayout.findViewById(R.id.imgDisplay);
 
-        Picasso.with(container.getContext()).load(_imagePaths.get(position).getBannerImage()).into(imgDisplay);
+        Picasso.with(container.getContext()).load(_imagePaths.get(position).getImageUrl()).into(imgDisplay);
 
         ((ViewPager) container).addView(viewLayout);
 

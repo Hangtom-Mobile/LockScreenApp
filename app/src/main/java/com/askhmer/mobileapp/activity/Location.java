@@ -104,6 +104,8 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+                String tokenId = new TokenGenerator().resultTokenId();
+                mSharedPreferencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_TOKEN,tokenId);
                 params.put("phone_num", phone_num);
                 params.put("cash_slide_id", cash_slide_id);
                 params.put("cash_password", cash_password);
@@ -111,7 +113,7 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
                 params.put("mb_sex", mb_sex);
                 params.put("mb_age", mb_age);
                 params.put("mb_location", mb_location);
-                params.put("token_id", new TokenGenerator().resultTokenId());
+                params.put("token_id",tokenId);
                 return params;
             }
         };
