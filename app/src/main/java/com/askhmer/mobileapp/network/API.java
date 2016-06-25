@@ -5,7 +5,7 @@ package com.askhmer.mobileapp.network;
  */
 public class API {
 
-    public static final String BASEURL = "http://askhmer.com/locknet/";
+    public static final String BASEURL = "http://www.medayi.com/locknet/";
 
     /**
      * API url
@@ -14,4 +14,7 @@ public class API {
     public static final String CHECKCASHSLIDEID = BASEURL + "mb_id_chk_api.php";
     public static final String LOCKSCREENBACKGROUP = BASEURL + "locknet_api.php";
     public static final String REQUESTPOINT = BASEURL + "locknet_point_api.php";
+    public static final String REQUESTMYPOINT = BASEURL + "my_point_api.php";
+    public static final String REQUESTAUTOLOGIN = "http://www.medayi.com/bbs/auto_login_api.php";
+    public static final String CHECKPASSWORK = "http://www.medayi.com/bbs/password_chk_api.php";
 }
