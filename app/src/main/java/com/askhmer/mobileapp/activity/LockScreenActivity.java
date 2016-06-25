@@ -139,7 +139,7 @@ public class LockScreenActivity extends Activity implements
 			@Override
 			public void toggledDown() {
 				if (pathFile != null){
-								String url = pathFile.get(imageViewPager.getCurrentItem()).getWebUrl();
+					String url = pathFile.get(imageViewPager.getCurrentItem()).getWebUrl();
 					String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
 					String urlPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockViewPrice();
 					Log.d("imageURl",url);
@@ -331,6 +331,7 @@ public class LockScreenActivity extends Activity implements
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
+						Log.e("responeback",response);
 						if (!response.isEmpty()) {
 							try {
 								JSONObject jsonObj = new JSONObject(response);
@@ -340,6 +341,7 @@ public class LockScreenActivity extends Activity implements
 								dto.setLockViewPrice(jsonObj.getString("lock_view_price"));
 								dto.setImageUrl(jsonObj.getString("image"));
 								dto.setWebUrl(jsonObj.getString("url"));
+								pathFile.clear();
 								pathFile.add(dto);
 								fullScreenImageAdapter.notifyDataSetChanged();
 							} catch (JSONException e) {

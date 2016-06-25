@@ -40,7 +40,7 @@ public class SplashScreen extends AppCompatActivity {
                 boolean informationScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.IS_OPEN_INFORMATION_SCREEN_KEY);
 
                 if(informationScreen == true) {
-                    mainIntent = new Intent(SplashScreen.this, WebviewActivity.class);
+                    mainIntent = new Intent(SplashScreen.this, MainActivityTab.class);
                 }else {
                     mainIntent = new Intent(SplashScreen.this, PhoneNumber.class);
                 }
