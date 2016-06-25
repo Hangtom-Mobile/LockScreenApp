@@ -28,7 +28,7 @@ public class PasswordFindMoney extends SwipeBackActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password_find_money);
-//swap back
+//swipe back
         setDragEdge(SwipeBackLayout.DragEdge.LEFT);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

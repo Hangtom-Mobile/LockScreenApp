@@ -87,8 +87,27 @@
         <activity
             android:name=".activity.AccountManage"
             android:theme="@style/MyAppTheme" />
-        <activity android:name=".activity.MyInfo" android:theme="@style/MyAppTheme"/>
-        <activity android:name=".activity.ChangePwd" android:theme="@style/MyAppTheme"></activity>
+        <activity
+            android:name=".activity.MyInfo"
+            android:theme="@style/MyAppTheme" />
+        <activity
+            android:name=".activity.ChangePwd"
+            android:theme="@style/MyAppTheme" />
+        <activity
+            android:name=".activity.ForgetPwd"
+            android:theme="@style/MyAppTheme"/>
+        <activity
+            android:name=".activity.Withdrawal"
+            android:theme="@style/MyAppTheme"/>
+        <activity
+            android:name=".activity.HowToUseChache"
+            android:theme="@style/MyAppTheme"/>
+        <activity
+            android:name=".activity.PrivacyStatement"
+            android:theme="@style/MyAppTheme"/>
+        <activity
+            android:name=".activity.TermsOfUse"
+            android:theme="@style/MyAppTheme"/>
     </application>
 
 </manifest>

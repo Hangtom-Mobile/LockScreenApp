@@ -1,20 +1,24 @@
 package com.askhmer.mobileapp.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.askhmer.mobileapp.R;
+import com.liuguangqiang.swipeback.SwipeBackActivity;
+import com.liuguangqiang.swipeback.SwipeBackLayout;
 
-public class MyInfo extends AppCompatActivity {
+public class MyInfo extends SwipeBackActivity {
 
     private Spinner location;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_info);
+
+        //swipe back
+        setDragEdge(SwipeBackLayout.DragEdge.LEFT);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
