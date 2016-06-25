@@ -1,5 +1,6 @@
 package com.askhmer.mobileapp.activity;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -18,6 +19,7 @@ import com.askhmer.mobileapp.fragment.FourFragment;
 import com.askhmer.mobileapp.fragment.OneFragment;
 import com.askhmer.mobileapp.fragment.ThreeFragment;
 import com.askhmer.mobileapp.fragment.TwoFragment;
+import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +30,21 @@ public class MainActivityTab extends AppCompatActivity {
     private ViewPager viewPager;
     private long backKeyPressedTime = 0;
     private Toast toast;
+    private SharedPreferencesFile mSharedPref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity_tab);
+
+        mSharedPref  = SharedPreferencesFile.newInstance(this, SharedPreferencesFile.FILE_INFORMATION_TEMP);
+
+        // Restore preferences_n
+        boolean lockScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.PREFER_KEY);
+
+        if(!lockScreen==true){
+            Intent i = new Intent(MainActivityTab.this, LockScreenActivity.class);
+            startActivity(i);
+        }
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);

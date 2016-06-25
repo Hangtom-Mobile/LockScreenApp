@@ -327,7 +327,7 @@ public class LockScreenActivity extends Activity implements
 
 	public void lockScreenRequestServer() {
 		pathFile = new ArrayList<LockScreenBackgroundDto>();
-		StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://www.askhmer.com/locknet/locknet_api.php",
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://www.medayi.com/locknet/locknet_api.php",
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
@@ -353,7 +353,7 @@ public class LockScreenActivity extends Activity implements
 			@Override
 			public void onErrorResponse(VolleyError error) {
 				Log.d("ErroVelloy",error.toString());
-				Toast.makeText(LockScreenActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+				Toast.makeText(LockScreenActivity.this, "locksreen "+error.toString(), Toast.LENGTH_LONG).show();
 			}
 		}){
 			@Override

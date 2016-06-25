@@ -89,7 +89,7 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
                     public void onResponse(String response) {
                         if (response.contains("110")) {
                             mSharedPreferencesFile.putBooleanSharedPreference(SharedPreferencesFile.IS_OPEN_INFORMATION_SCREEN_KEY, true);
-                            Intent intent = new Intent(getApplicationContext(), WebviewActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), MainActivityTab.class);
                             startActivity(intent);
                         }else {
                             mSharedPreferencesFile.deleteSharedPreference();
@@ -98,7 +98,7 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Location.this, "Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Location.this, "location Error", Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
