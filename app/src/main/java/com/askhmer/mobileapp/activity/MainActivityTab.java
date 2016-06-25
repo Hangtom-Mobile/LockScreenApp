@@ -9,6 +9,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.widget.Toast;
 
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.fragment.FourFragment;
@@ -23,6 +26,8 @@ public class MainActivityTab extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private long backKeyPressedTime = 0;
+    private Toast toast;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,4 +121,39 @@ public class MainActivityTab extends AppCompatActivity {
             return null;
         }
     }
+
+
+    //Enable backward
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        try {
+            switch (event.getKeyCode()) {
+                case KeyEvent.KEYCODE_BACK: onBackPressed();
+            }
+        } catch (NullPointerException e) {
+            Log.d("Null", "BackClick NullPointerException : " + e);
+        } catch (Exception e1) {
+            Log.d("BackClick", "BackClick Exception : " + e1);
+        }
+        return false;
+    }
+
+    public void onBackPressed() {
+        if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
+            backKeyPressedTime = System.currentTimeMillis();
+            showGuide();
+            return;
+        }
+        if (System.currentTimeMillis() <= backKeyPressedTime + 2000) {
+            finish();
+            toast.cancel();
+        }
+    }
+
+    public void showGuide() {
+        toast = Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+
 }

@@ -36,7 +36,7 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
                 Intent mainIntent = null;
 
-                // Restore preferences
+                // Restore preferences_n
                 boolean informationScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.IS_OPEN_INFORMATION_SCREEN_KEY);
 
                 if(informationScreen == true) {

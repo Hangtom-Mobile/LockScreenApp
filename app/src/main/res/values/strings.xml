@@ -7,6 +7,7 @@
     <string name="unlock">UNLOCK</string>
     <string name="title_activity_information">Information</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="intro_balance">From 80,000 Points can be withdrawn.\n(4000 points - $1.00)  </string>
 
     <string-array name="list_province">
         <item>Phnom Penh</item>

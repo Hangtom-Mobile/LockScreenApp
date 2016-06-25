@@ -11,5 +11,12 @@
     <color name="hintColor">#bababa</color>
 
     <color name="btn_tap_off">#d9d9d9</color>
-    
+
+    <color name="blue_bright">#5f84fc</color>
+    <color name="green_light">#5ffc62</color>
+    <color name="orange_light">#fcb35f</color>
+    <color name="red_light">#fc5f5f</color>
+
+    <color name="btn_color">#0848be</color>
+    <color name="bg_color">#eeeeee</color>
 </resources>

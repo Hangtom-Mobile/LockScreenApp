@@ -19,11 +19,15 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
     compile 'co.aenterhy:toggleswitch:1.0.0'
-    compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+
+    compile 'com.github.liuguangqiang.swipeback:library:1.0.2@aar'
 }

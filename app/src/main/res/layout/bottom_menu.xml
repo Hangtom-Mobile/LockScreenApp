@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="@android:color/darker_gray"
+    android:paddingTop="7dp"
+    android:paddingBottom="7dp"
+    android:orientation="horizontal" >
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:scaleType="fitCenter"
+        android:background="@android:color/darker_gray"
+        android:src="@drawable/tab_icon_back" />
+
+    <ImageButton
+        android:id="@+id/btnForward"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:scaleType="fitCenter"
+        android:background="@android:color/darker_gray"
+        android:src="@drawable/tab_icon_forward" />
+    <!-- android:onClick="bottomMenuForword"/> -->
+
+    <ImageButton
+        android:id="@+id/btnHome"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:scaleType="fitCenter"
+        android:background="@android:color/darker_gray"
+        android:src="@drawable/tab_icon_home" />
+    <!-- android:onClick="bottomMenuHome" /> -->
+
+
+
+    <ImageButton
+        android:id="@+id/btnRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:scaleType="fitCenter"
+        android:background="@android:color/darker_gray"
+        android:src="@drawable/tab_icon_refresh" />
+    <!-- android:onClick="bottomMenuRefresh"/> -->
+
+<!--
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_weight="0.4"
+        xmlns:fb="http://schemas.android.com/apk/res-auto"
+        fb:login_text=""
+        fb:logout_text=""
+        android:layout_marginRight="20dp"
+        android:scaleType="centerInside"
+        />
+-->
+
+
+</LinearLayout>
