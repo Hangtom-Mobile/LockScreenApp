@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.model.LockScreenBackgroundDto;
@@ -45,12 +46,20 @@ public class FullScreenImageAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         ImageView imgDisplay;
+        TextView txtViewPoint;
+        TextView txtBasicPoint;
+
         inflater = (LayoutInflater) _activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View viewLayout = inflater.inflate(R.layout.item_image_viewer, container, false);
 
         imgDisplay = (ImageView) viewLayout.findViewById(R.id.imgDisplay);
+        txtBasicPoint = (TextView) viewLayout.findViewById(R.id.txt_basic_point);
+        txtViewPoint = (TextView) viewLayout.findViewById(R.id.txt_view_point);
 
         Picasso.with(container.getContext()).load(_imagePaths.get(position).getImageUrl()).into(imgDisplay);
+
+        txtBasicPoint.setText(_imagePaths.get(position).getLockBasicPrice());
+        txtViewPoint.setText(_imagePaths.get(position).getLockViewPrice());
 
         ((ViewPager) container).addView(viewLayout);
 
