@@ -18,5 +18,6 @@
     <color name="red_light">#fc5f5f</color>
 
     <color name="btn_color">#0848be</color>
+    <color name="btn_color_selected">#062a6b</color>
     <color name="bg_color">#eeeeee</color>
 </resources>
