@@ -25,7 +25,7 @@ public class AccountManage extends SwipeBackActivity {
         myInfo = (LinearLayout) findViewById(R.id.li_my_info);
         changePwd = (LinearLayout) findViewById(R.id.li_change_pwd);
         forgetPwd = (LinearLayout) findViewById(R.id.li_forget_pwd);
-        withdrawal = (LinearLayout) findViewById(R.id.li_withdrawal);
+        /*withdrawal = (LinearLayout) findViewById(R.id.li_withdrawal);*/
 
 // listener
         myInfo.setOnClickListener(new View.OnClickListener() {
@@ -57,13 +57,13 @@ public class AccountManage extends SwipeBackActivity {
             }
         });
 
-        withdrawal.setOnClickListener(new View.OnClickListener() {
+        /*withdrawal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 in = new Intent(AccountManage.this, Withdrawal.class);
                 startActivity(in);
                 AccountManage.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
             }
-        });
+        });*/
     }
 }

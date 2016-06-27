@@ -36,16 +36,6 @@ public class MainActivityTab extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity_tab);
 
-        mSharedPref  = SharedPreferencesFile.newInstance(this, SharedPreferencesFile.FILE_INFORMATION_TEMP);
-
-        // Restore preferences_n
-        boolean lockScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.PREFER_KEY);
-
-        if(!lockScreen==true){
-            Intent i = new Intent(MainActivityTab.this, LockScreenActivity.class);
-            startActivity(i);
-        }
-
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
@@ -79,6 +69,7 @@ public class MainActivityTab extends AppCompatActivity {
                     }
                 }
         );
+       
     }
 
     private void setupTabIcons() {
@@ -169,4 +160,29 @@ public class MainActivityTab extends AppCompatActivity {
         toast.show();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mSharedPref  = SharedPreferencesFile.newInstance(this, SharedPreferencesFile.FILE_INFORMATION_TEMP);
+
+        // Restore preferences_n
+        boolean lockScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.PREFER_KEY);
+
+        if(!lockScreen==true){
+            Intent i = new Intent(MainActivityTab.this, LockScreenActivity.class);
+            startActivity(i);
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e("testscreen","onStop" );
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e("testscreen", "onPause");
+    }
 }
