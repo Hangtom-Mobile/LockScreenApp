@@ -159,9 +159,13 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         webview.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
-                getActivity().setProgress(newProgress * 1000);
-                super.onProgressChanged(view, newProgress);
-                mProgress.setProgress(newProgress);
+                try {
+                    getActivity().setProgress(newProgress * 1000);
+                    super.onProgressChanged(view, newProgress);
+                    mProgress.setProgress(newProgress);
+                }catch (Exception e) {
+                    Log.v("erorr",e.toString());
+                }
             }
 
         });
