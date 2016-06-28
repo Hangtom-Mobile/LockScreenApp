@@ -58,8 +58,8 @@ public class FullScreenImageAdapter extends PagerAdapter {
 
         Picasso.with(container.getContext()).load(_imagePaths.get(position).getImageUrl()).into(imgDisplay);
 
-        txtBasicPoint.setText(_imagePaths.get(position).getLockBasicPrice());
-        txtViewPoint.setText(_imagePaths.get(position).getLockViewPrice());
+        txtBasicPoint.setText("+ " + _imagePaths.get(position).getLockBasicPrice());
+        txtViewPoint.setText("+ " + _imagePaths.get(position).getLockViewPrice());
 
         ((ViewPager) container).addView(viewLayout);
 

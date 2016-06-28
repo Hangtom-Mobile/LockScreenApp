@@ -57,7 +57,7 @@ public class OneFragment extends Fragment {
         requestMypointToServer();
 
         /*request auto login*/
-        requestAutoLogin();
+       /* requestAutoLogin();*/
 
         return oneFragmentView;
     }

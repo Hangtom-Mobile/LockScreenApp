@@ -13,7 +13,7 @@
         android:layout_height="210dp"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:paddingTop="25dp"
+        android:paddingTop="110dp"
         android:layout_alignParentLeft="true">
 
         <TextView
@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:text="Point"
             android:textColor="@color/white"
-            android:textSize="14dp"
+            android:textSize="16dp"
             android:layout_marginLeft="20dp"
             android:layout_gravity="center"
             android:layout_weight="1"/>
@@ -37,7 +37,7 @@
             android:id="@+id/txt_basic_point"
             android:layout_marginRight="20dp"
             android:textColor="@color/white"
-            android:textSize="14dp"/>
+            android:textSize="16dp"/>
 
     </LinearLayout>
 

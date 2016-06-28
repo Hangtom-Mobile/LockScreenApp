@@ -386,6 +386,7 @@ public class LockScreenActivity extends Activity implements
 	protected void onResume() {
 		super.onResume();
 		Log.e("Activity_test","on resume");
+		lockScreenRequestServer();
 	}
 
 	@Override
@@ -397,7 +398,7 @@ public class LockScreenActivity extends Activity implements
 	@Override
 	protected void onPause() {
 		super.onPause();
-		lockScreenRequestServer();
+		Log.e("Activity_test", "on onPause");
 	}
 
 	@Override
