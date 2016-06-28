@@ -58,6 +58,47 @@ android:background="@color/white">
                 android:gravity="center_horizontal"
                 android:layout_weight="1">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="When members leave all the points will be destroyed"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/black"/>
+                <!-- ID-->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Please enter your ID"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <View
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/btn_tap_off"/>
+                <EditText
+                    android:id="@+id/et_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:background="@drawable/radius_ed"/>
+                <View
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/btn_tap_off"/>
+
                 <!--Password-->
 
                 <TextView
@@ -67,11 +108,11 @@ android:background="@color/white">
                     android:textSize="15dp"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"/>
 
                 <View
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="0.1dp"
                     android:background="@color/btn_tap_off"/>
@@ -89,6 +130,39 @@ android:background="@color/white">
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
                     android:background="@color/btn_tap_off"/>
+
+                <!--Money-->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Please enter Amount of money"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <View
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:background="@color/btn_tap_off"/>
+                <EditText
+                    android:id="@+id/et_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:inputType="number"
+                    android:gravity="center"
+                    android:background="@drawable/radius_ed"/>
+                <View
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@color/btn_tap_off"/>
+
                 <TextView
                     android:id="@+id/ve_password"
                     android:layout_width="wrap_content"
@@ -101,7 +175,7 @@ android:background="@color/white">
                     android:id="@+id/btn_next"
                     android:layout_width="170dp"
                     android:layout_height="40dp"
-                    android:text="Next"
+                    android:text="OK"
                     android:layout_marginTop="15dp"
                     android:textColor="@color/white"
                     android:background="@color/btn_color"
