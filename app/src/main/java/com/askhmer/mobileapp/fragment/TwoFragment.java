@@ -41,13 +41,8 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
-import org.apache.http.cookie.Cookie;
 import org.apache.http.util.EncodingUtils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -67,8 +62,6 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private ImageButton btnHome;
     private ImageButton btnRefresh;
     private SharedPreferencesFile mSharedPreferencesFile;
-    public static Cookie cookie = null;
-    private String sid;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -163,26 +156,6 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
             }
         }
     };
-
-
-    private void inputStreamToString(InputStream is) {
-        String line = "";
-        StringBuilder total = new StringBuilder();
-
-        // Wrap a BufferedReader around the InputStream
-        BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-
-        // Read response until the end
-        try {
-            while ((line = rd.readLine()) != null) {
-                total.append(line);
-            }
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        sid = total.toString();
-    }
 
     @Override
     public void onRefresh() {
