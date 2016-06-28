@@ -76,7 +76,7 @@
                             android:id="@+id/et_name"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:gravity="left"
+                            android:gravity="center_vertical|center_horizontal"
                             android:background="@color/bg_color"
                             android:layout_weight="1"
                             android:editable="false"/>
@@ -107,8 +107,8 @@
                             android:id="@+id/et_id"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:gravity="left"
                             android:background="@color/bg_color"
+                            android:gravity="center_vertical|center_horizontal"
                             android:layout_weight="1"
                             android:editable="false"/>
 
@@ -137,7 +137,7 @@
                             android:id="@+id/et_phone"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:gravity="left"
+                            android:gravity="center_vertical|center_horizontal"
                             android:background="@color/bg_color"
                             android:layout_weight="1"
                             android:editable="false"/>
@@ -168,8 +168,8 @@
                             android:id="@+id/et_dob"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:gravity="left"
                             android:background="@color/bg_color"
+                            android:gravity="center_vertical|center_horizontal"
                             android:layout_weight="1"
                             android:editable="false"/>
 
@@ -200,8 +200,8 @@
                             android:id="@+id/et_sex"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
-                            android:gravity="left"
                             android:background="@color/bg_color"
+                            android:gravity="center_vertical|center_horizontal"
                             android:layout_weight="1"
                             android:editable="false"/>
 
