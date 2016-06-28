@@ -110,6 +110,7 @@
 
                     <EditText
                         android:id="@+id/e_password"
+                        android:inputType="textPassword"
                         android:hint="Password at least 8 charactor"
                         android:textColorHint="@color/hintColor"
                         android:layout_width="match_parent"
@@ -128,6 +129,7 @@
                         android:id="@+id/e_con_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="textPassword"
                         android:layout_marginTop="5dp"
                         android:textColorHint="@color/hintColor"
                         android:hint="Confirm password"/>

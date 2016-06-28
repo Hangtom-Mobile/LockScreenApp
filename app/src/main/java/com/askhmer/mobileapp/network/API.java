@@ -18,6 +18,7 @@ public class API {
     public static final String REQUESTAUTOLOGIN = "http://m.medayi.com/bbs/auto_login_api.php";
     public static final String CHECKPASSWORK = "http://www.medayi.com/bbs/password_chk_api.php";
     public static final String LOSEPASSWORD = "http://www.medayi.com/bbs/password_lost_api.php";
-    public static final String CHANGPASSWORDFORGET = "http://www.medayi.com/bbs/password_change_api.php";
+    public static final String CHANGPASSWORD = "http://www.medayi.com/bbs/password_change_api.php";
     public static final String MEMBERINFOAPI = "http://www.medayi.com/bbs/member_info_api.php";
+    public static final String CHANGLOCATION = "http://www.medayi.com/bbs/change_location_api.php";
 }
