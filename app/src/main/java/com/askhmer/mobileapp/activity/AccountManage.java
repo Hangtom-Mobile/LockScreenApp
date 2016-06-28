@@ -34,6 +34,7 @@ public class AccountManage extends SwipeBackActivity {
                 in = new Intent(AccountManage.this, PasswordFindMoney.class);
                 in.putExtra("class","MyInfo");
                 startActivity(in);
+                finish();
                 AccountManage.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
             }
         });
@@ -44,6 +45,7 @@ public class AccountManage extends SwipeBackActivity {
                 in = new Intent(AccountManage.this, PasswordFindMoney.class);
                 in.putExtra("class","ChangPwd");
                 startActivity(in);
+                finish();
                 AccountManage.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
             }
         });
@@ -53,6 +55,7 @@ public class AccountManage extends SwipeBackActivity {
             public void onClick(View v) {
                 in = new Intent(AccountManage.this, ForgetPwd.class);
                 startActivity(in);
+                finish();
                 AccountManage.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
             }
         });

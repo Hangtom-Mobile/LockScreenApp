@@ -28,7 +28,7 @@ import java.util.Map;
 public class NewPassword extends AppCompatActivity {
 
     private Button btnNext;
-    private TextView txtPassword, txtComPassword;
+    private TextView txtPassword, txtComPassword, vTextView;
     private SharedPreferencesFile mSharedPreferencesFile;
 
     @Override
@@ -38,6 +38,7 @@ public class NewPassword extends AppCompatActivity {
 
         txtComPassword = (TextView) findViewById(R.id.et_con_password);
         txtPassword = (TextView) findViewById(R.id.et_password);
+        vTextView = (TextView) findViewById(R.id.ve_password);
         btnNext = (Button) findViewById(R.id.btn_next);
         mSharedPreferencesFile = SharedPreferencesFile.newInstance(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
 
@@ -51,16 +52,22 @@ public class NewPassword extends AppCompatActivity {
     }
 
     public void changePasswordForget() {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, API.CHANGPASSWORDFORGET,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, API.CHANGPASSWORD,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         if (!response.isEmpty()) {
                             try {
                                 JSONObject jsonObj = new JSONObject(response);
-                                String result = jsonObj.getString("rst");
                                 Log.e("result_new",response);
-                                Toast.makeText(NewPassword.this, response, Toast.LENGTH_SHORT).show();
+                                String result = jsonObj.getString("rst");
+                                if (result.equals("110")) {
+                                    Toast.makeText(NewPassword.this, "Reset password Success", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(), AccountManage.class));
+                                    finish();
+                                }else {
+                                    vTextView.setVisibility(View.VISIBLE);
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

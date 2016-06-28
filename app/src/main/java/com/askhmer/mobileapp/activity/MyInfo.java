@@ -1,5 +1,6 @@
 package com.askhmer.mobileapp.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
@@ -73,7 +75,8 @@ public class MyInfo extends SwipeBackActivity {
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                requestChangeLocation();
+                startActivity(new Intent(getApplicationContext(),AccountManage.class));
             }
         });
     }
@@ -123,6 +126,43 @@ public class MyInfo extends SwipeBackActivity {
                     }
                 }
                 super.deliverError(error);
+            }
+        };
+        MySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);
+    }
+
+    public void requestChangeLocation() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, API.CHANGLOCATION,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("myInfoChangelocation", response);
+                        if (!response.isEmpty()) {
+                            try {
+                                JSONObject jsonObj = new JSONObject(response);
+                                if (jsonObj.getString("rst").equals("110")) {
+                                    Toast.makeText(MyInfo.this, "Change Location Success", Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(MyInfo.this, "Change Location Error", Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("ErroVelloy MyInfo", error.toString());
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("cash_slide_id", mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID));
+                params.put("cash_password",mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD));
+                params.put("mb_location",String.valueOf(location.getSelectedItemId() + 1));
+                return params;
             }
         };
         MySingleton.getInstance(getApplicationContext()).addToRequestQueue(stringRequest);

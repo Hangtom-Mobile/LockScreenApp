@@ -22,6 +22,9 @@ import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 import com.liuguangqiang.swipeback.SwipeBackActivity;
 import com.liuguangqiang.swipeback.SwipeBackLayout;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -82,19 +85,26 @@ public class PasswordFindMoney extends SwipeBackActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.e("passwordfind",response);
                         if (response.contains("110")) {
-                            if (className.equals("MyInfo")) {
-                                in = new Intent(PasswordFindMoney.this, MyInfo.class);
-                                startActivity(in);
-                            }else if(className.equals("MoneyBalance")){
-                                in = new Intent(PasswordFindMoney.this, MoneyBalance.class);
-                                startActivity(in);
-                            }else if(className.equals("ChangPwd")){
-                                in = new Intent(PasswordFindMoney.this, ChangePwd.class);
-                                startActivity(in);
+                            try {
+                                JSONObject jsonObj = new JSONObject(response);
+                                if (className.equals("MyInfo")) {
+                                    in = new Intent(PasswordFindMoney.this, MyInfo.class);
+                                    startActivity(in);
+                                }else if(className.equals("MoneyBalance")){
+                                    in = new Intent(PasswordFindMoney.this, MoneyBalance.class);
+                                    startActivity(in);
+                                }else if(className.equals("ChangPwd")){
+                                    in = new Intent(PasswordFindMoney.this, ChangePwd.class);
+                                    in.putExtra("password_SS", jsonObj.getString("password_SS"));
+                                    startActivity(in);
+                                }
+                                PasswordFindMoney.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
+                                finish();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                            PasswordFindMoney.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
-                            finish();
                         }else {
                             validatePWD.setVisibility(View.VISIBLE);
                         }
