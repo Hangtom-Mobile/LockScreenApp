@@ -128,9 +128,10 @@ android:orientation="vertical">
                     android:layout_marginRight="2dp"
                     android:background="@color/btn_tap_off"/>
                 <TextView
+                    android:id="@+id/txt_veri_incor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Incorrect password try again!"
+                    android:text="Information are Incorrect!"
                     android:visibility="gone"
                     android:textColor="@android:color/holo_red_dark" />
 

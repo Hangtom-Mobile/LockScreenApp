@@ -118,38 +118,6 @@
                         android:layout_height="0.1dp"
                         android:background="@color/btn_tap_off"/>
 
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:orientation="horizontal"
-                        android:paddingRight="16dp"
-                        android:paddingLeft="16dp"
-                        android:gravity="center_vertical">
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Password"
-                            android:gravity="center_vertical"
-                            android:textSize="16dp"
-                            android:textColor="@color/colorPrimary"
-                            android:layout_weight="2.5"/>
-                        <EditText
-                            android:id="@+id/et_pwd"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp"
-                            android:gravity="left"
-                            android:background="@color/bg_color"
-                            android:layout_weight="1"
-                            android:editable="false"/>
-
-                    </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
-                        android:background="@color/btn_tap_off"/>
-
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="60dp"

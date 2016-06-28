@@ -23,12 +23,33 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Cache;
+import com.android.volley.NetworkResponse;
+import com.android.volley.NoConnectionError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.constant.Constant;
+import com.askhmer.mobileapp.network.API;
+import com.askhmer.mobileapp.network.MySingleton;
 import com.askhmer.mobileapp.utils.NetworkUtil;
+import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import org.apache.http.cookie.Cookie;
+import org.apache.http.util.EncodingUtils;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Longdy on 6/22/2016.
@@ -36,7 +57,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     private WebView webview;
-    private final String URL_ASKHMER = "http://m.askhmer.com/";
+    private final String URL_ASKHMER = "http://m.medayi.com/";
     private SwipeRefreshLayout swipeRefreshLayout;
     private Toast toast;
     private long backKeyPressedTime = 0;
@@ -45,7 +66,9 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private ImageButton btnForward;
     private ImageButton btnHome;
     private ImageButton btnRefresh;
-
+    private SharedPreferencesFile mSharedPreferencesFile;
+    public static Cookie cookie = null;
+    private String sid;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -53,6 +76,14 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private GoogleApiClient client;
 
     public TwoFragment(){}
+
+    private class HelloWebViewClient extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -77,6 +108,7 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         btnHome.setOnClickListener(btnTouchListener);
         btnRefresh = (ImageButton) twoFragmentView.findViewById(R.id.btnRefresh);
         btnRefresh.setOnClickListener(btnTouchListener);
+        mSharedPreferencesFile = SharedPreferencesFile.newInstance(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
 
         swipeRefreshLayout = (SwipeRefreshLayout) twoFragmentView.findViewById(R.id.swipe_refresh_layout);
         // sets the colors used in the refresh animation
@@ -84,12 +116,19 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                 R.color.orange_light, R.color.red_light);
 
         swipeRefreshLayout.setOnRefreshListener(this);
-        webview.loadUrl(URL_ASKHMER);
+
+        String mbId = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID);
+        String password = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD);
+        String token = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_TOKEN);
+
+        String postData = "cash_slide_id="+mbId+"&cash_password="+password+"&token_id="+token;
+        webview.postUrl(URL_ASKHMER, EncodingUtils.getBytes(postData, "base64"));
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(getActivity()).addApi(AppIndex.API).build();
         return twoFragmentView;
     }
+
 
     private View.OnClickListener btnTouchListener = new View.OnClickListener() {
         @Override
@@ -125,6 +164,25 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         }
     };
 
+
+    private void inputStreamToString(InputStream is) {
+        String line = "";
+        StringBuilder total = new StringBuilder();
+
+        // Wrap a BufferedReader around the InputStream
+        BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+
+        // Read response until the end
+        try {
+            while ((line = rd.readLine()) != null) {
+                total.append(line);
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        sid = total.toString();
+    }
 
     @Override
     public void onRefresh() {
@@ -308,5 +366,42 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         );
 //        AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
+    }
+
+    public void requestAutoLogin() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, API.REQUESTAUTOLOGIN,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("login",response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.d("ErroVelloy", error.toString());
+                Toast.makeText(getContext(), "one f login"+error.toString(), Toast.LENGTH_LONG).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("cash_slide_id", mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID));
+                params.put("cash_password", mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD));
+                return params;
+            }
+            @Override
+            public void deliverError(VolleyError error) {
+                if (error instanceof NoConnectionError) {
+                    Cache.Entry entry = this.getCacheEntry();
+                    if(entry != null) {
+                        Response<String> response = parseNetworkResponse(new NetworkResponse(entry.data, entry.responseHeaders));
+                        deliverResponse(response.result);
+                        return;
+                    }
+                }
+                super.deliverError(error);
+            }
+        };
+        MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
     }
 }
