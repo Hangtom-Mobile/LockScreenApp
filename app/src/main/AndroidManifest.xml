@@ -20,7 +20,7 @@
     <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     -->
     <application
-        android:icon="@mipmap/askhmer_logo"
+        android:icon="@mipmap/ic_medayi"
         android:label="@string/app_name"
         tools:replace="@android:icon">
         <activity
