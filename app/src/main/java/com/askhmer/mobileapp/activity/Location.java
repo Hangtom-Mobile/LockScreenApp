@@ -81,6 +81,7 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
         final String mb_name = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_NAME);
         final String mb_sex = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_GENDER);
         final String mb_age  = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_AGE);
+        final String mb_national  = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_NATIONAL);
         final String mb_location  = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_LOCATION);
 
         // Request a string response from the provided URL.
@@ -116,6 +117,7 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
                 params.put("mb_name", mb_name);
                 params.put("mb_sex", mb_sex);
                 params.put("mb_age", mb_age);
+                params.put("mb_national", mb_national);
                 params.put("mb_location", mb_location);
                 params.put("token_id",tokenId);
                 return params;

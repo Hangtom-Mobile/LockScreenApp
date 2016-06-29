@@ -64,6 +64,9 @@
             android:label="@string/title_activity_information"
             android:theme="@style/AppTheme"/>
         <activity
+            android:name=".activity.National"
+            android:theme="@style/AppTheme"/>
+        <activity
             android:name=".activity.Location"
             android:theme="@style/AppTheme"/>
         <activity
