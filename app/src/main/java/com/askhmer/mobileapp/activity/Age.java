@@ -68,7 +68,7 @@ public class Age extends AppCompatActivity{
                        @Override
                        public void onClick(View v) {
                            Toast.makeText(Age.this, ""+sDOB, Toast.LENGTH_SHORT).show();
-                           Intent intent = new Intent(getApplicationContext(), Location.class);
+                           Intent intent = new Intent(getApplicationContext(), National.class);
                            mSharedPrefrencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_AGE, sDOB);
                            startActivity(intent);
                            Age.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);

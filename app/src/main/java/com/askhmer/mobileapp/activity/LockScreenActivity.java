@@ -53,10 +53,10 @@ public class LockScreenActivity extends Activity implements
 
 	// Member variables
 	private LockscreenUtils mLockscreenUtils;
-
 	private ViewPager imageViewPager;
 	private FullScreenImageAdapter fullScreenImageAdapter;
-
+	private int countPause = 1;
+	private int countResume = 0;
 
 	private SharedPreferencesFile mSharedPref;
 
@@ -115,10 +115,9 @@ public class LockScreenActivity extends Activity implements
 			}
 
 		}
-
 		/*request to server*/
 		if (new CheckInternet().isConnect(getApplicationContext()) == true) {
-			lockScreenRequestServer();
+			/*lockScreenRequestServer("On create");*/
 		}else {
 			pathFile = new ArrayList<LockScreenBackgroundDto>();
 		}
@@ -130,6 +129,7 @@ public class LockScreenActivity extends Activity implements
 					if (pathFile != null) {
 						String unlockPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockBasicPrice();
 						String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
+						Log.e("unlockPrice_out",unlockPrice);
 						requestPointToServer("right", "lock_basic_price", unlockPrice, uId);
 					}
 				}
@@ -146,7 +146,7 @@ public class LockScreenActivity extends Activity implements
 
 					if (!url.isEmpty()) {
 						if (new CheckInternet().isConnect(getApplicationContext()) == true) {
-							requestPointToServer("left","lock_view_price",urlPrice,uId);
+							requestPointToServer("left", "lock_view_price", urlPrice, uId);
 						}
 						Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 						startActivity(browserIntent);
@@ -249,6 +249,7 @@ public class LockScreenActivity extends Activity implements
 	protected void onStop() {
 		super.onStop();
 		unlockHomeButton();
+		Log.e("Activity_test", "on onStop");
 	}
 
 	@SuppressWarnings("deprecation")
@@ -325,13 +326,13 @@ public class LockScreenActivity extends Activity implements
 		}
 	}
 
-	public void lockScreenRequestServer() {
+	public void lockScreenRequestServer(final String note) {
 		pathFile = new ArrayList<LockScreenBackgroundDto>();
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://www.medayi.com/locknet/locknet_api.php",
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-						Log.e("responeback",response);
+						Log.e(note+" responeback",response);
 						if (!response.isEmpty()) {
 							try {
 								JSONObject jsonObj = new JSONObject(response);
@@ -385,20 +386,25 @@ public class LockScreenActivity extends Activity implements
 	@Override
 	protected void onResume() {
 		super.onResume();
-		Log.e("Activity_test","on resume");
-		lockScreenRequestServer();
+		countResume += 1;
+		Log.e("Activity_test", "on resume"+countResume);
+		if (countResume > countPause) {
+			lockScreenRequestServer("On Resume");
+		}
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
 		Log.e("Activity_test", "on start");
+		lockScreenRequestServer("On start");
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		Log.e("Activity_test", "on onPause");
+		countPause += 1;
+		Log.e("Activity_test", "on onPause"+countPause);
 	}
 
 	@Override
@@ -412,6 +418,8 @@ public class LockScreenActivity extends Activity implements
 		super.onRestart();
 		Log.e("Activity_test", "on onRestart");
 	}
+
+
 
 	public void requestPointToServer(final String sliding, final String keyOfPoint, final String point, final String uId){
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, API.REQUESTPOINT,
@@ -429,6 +437,7 @@ public class LockScreenActivity extends Activity implements
 		}){
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
+				Log.e("point_in",point);
 				Map<String, String> params = new HashMap<>();
 				params.put("cash_slide_id", mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID));
 				params.put("cash_password", mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD));
