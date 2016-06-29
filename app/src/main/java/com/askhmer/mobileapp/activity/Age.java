@@ -32,6 +32,7 @@ public class Age extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_age);
 
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -67,9 +68,10 @@ public class Age extends AppCompatActivity{
                        @Override
                        public void onClick(View v) {
                            Toast.makeText(Age.this, ""+sDOB, Toast.LENGTH_SHORT).show();
-                               Intent intent = new Intent(getApplicationContext(), Location.class);
-                               mSharedPrefrencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_AGE, sDOB);
-                               startActivity(intent);
+                           Intent intent = new Intent(getApplicationContext(), Location.class);
+                           mSharedPrefrencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_AGE, sDOB);
+                           startActivity(intent);
+                           Age.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
                            }
                    });
 

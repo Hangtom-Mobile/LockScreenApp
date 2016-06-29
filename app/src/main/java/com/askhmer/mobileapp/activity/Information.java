@@ -38,6 +38,7 @@ public class Information extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -170,6 +171,7 @@ public class Information extends AppCompatActivity {
                             mSharedPrefrencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID, editCashId.getText().toString());
                             mSharedPrefrencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD, editPassword.getText().toString());
                             startActivity(i);
+                            Information.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
                         }
                     }
                 }, new Response.ErrorListener() {

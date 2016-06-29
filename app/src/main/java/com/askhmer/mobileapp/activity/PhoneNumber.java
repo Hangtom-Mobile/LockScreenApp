@@ -64,6 +64,7 @@ public class PhoneNumber extends AppCompatActivity {
                     Intent i = new Intent(getApplicationContext(), Information.class);
                     mSharedPrefrencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PHONE, etPhoneNum.getText().toString());
                     startActivity(i);
+                    PhoneNumber.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
                 }else {
                     tvMsg.setVisibility(View.VISIBLE);
                 }

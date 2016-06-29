@@ -186,7 +186,7 @@ tools:context="com.askhmer.mobileapp.activity.MoneyBalance">
                         android:text="Confirm"
                         android:layout_marginTop="15dp"
                         android:textColor="@color/white"
-                        android:background="@color/btn_color"
+                        android:background="@drawable/btn_selector"
                         android:layout_gravity="center"/>
 
 

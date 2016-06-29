@@ -73,7 +73,8 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:background="@color/white"
-                    android:padding="15dp">
+                    android:padding="15dp"
+                    android:gravity="center_horizontal">
 
                     <!--cash silde id-->
 
@@ -81,14 +82,28 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Cash Silde Id"
-                        android:textSize="12dp"
+                        android:textSize="15dp"
                         android:textStyle="bold"
-                        android:layout_marginBottom="10dp"/>
+                        android:layout_marginBottom="5dp"/>
 
-                      <EditText
+                    <View
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:background="@color/btn_tap_off"/>
+                    <EditText
                         android:id="@+id/e_cash_id"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:background="@drawable/radius_ed"/>
+                    <View
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:background="@color/btn_tap_off"/>
 
                     <TextView
                         android:id="@+id/ve_slide_id"
@@ -104,18 +119,32 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Password"
+                        android:textSize="15dp"
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"/>
+                        android:layout_marginBottom="5dp"/>
 
+                    <View
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:background="@color/btn_tap_off"/>
                     <EditText
                         android:id="@+id/e_password"
-                        android:inputType="textPassword"
                         android:hint="Password at least 8 charactor"
                         android:textColorHint="@color/hintColor"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"/>
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:inputType="textPassword"
+                        android:background="@drawable/radius_ed"/>
+                    <View
+                        android:layout_marginBottom="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:background="@color/btn_tap_off"/>
 
                     <TextView
                         android:id="@+id/ve_pass_id"
@@ -125,25 +154,44 @@
                         android:visibility="gone"
                         android:textColor="@android:color/holo_red_dark"/>
 
+
+                    <View
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:background="@color/btn_tap_off"/>
                     <EditText
                         android:id="@+id/e_con_password"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
+                        android:gravity="center"
                         android:inputType="textPassword"
-                        android:layout_marginTop="5dp"
+                        android:background="@drawable/radius_ed"
                         android:textColorHint="@color/hintColor"
                         android:hint="Confirm password"/>
+                    <View
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:background="@color/btn_tap_off"/>
+
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.7">
+                        android:layout_weight="0.7"
+                        android:gravity="center">
 
                         <Button
                             android:id="@+id/bttn_next"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_width="170dp"
+                            android:layout_height="40dp"
                             android:text="Next"
+                            android:textColor="@color/white"
+                            android:background="@drawable/btn_selector"
                             android:layout_gravity="bottom"/>
 
                     </LinearLayout>

@@ -71,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:gravity="center_vertical"
+                    android:gravity="center_horizontal"
                     android:layout_weight="1">
 
                     <!--Phone number-->
@@ -80,16 +80,30 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Age"
-                        android:textSize="12dp"
+                        android:textSize="15dp"
                         android:textStyle="bold"
                         android:layout_marginBottom="10dp"/>
 
 
+                    <View
+                        android:layout_marginTop="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:background="@color/btn_tap_off"/>
                     <EditText
                         android:id="@+id/et_age"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number"/>
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:background="@drawable/radius_ed"/>
+                    <View
+                        android:layout_marginBottom="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:background="@color/btn_tap_off"/>
+
 
 <!--
                     <Spinner
@@ -107,13 +121,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="bottom">
+                    android:gravity="bottom|center_horizontal">
 
                     <Button
                         android:id="@+id/bttn_next"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Next"/>
+                        android:layout_width="170dp"
+                        android:layout_height="40dp"
+                        android:text="Next"
+                        android:textColor="@color/white"
+                        android:background="@drawable/btn_selector"/>
 
                 </LinearLayout>
             </LinearLayout>

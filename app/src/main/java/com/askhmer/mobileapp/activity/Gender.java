@@ -17,6 +17,7 @@ public class Gender extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gender);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -32,11 +33,13 @@ public class Gender extends AppCompatActivity {
                     case R.id.radioMale:
                         mSharedPrefrencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_GENDER, "M");
                         startActivity(intent);
+                        Gender.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
                         break;
 
                     case R.id.radioFemale:
                         mSharedPrefrencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_GENDER, "F");
                         startActivity(intent);
+                        Gender.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
                         break;
                 }
             }

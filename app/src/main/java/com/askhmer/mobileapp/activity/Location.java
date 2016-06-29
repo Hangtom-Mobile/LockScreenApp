@@ -35,6 +35,7 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -90,7 +91,10 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
                         if (response.contains("110")) {
                             mSharedPreferencesFile.putBooleanSharedPreference(SharedPreferencesFile.IS_OPEN_INFORMATION_SCREEN_KEY, true);
                             Intent intent = new Intent(getApplicationContext(), MainActivityTab.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);;
                             startActivity(intent);
+                            finish();
+                            Location.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
                         }else {
                             mSharedPreferencesFile.deleteSharedPreference();
                         }

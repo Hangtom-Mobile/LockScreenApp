@@ -142,7 +142,7 @@ android:orientation="vertical">
                     android:text="OK"
                     android:layout_marginTop="15dp"
                     android:textColor="@color/white"
-                    android:background="@color/btn_color"
+                    android:background="@drawable/btn_selector"
                     android:layout_gravity="center"/>
             </LinearLayout>
 
