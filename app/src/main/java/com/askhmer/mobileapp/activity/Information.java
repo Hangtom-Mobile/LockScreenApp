@@ -94,8 +94,8 @@ public class Information extends AppCompatActivity {
                 String password = editTextPassword.getText().toString();
                 String conPassword = editTextConPassword.getText().toString();
 
-                if(conPassword.length() < 8) {
-                    vePassId.setText("Password at least 8 characters");
+                if(conPassword.length() < 4) {
+                    vePassId.setText("Password at least 4 characters");
                     vePassId.setVisibility(View.VISIBLE);
                 }else {
                     vePassId.setVisibility(View.GONE);
@@ -126,8 +126,8 @@ public class Information extends AppCompatActivity {
                 String password = editTextPassword.getText().toString();
                 String conPassword = editTextConPassword.getText().toString();
 
-                if (password.length() < 8) {
-                    vePassId.setText("Password at least 8 characters");
+                if (password.length() < 4) {
+                    vePassId.setText("Password at least 4 characters");
                     vePassId.setVisibility(View.VISIBLE);
                 } else {
                     vePassId.setVisibility(View.GONE);
