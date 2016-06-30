@@ -158,7 +158,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="How to use cache"
+                    android:text="How to use App"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
                     android:textColor="@color/colorPrimary"
