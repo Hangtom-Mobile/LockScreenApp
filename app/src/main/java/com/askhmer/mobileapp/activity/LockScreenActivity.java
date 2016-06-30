@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,11 +29,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.adapter.FullScreenImageAdapter;
 import com.askhmer.mobileapp.model.LockScreenBackgroundDto;
+import com.askhmer.mobileapp.model.ScreenListener;
 import com.askhmer.mobileapp.network.API;
 import com.askhmer.mobileapp.network.CheckInternet;
 import com.askhmer.mobileapp.network.MySingleton;
 import com.askhmer.mobileapp.utils.LockscreenService;
 import com.askhmer.mobileapp.utils.LockscreenUtils;
+import com.askhmer.mobileapp.utils.MyBroadCastReciever;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 import com.askhmer.mobileapp.utils.ToggleSwitchButtonByDy;
 
@@ -46,7 +49,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LockScreenActivity extends Activity implements
-		LockscreenUtils.OnLockStatusChangedListener {
+		LockscreenUtils.OnLockStatusChangedListener,ScreenListener {
 
 	// User-interface
 	private Button btnUnlock;
@@ -56,7 +59,8 @@ public class LockScreenActivity extends Activity implements
 	private ViewPager imageViewPager;
 	private FullScreenImageAdapter fullScreenImageAdapter;
 	private int countPause = 0;
-	private int countResume = 0;
+	private int currentPause = 0;
+	private MyBroadCastReciever mReceiver;
 
 	private SharedPreferencesFile mSharedPref;
 
@@ -163,11 +167,19 @@ public class LockScreenActivity extends Activity implements
 		myThread= new Thread(runnable);
 		myThread.start();
 
+		IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
+		mReceiver = new MyBroadCastReciever(this);
+		registerReceiver(mReceiver, filter);
 	}
 
 	private void init() {
 		mLockscreenUtils = new LockscreenUtils();
 		imageViewPager = (ViewPager) findViewById(R.id.view_pager);
+	}
+
+	@Override
+	public void displayMessage() {
+		lockScreenRequestServer("message");
 	}
 
 	// Handle events of calls and unlock screen if necessary
@@ -386,11 +398,11 @@ public class LockScreenActivity extends Activity implements
 	@Override
 	protected void onResume() {
 		super.onResume();
-		countResume += 1;
-		Log.e("Activity_test", "on resume"+countResume);
-		if (countResume > countPause) {
-			lockScreenRequestServer("On Resume");
+		Log.e("Activity_test", "cp" + currentPause + ", countP " + countPause);
+		if (countPause == currentPause) {
+			/*lockScreenRequestServer("On Resume");*/
 		}
+		currentPause = countPause+1;
 	}
 
 	@Override
@@ -404,13 +416,14 @@ public class LockScreenActivity extends Activity implements
 	protected void onPause() {
 		super.onPause();
 		countPause += 1;
-		Log.e("Activity_test", "on onPause"+countPause);
+		Log.e("Activity_test", "on onPause" + countPause);
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		Log.e("Activity_test", "on onDestroy");
+		unregisterReceiver(mReceiver);
 	}
 
 	@Override
