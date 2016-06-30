@@ -48,7 +48,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="left"
-                        android:text="xxxxx"
+                        android:text="ហាង មេដៃ"
                         android:textSize="20dp"
                         android:textStyle="bold"
                         android:layout_marginBottom="15dp"

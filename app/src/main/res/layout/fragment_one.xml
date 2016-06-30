@@ -118,6 +118,7 @@
                         android:orientation="horizontal"
                         android:layout_weight="1">
                         <LinearLayout
+                            android:id="@+id/medayi_news"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
@@ -148,6 +149,7 @@
                             android:layout_marginBottom="15dp"/>
 
                         <LinearLayout
+                            android:id="@+id/medayi_sharing"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
@@ -164,7 +166,7 @@
                             <TextView
                                 android:layout_width="80dp"
                                 android:layout_height="wrap_content"
-                                android:text="MEDAYI NEWS"
+                                android:text="MEDAYI Sharing"
                                 android:gravity="center"
                                 android:textSize="14dp"
                                 android:layout_marginTop="15dp"
