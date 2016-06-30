@@ -1,13 +1,17 @@
 package com.askhmer.mobileapp.tutorials;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.askhmer.mobileapp.activity.PhoneNumber;
+import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 import com.github.paolorotolo.appintro.AppIntro2;
 
 /**
  * Created by Longdy on 6/30/2016.
  */
 public class MainPage extends AppIntro2 {
+
     @Override
     public void init(Bundle savedInstanceState) {
 
@@ -41,7 +45,17 @@ public class MainPage extends AppIntro2 {
 
     @Override
     public void onDonePressed() {
-        this.finish();
+        SharedPreferencesFile mSharedPreferencesFile =
+                SharedPreferencesFile.newInstance(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
+
+        if (mSharedPreferencesFile.getBooleanSharedPreference(SharedPreferencesFile.IS_KEY_INTRO_FINISH) == true) {
+            this.finish();
+        }else {
+            Intent mainIntent = new Intent(this, PhoneNumber.class);
+            startActivity(mainIntent);
+            finish();
+        }
+        mSharedPreferencesFile.putBooleanSharedPreference(SharedPreferencesFile.IS_KEY_INTRO_FINISH, true);
     }
 
     @Override

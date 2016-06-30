@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import com.askhmer.mobileapp.R;
+import com.askhmer.mobileapp.tutorials.MainPage;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 
 
@@ -38,9 +39,12 @@ public class SplashScreen extends AppCompatActivity {
 
                 // Restore preferences_n
                 boolean informationScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.IS_OPEN_INFORMATION_SCREEN_KEY);
+                boolean isIntroFinish = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.IS_KEY_INTRO_FINISH);
 
-                if(informationScreen == true) {
+                if(isIntroFinish == true && informationScreen == true) {
                     mainIntent = new Intent(SplashScreen.this, MainActivityTab.class);
+                }else if (isIntroFinish == false) {
+                    mainIntent = new Intent(SplashScreen.this, MainPage.class);
                 }else {
                     mainIntent = new Intent(SplashScreen.this, PhoneNumber.class);
                 }
