@@ -48,6 +48,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class LockScreenActivity extends Activity implements
 		LockscreenUtils.OnLockStatusChangedListener,ScreenListener {
 
@@ -154,6 +156,10 @@ public class LockScreenActivity extends Activity implements
 						}
 						Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 						startActivity(browserIntent);
+					}else {
+						new SweetAlertDialog(LockScreenActivity.this)
+								.setTitleText("Sorry this banner no link!")
+								.show();
 					}
 				}
 			}

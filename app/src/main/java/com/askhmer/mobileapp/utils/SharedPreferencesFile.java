@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 public class SharedPreferencesFile {
     public static final String PREFER_KEY = "lockScreen";
     public static final String FILE_INFORMATION_TEMP = "file_information_temp";
+    public static final String IS_KEY_INTRO_FINISH = "IS_KEY_INTRO_FINISH";
     public static final String KEY_INFORMATION_TEMP_PHONE = "KEY_INFORMATION_TEMP_PHONE";
     public static final String KEY_INFORMATION_TEMP_CASHID = "KEY_INFORMATION_TEMP_CASHID";
     public static final String KEY_INFORMATION_TEMP_NAME = "KEY_INFORMATION_TEMP_NAME";
