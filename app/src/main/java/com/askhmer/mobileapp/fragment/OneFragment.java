@@ -1,5 +1,9 @@
 package com.askhmer.mobileapp.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +41,7 @@ public class OneFragment extends Fragment {
 
     private SharedPreferencesFile mSharedPreferencesFile;
     private TextView txtMyPoint;
+    private LinearLayout medayiPage, medayiSharing;
 
     public OneFragment(){}
 
@@ -53,6 +59,24 @@ public class OneFragment extends Fragment {
         mSharedPreferencesFile = SharedPreferencesFile.newInstance(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         txtMyPoint = (TextView) oneFragmentView.findViewById(R.id.tv_mypoint);
 
+        medayiPage = (LinearLayout)oneFragmentView.findViewById(R.id.medayi_news);
+        medayiSharing = (LinearLayout) oneFragmentView.findViewById(R.id.medayi_sharing);
+
+        medayiPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/medayicambodia/"));
+                startActivity(browserIntent);
+            }
+        });
+
+        medayiSharing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                medayiSharing();
+            }
+        });
+
         /*request my point*/
         requestMypointToServer();
 
@@ -60,6 +84,21 @@ public class OneFragment extends Fragment {
        /* requestAutoLogin();*/
 
         return oneFragmentView;
+    }
+
+    public void medayiSharing(){
+
+        new AlertDialog.Builder(getActivity())
+                .setTitle("Medayi Sharing")
+                .setMessage("Coming soon...")
+                .setCancelable(true)
+                .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
     }
 
     public void requestMypointToServer() {
