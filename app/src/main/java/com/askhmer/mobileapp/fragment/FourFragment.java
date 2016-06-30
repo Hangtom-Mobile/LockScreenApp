@@ -1,8 +1,9 @@
 package com.askhmer.mobileapp.fragment;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,9 +17,8 @@ import android.widget.Toast;
 
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.activity.AccountManage;
-import com.askhmer.mobileapp.activity.HowToUseChache;
-import com.askhmer.mobileapp.activity.PrivacyStatement;
-import com.askhmer.mobileapp.activity.TermsOfUse;
+import com.askhmer.mobileapp.activity.SendMail;
+import com.askhmer.mobileapp.tutorials.MainPage;
 
 /**
  * Created by Longdy on 6/22/2016.
@@ -76,9 +76,7 @@ public class FourFragment extends Fragment {
         contactUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_DIAL);
-                intent.setData(Uri.parse("tel:0123456789"));
-                startActivity(intent);
+                contactUs();
             }
         });
 
@@ -87,13 +85,17 @@ public class FourFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/html");
-                intent.putExtra(Intent.EXTRA_EMAIL, "emailaddress@emailaddress.com");
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
-                intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
+                in = new Intent(getActivity(), SendMail.class);
+                startActivity(in);
+                getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
 
-                startActivity(Intent.createChooser(intent, "Send Email"));
+//                Intent intent = new Intent(Intent.ACTION_SEND);
+//                intent.setType("text/html");
+//                intent.putExtra(Intent.EXTRA_EMAIL, "emailaddress@emailaddress.com");
+//                intent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+//                intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
+//
+//                startActivity(Intent.createChooser(intent, "Send Email"));
             }
         });
 
@@ -101,7 +103,7 @@ public class FourFragment extends Fragment {
         howToUse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                in = new Intent(getActivity(), HowToUseChache.class);
+                in = new Intent(getActivity(), MainPage.class);
                 startActivity(in);
                 getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
             }
@@ -111,9 +113,10 @@ public class FourFragment extends Fragment {
         privacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                in = new Intent(getActivity(), PrivacyStatement.class);
-                startActivity(in);
-                getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
+                contactUs();
+//                in = new Intent(getActivity(), PrivacyStatement.class);
+//                startActivity(in);
+//                getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
             }
         });
 
@@ -121,12 +124,28 @@ public class FourFragment extends Fragment {
         terms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                in = new Intent(getActivity(), TermsOfUse.class);
-                startActivity(in);
-                getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
+                contactUs();
+//                in = new Intent(getActivity(), TermsOfUse.class);
+//                startActivity(in);
+//                getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
             }
         });
 
         return fourFragmentView;
+    }
+
+    public void contactUs(){
+
+        new AlertDialog.Builder(getActivity())
+                .setTitle("CONTACT US")
+                .setMessage("Coming soon...")
+                .setCancelable(true)
+                .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .show();
     }
 }

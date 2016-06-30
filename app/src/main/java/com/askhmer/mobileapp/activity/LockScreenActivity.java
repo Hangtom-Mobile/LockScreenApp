@@ -55,7 +55,7 @@ public class LockScreenActivity extends Activity implements
 	private LockscreenUtils mLockscreenUtils;
 	private ViewPager imageViewPager;
 	private FullScreenImageAdapter fullScreenImageAdapter;
-	private int countPause = 1;
+	private int countPause = 0;
 	private int countResume = 0;
 
 	private SharedPreferencesFile mSharedPref;
