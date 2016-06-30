@@ -7,13 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.activity.AccountManage;
@@ -27,9 +24,7 @@ public class FourFragment extends Fragment {
 
     private LinearLayout accountManage, contactUs, advertising, howToUse, privacy, terms;
     private Intent in;
-    private SwitchCompat unlock;
-
-
+//    private SwitchCompat unlock;
 
     public FourFragment(){}
 
@@ -45,7 +40,7 @@ public class FourFragment extends Fragment {
 
 //  init
 
-        unlock = (SwitchCompat) fourFragmentView.findViewById(R.id.switch1);
+//        unlock = (SwitchCompat) fourFragmentView.findViewById(R.id.switch1);
         accountManage = (LinearLayout) fourFragmentView.findViewById(R.id.li_account_manage);
         contactUs = (LinearLayout) fourFragmentView.findViewById(R.id.li_contact_us);
         advertising = (LinearLayout) fourFragmentView.findViewById(R.id.li_advertising);
@@ -55,6 +50,8 @@ public class FourFragment extends Fragment {
 
 
 //Click listener
+/*
+
         unlock.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
@@ -62,7 +59,7 @@ public class FourFragment extends Fragment {
                 }else Toast.makeText(getActivity(), "Unlock off", Toast.LENGTH_SHORT).show();
             }
         });
-
+*/
 
         accountManage.setOnClickListener(new View.OnClickListener() {
             @Override

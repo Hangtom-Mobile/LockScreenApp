@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+<!--
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
                 android:background="@color/btn_tap_off"/>
+-->
 
             <LinearLayout
                 android:id="@+id/li_account_manage"

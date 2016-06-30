@@ -3,6 +3,7 @@ package com.askhmer.mobileapp.fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,6 +27,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.network.API;
 import com.askhmer.mobileapp.network.MySingleton;
+import com.askhmer.mobileapp.utils.NetworkUtil;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 
 import org.json.JSONException;
@@ -58,6 +60,8 @@ public class OneFragment extends Fragment {
         View oneFragmentView = inflater.inflate(R.layout.fragment_one, container, false);
         mSharedPreferencesFile = SharedPreferencesFile.newInstance(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         txtMyPoint = (TextView) oneFragmentView.findViewById(R.id.tv_mypoint);
+
+        checkInternetCon();
 
         medayiPage = (LinearLayout)oneFragmentView.findViewById(R.id.medayi_news);
         medayiSharing = (LinearLayout) oneFragmentView.findViewById(R.id.medayi_sharing);
@@ -100,6 +104,33 @@ public class OneFragment extends Fragment {
                 })
                 .show();
     }
+
+
+    public void checkInternetCon() {
+        int networkType = NetworkUtil.getNetworkType(getActivity());
+        NetworkInfo.State networkState = NetworkUtil.getNetworkState(getActivity());
+
+        if (networkType == -1 || networkState == NetworkInfo.State.UNKNOWN) {
+            new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.app_name)
+                    .setMessage("No internet Connection.\n" +
+                            "Check your internet connection and click Refresh")
+                    .setCancelable(true)
+                    .setPositiveButton("Refresh", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            checkInternetCon();
+                        }
+                    })
+                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            getActivity().finish();
+                        }
+                    }).show();
+        } else requestMypointToServer();
+    }
+
 
     public void requestMypointToServer() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, API.REQUESTMYPOINT,

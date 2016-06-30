@@ -1,11 +1,8 @@
 package com.askhmer.mobileapp.fragment;
 
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -35,7 +32,6 @@ import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.constant.Constant;
 import com.askhmer.mobileapp.network.API;
 import com.askhmer.mobileapp.network.MySingleton;
-import com.askhmer.mobileapp.utils.NetworkUtil;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -90,7 +86,6 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
         webview = (WebView) twoFragmentView.findViewById(R.id.webview);
         webSetting();
-        checkInternetCon();
 //init
         mProgress = (ProgressBar) twoFragmentView.findViewById(R.id.progressBar);
         btnBack = (ImageButton) twoFragmentView.findViewById(R.id.btnBack);
@@ -273,31 +268,6 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                 }
             }
         });
-    }
-
-    public void checkInternetCon() {
-        int networkType = NetworkUtil.getNetworkType(getActivity());
-        NetworkInfo.State networkState = NetworkUtil.getNetworkState(getActivity());
-
-        if (networkType == -1 || networkState == NetworkInfo.State.UNKNOWN) {
-            new AlertDialog.Builder(getActivity())
-                    .setTitle(R.string.app_name)
-                    .setMessage("No internet Connection.\n" +
-                            "Check your internet connection and click Refresh")
-                    .setCancelable(true)
-                    .setPositiveButton("Refresh", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            checkInternetCon();
-                        }
-                    })
-                    .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            getActivity().finish();
-                        }
-                    }).show();
-        } else webview.loadUrl(URL_ASKHMER);
     }
 
 
