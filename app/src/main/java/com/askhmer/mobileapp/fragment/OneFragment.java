@@ -27,7 +27,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.network.API;
 import com.askhmer.mobileapp.network.MySingleton;
-import com.askhmer.mobileapp.utils.CheckVersionCode;
 import com.askhmer.mobileapp.utils.NetworkUtil;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 
@@ -43,7 +42,7 @@ import java.util.Map;
 public class OneFragment extends Fragment {
 
     private SharedPreferencesFile mSharedPreferencesFile;
-    private TextView txtMyPoint;
+    private TextView txtMyPoint, txtMyUserName;
     private LinearLayout medayiPage, medayiSharing;
 
     public OneFragment(){}
@@ -61,6 +60,7 @@ public class OneFragment extends Fragment {
         View oneFragmentView = inflater.inflate(R.layout.fragment_one, container, false);
         mSharedPreferencesFile = SharedPreferencesFile.newInstance(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         txtMyPoint = (TextView) oneFragmentView.findViewById(R.id.tv_mypoint);
+        txtMyUserName = (TextView) oneFragmentView.findViewById(R.id.txt_user_name);
 
         checkInternetCon();
 
@@ -82,12 +82,8 @@ public class OneFragment extends Fragment {
             }
         });
 
-        /*request my point*/
-        requestMypointToServer();
-
         /*set shared preferencesfile of application version for update app*/
-        mSharedPreferencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_VERSION_APP,
-                new CheckVersionCode().checkVersionCode(getContext()));
+
 
         /*request auto login*/
        /* requestAutoLogin();*/
@@ -142,7 +138,7 @@ public class OneFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("mypointrespone",response);
+                        Log.d("mypointrespone", response);
                         if (!response.isEmpty()) {
                             try {
                                 JSONObject jsonObj = new JSONObject(response);
@@ -167,6 +163,7 @@ public class OneFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+                SharedPreferencesFile mSharedPreferencesFile = SharedPreferencesFile.newInstance(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
                 params.put("cash_slide_id", mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID));
                 return params;
             }
@@ -221,5 +218,18 @@ public class OneFragment extends Fragment {
             }
         };
         MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.e("testscreen_one", "onStart");
+
+        /*load user name*/
+        txtMyUserName.setText(mSharedPreferencesFile.getStringSharedPreference
+                (SharedPreferencesFile.KEY_INFORMATION_TEMP_NAME));
+
+        /*request my point*/
+        requestMypointToServer();
     }
 }

@@ -30,6 +30,7 @@
                     android:src="@drawable/pig"
                     android:scaleType="centerCrop"/>
                 <TextView
+                    android:id="@+id/txt_user_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"

@@ -20,6 +20,7 @@ public class SharedPreferencesFile {
     public static final String KEY_INFORMATION_TEMP_LOCATION = "KEY_INFORMATION_TEMP_LOCATION";
     public static final String IS_OPEN_INFORMATION_SCREEN_KEY = "IS_OPEN_INFORMATION_SCREEN_KEY";
     public static final String KEY_INFORMATION_TEMP_TOKEN = "KEY_INFORMATION_TEMP_TOKEN";
+    public static final String KEY_VERSION_APP = "KEY_VERSION_APP";
 
 
     private Context mContext;
@@ -60,11 +61,10 @@ public class SharedPreferencesFile {
     }
 
     /**
-     * @param perferFileName
      * @param perferKey
      * @param perferValue
      */
-    public void putIntSharedPreference(String perferFileName,String perferKey,int perferValue){
+    public void putIntSharedPreference(String perferKey,int perferValue){
         mEditor.putInt(perferKey, perferValue);
         mEditor.commit();
     }
@@ -86,11 +86,10 @@ public class SharedPreferencesFile {
     }
 
     /**
-     * @param perferFileName
      * @param perferKey
      * @return
      */
-    public int getIntSharedPreference(String perferFileName, String perferKey){
+    public int getIntSharedPreference(String perferKey){
         return mSettings.getInt(perferKey, 0);
     }
 

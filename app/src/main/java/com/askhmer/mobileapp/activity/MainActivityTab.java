@@ -32,6 +32,8 @@ public class MainActivityTab extends AppCompatActivity {
     private long backKeyPressedTime = 0;
     private Toast toast;
     private SharedPreferencesFile mSharedPref;
+    private OneFragment oneFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -199,4 +201,15 @@ public class MainActivityTab extends AppCompatActivity {
         Log.e("testscreen", "onPause");
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("testscreen", "onResume");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e("testscreen", "onRestart");
+    }
 }
