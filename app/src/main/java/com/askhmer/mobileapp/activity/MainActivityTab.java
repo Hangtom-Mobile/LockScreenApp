@@ -19,6 +19,7 @@ import com.askhmer.mobileapp.fragment.FourFragment;
 import com.askhmer.mobileapp.fragment.OneFragment;
 import com.askhmer.mobileapp.fragment.ThreeFragment;
 import com.askhmer.mobileapp.fragment.TwoFragment;
+import com.askhmer.mobileapp.utils.CheckVersionCode;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 
 import java.util.ArrayList;
@@ -167,9 +168,21 @@ public class MainActivityTab extends AppCompatActivity {
 
         // Restore preferences_n
         boolean lockScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.PREFER_KEY);
+        int numVerBeforeUpdate = mSharedPref.getIntSharedPreference(SharedPreferencesFile.KEY_VERSION_APP);
+        int currentVersionApp = new CheckVersionCode().checkVersionCode(getApplicationContext());
+        Intent i = new Intent(MainActivityTab.this, LockScreenActivity.class);
 
-        if(!lockScreen==true){
-            Intent i = new Intent(MainActivityTab.this, LockScreenActivity.class);
+        if (numVerBeforeUpdate == 0) {
+            mSharedPref.putIntSharedPreference(SharedPreferencesFile.KEY_VERSION_APP,
+                    new CheckVersionCode().checkVersionCode(getApplicationContext()));
+        }else {
+            if (numVerBeforeUpdate < currentVersionApp) {
+                mSharedPref.putIntSharedPreference(SharedPreferencesFile.KEY_VERSION_APP,currentVersionApp);
+                startActivity(i);
+            }
+        }
+
+        if(!lockScreen==true) {
             startActivity(i);
         }
     }
@@ -185,4 +198,5 @@ public class MainActivityTab extends AppCompatActivity {
         super.onPause();
         Log.e("testscreen", "onPause");
     }
+
 }
