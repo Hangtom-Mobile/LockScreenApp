@@ -25,6 +25,8 @@ import com.askhmer.mobileapp.utils.TokenGenerator;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class Location extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Spinner location;
@@ -103,7 +105,9 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Location.this, "location Error", Toast.LENGTH_SHORT).show();
+                new SweetAlertDialog(Location.this)
+                        .setTitleText("Sorry your phone no internet!")
+                        .show();
             }
         }){
             @Override

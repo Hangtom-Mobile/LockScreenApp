@@ -27,6 +27,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.network.API;
 import com.askhmer.mobileapp.network.MySingleton;
+import com.askhmer.mobileapp.utils.CheckVersionCode;
 import com.askhmer.mobileapp.utils.NetworkUtil;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 
@@ -84,6 +85,10 @@ public class OneFragment extends Fragment {
         /*request my point*/
         requestMypointToServer();
 
+        /*set shared preferencesfile of application version for update app*/
+        mSharedPreferencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_VERSION_APP,
+                new CheckVersionCode().checkVersionCode(getContext()));
+
         /*request auto login*/
        /* requestAutoLogin();*/
 
@@ -129,8 +134,8 @@ public class OneFragment extends Fragment {
                         }
                     }).show();
         } else requestMypointToServer();
-    }
 
+    }
 
     public void requestMypointToServer() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, API.REQUESTMYPOINT,
@@ -156,8 +161,7 @@ public class OneFragment extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("ErroVelloy", error.toString());
-                Toast.makeText(getContext(), "One f my point"+error.toString(), Toast.LENGTH_LONG).show();
+                Log.e("One_fragment_Mypoint_to_server", error.toString());
             }
         }){
             @Override

@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -25,6 +24,8 @@ import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Information extends AppCompatActivity {
 
@@ -177,7 +178,9 @@ public class Information extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Information.this, "Error", Toast.LENGTH_SHORT).show();
+                new SweetAlertDialog(Information.this)
+                        .setTitleText("Sorry your phone no internet!")
+                        .show();
             }
         }){
             @Override

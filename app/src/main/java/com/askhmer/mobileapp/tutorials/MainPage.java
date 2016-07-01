@@ -53,9 +53,9 @@ public class MainPage extends AppIntro2 {
         }else {
             Intent mainIntent = new Intent(this, PhoneNumber.class);
             startActivity(mainIntent);
+            mSharedPreferencesFile.putBooleanSharedPreference(SharedPreferencesFile.IS_KEY_INTRO_FINISH, true);
             finish();
         }
-        mSharedPreferencesFile.putBooleanSharedPreference(SharedPreferencesFile.IS_KEY_INTRO_FINISH, true);
     }
 
     @Override

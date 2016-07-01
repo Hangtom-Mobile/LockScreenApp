@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -67,12 +66,9 @@ public class PasswordFindMoney extends SwipeBackActivity {
             className= (String) savedInstanceState.getSerializable("class");
         }
 
-        Toast.makeText(PasswordFindMoney.this, className , Toast.LENGTH_SHORT).show();
-
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(PasswordFindMoney.this, "check", Toast.LENGTH_SHORT).show();
                 checkPasswordFromServer();
             }
         });
@@ -112,7 +108,7 @@ public class PasswordFindMoney extends SwipeBackActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplication(), "location Error", Toast.LENGTH_SHORT).show();
+               Log.e("Passwordfindmoney",error.toString());
             }
         }){
             @Override

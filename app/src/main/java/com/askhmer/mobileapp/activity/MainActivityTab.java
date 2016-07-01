@@ -69,7 +69,7 @@ public class MainActivityTab extends AppCompatActivity {
                     }
                 }
         );
-       
+
     }
 
     private void setupTabIcons() {

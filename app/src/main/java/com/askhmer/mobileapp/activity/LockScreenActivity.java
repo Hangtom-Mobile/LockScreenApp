@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,6 +64,7 @@ public class LockScreenActivity extends Activity implements
 	private int countPause = 0;
 	private int currentPause = 0;
 	private MyBroadCastReciever mReceiver;
+	private RelativeLayout relativeLayout;
 
 	private SharedPreferencesFile mSharedPref;
 
@@ -93,6 +95,7 @@ public class LockScreenActivity extends Activity implements
 
 		mSharedPref = SharedPreferencesFile.newInstance(this, SharedPreferencesFile.PREFER_KEY);
 		mSharedPref.putBooleanSharedPreference(SharedPreferencesFile.PREFER_KEY, true);
+		relativeLayout = (RelativeLayout) findViewById(R.id.relative_main);
 
 		// unlock screen in case of app get killed by system
 		if (getIntent() != null && getIntent().hasExtra("kill")
@@ -122,17 +125,17 @@ public class LockScreenActivity extends Activity implements
 
 		}
 		/*request to server*/
-		if (new CheckInternet().isConnect(getApplicationContext()) == true) {
-			/*lockScreenRequestServer("On create");*/
+		if (new CheckInternet().isConnect(getApplicationContext()) != true) {
+			relativeLayout.setBackgroundResource(R.drawable.temp);
 		}else {
-			pathFile = new ArrayList<LockScreenBackgroundDto>();
+			/*pathFile = new ArrayList<LockScreenBackgroundDto>();*/
 		}
 		ToggleSwitchButtonByDy toggle = (ToggleSwitchButtonByDy) findViewById(R.id.toggle);
 		toggle.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
 			@Override
 			public void toggledUp() {
 				if (new CheckInternet().isConnect(getApplicationContext()) == true) {
-					if (pathFile != null) {
+					if (pathFile.size() > 0) {
 						String unlockPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockBasicPrice();
 						String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
 						Log.e("unlockPrice_out",unlockPrice);
@@ -144,7 +147,7 @@ public class LockScreenActivity extends Activity implements
 
 			@Override
 			public void toggledDown() {
-				if (pathFile != null){
+				if (pathFile.size() > 0){
 					String url = pathFile.get(imageViewPager.getCurrentItem()).getWebUrl();
 					String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
 					String urlPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockViewPrice();
@@ -161,6 +164,10 @@ public class LockScreenActivity extends Activity implements
 								.setTitleText("Sorry this banner no link!")
 								.show();
 					}
+				}else {
+					new SweetAlertDialog(LockScreenActivity.this)
+							.setTitleText("Sorry your phone no internet!")
+							.show();
 				}
 			}
 		});
@@ -346,59 +353,64 @@ public class LockScreenActivity extends Activity implements
 
 	public void lockScreenRequestServer(final String note) {
 		pathFile = new ArrayList<LockScreenBackgroundDto>();
-		StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://www.medayi.com/locknet/locknet_api.php",
-				new Response.Listener<String>() {
-					@Override
-					public void onResponse(String response) {
-						Log.e(note+" responeback",response);
-						if (!response.isEmpty()) {
-							try {
-								JSONObject jsonObj = new JSONObject(response);
-								LockScreenBackgroundDto dto = new LockScreenBackgroundDto();
-								dto.setuId(jsonObj.getString("uid"));
-								dto.setLockBasicPrice(jsonObj.getString("lock_basic_price"));
-								dto.setLockViewPrice(jsonObj.getString("lock_view_price"));
-								dto.setImageUrl(jsonObj.getString("image"));
-								dto.setWebUrl(jsonObj.getString("url"));
-								pathFile.clear();
-								pathFile.add(dto);
-								fullScreenImageAdapter.notifyDataSetChanged();
-							} catch (JSONException e) {
-								e.printStackTrace();
+		final String cashId = mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID);
+		Log.e("cash_id_lockscreen", cashId);
+		if (cashId != null) {
+			StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://www.medayi.com/locknet/locknet_api.php",
+					new Response.Listener<String>() {
+						@Override
+						public void onResponse(String response) {
+							Log.e(note+" responeback",response);
+							if (!response.isEmpty()) {
+								try {
+									JSONObject jsonObj = new JSONObject(response);
+									LockScreenBackgroundDto dto = new LockScreenBackgroundDto();
+									dto.setuId(jsonObj.getString("uid"));
+									dto.setLockBasicPrice(jsonObj.getString("lock_basic_price"));
+									dto.setLockViewPrice(jsonObj.getString("lock_view_price"));
+									dto.setImageUrl(jsonObj.getString("image"));
+									dto.setWebUrl(jsonObj.getString("url"));
+									pathFile.clear();
+									pathFile.add(dto);
+									fullScreenImageAdapter.notifyDataSetChanged();
+								} catch (JSONException e) {
+									e.printStackTrace();
+								}
+							}else {
+								Toast.makeText(LockScreenActivity.this, "No data", Toast.LENGTH_SHORT).show();
 							}
-						}else {
-							Toast.makeText(LockScreenActivity.this, "No data", Toast.LENGTH_SHORT).show();
+						}
+					}, new Response.ErrorListener() {
+				@Override
+				public void onErrorResponse(VolleyError error) {
+					Log.d("lockScreenRequestServer",error.toString());
+					Toast.makeText(LockScreenActivity.this, "locksreen "+error.toString(), Toast.LENGTH_LONG).show();
+				}
+			}){
+				@Override
+				protected Map<String, String> getParams() throws AuthFailureError {
+					Map<String, String> params = new HashMap<>();
+					Log.e("cash_slide_id_lock_screen", cashId);
+					params.put("cash_slide_id", cashId);
+					return params;
+				}
+				@Override
+				public void deliverError(VolleyError error) {
+					if (error instanceof NoConnectionError) {
+						Cache.Entry entry = this.getCacheEntry();
+						if(entry != null) {
+							Response<String> response = parseNetworkResponse(new NetworkResponse(entry.data, entry.responseHeaders));
+							deliverResponse(response.result);
+							return;
 						}
 					}
-				}, new Response.ErrorListener() {
-			@Override
-			public void onErrorResponse(VolleyError error) {
-				Log.d("ErroVelloy",error.toString());
-				Toast.makeText(LockScreenActivity.this, "locksreen "+error.toString(), Toast.LENGTH_LONG).show();
-			}
-		}){
-			@Override
-			protected Map<String, String> getParams() throws AuthFailureError {
-				Map<String, String> params = new HashMap<>();
-				params.put("cash_slide_id", mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID));
-				return params;
-			}
-			@Override
-			public void deliverError(VolleyError error) {
-				if (error instanceof NoConnectionError) {
-					Cache.Entry entry = this.getCacheEntry();
-					if(entry != null) {
-						Response<String> response = parseNetworkResponse(new NetworkResponse(entry.data, entry.responseHeaders));
-						deliverResponse(response.result);
-						return;
-					}
+					super.deliverError(error);
 				}
-				super.deliverError(error);
-			}
-		};
-		MySingleton.getInstance(this).addToRequestQueue(stringRequest);
-		fullScreenImageAdapter = new FullScreenImageAdapter(this,pathFile);
-		imageViewPager.setAdapter(fullScreenImageAdapter);
+			};
+			MySingleton.getInstance(this).addToRequestQueue(stringRequest);
+			fullScreenImageAdapter = new FullScreenImageAdapter(this,pathFile);
+			imageViewPager.setAdapter(fullScreenImageAdapter);
+		}
 	}
 
 	@Override
@@ -450,8 +462,7 @@ public class LockScreenActivity extends Activity implements
 				}, new Response.ErrorListener() {
 			@Override
 			public void onErrorResponse(VolleyError error) {
-				Log.d("ErroVelloy",error.toString());
-				Toast.makeText(LockScreenActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+				Log.d("volley_request_point_to_server",error.toString());
 			}
 		}){
 			@Override

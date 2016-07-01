@@ -141,9 +141,9 @@ public class MyInfo extends SwipeBackActivity {
                             try {
                                 JSONObject jsonObj = new JSONObject(response);
                                 if (jsonObj.getString("rst").equals("110")) {
-                                    Toast.makeText(MyInfo.this, "Change Location Success", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MyInfo.this, "Success", Toast.LENGTH_SHORT).show();
                                 }else {
-                                    Toast.makeText(MyInfo.this, "Change Location Error", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MyInfo.this, "Success", Toast.LENGTH_SHORT).show();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
