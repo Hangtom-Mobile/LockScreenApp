@@ -98,8 +98,6 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
                             startActivity(intent);
                             finish();
                             Location.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
-                        }else {
-                            mSharedPreferencesFile.deleteSharedPreference();
                         }
                     }
                 }, new Response.ErrorListener() {
