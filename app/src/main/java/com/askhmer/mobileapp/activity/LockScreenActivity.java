@@ -94,7 +94,7 @@ public class LockScreenActivity extends Activity implements
 		init();
 
 		mSharedPref = SharedPreferencesFile.newInstance(this, SharedPreferencesFile.PREFER_KEY);
-		mSharedPref.putBooleanSharedPreference(SharedPreferencesFile.PREFER_KEY, true);
+		/*mSharedPref.putBooleanSharedPreference(SharedPreferencesFile.PREFER_KEY, true);*/
 		relativeLayout = (RelativeLayout) findViewById(R.id.relative_main);
 
 		// unlock screen in case of app get killed by system

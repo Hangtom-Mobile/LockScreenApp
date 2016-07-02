@@ -11,7 +11,7 @@ import com.liuguangqiang.swipeback.SwipeBackLayout;
 
 public class AccountManage extends SwipeBackActivity {
 
-    private LinearLayout myInfo, changePwd, forgetPwd, withdrawal;
+    private LinearLayout myInfo, changePwd, forgetPwd /*withdrawal*/;
     private Intent in;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -19,7 +19,7 @@ import com.askhmer.mobileapp.fragment.FourFragment;
 import com.askhmer.mobileapp.fragment.OneFragment;
 import com.askhmer.mobileapp.fragment.ThreeFragment;
 import com.askhmer.mobileapp.fragment.TwoFragment;
-import com.askhmer.mobileapp.utils.CheckVersionCode;
+import com.askhmer.mobileapp.utils.LockscreenService;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 
 import java.util.ArrayList;
@@ -39,6 +39,8 @@ public class MainActivityTab extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity_tab);
 
+        /*start service*/
+        startService(new Intent(this, LockscreenService.class));
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
@@ -166,15 +168,15 @@ public class MainActivityTab extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mSharedPref  = SharedPreferencesFile.newInstance(this, SharedPreferencesFile.FILE_INFORMATION_TEMP);
+       /* mSharedPref  = SharedPreferencesFile.newInstance(this, SharedPreferencesFile.FILE_INFORMATION_TEMP);*/
 
         // Restore preferences_n
-        boolean lockScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.PREFER_KEY);
+       /* boolean lockScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.PREFER_KEY);
         int numVerBeforeUpdate = mSharedPref.getIntSharedPreference(SharedPreferencesFile.KEY_VERSION_APP);
         int currentVersionApp = new CheckVersionCode().checkVersionCode(getApplicationContext());
-        Intent i = new Intent(MainActivityTab.this, LockScreenActivity.class);
+        Intent i = new Intent(MainActivityTab.this, LockScreenActivity.class);*/
 
-        if (numVerBeforeUpdate == 0) {
+        /*if (numVerBeforeUpdate == 0) {
             mSharedPref.putIntSharedPreference(SharedPreferencesFile.KEY_VERSION_APP,
                     new CheckVersionCode().checkVersionCode(getApplicationContext()));
         }else {
@@ -182,11 +184,13 @@ public class MainActivityTab extends AppCompatActivity {
                 mSharedPref.putIntSharedPreference(SharedPreferencesFile.KEY_VERSION_APP,currentVersionApp);
                 startActivity(i);
             }
-        }
+        }*/
 
-        if(!lockScreen==true) {
+        /*if(!lockScreen==true) {
             startActivity(i);
-        }
+        }*/
+
+        startService(new Intent(this, LockscreenService.class));
     }
 
     @Override
