@@ -78,7 +78,10 @@ public class OneFragment extends Fragment {
         medayiSharing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                medayiSharing();
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.askhmer.lockscreen");
+                startActivity(Intent.createChooser(sharingIntent, "Share via"));
             }
         });
 
