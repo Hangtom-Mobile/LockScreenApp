@@ -21,6 +21,7 @@ public class SharedPreferencesFile {
     public static final String IS_OPEN_INFORMATION_SCREEN_KEY = "IS_OPEN_INFORMATION_SCREEN_KEY";
     public static final String KEY_INFORMATION_TEMP_TOKEN = "KEY_INFORMATION_TEMP_TOKEN";
     public static final String KEY_VERSION_APP = "KEY_VERSION_APP";
+    public static final String SERVICELOCK = "SERVICELOCK";
 
 
     private Context mContext;

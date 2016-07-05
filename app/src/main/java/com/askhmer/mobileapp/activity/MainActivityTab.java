@@ -33,14 +33,21 @@ public class MainActivityTab extends AppCompatActivity {
     private Toast toast;
     private SharedPreferencesFile mSharedPref;
     private OneFragment oneFragment;
+    private boolean startService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity_tab);
 
+        mSharedPref  = SharedPreferencesFile.newInstance(this, SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        startService = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.SERVICELOCK);
+
         /*start service*/
-        startService(new Intent(this, LockscreenService.class));
+        if (startService == false) {
+            startService(new Intent(this, LockscreenService.class));
+        }
+
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
@@ -189,8 +196,9 @@ public class MainActivityTab extends AppCompatActivity {
         /*if(!lockScreen==true) {
             startActivity(i);
         }*/
-
-        startService(new Intent(this, LockscreenService.class));
+        /*if (startService == false) {
+            startService(new Intent(this, LockscreenService.class));
+        }*/
     }
 
     @Override

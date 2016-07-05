@@ -1,21 +1,28 @@
 package com.askhmer.mobileapp.fragment;
 
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.activity.AccountManage;
 import com.askhmer.mobileapp.activity.SendMail;
 import com.askhmer.mobileapp.tutorials.MainPage;
+import com.askhmer.mobileapp.utils.LockscreenService;
+import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 
 /**
  * Created by Longdy on 6/22/2016.
@@ -24,7 +31,8 @@ public class FourFragment extends Fragment {
 
     private LinearLayout accountManage, contactUs, advertising, howToUse, privacy, terms;
     private Intent in;
-//    private SwitchCompat unlock;
+    private SwitchCompat unlock;
+    private SharedPreferencesFile mSharedPreferencesFile;
 
     public FourFragment(){}
 
@@ -40,26 +48,36 @@ public class FourFragment extends Fragment {
 
 //  init
 
-//        unlock = (SwitchCompat) fourFragmentView.findViewById(R.id.switch1);
+        unlock = (SwitchCompat) fourFragmentView.findViewById(R.id.switch1);
         accountManage = (LinearLayout) fourFragmentView.findViewById(R.id.li_account_manage);
         contactUs = (LinearLayout) fourFragmentView.findViewById(R.id.li_contact_us);
         advertising = (LinearLayout) fourFragmentView.findViewById(R.id.li_advertising);
         howToUse = (LinearLayout) fourFragmentView.findViewById(R.id.li_how_to_use);
         privacy = (LinearLayout) fourFragmentView.findViewById(R.id.li_privacy);
         terms = (LinearLayout) fourFragmentView.findViewById(R.id.li_term_of_use);
+        mSharedPreferencesFile = SharedPreferencesFile.newInstance(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
 
-
+        /*check service lock screen work or not*/
+        if (isMyServiceRunning(LockscreenService.class) == true){
+            unlock.setChecked(true);
+        }else {
+            unlock.setChecked(false);
+        }
 //Click listener
-/*
 
         unlock.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     Toast.makeText(getActivity(), "Unlock on", Toast.LENGTH_SHORT).show();
-                }else Toast.makeText(getActivity(), "Unlock off", Toast.LENGTH_SHORT).show();
+                    mSharedPreferencesFile.putBooleanSharedPreference(SharedPreferencesFile.SERVICELOCK, false);
+                    getContext().startService(new Intent(getActivity(), LockscreenService.class));
+                }else {
+                    Toast.makeText(getActivity(), "Unlock off", Toast.LENGTH_SHORT).show();
+                    mSharedPreferencesFile.putBooleanSharedPreference(SharedPreferencesFile.SERVICELOCK, true);
+                    getContext().stopService(new Intent(getContext().getApplicationContext(), LockscreenService.class));
+                }
             }
         });
-*/
 
         accountManage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,4 +163,15 @@ public class FourFragment extends Fragment {
                 })
                 .show();
     }
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getContext().getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

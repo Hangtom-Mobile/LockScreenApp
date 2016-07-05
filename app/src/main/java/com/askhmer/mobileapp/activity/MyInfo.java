@@ -143,7 +143,7 @@ public class MyInfo extends SwipeBackActivity {
                                 if (jsonObj.getString("rst").equals("110")) {
                                     Toast.makeText(MyInfo.this, "Success", Toast.LENGTH_SHORT).show();
                                 }else {
-                                    Toast.makeText(MyInfo.this, "Success", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MyInfo.this, "Fail", Toast.LENGTH_SHORT).show();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
