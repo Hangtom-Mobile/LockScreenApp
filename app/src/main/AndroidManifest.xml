@@ -15,9 +15,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <!--
 <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -41,6 +41,12 @@
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
             </intent-filter>
         </receiver>
 
@@ -79,7 +85,7 @@
         </activity>
         <activity
             android:name=".activity.MainActivityTab"
-            android:theme="@style/MyTabTheme"></activity>
+            android:theme="@style/MyTabTheme" />
         <activity
             android:name=".activity.PasswordFindMoney"
             android:theme="@style/MyAppTheme" />
@@ -118,7 +124,7 @@
             android:theme="@style/MyAppTheme" />
         <activity
             android:name=".activity.SendMail"
-            android:theme="@style/MyAppTheme"></activity>
+            android:theme="@style/MyAppTheme" />
     </application>
 
 </manifest>

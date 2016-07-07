@@ -353,8 +353,8 @@ public class LockScreenActivity extends Activity implements
 
 	public void lockScreenRequestServer(final String note) {
 		pathFile = new ArrayList<LockScreenBackgroundDto>();
-		final String cashId = mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID);
-		Log.e("cash_id_lockscreen", cashId);
+		SharedPreferencesFile mSharedPref1 = SharedPreferencesFile.newInstance(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
+		final String cashId = mSharedPref1.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID);
 		if (cashId != null) {
 			StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://www.medayi.com/locknet/locknet_api.php",
 					new Response.Listener<String>() {
@@ -467,7 +467,6 @@ public class LockScreenActivity extends Activity implements
 		}){
 			@Override
 			protected Map<String, String> getParams() throws AuthFailureError {
-				Log.e("point_in",point);
 				Map<String, String> params = new HashMap<>();
 				params.put("cash_slide_id", mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID));
 				params.put("cash_password", mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD));

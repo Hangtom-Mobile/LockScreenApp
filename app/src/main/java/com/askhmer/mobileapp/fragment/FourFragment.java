@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.activity.AccountManage;
 import com.askhmer.mobileapp.activity.SendMail;
+import com.askhmer.mobileapp.activity.TermsOfUse;
 import com.askhmer.mobileapp.tutorials.MainPage;
 import com.askhmer.mobileapp.utils.LockscreenService;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
@@ -139,10 +140,9 @@ public class FourFragment extends Fragment {
         terms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                contactUs();
-//                in = new Intent(getActivity(), TermsOfUse.class);
-//                startActivity(in);
-//                getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
+                in = new Intent(getActivity(), TermsOfUse.class);
+                startActivity(in);
+                getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
             }
         });
 

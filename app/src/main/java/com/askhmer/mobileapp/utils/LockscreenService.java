@@ -31,7 +31,7 @@ public class LockscreenService extends Service {
 		filter.addAction(Intent.ACTION_SCREEN_OFF);
 		mReceiver = new LockscreenIntentReceiver();
 		registerReceiver(mReceiver, filter);
-		//startForeground();
+		startForeground();
 		return START_STICKY;
 	}
 
@@ -40,8 +40,8 @@ public class LockscreenService extends Service {
 		Notification notification = new NotificationCompat.Builder(this)
 		 .setContentTitle(getResources().getString(R.string.app_name))
 		 .setTicker(getResources().getString(R.string.app_name))
-		 .setContentText("Running")
-		 .setSmallIcon(R.drawable.ic_launcher)
+		 .setContentText("Slide to get money")
+		 .setSmallIcon(R.mipmap.ic_medayi)
 		 .setContentIntent(null)
 		 .setOngoing(true)
 		 .build();
