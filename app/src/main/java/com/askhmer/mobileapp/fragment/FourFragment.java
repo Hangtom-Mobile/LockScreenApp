@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.activity.AccountManage;
+import com.askhmer.mobileapp.activity.PrivacyStatement;
 import com.askhmer.mobileapp.activity.SendMail;
 import com.askhmer.mobileapp.activity.TermsOfUse;
 import com.askhmer.mobileapp.tutorials.MainPage;
@@ -129,10 +130,9 @@ public class FourFragment extends Fragment {
         privacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                contactUs();
-//                in = new Intent(getActivity(), PrivacyStatement.class);
-//                startActivity(in);
-//                getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
+                in = new Intent(getActivity(), PrivacyStatement.class);
+                startActivity(in);
+                getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
             }
         });
 

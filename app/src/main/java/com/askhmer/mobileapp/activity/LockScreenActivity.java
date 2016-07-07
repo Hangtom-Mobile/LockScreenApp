@@ -474,6 +474,9 @@ public class LockScreenActivity extends Activity implements
 				params.put("sliding", sliding);
 				params.put("uid", uId);
 				params.put(keyOfPoint, point);
+				Log.e("request_point_to_server","1:" + mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID) + " 2:"
+						+ mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD) + "3: " + mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_TOKEN)
+						+ "4: " + sliding + "5: "+ uId + "6" + point + " 7: " + keyOfPoint);
 				return params;
 			}
 		};

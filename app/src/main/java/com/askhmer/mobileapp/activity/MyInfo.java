@@ -77,6 +77,7 @@ public class MyInfo extends SwipeBackActivity {
             public void onClick(View v) {
                 requestChangeLocation();
                 startActivity(new Intent(getApplicationContext(),AccountManage.class));
+                finish();
             }
         });
     }
