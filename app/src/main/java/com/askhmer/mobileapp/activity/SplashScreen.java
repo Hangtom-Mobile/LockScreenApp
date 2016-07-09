@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
@@ -28,7 +29,7 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         StartAnimations();
 
-        mSharedPref  = SharedPreferencesFile.newInstance(this, SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        mSharedPref  = SharedPreferencesFile.newInstance(getApplicationContext(), SharedPreferencesFile.FILE_INFORMATION_TEMP);
 
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/
@@ -40,12 +41,15 @@ public class SplashScreen extends AppCompatActivity {
                 // Restore preferences_n
                 boolean informationScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.IS_OPEN_INFORMATION_SCREEN_KEY);
                 boolean isIntroFinish = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.IS_KEY_INTRO_FINISH);
+                String b = mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID);
+
+                Log.e("errr_b",informationScreen + " " + isIntroFinish + " " +  b);
 
                 if(isIntroFinish == true && informationScreen == true) {
                     mainIntent = new Intent(SplashScreen.this, MainActivityTab.class);
-                }else if (isIntroFinish == false) {
+                }else if (isIntroFinish == false && informationScreen == false) {
                     mainIntent = new Intent(SplashScreen.this, MainPage.class);
-                }else {
+                }else if (isIntroFinish == true && informationScreen == false) {
                     mainIntent = new Intent(SplashScreen.this, PhoneNumber.class);
                 }
 

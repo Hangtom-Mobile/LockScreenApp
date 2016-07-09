@@ -93,7 +93,7 @@ public class LockScreenActivity extends Activity implements
 		setContentView(R.layout.activity_lockscreen);
 		init();
 
-		mSharedPref = SharedPreferencesFile.newInstance(this, SharedPreferencesFile.PREFER_KEY);
+		mSharedPref = SharedPreferencesFile.newInstance(getApplicationContext(), SharedPreferencesFile.PREFER_KEY);
 		/*mSharedPref.putBooleanSharedPreference(SharedPreferencesFile.PREFER_KEY, true);*/
 		relativeLayout = (RelativeLayout) findViewById(R.id.relative_main);
 
@@ -159,6 +159,7 @@ public class LockScreenActivity extends Activity implements
 						}
 						Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 						startActivity(browserIntent);
+
 					}else {
 						new SweetAlertDialog(LockScreenActivity.this)
 								.setTitleText("Sorry this banner no link!")
@@ -353,8 +354,7 @@ public class LockScreenActivity extends Activity implements
 
 	public void lockScreenRequestServer(final String note) {
 		pathFile = new ArrayList<LockScreenBackgroundDto>();
-		SharedPreferencesFile mSharedPref1 = SharedPreferencesFile.newInstance(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
-		final String cashId = mSharedPref1.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID);
+		final String cashId = mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID);
 		if (cashId != null) {
 			StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://www.medayi.com/locknet/locknet_api.php",
 					new Response.Listener<String>() {
