@@ -9,14 +9,14 @@ import android.content.pm.PackageManager;
  */
 public class CheckVersionCode {
 
-    public int checkVersionCode (Context context) {
+    public String checkVersionCode (Context context) {
         try {
             PackageInfo pInfo = context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
-            int version = pInfo.versionCode;
+            String version = pInfo.versionName;
             return version;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        return 0;
+        return "";
     }
 }

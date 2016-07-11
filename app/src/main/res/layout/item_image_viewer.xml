@@ -9,21 +9,22 @@
         android:layout_height="fill_parent"
         android:scaleType="centerCrop" />
     <LinearLayout
+        android:background="@drawable/black_transparate"
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
-        android:paddingTop="110dp"
+        android:paddingTop="80dp"
         android:layout_alignParentLeft="true">
 
         <TextView
             android:id="@+id/txt_view_point"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="123"
             android:textColor="@color/white"
             android:textSize="16dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="30dp"
             android:layout_gravity="center"
             android:layout_weight="1"/>
 
@@ -31,11 +32,11 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="123"
             android:layout_gravity="center"
             android:gravity="right"
             android:id="@+id/txt_basic_point"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="30dp"
             android:textColor="@color/white"
             android:textSize="16dp"/>
 

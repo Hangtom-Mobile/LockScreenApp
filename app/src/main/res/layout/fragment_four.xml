@@ -245,6 +245,14 @@
                 android:background="@color/btn_tap_off"/>
 
 
+            <TextView
+                android:id="@+id/ver_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom|right"
+                android:padding="10dp"
+                android:text=""
+                android:textSize="10dp"/>
 
         </LinearLayout>
     </ScrollView>

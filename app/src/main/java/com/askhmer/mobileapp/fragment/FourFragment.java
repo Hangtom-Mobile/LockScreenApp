@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.askhmer.mobileapp.R;
@@ -23,6 +24,7 @@ import com.askhmer.mobileapp.activity.PrivacyStatement;
 import com.askhmer.mobileapp.activity.SendMail;
 import com.askhmer.mobileapp.activity.TermsOfUse;
 import com.askhmer.mobileapp.tutorials.MainPage;
+import com.askhmer.mobileapp.utils.CheckVersionCode;
 import com.askhmer.mobileapp.utils.LockscreenService;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 
@@ -35,6 +37,7 @@ public class FourFragment extends Fragment {
     private Intent in;
     private SwitchCompat unlock;
     private SharedPreferencesFile mSharedPreferencesFile;
+    private TextView verName;
 
     public FourFragment(){}
 
@@ -57,7 +60,11 @@ public class FourFragment extends Fragment {
         howToUse = (LinearLayout) fourFragmentView.findViewById(R.id.li_how_to_use);
         privacy = (LinearLayout) fourFragmentView.findViewById(R.id.li_privacy);
         terms = (LinearLayout) fourFragmentView.findViewById(R.id.li_term_of_use);
+        verName = (TextView) fourFragmentView.findViewById(R.id.ver_name);
         mSharedPreferencesFile = SharedPreferencesFile.newInstance(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
+
+        /*display version name*/
+        verName.setText("Version " + new CheckVersionCode().checkVersionCode(getContext()));
 
         /*check service lock screen work or not*/
         if (isMyServiceRunning(LockscreenService.class) == true){
@@ -173,5 +180,4 @@ public class FourFragment extends Fragment {
         }
         return false;
     }
-
 }
