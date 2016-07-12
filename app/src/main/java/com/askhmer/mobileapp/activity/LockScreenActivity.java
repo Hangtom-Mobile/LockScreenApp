@@ -111,8 +111,10 @@ public class LockScreenActivity extends Activity implements
 				// lock home button
 				lockHomeButton();
 
-				// start service for observing intents
-				startService(new Intent(this, LockscreenService.class));
+				if (mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.SERVICELOCK) == false) {
+					// start service for observing intents
+					startService(new Intent(this, LockscreenService.class));
+				}
 
 				// listen the events get fired during the call
 				StateListener phoneStateListener = new StateListener();
