@@ -74,7 +74,7 @@
     </LinearLayout>
 
     <com.askhmer.mobileapp.utils.ToggleSwitchButtonByDy
-        android:id="@+id/toggle"
+        android:id="@+id/toggle_website"
         style="@style/ToggleSwitchButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="-400dp"/>

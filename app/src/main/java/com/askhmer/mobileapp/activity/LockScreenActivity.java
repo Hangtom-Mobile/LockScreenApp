@@ -130,7 +130,7 @@ public class LockScreenActivity extends Activity implements
 		}else {
 			/*pathFile = new ArrayList<LockScreenBackgroundDto>();*/
 		}
-		ToggleSwitchButtonByDy toggle = (ToggleSwitchButtonByDy) findViewById(R.id.toggle);
+		ToggleSwitchButtonByDy toggle = (ToggleSwitchButtonByDy) findViewById(R.id.toggle_website);
 		toggle.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
 			@Override
 			public void toggledUp() {
@@ -138,7 +138,7 @@ public class LockScreenActivity extends Activity implements
 					if (pathFile.size() > 0) {
 						String unlockPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockBasicPrice();
 						String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
-						Log.e("unlockPrice_out",unlockPrice);
+						Log.e("unlockPrice_out", unlockPrice);
 						requestPointToServer("right", "lock_basic_price", unlockPrice, uId);
 					}
 				}
@@ -147,11 +147,11 @@ public class LockScreenActivity extends Activity implements
 
 			@Override
 			public void toggledDown() {
-				if (pathFile.size() > 0){
+				if (pathFile.size() > 0) {
 					String url = pathFile.get(imageViewPager.getCurrentItem()).getWebUrl();
 					String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
 					String urlPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockViewPrice();
-					Log.d("imageURl",url);
+					Log.d("imageURl", url);
 
 					if (!url.isEmpty()) {
 						if (new CheckInternet().isConnect(getApplicationContext()) == true) {
@@ -160,12 +160,12 @@ public class LockScreenActivity extends Activity implements
 						Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 						startActivity(browserIntent);
 
-					}else {
+					} else {
 						new SweetAlertDialog(LockScreenActivity.this)
 								.setTitleText("Sorry this banner no link!")
 								.show();
 					}
-				}else {
+				} else {
 					new SweetAlertDialog(LockScreenActivity.this)
 							.setTitleText("Sorry your phone no internet!")
 							.show();

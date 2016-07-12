@@ -1,6 +1,7 @@
 package com.askhmer.mobileapp.utils;
 
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Intent;
@@ -9,6 +10,7 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 
 import com.askhmer.mobileapp.R;
+import com.askhmer.mobileapp.activity.SplashScreen;
 
 public class LockscreenService extends Service {
 
@@ -37,15 +39,19 @@ public class LockscreenService extends Service {
 
 	// Run service in foreground so it is less likely to be killed by system
 	private void startForeground() {
+		Intent myIntent = new Intent(getApplicationContext(), SplashScreen.class);
+		PendingIntent intent2 = PendingIntent.getActivity(getApplicationContext(), 1,
+				myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
 		Notification notification = new NotificationCompat.Builder(this)
-		 .setContentTitle(getResources().getString(R.string.app_name))
-		 .setTicker(getResources().getString(R.string.app_name))
-		 .setContentText("Slide to get money")
-		 .setSmallIcon(R.mipmap.ic_medayi)
-		 .setContentIntent(null)
-		 .setOngoing(true)
-		 .build();
-		 startForeground(9999,notification);		
+				.setContentTitle(getResources().getString(R.string.app_name))
+				.setTicker(getResources().getString(R.string.app_name))
+				.setContentText("Slide to get money")
+				.setSmallIcon(R.mipmap.ic_medayi)
+				.setOngoing(true)
+				.setContentIntent(intent2)
+				.build();
+		 startForeground(9999,notification);
 	}
 
 	// Unregister receiver
