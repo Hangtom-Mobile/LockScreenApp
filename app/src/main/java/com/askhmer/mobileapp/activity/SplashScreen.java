@@ -21,7 +21,6 @@ public class SplashScreen extends AppCompatActivity {
 
     /** Duration of wait **/
     private final int SPLASH_DISPLAY_LENGTH = 3000;
-    private SharedPreferencesFile mSharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +28,14 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         StartAnimations();
 
-        mSharedPref  = SharedPreferencesFile.newInstance(getApplicationContext(), SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        SharedPreferencesFile mSharedPref  = SharedPreferencesFile.newInstance(getApplicationContext(), SharedPreferencesFile.FILE_INFORMATION_TEMP);
+
+        // Restore preferences_n
+        final boolean informationScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.IS_OPEN_INFORMATION_SCREEN_KEY);
+        final boolean isIntroFinish = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.IS_KEY_INTRO_FINISH);
+        String b = mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID);
+
+        Log.e("errr_b",informationScreen + " " + isIntroFinish + " " +  b);
 
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/
@@ -37,13 +43,6 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 Intent mainIntent = null;
-
-                // Restore preferences_n
-                boolean informationScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.IS_OPEN_INFORMATION_SCREEN_KEY);
-                boolean isIntroFinish = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.IS_KEY_INTRO_FINISH);
-                String b = mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID);
-
-                Log.e("errr_b",informationScreen + " " + isIntroFinish + " " +  b);
 
                 if(isIntroFinish == true && informationScreen == true) {
                     mainIntent = new Intent(SplashScreen.this, MainActivityTab.class);
