@@ -3,7 +3,7 @@ package com.askhmer.mobileapp.tutorials;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.askhmer.mobileapp.activity.PhoneNumber;
+import com.askhmer.mobileapp.activity.RegisterOrLogin;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 import com.github.paolorotolo.appintro.AppIntro2;
 
@@ -51,7 +51,7 @@ public class MainPage extends AppIntro2 {
         if (mSharedPreferencesFile.getBooleanSharedPreference(SharedPreferencesFile.IS_KEY_INTRO_FINISH) == true) {
             this.finish();
         }else {
-            Intent mainIntent = new Intent(this, PhoneNumber.class);
+            Intent mainIntent = new Intent(this, RegisterOrLogin.class);
             startActivity(mainIntent);
             mSharedPreferencesFile.putBooleanSharedPreference(SharedPreferencesFile.IS_KEY_INTRO_FINISH, true);
             finish();

@@ -92,7 +92,7 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
                     @Override
                     public void onResponse(String response) {
                         if (response.contains("110")) {
-                            mSharedPreferencesFile.putBooleanSharedPreference(SharedPreferencesFile.IS_OPEN_INFORMATION_SCREEN_KEY, true);
+                            mSharedPreferencesFile.putBooleanSharedPreference(SharedPreferencesFile.REGISTERNLOGIN, true);
                             Intent intent = new Intent(getApplicationContext(), MainActivityTab.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);;
                             startActivity(intent);

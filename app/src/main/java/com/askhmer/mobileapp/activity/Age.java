@@ -48,7 +48,7 @@ public class Age extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 d = myDatePicker.getDayOfMonth() + "";
-                m = myDatePicker.getMonth() + "";
+                m = myDatePicker.getMonth()+1 + "";
                 y = myDatePicker.getYear() + "";
 
                 String sMonth = m;

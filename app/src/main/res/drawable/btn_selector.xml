@@ -3,6 +3,6 @@
 
     <item android:drawable="@color/btn_color_selected" android:state_selected="true"></item>
     <item android:drawable="@color/btn_color_selected" android:state_pressed="true"></item>
-    <item android:drawable="@color/btn_color"></item>
+    <item android:drawable="@drawable/radiau"></item>
 
 </selector>

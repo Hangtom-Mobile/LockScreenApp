@@ -93,7 +93,7 @@ public class LockScreenActivity extends Activity implements
 		setContentView(R.layout.activity_lockscreen);
 		init();
 
-		mSharedPref = SharedPreferencesFile.newInstance(getApplicationContext(), SharedPreferencesFile.PREFER_KEY);
+		mSharedPref = SharedPreferencesFile.newInstance(getApplicationContext(), SharedPreferencesFile.FILE_INFORMATION_TEMP);
 		/*mSharedPref.putBooleanSharedPreference(SharedPreferencesFile.PREFER_KEY, true);*/
 		relativeLayout = (RelativeLayout) findViewById(R.id.relative_main);
 

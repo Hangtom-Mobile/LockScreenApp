@@ -56,7 +56,7 @@ public class FullScreenImageAdapter extends PagerAdapter {
         txtBasicPoint = (TextView) viewLayout.findViewById(R.id.txt_basic_point);
         txtViewPoint = (TextView) viewLayout.findViewById(R.id.txt_view_point);
 
-        Picasso.with(container.getContext()).load(_imagePaths.get(position).getImageUrl()).placeholder(R.color.gray_btn_bg_color).into(imgDisplay);
+        Picasso.with(container.getContext()).load(_imagePaths.get(position).getImageUrl()).fit().placeholder(R.color.gray_btn_bg_color).into(imgDisplay);
 
         txtBasicPoint.setText("+ " + _imagePaths.get(position).getLockBasicPrice());
         txtViewPoint.setText("+ " + _imagePaths.get(position).getLockViewPrice());

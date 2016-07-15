@@ -31,11 +31,11 @@ public class SplashScreen extends AppCompatActivity {
         SharedPreferencesFile mSharedPref  = SharedPreferencesFile.newInstance(getApplicationContext(), SharedPreferencesFile.FILE_INFORMATION_TEMP);
 
         // Restore preferences_n
-        final boolean informationScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.IS_OPEN_INFORMATION_SCREEN_KEY);
+        final boolean registerOrLoginScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.REGISTERNLOGIN);
         final boolean isIntroFinish = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.IS_KEY_INTRO_FINISH);
         String b = mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID);
 
-        Log.e("errr_b",informationScreen + " " + isIntroFinish + " " +  b);
+        Log.e("errr_b",registerOrLoginScreen + " " + isIntroFinish + " " +  b);
 
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/
@@ -44,12 +44,12 @@ public class SplashScreen extends AppCompatActivity {
             public void run() {
                 Intent mainIntent = null;
 
-                if(isIntroFinish == true && informationScreen == true) {
+                if(isIntroFinish == true && registerOrLoginScreen == true) {
                     mainIntent = new Intent(SplashScreen.this, MainActivityTab.class);
-                }else if (isIntroFinish == false && informationScreen == false) {
+                }else if (isIntroFinish == false && registerOrLoginScreen == false) {
                     mainIntent = new Intent(SplashScreen.this, MainPage.class);
-                }else if (isIntroFinish == true && informationScreen == false) {
-                    mainIntent = new Intent(SplashScreen.this, PhoneNumber.class);
+                }else if (isIntroFinish == true && registerOrLoginScreen == false) {
+                    mainIntent = new Intent(SplashScreen.this, RegisterOrLogin.class);
                 }
 
                 /* Create an Intent that will start the Menu-Activity. */

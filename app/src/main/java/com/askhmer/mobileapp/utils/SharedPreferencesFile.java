@@ -22,6 +22,7 @@ public class SharedPreferencesFile {
     public static final String KEY_INFORMATION_TEMP_TOKEN = "KEY_INFORMATION_TEMP_TOKEN";
     public static final String KEY_VERSION_APP = "KEY_VERSION_APP";
     public static final String SERVICELOCK = "SERVICELOCK";
+    public static final String REGISTERNLOGIN = "REGISTERNLOGIN";
 
 
     private Context mContext;
@@ -37,10 +38,10 @@ public class SharedPreferencesFile {
     }
 
     public static SharedPreferencesFile newInstance(Context context, String sharedPrefName ) {
-        if (mInstance == null) {
+        /*if (mInstance == null) {
             mInstance = new SharedPreferencesFile(context, sharedPrefName);
-        }
-        return mInstance;
+        }*/
+        return mInstance = new SharedPreferencesFile(context, sharedPrefName);
     }
 
     /**
