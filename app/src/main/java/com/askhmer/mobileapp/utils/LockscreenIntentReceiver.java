@@ -19,6 +19,11 @@ public class LockscreenIntentReceiver extends BroadcastReceiver {
 		TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 		telephonyManager.listen(phoneStateListener,
 				PhoneStateListener.LISTEN_CALL_STATE);
+
+		if (intent.getAction().equalsIgnoreCase(Intent.ACTION_BOOT_COMPLETED)) {
+			Intent serviceIntent = new Intent(context, LockscreenService.class);
+			context.startService(serviceIntent);
+		}
 	}
 
 	// Display lock screen

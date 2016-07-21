@@ -128,6 +128,7 @@ public class LoginDob extends AppCompatActivity{
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("lockScreenRequestServer", error.toString());
+                Toast.makeText(LoginDob.this, "No Connection", Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
