@@ -3,11 +3,13 @@ package com.askhmer.mobileapp.activity;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.KeyguardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.support.v4.view.ViewPager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -206,7 +208,8 @@ public class LockScreenActivity extends Activity implements
 			super.onCallStateChanged(state, incomingNumber);
 			switch (state) {
 			case TelephonyManager.CALL_STATE_RINGING:
-				unlockHomeButton();
+				/*unlockHomeButton();*/
+				wakeUp();
 				break;
 			case TelephonyManager.CALL_STATE_OFFHOOK:
 				break;
@@ -483,5 +486,12 @@ public class LockScreenActivity extends Activity implements
 			}
 		};
 		MySingleton.getInstance(this).addToRequestQueue(stringRequest);
+	}
+
+	public void wakeUp() {
+		PowerManager pm = (PowerManager) getApplicationContext().getSystemService(Context.POWER_SERVICE);
+		PowerManager.WakeLock wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
+		wakeLock.acquire();
+		Log.e("inner", "wakep");
 	}
 }
