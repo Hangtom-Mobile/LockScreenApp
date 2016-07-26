@@ -71,13 +71,11 @@
         <activity
             android:name=".activity.SplashScreen"
             android:theme="@style/AppTheme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".activity.MainActivityTab"
@@ -124,13 +122,20 @@
         <activity
             android:name=".activity.RegisterOrLogin"
             android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name=".activity.Login"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.LoginDob"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.YoutubeVideo"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|screenSize"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
 
         </activity>
-        <activity android:name=".activity.Login"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".activity.LoginDob"
-            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

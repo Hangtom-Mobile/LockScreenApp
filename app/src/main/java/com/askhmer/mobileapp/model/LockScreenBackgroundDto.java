@@ -22,6 +22,9 @@ public class LockScreenBackgroundDto {
     @SerializedName("url")
     private String webUrl;
 
+    @SerializedName("left_type")
+    private String type;
+
     public String getuId() {
         return uId;
     }
@@ -62,4 +65,11 @@ public class LockScreenBackgroundDto {
         this.webUrl = webUrl;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }

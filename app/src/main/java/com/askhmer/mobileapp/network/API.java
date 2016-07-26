@@ -16,6 +16,7 @@ public class API {
     public static final String REQUESTPOINT = BASEURL + "locknet_point_api.php";
     public static final String REQUESTMYPOINT = BASEURL + "my_point_api.php";
     public static final String LOGIN = BASEURL +  "locknet_login_api.php";
+    public static final String REQUESTVIDEO = BASEURL +  "lock_movie.php";
     public static final String REQUESTEXCHANGPOINT = BASEURL + "get_monry_api.php";
     public static final String REQUESTAUTOLOGIN = "http://m.medayi.com/bbs/auto_login_api.php";
     public static final String CHECKPASSWORK = "http://www.medayi.com/bbs/password_chk_api.php";

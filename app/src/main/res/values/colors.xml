@@ -22,4 +22,6 @@
     <color name="btn_color_selected">#062a6b</color>
     <color name="bg_color">#eeeeee</color>
     <color name="bg_color_img">#3d5bb1</color>
+    <color name="btn_blackground_tran">#ab4e4e4e</color>
+    <color name="btn_select_tran">#ab9b9b9b</color>
 </resources>

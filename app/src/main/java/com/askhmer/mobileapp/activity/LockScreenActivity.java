@@ -155,15 +155,19 @@ public class LockScreenActivity extends Activity implements
 					String url = pathFile.get(imageViewPager.getCurrentItem()).getWebUrl();
 					String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
 					String urlPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockViewPrice();
+					String type = pathFile.get(imageViewPager.getCurrentItem()).getType();
 					Log.d("imageURl", url);
 
 					if (!url.isEmpty()) {
-						if (new CheckInternet().isConnect(getApplicationContext()) == true) {
-							requestPointToServer("left", "lock_view_price", urlPrice, uId);
+						if (type.equals("1")) {
+							if (new CheckInternet().isConnect(getApplicationContext()) == true) {
+								requestPointToServer("left", "lock_view_price", urlPrice, uId);
+							}
+							Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+							startActivity(browserIntent);
+						}else {
+							requestVideo(url);
 						}
-						Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-						startActivity(browserIntent);
-
 					} else {
 						new SweetAlertDialog(LockScreenActivity.this)
 								.setTitleText("Sorry this banner no link!")
@@ -375,6 +379,7 @@ public class LockScreenActivity extends Activity implements
 									dto.setLockViewPrice(jsonObj.getString("lock_view_price"));
 									dto.setImageUrl(jsonObj.getString("image"));
 									dto.setWebUrl(jsonObj.getString("url"));
+									dto.setType(jsonObj.getString("left_type"));
 									pathFile.clear();
 									pathFile.add(dto);
 									fullScreenImageAdapter.notifyDataSetChanged();
@@ -493,5 +498,42 @@ public class LockScreenActivity extends Activity implements
 		PowerManager.WakeLock wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
 		wakeLock.acquire();
 		Log.e("inner", "wakep");
+	}
+
+	private void requestVideo(String url) {
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+				new Response.Listener<String>() {
+					@Override
+					public void onResponse(String response) {
+						try {
+							JSONObject jsonObj = new JSONObject(response);
+							if (jsonObj.getString("rst").equals("110")) {
+								Intent intent = new Intent(getApplicationContext(),YoutubeVideo.class);
+								intent.putExtra("movie_id", jsonObj.getString("movie_id"));
+								intent.putExtra("movie_time", jsonObj.getString("movie_time"));
+								intent.putExtra("movie_end_url", jsonObj.getString("movie_end_url"));
+								intent.putExtra("uid", pathFile.get(imageViewPager.getCurrentItem()).getuId());
+								intent.putExtra("lock_view_price", pathFile.get(imageViewPager.getCurrentItem()).getLockViewPrice());
+								startActivity(intent);
+							}
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+					}
+				}, new Response.ErrorListener() {
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				Log.d("volley_request_point_to_server",error.toString());
+			}
+		}){
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				Map<String, String> params = new HashMap<>();
+				params.put("uid", pathFile.get(imageViewPager.getCurrentItem()).getuId());
+				return params;
+			}
+		};
+		MySingleton.getInstance(this).addToRequestQueue(stringRequest);
+
 	}
 }
