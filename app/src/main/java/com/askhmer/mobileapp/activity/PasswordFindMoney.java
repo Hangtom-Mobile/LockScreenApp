@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -108,7 +109,7 @@ public class PasswordFindMoney extends SwipeBackActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-               Log.e("Passwordfindmoney",error.toString());
+                Toast.makeText(PasswordFindMoney.this, "No internet connection!", Toast.LENGTH_SHORT).show();
             }
         }){
             @Override
