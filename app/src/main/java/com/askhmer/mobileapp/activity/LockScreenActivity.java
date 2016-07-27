@@ -497,7 +497,7 @@ public class LockScreenActivity extends Activity implements
 		PowerManager pm = (PowerManager) getApplicationContext().getSystemService(Context.POWER_SERVICE);
 		PowerManager.WakeLock wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
 		wakeLock.acquire();
-		Log.e("inner", "wakep");
+		wakeLock.release();
 	}
 
 	private void requestVideo(String url) {
