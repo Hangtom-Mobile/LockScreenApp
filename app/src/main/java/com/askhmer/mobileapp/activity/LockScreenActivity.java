@@ -523,7 +523,7 @@ public class LockScreenActivity extends Activity implements
 				}, new Response.ErrorListener() {
 			@Override
 			public void onErrorResponse(VolleyError error) {
-				Log.d("volley_request_point_to_server",error.toString());
+				Toast.makeText(LockScreenActivity.this, "No internet!", Toast.LENGTH_SHORT).show();
 			}
 		}){
 			@Override

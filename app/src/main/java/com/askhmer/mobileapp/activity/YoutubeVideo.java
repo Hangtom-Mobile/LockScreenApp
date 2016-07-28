@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,19 @@ public class YoutubeVideo extends YouTubeBaseActivity implements YouTubePlayer.O
     private int movieTimeSecond, moiveTimeSecondTemp;
     private TextView txtTimeSkip;
     private LinearLayout btnSkip;
+
+    @Override
+    public void onAttachedToWindow() {
+        this.getWindow().setType(
+                WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
+        this.getWindow().addFlags(
+                WindowManager.LayoutParams.FLAG_FULLSCREEN
+                        | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                        | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+        );
+
+        super.onAttachedToWindow();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +91,7 @@ public class YoutubeVideo extends YouTubeBaseActivity implements YouTubePlayer.O
             youTubePlayer.loadVideo(movieId);
 
             // Hiding player controls
-            youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.CHROMELESS);
+            youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.MINIMAL);
             this.youTubePlayer = youTubePlayer;
         }
     }
