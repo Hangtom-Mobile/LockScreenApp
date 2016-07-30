@@ -8,8 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.activity.SplashScreen;
@@ -45,14 +43,13 @@ public class LockscreenService extends Service {
 		PendingIntent intent2 = PendingIntent.getActivity(getApplicationContext(), 1,
 				myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-		Bitmap bm = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_medayi);
+		/*Bitmap bm = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_medayi);*/
 
 		Notification notification = new NotificationCompat.Builder(this)
 				.setContentTitle(getResources().getString(R.string.app_name))
 				.setTicker(getResources().getString(R.string.app_name))
 				.setContentText("Slide to get money")
-				.setSmallIcon(R.drawable.icon_noti)
-				.setLargeIcon(bm)
+				.setSmallIcon(R.mipmap.ic_medayi)
 				.setOngoing(true)
 				.setContentIntent(intent2)
 				.build();

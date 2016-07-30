@@ -3,7 +3,6 @@ package com.askhmer.mobileapp.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -59,7 +58,6 @@ public class NewPassword extends AppCompatActivity {
                         if (!response.isEmpty()) {
                             try {
                                 JSONObject jsonObj = new JSONObject(response);
-                                Log.e("result_new",response);
                                 String result = jsonObj.getString("rst");
                                 if (result.equals("110")) {
                                     Toast.makeText(NewPassword.this, "Reset password Success", Toast.LENGTH_SHORT).show();
@@ -76,7 +74,7 @@ public class NewPassword extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplication(), "ForgetPwd Error", Toast.LENGTH_SHORT).show();
+
             }
         }){
             @Override

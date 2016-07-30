@@ -7,7 +7,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.Toast;
 
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
@@ -61,7 +60,7 @@ public class Age extends AppCompatActivity{
                 }
                 sDOB = y + sMonth + sDay;
 
-                Toast.makeText(Age.this, sDOB, Toast.LENGTH_SHORT).show();
+               /* Toast.makeText(Age.this, sDOB, Toast.LENGTH_SHORT).show();*/
                 Intent intent = new Intent(getApplicationContext(), National.class);
                 mSharedPrefrencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_AGE, sDOB);
                 startActivity(intent);

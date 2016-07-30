@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
@@ -50,8 +48,6 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private WebView webview;
     private final String URL_ASKHMER = "http://m.medayi.com/";
     private SwipeRefreshLayout swipeRefreshLayout;
-    private Toast toast;
-    private long backKeyPressedTime = 0;
     private ProgressBar mProgress;
     private ImageButton btnBack;
     private ImageButton btnForward;
@@ -190,7 +186,7 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                     super.onProgressChanged(view, newProgress);
                     mProgress.setProgress(newProgress);
                 }catch (Exception e) {
-                    Log.v("erorr",e.toString());
+
                 }
             }
 
@@ -230,9 +226,9 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                 mProgress.setVisibility(View.GONE);
 
                 //Debug mode
-                Log.e("onErrorCode :", "" + errorCode);
+               /* Log.e("onErrorCode :", "" + errorCode);
                 Log.e("onDescription :", description);
-                Log.e("onFailingUrl :", failingUrl);
+                Log.e("onFailingUrl :", failingUrl);*/
 
                 switch (errorCode) {
                     case ERROR_AUTHENTICATION:
@@ -316,13 +312,12 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.e("login",response);
+
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("ErroVelloy", error.toString());
-                Toast.makeText(getContext(), "one f login"+error.toString(), Toast.LENGTH_LONG).show();
+
             }
         }){
             @Override

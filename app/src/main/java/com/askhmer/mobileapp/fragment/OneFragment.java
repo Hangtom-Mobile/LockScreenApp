@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -141,7 +140,6 @@ public class OneFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("mypointrespone", response);
                         if (!response.isEmpty()) {
                             try {
                                 JSONObject jsonObj = new JSONObject(response);
@@ -160,7 +158,7 @@ public class OneFragment extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("One_fragment_Mypoint_to_server", error.toString());
+
             }
         }){
             @Override
@@ -191,13 +189,12 @@ public class OneFragment extends Fragment {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.e("login",response);
+
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("ErroVelloy", error.toString());
-                Toast.makeText(getContext(), "one f login"+error.toString(), Toast.LENGTH_LONG).show();
+
             }
         }){
             @Override
@@ -226,7 +223,6 @@ public class OneFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        Log.e("testscreen_one", "onStart");
 
         /*load user name*/
         txtMyUserName.setText(mSharedPreferencesFile.getStringSharedPreference

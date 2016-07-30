@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
@@ -57,7 +56,6 @@ public class National extends AppCompatActivity implements AdapterView.OnItemSel
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         // Showing selected spinner item
-        Toast.makeText(view.getContext(), "Selected: " +id, Toast.LENGTH_LONG).show();
     }
 
     @Override

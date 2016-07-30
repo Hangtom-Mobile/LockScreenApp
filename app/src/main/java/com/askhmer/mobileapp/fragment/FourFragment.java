@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.activity.AccountManage;
 import com.askhmer.mobileapp.activity.PrivacyStatement;
+import com.askhmer.mobileapp.activity.Recommend;
 import com.askhmer.mobileapp.activity.SendMail;
 import com.askhmer.mobileapp.activity.TermsOfUse;
 import com.askhmer.mobileapp.tutorials.MainPage;
@@ -33,7 +34,7 @@ import com.askhmer.mobileapp.utils.SharedPreferencesFile;
  */
 public class FourFragment extends Fragment {
 
-    private LinearLayout accountManage, contactUs, advertising, howToUse, privacy, terms;
+    private LinearLayout accountManage, contactUs, recommend, advertising, howToUse, privacy, terms;
     private Intent in;
     private SwitchCompat unlock;
     private SharedPreferencesFile mSharedPreferencesFile;
@@ -56,6 +57,7 @@ public class FourFragment extends Fragment {
         unlock = (SwitchCompat) fourFragmentView.findViewById(R.id.switch1);
         accountManage = (LinearLayout) fourFragmentView.findViewById(R.id.li_account_manage);
         contactUs = (LinearLayout) fourFragmentView.findViewById(R.id.li_contact_us);
+        recommend = (LinearLayout) fourFragmentView.findViewById(R.id.li_recommend);
         advertising = (LinearLayout) fourFragmentView.findViewById(R.id.li_advertising);
         howToUse = (LinearLayout) fourFragmentView.findViewById(R.id.li_how_to_use);
         privacy = (LinearLayout) fourFragmentView.findViewById(R.id.li_privacy);
@@ -104,6 +106,14 @@ public class FourFragment extends Fragment {
             }
         });
 
+        recommend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                in = new Intent(getActivity(), Recommend.class);
+                startActivity(in);
+                getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
+            }
+        });
 
         advertising.setOnClickListener(new View.OnClickListener() {
             @Override

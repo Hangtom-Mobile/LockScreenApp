@@ -3,7 +3,6 @@ package com.askhmer.mobileapp.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -77,12 +76,10 @@ public class PasswordFindMoney extends SwipeBackActivity {
     }
 
     public void checkPasswordFromServer() {
-        Log.d("check1","work");
         StringRequest stringRequest = new StringRequest(Request.Method.POST, API.CHECKPASSWORK,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.e("passwordfind",response);
                         if (response.contains("110")) {
                             try {
                                 JSONObject jsonObj = new JSONObject(response);

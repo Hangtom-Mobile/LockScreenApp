@@ -10,7 +10,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
@@ -32,7 +31,6 @@ public class MainActivityTab extends AppCompatActivity {
     private long backKeyPressedTime = 0;
     private Toast toast;
     private SharedPreferencesFile mSharedPref;
-    private OneFragment oneFragment;
     private boolean startService;
 
     @Override
@@ -148,9 +146,9 @@ public class MainActivityTab extends AppCompatActivity {
                 case KeyEvent.KEYCODE_BACK: onBackPressed();
             }
         } catch (NullPointerException e) {
-            Log.d("Null", "BackClick NullPointerException : " + e);
+
         } catch (Exception e1) {
-            Log.d("BackClick", "BackClick Exception : " + e1);
+
         }
         return false;
     }
@@ -204,24 +202,21 @@ public class MainActivityTab extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        Log.e("testscreen","onStop" );
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Log.e("testscreen", "onPause");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.e("testscreen", "onResume");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.e("testscreen", "onRestart");
     }
 }

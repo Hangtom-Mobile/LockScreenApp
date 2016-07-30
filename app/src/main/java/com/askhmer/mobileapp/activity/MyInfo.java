@@ -3,7 +3,6 @@ package com.askhmer.mobileapp.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -87,7 +86,6 @@ public class MyInfo extends SwipeBackActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.e("myInfo", response);
                         if (!response.isEmpty()) {
                             try {
                                 JSONObject jsonObj = new JSONObject(response);
@@ -107,7 +105,7 @@ public class MyInfo extends SwipeBackActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("ErroVelloy MyInfo", error.toString());
+
             }
         }){
             @Override
@@ -137,7 +135,6 @@ public class MyInfo extends SwipeBackActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.e("myInfoChangelocation", response);
                         if (!response.isEmpty()) {
                             try {
                                 JSONObject jsonObj = new JSONObject(response);
@@ -154,7 +151,7 @@ public class MyInfo extends SwipeBackActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("ErroVelloy MyInfo", error.toString());
+
             }
         }){
             @Override

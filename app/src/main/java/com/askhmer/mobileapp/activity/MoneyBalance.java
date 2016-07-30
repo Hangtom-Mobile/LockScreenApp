@@ -1,7 +1,6 @@
 package com.askhmer.mobileapp.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,7 +67,6 @@ public class MoneyBalance extends SwipeBackActivity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Log.e("response_request_money", response);
                             try {
                                 if (!response.isEmpty()) {
                                     JSONObject jsonObj = new JSONObject(response);
@@ -90,8 +88,7 @@ public class MoneyBalance extends SwipeBackActivity {
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.d("ErroVelloy",error.toString());
-                    Toast.makeText(MoneyBalance.this, error.toString(), Toast.LENGTH_SHORT).show();
+
                 }
             }){
                 @Override
@@ -117,7 +114,6 @@ public class MoneyBalance extends SwipeBackActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("mypointrespone",response);
                         if (!response.isEmpty()) {
                             try {
                                 JSONObject jsonObj = new JSONObject(response);
@@ -136,8 +132,7 @@ public class MoneyBalance extends SwipeBackActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("ErroVelloy", error.toString());
-                Toast.makeText(getApplicationContext(), "One f my point"+error.toString(), Toast.LENGTH_LONG).show();
+
             }
         }){
             @Override

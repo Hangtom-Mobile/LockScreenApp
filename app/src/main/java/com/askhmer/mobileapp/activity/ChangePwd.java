@@ -2,7 +2,6 @@ package com.askhmer.mobileapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -60,7 +59,6 @@ public class ChangePwd extends SwipeBackActivity {
                         if (!response.isEmpty()) {
                             try {
                                 JSONObject jsonObj = new JSONObject(response);
-                                Log.e("result_new",response);
                                 String result = jsonObj.getString("rst");
                                 if (result.equals("110")) {
                                     Toast.makeText(getApplicationContext(), "Change password Success", Toast.LENGTH_SHORT).show();

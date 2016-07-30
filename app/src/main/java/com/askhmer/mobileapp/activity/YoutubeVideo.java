@@ -3,7 +3,6 @@ package com.askhmer.mobileapp.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -144,7 +143,6 @@ public class YoutubeVideo extends YouTubeBaseActivity implements YouTubePlayer.O
                     /*for button skip and time*/
                     if (moiveTimeSecondTemp > 0 && currentTimeMillis >= 0 ) {
                         int countDownTime = moiveTimeSecondTemp - (currentTimeMillis / 1000);
-                        Log.e("work", "countDownTime " + countDownTime + " moiveTimetemp " + moiveTimeSecondTemp + " current " + currentTimeMillis);
                         if (countDownTime > 0) {
                             txtTimeSkip.setVisibility(View.VISIBLE);
                             txtTimeSkip.setText("Points will be credited after " + countDownTime + " second");
@@ -152,7 +150,6 @@ public class YoutubeVideo extends YouTubeBaseActivity implements YouTubePlayer.O
                     }
 
                     if ((currentTimeMillis != 0 && durationTimeMillis != 0) && (currentTimeMillis != -1 && durationTimeMillis != -1)) {
-                        Log.e("show1", movieTimeSecond + " current: " + (currentTimeMillis) / 1000);
                         if (movieTimeSecond == (currentTimeMillis) / 1000 && movieTimeSecond != 0) {
                             requestVideoPoint();
 
@@ -183,7 +180,6 @@ public class YoutubeVideo extends YouTubeBaseActivity implements YouTubePlayer.O
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.e("response123", response);
                         if (response.contains("113") || response.contains("110")) {
                             txtTimeSkip.setText("Points credited.");
                         }
@@ -191,7 +187,7 @@ public class YoutubeVideo extends YouTubeBaseActivity implements YouTubePlayer.O
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("volley_request_point_to_server", error.toString());
+
             }
         }){
             @Override

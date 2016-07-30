@@ -13,7 +13,6 @@ import android.os.PowerManager;
 import android.support.v4.view.ViewPager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -63,8 +62,6 @@ public class LockScreenActivity extends Activity implements
 	private LockscreenUtils mLockscreenUtils;
 	private ViewPager imageViewPager;
 	private FullScreenImageAdapter fullScreenImageAdapter;
-	private int countPause = 0;
-	private int currentPause = 0;
 	private MyBroadCastReciever mReceiver;
 	private RelativeLayout relativeLayout;
 
@@ -142,7 +139,6 @@ public class LockScreenActivity extends Activity implements
 					if (pathFile.size() > 0) {
 						String unlockPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockBasicPrice();
 						String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
-						Log.e("unlockPrice_out", unlockPrice);
 						requestPointToServer("right", "lock_basic_price", unlockPrice, uId);
 					}
 				}
@@ -156,7 +152,6 @@ public class LockScreenActivity extends Activity implements
 					String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
 					String urlPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockViewPrice();
 					String type = pathFile.get(imageViewPager.getCurrentItem()).getType();
-					Log.d("imageURl", url);
 
 					if (!url.isEmpty()) {
 						if (type.equals("1")) {
@@ -284,7 +279,6 @@ public class LockScreenActivity extends Activity implements
 	protected void onStop() {
 		super.onStop();
 		unlockHomeButton();
-		Log.e("Activity_test", "on onStop");
 	}
 
 	@SuppressWarnings("deprecation")
@@ -369,7 +363,6 @@ public class LockScreenActivity extends Activity implements
 					new Response.Listener<String>() {
 						@Override
 						public void onResponse(String response) {
-							Log.e(note+" responeback",response);
 							if (!response.isEmpty()) {
 								try {
 									JSONObject jsonObj = new JSONObject(response);
@@ -393,14 +386,12 @@ public class LockScreenActivity extends Activity implements
 					}, new Response.ErrorListener() {
 				@Override
 				public void onErrorResponse(VolleyError error) {
-					Log.d("lockScreenRequestServer",error.toString());
-					Toast.makeText(LockScreenActivity.this, "locksreen "+error.toString(), Toast.LENGTH_LONG).show();
+
 				}
 			}){
 				@Override
 				protected Map<String, String> getParams() throws AuthFailureError {
 					Map<String, String> params = new HashMap<>();
-					Log.e("cash_slide_id_lock_screen", cashId);
 					params.put("cash_slide_id", cashId);
 					return params;
 				}
@@ -426,38 +417,28 @@ public class LockScreenActivity extends Activity implements
 	@Override
 	protected void onResume() {
 		super.onResume();
-		Log.e("Activity_test", "cp" + currentPause + ", countP " + countPause);
-		if (countPause == currentPause) {
-			/*lockScreenRequestServer("On Resume");*/
-		}
-		currentPause = countPause+1;
 	}
 
 	@Override
 	protected void onStart() {
 		super.onStart();
-		Log.e("Activity_test", "on start");
 		lockScreenRequestServer("On start");
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-		countPause += 1;
-		Log.e("Activity_test", "on onPause" + countPause);
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		Log.e("Activity_test", "on onDestroy");
 		unregisterReceiver(mReceiver);
 	}
 
 	@Override
 	protected void onRestart() {
 		super.onRestart();
-		Log.e("Activity_test", "on onRestart");
 	}
 
 
@@ -467,12 +448,12 @@ public class LockScreenActivity extends Activity implements
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-							Log.d("responeData",response);
+
 					}
 				}, new Response.ErrorListener() {
 			@Override
 			public void onErrorResponse(VolleyError error) {
-				Log.d("volley_request_point_to_server",error.toString());
+
 			}
 		}){
 			@Override
@@ -484,9 +465,6 @@ public class LockScreenActivity extends Activity implements
 				params.put("sliding", sliding);
 				params.put("uid", uId);
 				params.put(keyOfPoint, point);
-				Log.e("request_point_to_server","1:" + mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID) + " 2:"
-						+ mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD) + "3: " + mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_TOKEN)
-						+ "4: " + sliding + "5: "+ uId + "6" + point + " 7: " + keyOfPoint);
 				return params;
 			}
 		};
