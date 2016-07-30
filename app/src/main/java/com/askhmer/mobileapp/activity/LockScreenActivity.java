@@ -208,7 +208,7 @@ public class LockScreenActivity extends Activity implements
 			super.onCallStateChanged(state, incomingNumber);
 			switch (state) {
 			case TelephonyManager.CALL_STATE_RINGING:
-				/*unlockHomeButton();*/
+				unlockHomeButton();
 				wakeUp();
 				break;
 			case TelephonyManager.CALL_STATE_OFFHOOK:

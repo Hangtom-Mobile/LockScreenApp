@@ -2,7 +2,6 @@ package com.askhmer.mobileapp.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,13 +63,14 @@ public class Recommend extends SwipeBackActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.e("Recommend", response);
-                        Toast.makeText(Recommend.this, response, Toast.LENGTH_SHORT).show();
-                        if (response.contains("110")) {
+                        if (response.contains("112")) {
                             try {
                                 JSONObject jsonObj = new JSONObject(response);
 
-                                editTextRecom.setText(jsonObj.getString("recommend_id]"));
+                                editTextRecom.setText(jsonObj.getString("mb_recommend"));
+                                editTextRecom.setEnabled(false);
+                                findViewById(R.id.ve_password).setVisibility(View.VISIBLE);
+
                                 btnOk.setEnabled(false);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -98,8 +98,6 @@ public class Recommend extends SwipeBackActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.e("requestRecommendId", response);
-                        Toast.makeText(Recommend.this, response, Toast.LENGTH_SHORT).show();
                         if (response.contains("110")) {
                             Toast.makeText(Recommend.this, "Recommend id has been submit", Toast.LENGTH_SHORT).show();
                         }else {
