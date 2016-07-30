@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
@@ -35,7 +34,6 @@ public class SplashScreen extends AppCompatActivity {
         final boolean isIntroFinish = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.IS_KEY_INTRO_FINISH);
         String b = mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID);
 
-        Log.e("errr_b",registerOrLoginScreen + " " + isIntroFinish + " " +  b);
 
         /* New Handler to start the Menu-Activity
          * and close this Splash-Screen after some seconds.*/

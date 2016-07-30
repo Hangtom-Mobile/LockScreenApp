@@ -78,7 +78,8 @@ public class VerticalViewPager extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        return super.onTouchEvent(swapXY(ev));
+        /*return super.onTouchEvent(swapXY(ev)); disable scroll*/
+        return true;
     }
 
 }

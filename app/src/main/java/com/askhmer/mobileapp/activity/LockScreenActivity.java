@@ -13,6 +13,7 @@ import android.os.PowerManager;
 import android.support.v4.view.ViewPager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -64,7 +65,7 @@ public class LockScreenActivity extends Activity implements
 	private FullScreenImageAdapter fullScreenImageAdapter;
 	private MyBroadCastReciever mReceiver;
 	private RelativeLayout relativeLayout;
-
+	private int position = 1;
 	private SharedPreferencesFile mSharedPref;
 
 //	private ArrayList<CompanyDto> arrList;
@@ -88,7 +89,6 @@ public class LockScreenActivity extends Activity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.activity_lockscreen);
 		init();
 
@@ -197,6 +197,7 @@ public class LockScreenActivity extends Activity implements
 	@Override
 	public void displayMessage() {
 		lockScreenRequestServer("message");
+		imageViewPager.setCurrentItem(position++);
 	}
 
 	// Handle events of calls and unlock screen if necessary
@@ -356,13 +357,16 @@ public class LockScreenActivity extends Activity implements
 	}
 
 	public void lockScreenRequestServer(final String note) {
-		pathFile = new ArrayList<LockScreenBackgroundDto>();
+		if (pathFile == null){
+			pathFile = new ArrayList<LockScreenBackgroundDto>();
+		}
 		final String cashId = mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID);
 		if (cashId != null) {
 			StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://www.medayi.com/locknet/locknet_api.php",
 					new Response.Listener<String>() {
 						@Override
 						public void onResponse(String response) {
+							Log.e("response", response);
 							if (!response.isEmpty()) {
 								try {
 									JSONObject jsonObj = new JSONObject(response);
@@ -373,7 +377,10 @@ public class LockScreenActivity extends Activity implements
 									dto.setImageUrl(jsonObj.getString("image"));
 									dto.setWebUrl(jsonObj.getString("url"));
 									dto.setType(jsonObj.getString("left_type"));
-									pathFile.clear();
+									if (pathFile.size() == 10) {
+										pathFile.clear();
+										position = 1 ;
+									}
 									pathFile.add(dto);
 									fullScreenImageAdapter.notifyDataSetChanged();
 								} catch (JSONException e) {
@@ -409,7 +416,9 @@ public class LockScreenActivity extends Activity implements
 				}
 			};
 			MySingleton.getInstance(this).addToRequestQueue(stringRequest);
-			fullScreenImageAdapter = new FullScreenImageAdapter(this,pathFile);
+			if (fullScreenImageAdapter == null) {
+				fullScreenImageAdapter = new FullScreenImageAdapter(this, pathFile);
+			}
 			imageViewPager.setAdapter(fullScreenImageAdapter);
 		}
 	}
@@ -422,7 +431,9 @@ public class LockScreenActivity extends Activity implements
 	@Override
 	protected void onStart() {
 		super.onStart();
-		lockScreenRequestServer("On start");
+		for (int i = 1; i <= 2 ; i++) {
+			lockScreenRequestServer("On start");
+		}
 	}
 
 	@Override

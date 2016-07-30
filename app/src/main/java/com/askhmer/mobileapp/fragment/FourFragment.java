@@ -66,7 +66,7 @@ public class FourFragment extends Fragment {
         mSharedPreferencesFile = SharedPreferencesFile.newInstance(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
 
         /*display version name*/
-        verName.setText("Version " + new CheckVersionCode().checkVersionCode(getContext()));
+        verName.setText("Version experted =false " + new CheckVersionCode().checkVersionCode(getContext()));
 
         /*check service lock screen work or not*/
         if (isMyServiceRunning(LockscreenService.class) == true){

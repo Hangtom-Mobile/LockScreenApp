@@ -168,7 +168,7 @@ public class OneFragment extends Fragment {
                 params.put("cash_slide_id", mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID));
                 return params;
             }
-            @Override
+           /* @Override
             public void deliverError(VolleyError error) {
                 if (error instanceof NoConnectionError) {
                     Cache.Entry entry = this.getCacheEntry();
@@ -179,7 +179,7 @@ public class OneFragment extends Fragment {
                     }
                 }
                 super.deliverError(error);
-            }
+            }*/
         };
         MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
     }
