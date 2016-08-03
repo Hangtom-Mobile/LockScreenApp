@@ -79,6 +79,20 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="-400dp"/>
 
+    <com.askhmer.mobileapp.utils.ToggleSwitchButtonByDy
+        android:id="@+id/toggle_video"
+        style="@style/ToggleSwitchButtonVideo"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-400dp"/>
+
+    <com.askhmer.mobileapp.utils.ToggleSwitchButtonByDy
+        android:id="@+id/toggle_call"
+        style="@style/ToggleSwitchButtonCall"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-400dp"/>
+
 </RelativeLayout>
 <!--
 <LinearLayout

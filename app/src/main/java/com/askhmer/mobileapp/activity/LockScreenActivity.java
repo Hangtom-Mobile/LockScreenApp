@@ -15,6 +15,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -67,6 +68,7 @@ public class LockScreenActivity extends Activity implements
 	private RelativeLayout relativeLayout;
 	private int position = 1;
 	private SharedPreferencesFile mSharedPref;
+	private ToggleSwitchButtonByDy toggleWebsite, toggleVideo, toggleCall;
 
 //	private ArrayList<CompanyDto> arrList;
 
@@ -92,7 +94,7 @@ public class LockScreenActivity extends Activity implements
 		setContentView(R.layout.activity_lockscreen);
 		init();
 
-		mSharedPref = SharedPreferencesFile.newInstance(getApplicationContext(), SharedPreferencesFile.FILE_INFORMATION_TEMP);
+		mSharedPref = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
 		/*mSharedPref.putBooleanSharedPreference(SharedPreferencesFile.PREFER_KEY, true);*/
 		relativeLayout = (RelativeLayout) findViewById(R.id.relative_main);
 
@@ -125,58 +127,17 @@ public class LockScreenActivity extends Activity implements
 			}
 
 		}
+
+		toggleVideo = (ToggleSwitchButtonByDy) findViewById(R.id.toggle_video);
+		toggleCall = (ToggleSwitchButtonByDy) findViewById(R.id.toggle_call);
+		toggleWebsite = (ToggleSwitchButtonByDy) findViewById(R.id.toggle_website);
+
 		/*request to server*/
 		if (new CheckInternet().isConnect(getApplicationContext()) != true) {
 			relativeLayout.setBackgroundResource(R.drawable.temp);
 		}else {
 			/*pathFile = new ArrayList<LockScreenBackgroundDto>();*/
 		}
-		ToggleSwitchButtonByDy toggle = (ToggleSwitchButtonByDy) findViewById(R.id.toggle_website);
-		toggle.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
-			@Override
-			public void toggledUp() {
-				if (new CheckInternet().isConnect(getApplicationContext()) == true) {
-					if (pathFile.size() > 0) {
-						String unlockPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockBasicPrice();
-						String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
-						requestPointToServer("right", "lock_basic_price", unlockPrice, uId);
-					}
-				}
-				unlockHomeButton();
-			}
-
-			@Override
-			public void toggledDown() {
-				if (pathFile.size() > 0) {
-					String url = pathFile.get(imageViewPager.getCurrentItem()).getWebUrl();
-					String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
-					String urlPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockViewPrice();
-					String type = pathFile.get(imageViewPager.getCurrentItem()).getType();
-
-					if (!url.isEmpty()) {
-						if (type.equals("1")) {
-							if (new CheckInternet().isConnect(getApplicationContext()) == true) {
-								requestPointToServer("left", "lock_view_price", urlPrice, uId);
-							}
-							Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-							startActivity(browserIntent);
-						}else {
-							requestVideo(url);
-						}
-					} else {
-						new SweetAlertDialog(LockScreenActivity.this)
-								.setTitleText("Sorry this banner no link!")
-								.show();
-					}
-				} else {
-					new SweetAlertDialog(LockScreenActivity.this)
-							.setTitleText("Sorry your phone no internet!")
-							.show();
-				}
-			}
-		});
-
-		toggle.setRotation(90.0f);
 
 		Thread myThread = null;
 
@@ -196,8 +157,9 @@ public class LockScreenActivity extends Activity implements
 
 	@Override
 	public void displayMessage() {
+		System.gc();
 		lockScreenRequestServer("message");
-		imageViewPager.setCurrentItem(position++);
+		imageViewPager.setCurrentItem(position++, false);
 	}
 
 	// Handle events of calls and unlock screen if necessary
@@ -377,12 +339,9 @@ public class LockScreenActivity extends Activity implements
 									dto.setImageUrl(jsonObj.getString("image"));
 									dto.setWebUrl(jsonObj.getString("url"));
 									dto.setType(jsonObj.getString("left_type"));
-									if (pathFile.size() == 10) {
-										pathFile.clear();
-										position = 1 ;
-									}
 									pathFile.add(dto);
 									fullScreenImageAdapter.notifyDataSetChanged();
+									selectSwitchButton();
 								} catch (JSONException e) {
 									e.printStackTrace();
 								}
@@ -418,8 +377,8 @@ public class LockScreenActivity extends Activity implements
 			MySingleton.getInstance(this).addToRequestQueue(stringRequest);
 			if (fullScreenImageAdapter == null) {
 				fullScreenImageAdapter = new FullScreenImageAdapter(this, pathFile);
+				imageViewPager.setAdapter(fullScreenImageAdapter);
 			}
-			imageViewPager.setAdapter(fullScreenImageAdapter);
 		}
 	}
 
@@ -445,6 +404,7 @@ public class LockScreenActivity extends Activity implements
 	protected void onDestroy() {
 		super.onDestroy();
 		unregisterReceiver(mReceiver);
+		System.gc();
 	}
 
 	@Override
@@ -455,6 +415,7 @@ public class LockScreenActivity extends Activity implements
 
 
 	public void requestPointToServer(final String sliding, final String keyOfPoint, final String point, final String uId){
+		Log.e("uid ", uId);
 		StringRequest stringRequest = new StringRequest(Request.Method.POST, API.REQUESTPOINT,
 				new Response.Listener<String>() {
 					@Override
@@ -524,5 +485,152 @@ public class LockScreenActivity extends Activity implements
 		};
 		MySingleton.getInstance(this).addToRequestQueue(stringRequest);
 
+	}
+
+	public void switchButtonWebsite() {
+		toggleCall.setVisibility(View.GONE);
+		toggleVideo.setVisibility(View.GONE);
+		toggleWebsite.setVisibility(View.VISIBLE);
+
+		toggleWebsite.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
+			@Override
+			public void toggledUp() {
+				if (new CheckInternet().isConnect(getApplicationContext()) == true) {
+					if (pathFile.size() > 0) {
+						String unlockPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockBasicPrice();
+						String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
+						requestPointToServer("right", "lock_basic_price", unlockPrice, uId);
+					}
+				}
+				unlockHomeButton();
+			}
+
+			@Override
+			public void toggledDown() {
+				if (pathFile.size() > 0) {
+					String url = pathFile.get(imageViewPager.getCurrentItem()).getWebUrl();
+					String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
+					String urlPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockViewPrice();
+
+					if (!url.isEmpty()) {
+						if (new CheckInternet().isConnect(getApplicationContext()) == true) {
+							requestPointToServer("left", "lock_view_price", urlPrice, uId);
+						}
+						Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+						startActivity(browserIntent);
+					} else {
+						new SweetAlertDialog(LockScreenActivity.this)
+								.setTitleText("Sorry this banner no link!")
+								.show();
+					}
+				} else {
+					new SweetAlertDialog(LockScreenActivity.this)
+							.setTitleText("Sorry your phone no internet!")
+							.show();
+				}
+			}
+		});
+
+		toggleWebsite.setRotation(90.0f);
+	}
+
+	public void switchButtonVideo() {
+		toggleCall.setVisibility(View.GONE);
+		toggleWebsite.setVisibility(View.GONE);
+		toggleVideo.setVisibility(View.VISIBLE);
+
+		toggleVideo.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
+			@Override
+			public void toggledUp() {
+				if (new CheckInternet().isConnect(getApplicationContext()) == true) {
+					if (pathFile.size() > 0) {
+						String unlockPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockBasicPrice();
+						String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
+						requestPointToServer("right", "lock_basic_price", unlockPrice, uId);
+					}
+				}
+				unlockHomeButton();
+			}
+
+			@Override
+			public void toggledDown() {
+				if (pathFile.size() > 0) {
+					String url = pathFile.get(imageViewPager.getCurrentItem()).getWebUrl();
+
+					if (!url.isEmpty()) {
+						requestVideo(url);
+					} else {
+						new SweetAlertDialog(LockScreenActivity.this)
+								.setTitleText("Sorry this banner no link!")
+								.show();
+					}
+				} else {
+					new SweetAlertDialog(LockScreenActivity.this)
+							.setTitleText("Sorry your phone no internet!")
+							.show();
+				}
+			}
+		});
+
+		toggleVideo.setRotation(90.0f);
+	}
+
+	public void switchButtonCall() {
+		toggleWebsite.setVisibility(View.GONE);
+		toggleVideo.setVisibility(View.GONE);
+		toggleCall.setVisibility(View.VISIBLE);
+
+		toggleCall.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
+			@Override
+			public void toggledUp() {
+				if (new CheckInternet().isConnect(getApplicationContext()) == true) {
+					if (pathFile.size() > 0) {
+						String unlockPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockBasicPrice();
+						String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
+						requestPointToServer("right", "lock_basic_price", unlockPrice, uId);
+					}
+				}
+				unlockHomeButton();
+			}
+
+			@Override
+			public void toggledDown() {
+				if (pathFile.size() > 0) {
+					String url = pathFile.get(imageViewPager.getCurrentItem()).getWebUrl();
+					String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
+					String urlPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockViewPrice();
+
+					if (!url.isEmpty()) {
+						if (new CheckInternet().isConnect(getApplicationContext()) == true) {
+							requestPointToServer("left", "lock_view_price", urlPrice, uId);
+						}
+						Uri number = Uri.parse(url);
+						Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+						startActivity(callIntent);
+					} else {
+						new SweetAlertDialog(LockScreenActivity.this)
+								.setTitleText("Sorry this banner no link!")
+								.show();
+					}
+				} else {
+					new SweetAlertDialog(LockScreenActivity.this)
+							.setTitleText("Sorry your phone no internet!")
+							.show();
+				}
+			}
+		});
+
+		toggleCall.setRotation(90.0f);
+	}
+
+	public void selectSwitchButton() {
+		String type = pathFile.get(imageViewPager.getCurrentItem()).getType();
+		if (type.equals("1")) {
+			switchButtonWebsite();
+		}else if (type.equals("2")) {
+			switchButtonVideo();
+		}else {
+			switchButtonCall();
+		}
 	}
 }

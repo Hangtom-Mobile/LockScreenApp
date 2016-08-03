@@ -48,7 +48,7 @@ public class MyInfo extends SwipeBackActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        mSharedPreferencesFile = SharedPreferencesFile.newInstance(getApplication(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        mSharedPreferencesFile = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         edName = (TextView) findViewById(R.id.et_name);
         edId = (TextView) findViewById(R.id.et_id);
         edPhone = (TextView) findViewById(R.id.et_phone);

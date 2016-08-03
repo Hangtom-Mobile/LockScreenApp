@@ -19,7 +19,7 @@ import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 public class SplashScreen extends AppCompatActivity {
 
     /** Duration of wait **/
-    private final int SPLASH_DISPLAY_LENGTH = 3000;
+    private final int SPLASH_DISPLAY_LENGTH = 1500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,7 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         StartAnimations();
 
-        SharedPreferencesFile mSharedPref  = SharedPreferencesFile.newInstance(getApplicationContext(), SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        SharedPreferencesFile mSharedPref  = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
 
         // Restore preferences_n
         final boolean registerOrLoginScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.REGISTERNLOGIN);

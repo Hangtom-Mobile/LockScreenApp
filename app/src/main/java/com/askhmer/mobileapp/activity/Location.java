@@ -42,7 +42,7 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        mSharedPreferencesFile = SharedPreferencesFile.newInstance(getApplicationContext(), SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        mSharedPreferencesFile = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         Button button =  (Button)findViewById(R.id.bttn_next);
         location = (Spinner) findViewById(R.id.sp_location);
         location.setPrompt("Select year location!!!");

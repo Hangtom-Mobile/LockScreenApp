@@ -37,7 +37,7 @@ public class ChangePwd extends SwipeBackActivity {
         setContentView(R.layout.activity_change_pwd);
         //swipe back
         setDragEdge(SwipeBackLayout.DragEdge.LEFT);
-        mSharedPreferencesFile = SharedPreferencesFile.newInstance(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        mSharedPreferencesFile = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         btnOk = (Button) findViewById(R.id.btn_next);
         txtComPassword = (TextView) findViewById(R.id.et_confirm_password);
         txtPassword = (TextView) findViewById(R.id.et_new_password);

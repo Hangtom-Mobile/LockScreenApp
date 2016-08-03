@@ -63,7 +63,7 @@ public class FourFragment extends Fragment {
         privacy = (LinearLayout) fourFragmentView.findViewById(R.id.li_privacy);
         terms = (LinearLayout) fourFragmentView.findViewById(R.id.li_term_of_use);
         verName = (TextView) fourFragmentView.findViewById(R.id.ver_name);
-        mSharedPreferencesFile = SharedPreferencesFile.newInstance(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        mSharedPreferencesFile = new SharedPreferencesFile(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
 
         /*display version name*/
         verName.setText("Version " + new CheckVersionCode().checkVersionCode(getContext()));

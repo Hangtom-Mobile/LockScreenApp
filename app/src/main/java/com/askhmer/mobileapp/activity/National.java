@@ -28,7 +28,7 @@ public class National extends AppCompatActivity implements AdapterView.OnItemSel
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        mSharedPreferencesFile = SharedPreferencesFile.newInstance(getApplicationContext(), SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        mSharedPreferencesFile = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         Button button =  (Button)findViewById(R.id.bttn_next);
         national = (Spinner) findViewById(R.id.sp_national);
         national.setPrompt("Select your National!!!");

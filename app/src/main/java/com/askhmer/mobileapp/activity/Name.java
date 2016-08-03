@@ -27,7 +27,7 @@ public class Name extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        mSharedPrefrencesFile = SharedPreferencesFile.newInstance(getApplicationContext(), SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        mSharedPrefrencesFile = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         Button button = (Button)findViewById(R.id.bttn_next);
         final EditText editText = (EditText)findViewById(R.id.e_name);
 

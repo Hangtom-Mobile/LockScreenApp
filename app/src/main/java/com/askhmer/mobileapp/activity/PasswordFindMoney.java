@@ -44,7 +44,7 @@ public class PasswordFindMoney extends SwipeBackActivity {
         setContentView(R.layout.activity_password_find_money);
 //swipe back
         setDragEdge(SwipeBackLayout.DragEdge.LEFT);
-        mSharedPreferencesFile = SharedPreferencesFile.newInstance(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        mSharedPreferencesFile = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);

@@ -20,7 +20,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final SharedPreferencesFile mSharedPrefer = SharedPreferencesFile.newInstance(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        final SharedPreferencesFile mSharedPrefer = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
 
         editTextId = (EditText) findViewById(R.id.e_cash_id);
         editTextPassword = (EditText) findViewById(R.id.e_password);

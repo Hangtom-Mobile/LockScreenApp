@@ -44,7 +44,7 @@ public class Recommend extends SwipeBackActivity {
 
         editTextRecom = (EditText) findViewById(R.id.et_recommend_id);
         btnOk = (Button) findViewById(R.id.btn_ok);
-        mSharedPreferencesFile = SharedPreferencesFile.newInstance(getApplicationContext(), SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        mSharedPreferencesFile = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
 
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override

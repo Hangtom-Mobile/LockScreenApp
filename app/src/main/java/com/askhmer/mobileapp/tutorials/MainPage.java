@@ -46,7 +46,7 @@ public class MainPage extends AppIntro2 {
     @Override
     public void onDonePressed() {
         SharedPreferencesFile mSharedPreferencesFile =
-                SharedPreferencesFile.newInstance(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
+                new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
 
         if (mSharedPreferencesFile.getBooleanSharedPreference(SharedPreferencesFile.IS_KEY_INTRO_FINISH) == true) {
             this.finish();

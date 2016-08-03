@@ -36,7 +36,7 @@ public class ForgetPwd extends SwipeBackActivity {
         setContentView(R.layout.activity_forget_pwd);
 //swipe back
         setDragEdge(SwipeBackLayout.DragEdge.LEFT);
-        mSharedPreferencesFile = SharedPreferencesFile.newInstance(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        mSharedPreferencesFile = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         txtCashSlideId = (TextView) findViewById(R.id.et_user_id);
         txtPhoneNum = (TextView) findViewById(R.id.et_phone_number);
         txtVori = (TextView) findViewById(R.id.txt_veri_incor);

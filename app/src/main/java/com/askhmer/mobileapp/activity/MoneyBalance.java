@@ -43,7 +43,7 @@ public class MoneyBalance extends SwipeBackActivity {
 //swap back
         setDragEdge(SwipeBackLayout.DragEdge.LEFT);
 
-        mSharedPreferencesFile = SharedPreferencesFile.newInstance(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        mSharedPreferencesFile = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         etPoint = (EditText) findViewById(R.id.et_point);
         etWingAccount = (EditText) findViewById(R.id.et_wing_account);
         txtVeri = (TextView) findViewById(R.id.ve_password);

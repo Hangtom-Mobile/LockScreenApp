@@ -38,7 +38,7 @@ public class MainActivityTab extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity_tab);
 
-        mSharedPref  = SharedPreferencesFile.newInstance(this, SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        mSharedPref  = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         startService = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.SERVICELOCK);
 
         /*start service*/

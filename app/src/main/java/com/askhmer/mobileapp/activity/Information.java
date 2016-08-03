@@ -44,7 +44,7 @@ public class Information extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        mSharedPrefrencesFile = SharedPreferencesFile.newInstance(getApplicationContext(), SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        mSharedPrefrencesFile = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         Button button = (Button)findViewById(R.id.bttn_next);
         editCashId  = (EditText)findViewById(R.id.e_cash_id);
         editPassword = (EditText)findViewById(R.id.e_password);

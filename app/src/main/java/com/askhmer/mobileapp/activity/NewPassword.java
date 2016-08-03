@@ -39,7 +39,7 @@ public class NewPassword extends AppCompatActivity {
         txtPassword = (TextView) findViewById(R.id.et_password);
         vTextView = (TextView) findViewById(R.id.ve_password);
         btnNext = (Button) findViewById(R.id.btn_next);
-        mSharedPreferencesFile = SharedPreferencesFile.newInstance(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        mSharedPreferencesFile = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override

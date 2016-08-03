@@ -91,7 +91,7 @@
                         android:id="@+id/ve_password"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Incorrect password try again!"
+                        android:text="Your account already have recommend ID"
                         android:visibility="gone"
                         android:textColor="@android:color/holo_red_dark" />
 

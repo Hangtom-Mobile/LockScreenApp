@@ -37,13 +37,6 @@ public class SharedPreferencesFile {
         mEditor = mSettings.edit();
     }
 
-    public static SharedPreferencesFile newInstance(Context context, String sharedPrefName ) {
-        /*if (mInstance == null) {
-            mInstance = new SharedPreferencesFile(context, sharedPrefName);
-        }*/
-        return mInstance = new SharedPreferencesFile(context, sharedPrefName);
-    }
-
     /**
      * @param perferKey
      * @param perferValue

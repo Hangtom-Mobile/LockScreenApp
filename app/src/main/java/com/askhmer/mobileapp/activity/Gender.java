@@ -22,7 +22,7 @@ public class Gender extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        mSharedPrefrencesFile = SharedPreferencesFile.newInstance(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        mSharedPrefrencesFile = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         final Intent intent = new Intent(getApplicationContext(),Age.class);
 
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioSex);

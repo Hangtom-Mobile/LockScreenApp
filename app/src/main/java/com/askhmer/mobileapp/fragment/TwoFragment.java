@@ -92,7 +92,7 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         btnHome.setOnClickListener(btnTouchListener);
         btnRefresh = (ImageButton) twoFragmentView.findViewById(R.id.btnRefresh);
         btnRefresh.setOnClickListener(btnTouchListener);
-        mSharedPreferencesFile = SharedPreferencesFile.newInstance(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        mSharedPreferencesFile = new SharedPreferencesFile(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
 
         swipeRefreshLayout = (SwipeRefreshLayout) twoFragmentView.findViewById(R.id.swipe_refresh_layout);
         // sets the colors used in the refresh animation
