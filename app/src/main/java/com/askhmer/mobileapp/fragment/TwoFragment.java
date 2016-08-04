@@ -54,6 +54,10 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private ImageButton btnHome;
     private ImageButton btnRefresh;
     private SharedPreferencesFile mSharedPreferencesFile;
+    private String mbId,password,token,postData;
+    private int start;
+    private String current_url;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -70,16 +74,12 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         }
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View twoFragmentView = inflater.inflate(R.layout.fragment_two, container, false);
 
+        start++;
         webview = (WebView) twoFragmentView.findViewById(R.id.webview);
         webSetting();
 //init
@@ -101,18 +101,27 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
         swipeRefreshLayout.setOnRefreshListener(this);
 
-        String mbId = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID);
-        String password = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD);
-        String token = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_TOKEN);
+        mbId = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID);
+        password = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD);
+        token = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_TOKEN);
 
-        String postData = "cash_slide_id="+mbId+"&cash_password="+password+"&token_id="+token;
-        webview.postUrl(URL_ASKHMER, EncodingUtils.getBytes(postData, "base64"));
+        postData = "cash_slide_id="+mbId+"&cash_password="+password+"&token_id="+token;
+        if(start==2){
+            webview.postUrl(URL_ASKHMER, EncodingUtils.getBytes(postData, "base64"));
+        }else {
+            webview.postUrl(current_url, EncodingUtils.getBytes(postData, "base64"));
+        }
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(getActivity()).addApi(AppIndex.API).build();
         return twoFragmentView;
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        start =1;
+    }
 
     private View.OnClickListener btnTouchListener = new View.OnClickListener() {
         @Override
@@ -290,7 +299,6 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     @Override
     public void onStop() {
         super.onStop();
-
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         Action viewAction = Action.newAction(
@@ -341,5 +349,27 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
             }
         };
         MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        webview.onPause();
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        // Make sure that we are currently visible
+        if (this.isVisible()) {
+            // If we are becoming invisible, then...
+            if (!isVisibleToUser) {
+                webview.onPause();
+                current_url = webview.getUrl();
+            }else {
+                webview.onResume();
+            }
+        }
     }
 }
