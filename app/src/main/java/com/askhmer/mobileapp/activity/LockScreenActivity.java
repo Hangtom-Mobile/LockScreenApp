@@ -3,6 +3,7 @@ package com.askhmer.mobileapp.activity;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.KeyguardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
@@ -169,9 +170,9 @@ public class LockScreenActivity extends Activity implements
 			switch (state) {
 			case TelephonyManager.CALL_STATE_RINGING:
 				unlockHomeButton();
-				wakeUp();
 				break;
 			case TelephonyManager.CALL_STATE_OFFHOOK:
+				wakeUp();
 				break;
 			case TelephonyManager.CALL_STATE_IDLE:
 				break;
@@ -442,14 +443,9 @@ public class LockScreenActivity extends Activity implements
 	}
 
 	public void wakeUp() {
-
-		PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
-		PowerManager.WakeLock wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
-				"MyWakelockTag");
+		PowerManager pm = (PowerManager) getApplicationContext().getSystemService(Context.POWER_SERVICE);
+		PowerManager.WakeLock wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
 		wakeLock.acquire();
-		/*PowerManager pm = (PowerManager) getApplicationContext().getSystemService(Context.POWER_SERVICE);
-		PowerManager.WakeLock wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");*/
-		/*wakeLock.acquire();*/
 		wakeLock.release();
 	}
 

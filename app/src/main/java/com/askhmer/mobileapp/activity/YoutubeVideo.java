@@ -1,6 +1,7 @@
 package com.askhmer.mobileapp.activity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -203,5 +204,34 @@ public class YoutubeVideo extends YouTubeBaseActivity implements YouTubePlayer.O
             }
         };
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+    @Override
+    protected void onStart() {
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+//        Display display = ((WindowManager) getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
+//        int orientation = display.getRotation();
+//
+//        if(orientation== Surface.ROTATION_180)
+//        {
+//            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+//        }
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+
+//        Display display = ((WindowManager) getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
+//        int orientation = display.getRotation();
+//
+//        if(orientation== Surface.ROTATION_180)
+//        {
+//            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+//        }
+
+        super.onResume();
+
     }
 }
