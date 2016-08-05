@@ -1,7 +1,6 @@
 package com.askhmer.mobileapp.activity;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -142,7 +141,7 @@ public class YoutubeVideo extends YouTubeBaseActivity implements YouTubePlayer.O
                     int durationTimeMillis = youTubePlayer.getDurationMillis();
 
                     /*for button skip and time*/
-                    if (moiveTimeSecondTemp > 0 && currentTimeMillis >= 0 ) {
+                    if (moiveTimeSecondTemp > 0 && currentTimeMillis >= 0) {
                         int countDownTime = moiveTimeSecondTemp - (currentTimeMillis / 1000);
                         if (countDownTime > 0) {
                             txtTimeSkip.setVisibility(View.VISIBLE);
@@ -204,34 +203,5 @@ public class YoutubeVideo extends YouTubeBaseActivity implements YouTubePlayer.O
             }
         };
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);
-    }
-
-    @Override
-    protected void onStart() {
-        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
-//        Display display = ((WindowManager) getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
-//        int orientation = display.getRotation();
-//
-//        if(orientation== Surface.ROTATION_180)
-//        {
-//            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
-//        }
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-
-//        Display display = ((WindowManager) getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
-//        int orientation = display.getRotation();
-//
-//        if(orientation== Surface.ROTATION_180)
-//        {
-//            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
-//        }
-
-        super.onResume();
-
     }
 }
