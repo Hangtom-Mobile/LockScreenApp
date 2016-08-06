@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PowerManager;
 import android.support.v4.view.ViewPager;
 import android.telephony.PhoneStateListener;
@@ -170,9 +171,9 @@ public class LockScreenActivity extends Activity implements
 			switch (state) {
 			case TelephonyManager.CALL_STATE_RINGING:
 				unlockHomeButton();
+				wakeUp();
 				break;
 			case TelephonyManager.CALL_STATE_OFFHOOK:
-				wakeUp();
 				break;
 			case TelephonyManager.CALL_STATE_IDLE:
 				break;
@@ -443,10 +444,17 @@ public class LockScreenActivity extends Activity implements
 	}
 
 	public void wakeUp() {
-		PowerManager pm = (PowerManager) getApplicationContext().getSystemService(Context.POWER_SERVICE);
-		PowerManager.WakeLock wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
-		wakeLock.acquire();
-		wakeLock.release();
+
+		/*Delay 1sescond*/
+		new Handler().postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				PowerManager pm = (PowerManager) getApplicationContext().getSystemService(Context.POWER_SERVICE);
+				PowerManager.WakeLock wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
+				wakeLock.acquire();
+				wakeLock.release();
+			}
+		}, 1200);
 	}
 
 	private void requestVideo(String url) {
