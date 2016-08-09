@@ -23,28 +23,108 @@
                 android:orientation="vertical"
                 android:background="@drawable/border_shadow"
                 android:gravity="center"
-                android:layout_weight="4">
-                <ImageView
-                    android:layout_width="180dp"
-                    android:layout_height="145dp"
-                    android:src="@drawable/pig"
-                    android:scaleType="centerCrop"/>
-                <TextView
-                    android:id="@+id/txt_user_name"
+                android:layout_weight="3.7">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="USER NAME"
-                    android:textSize="22dp"
-                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"/>
+
+                    <!--
+                    <com.daimajia.slider.library.SliderLayout
+                        android:layout_weight="1"
+                        android:id="@+id/slider_layout"
+                        android:layout_width="match_parent"
+                        android:paddingBottom="5dp"
+                        android:layout_height="180dp"/>
+                        -->
+                    <RelativeLayout
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="180dp">
+                        <ImageView
+                            android:id="@+id/slider"
+                            android:layout_width="match_parent"
+                            android:layout_height="180dp"
+                            android:src="@drawable/home_banner"
+                            android:scaleType="fitCenter"/>
+                        <TextView
+                            android:padding="5dp"
+                            android:gravity="left"
+                            android:layout_marginLeft="80dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginBottom="10dp"
+                            android:maxLines="3"
+                            android:id="@+id/description"
+                            android:textColor="#ffffff"
+                            android:textSize="13sp"
+                            android:lineSpacingExtra="10sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_img_banner"
+                            android:layout_alignParentBottom="true"
+                            android:text="Application 10000 users download"/>
+
+
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitCenter"/>
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Download user"
+                    android:textSize="12dp"
+                    android:layout_marginBottom="5dp"
                     android:textColor="#8fbadf"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <TextView
+                        android:textSize="12dp"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="0%"
+                        android:textColor="@color/white"/>
+                    <ProgressBar
+                        android:layout_weight="1"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/progressBar2"/>
+                    <TextView
+                        android:textSize="12dp"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="100%"
+                        android:textColor="@color/white"/>
+                </LinearLayout>
+
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:background="@color/white"
-                android:layout_weight="3">
+                android:layout_weight="3.3">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -55,22 +135,34 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
+                        android:layout_weight="1.5"
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <TextView
+                        <LinearLayout
+                            android:layout_marginTop="10dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text=" YOUR BALANCE"
-                            android:gravity="center"
-                            android:textSize="16dp"
-                            android:layout_marginTop="20dp"
-                            android:textColor="#a6a6a6"/>
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/perfect_sex_male_sel"/>
+                            <TextView
+                                android:id="@+id/txt_user_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" YOUR BALANCE"
+                                android:textSize="16dp"
+                                android:textColor="#a6a6a6"/>
+
+
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="95dp"
+                            android:layout_height="match_parent"
                             android:orientation="horizontal">
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -78,46 +170,54 @@
                                 android:layout_weight="1.7"
                                 android:gravity="center|right">
                                 <ImageView
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:src="@drawable/point_icon"
-                                    android:scaleType="fitCenter"/>
+                                    android:layout_width="70dp"
+                                    android:layout_height="70dp"
+                                    android:src="@drawable/point_new"
+                                    android:scaleType="fitCenter"
+                                    android:layout_marginRight="5dp"/>
                             </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/tv_mypoint"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:gravity="center"
-                                android:textSize="50dp"
-                                android:textColor="@color/black"/>
                             <LinearLayout
+                                android:layout_weight="1"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1.7"
-                                android:gravity="center|left">
-                                <ImageView
-                                    android:layout_width="40dp"
-                                    android:layout_height="40dp"
-                                    android:src="@drawable/right"
-                                    android:scaleType="fitCenter"/>
+                                android:orientation="vertical">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+                                    <TextView
+                                        android:layout_weight="1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Total Point"/>
+                                    <ImageView
+                                        android:layout_weight="1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content" />
+                                </LinearLayout>
+                                <TextView
+                                    android:id="@+id/tv_mypoint"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:text="111"
+                                    android:gravity="center_vertical"
+                                    android:textSize="50dp"
+                                    android:textColor="@color/colorPrimaryDark"/>
                             </LinearLayout>
+
 
                         </LinearLayout>
                     </LinearLayout>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/btn_tap_off"/>
 
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
-                        android:layout_weight="1">
+                        android:layout_weight="1"
+                        android:background="@drawable/border_shadow">
+
                         <LinearLayout
                             android:id="@+id/medayi_news"
                             android:layout_width="match_parent"
@@ -126,29 +226,26 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:clickable="true"
-                            android:background="@drawable/bg_selector">
+                            android:background="@drawable/bg_selector"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="7.5dp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="15dp">
+
                             <ImageView
-                                android:layout_width="43dp"
-                                android:layout_height="43dp"
+                                android:layout_width="63dp"
+                                android:layout_height="63dp"
                                 android:scaleType="fitCenter"
-                                android:src="@drawable/news"
-                                android:layout_marginTop="15dp"/>
+                                android:src="@drawable/medayi_news"/>
                             <TextView
-                                android:layout_width="80dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="MEDAYI NEWS"
                                 android:gravity="center"
                                 android:textSize="14dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginBottom="15dp"/>
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/common_signin_btn_default_background"/>
                         </LinearLayout>
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/btn_tap_off"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginBottom="15dp"/>
-
                         <LinearLayout
                             android:id="@+id/medayi_sharing"
                             android:layout_width="match_parent"
@@ -157,21 +254,27 @@
                             android:layout_weight="1"
                             android:gravity="center"
                             android:clickable="true"
-                            android:background="@drawable/bg_selector">
+                            android:background="@drawable/bg_selector"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginRight="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginLeft="7.5dp">
+
                             <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:scaleType="fitCenter"
-                                android:src="@drawable/sharing"
-                                android:layout_marginTop="15dp"/>
+                                android:src="@drawable/medayi_share"/>
+
                             <TextView
-                                android:layout_width="80dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="MEDAYI Sharing"
                                 android:gravity="center"
                                 android:textSize="14dp"
-                                android:layout_marginTop="15dp"
-                                android:layout_marginBottom="15dp"/>
+                                android:layout_marginTop="10dp"
+                                android:textColor="@color/common_signin_btn_default_background"/>
+
                         </LinearLayout>
 
 
