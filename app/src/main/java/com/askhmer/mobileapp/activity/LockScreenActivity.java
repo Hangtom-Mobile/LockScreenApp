@@ -69,7 +69,7 @@ public class LockScreenActivity extends Activity implements
 	private RelativeLayout relativeLayout;
 	private int position = 1;
 	private SharedPreferencesFile mSharedPref;
-	private ToggleSwitchButtonByDy toggleWebsite, toggleVideo, toggleCall;
+	private ToggleSwitchButtonByDy toggleWebsite, toggleVideo, toggleCall, toggleDefult;
 
 //	private ArrayList<CompanyDto> arrList;
 
@@ -132,6 +132,7 @@ public class LockScreenActivity extends Activity implements
 		toggleVideo = (ToggleSwitchButtonByDy) findViewById(R.id.toggle_video);
 		toggleCall = (ToggleSwitchButtonByDy) findViewById(R.id.toggle_call);
 		toggleWebsite = (ToggleSwitchButtonByDy) findViewById(R.id.toggle_website);
+		toggleDefult = (ToggleSwitchButtonByDy) findViewById(R.id.toggle_defult);
 
 		/*request to server*/
 		if (new CheckInternet().isConnect(getApplicationContext()) != true) {
@@ -145,6 +146,8 @@ public class LockScreenActivity extends Activity implements
 		Runnable runnable = new CountDownRunner();
 		myThread= new Thread(runnable);
 		myThread.start();
+
+		switchButtonDefult();
 
 		IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
 		mReceiver = new MyBroadCastReciever(this);
@@ -352,7 +355,7 @@ public class LockScreenActivity extends Activity implements
 					}, new Response.ErrorListener() {
 				@Override
 				public void onErrorResponse(VolleyError error) {
-
+					switchButtonDefult();
 				}
 			}){
 				@Override
@@ -497,6 +500,7 @@ public class LockScreenActivity extends Activity implements
 	public void switchButtonWebsite() {
 		toggleCall.setVisibility(View.GONE);
 		toggleVideo.setVisibility(View.GONE);
+		toggleDefult.setVisibility(View.GONE);
 		toggleWebsite.setVisibility(View.VISIBLE);
 
 		toggleWebsite.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
@@ -544,6 +548,7 @@ public class LockScreenActivity extends Activity implements
 	public void switchButtonVideo() {
 		toggleCall.setVisibility(View.GONE);
 		toggleWebsite.setVisibility(View.GONE);
+		toggleDefult.setVisibility(View.GONE);
 		toggleVideo.setVisibility(View.VISIBLE);
 
 		toggleVideo.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
@@ -585,6 +590,7 @@ public class LockScreenActivity extends Activity implements
 	public void switchButtonCall() {
 		toggleWebsite.setVisibility(View.GONE);
 		toggleVideo.setVisibility(View.GONE);
+		toggleDefult.setVisibility(View.GONE);
 		toggleCall.setVisibility(View.VISIBLE);
 
 		toggleCall.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
@@ -628,6 +634,29 @@ public class LockScreenActivity extends Activity implements
 		});
 
 		toggleCall.setRotation(90.0f);
+	}
+
+	public void switchButtonDefult() {
+		toggleCall.setVisibility(View.GONE);
+		toggleVideo.setVisibility(View.GONE);
+		toggleWebsite.setVisibility(View.GONE);
+		toggleDefult.setVisibility(View.VISIBLE);
+
+		toggleDefult.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
+			@Override
+			public void toggledUp() {
+				unlockHomeButton();
+			}
+
+			@Override
+			public void toggledDown() {
+				new SweetAlertDialog(LockScreenActivity.this)
+						.setTitleText("Sorry your phone no internet!")
+						.show();
+			}
+		});
+
+		toggleDefult.setRotation(90.0f);
 	}
 
 	public void selectSwitchButton() {
