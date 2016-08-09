@@ -80,8 +80,8 @@ public class LockScreenActivity extends Activity implements
 		this.getWindow().setType(
 				WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
 		this.getWindow().addFlags(
-				WindowManager.LayoutParams.FLAG_FULLSCREEN
-						| WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+				/*WindowManager.LayoutParams.FLAG_FULLSCREEN
+						|*/ WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
 						| WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
 						);
 
