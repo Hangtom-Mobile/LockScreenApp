@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:text="To : "
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/colorPrimary"/>
+                android:textColor="@color/black"/>
 
             <View
                 android:layout_marginTop="5dp"
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:text="Subject : "
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/colorPrimary"/>
+                android:textColor="@color/black"/>
 
             <View
                 android:layout_marginTop="5dp"
@@ -116,7 +116,7 @@
                 android:layout_height="wrap_content"
                 android:text="Message : "
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/colorPrimary"/>
+                android:textColor="@color/black"/>
 
             <View
                 android:layout_marginTop="5dp"

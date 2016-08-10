@@ -84,10 +84,10 @@ public class MainActivityTab extends AppCompatActivity {
 
     private void setupTabIcons() {
         int[] tabIcons = {
-                R.drawable.home_on,
-                R.drawable.portal,
-                R.drawable.money,
-                R.drawable.preferences_n
+                R.drawable.ic_home,
+                R.drawable.ic_portal_off,
+                R.drawable.ic_search_off,
+                R.drawable.ic_setting_off
         };
 
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
@@ -99,8 +99,8 @@ public class MainActivityTab extends AppCompatActivity {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new OneFragment(), "Add friend");
-        adapter.addFrag(new TwoFragment(), "Chat");
-        adapter.addFrag(new ThreeFragment(), "Profile");
+        adapter.addFrag(new ThreeFragment(), "Chat");
+        adapter.addFrag(new TwoFragment(), "Profile");
         adapter.addFrag(new FourFragment(), "Other");
         viewPager.setAdapter(adapter);
     }

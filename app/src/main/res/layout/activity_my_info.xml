@@ -72,7 +72,7 @@
                             android:text="Name"
                             android:gravity="center_vertical"
                             android:textSize="16dp"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/black"
                             android:layout_weight="2.5"/>
                         <EditText
                             android:id="@+id/et_name"
@@ -103,7 +103,7 @@
                             android:text="ID"
                             android:gravity="center_vertical"
                             android:textSize="16dp"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/black"
                             android:layout_weight="2.5"/>
                         <EditText
                             android:id="@+id/et_id"
@@ -133,7 +133,7 @@
                             android:text="Phone"
                             android:gravity="center_vertical"
                             android:textSize="16dp"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/black"
                             android:layout_weight="2.5"/>
                         <EditText
                             android:id="@+id/et_phone"
@@ -164,7 +164,7 @@
                             android:text="Date of birth"
                             android:gravity="center_vertical"
                             android:textSize="16dp"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/black"
                             android:layout_weight="2.5"/>
                         <EditText
                             android:id="@+id/et_dob"
@@ -196,7 +196,7 @@
                             android:text="Sex"
                             android:gravity="center_vertical"
                             android:textSize="16dp"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/black"
                             android:layout_weight="2.5"/>
                         <EditText
                             android:id="@+id/et_sex"
@@ -227,7 +227,7 @@
                             android:text="City"
                             android:gravity="center_vertical"
                             android:textSize="16dp"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/black"
                             android:layout_weight="2.5"/>
 
                         <Spinner

@@ -16,6 +16,7 @@ public class API {
     public static final String REQUESTPOINT = BASEURL + "locknet_point_api.php";
     public static final String REQUESTMYPOINT = BASEURL + "my_point_api.php";
     public static final String LOGIN = BASEURL +  "locknet_login_api.php";
+    public static final String COUNTMEMBER = BASEURL + "locknet_member_count_api.php";
     public static final String REQUESTVIDEO = BASEURL +  "lock_movie.php";
     public static final String CHECKRECOMMEND = BASEURL +  "locknet_recommend_chk_api.php";
     public static final String REQUESTRECOMMENDID = BASEURL +  "locknet_recommend_api.php";

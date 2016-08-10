@@ -28,7 +28,7 @@
                     android:text="Unlock screen"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
                     android:layout_weight="1"/>
 
                 <android.support.v7.widget.SwitchCompat
@@ -59,7 +59,7 @@
                     android:text="Account Management"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
                     android:layout_weight="1"/>
                 <ImageView
                     android:layout_width="match_parent"
@@ -94,7 +94,7 @@
                     android:text="Contact Us"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
                     android:layout_weight="1"/>
                 <ImageView
                     android:layout_width="match_parent"
@@ -126,7 +126,7 @@
                     android:text="Recommend"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
                     android:layout_weight="1"/>
                 <ImageView
                     android:layout_width="match_parent"
@@ -158,7 +158,7 @@
                     android:text="Advertising Inquiry "
                     android:gravity="center_vertical"
                     android:textSize="16dp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
                     android:layout_weight="1"/>
                 <ImageView
                     android:layout_width="match_parent"
@@ -192,7 +192,7 @@
                     android:text="How to use App"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
                     android:layout_weight="1"/>
                 <ImageView
                     android:layout_width="match_parent"
@@ -225,7 +225,7 @@
                     android:text="Privacy Statement"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
                     android:layout_weight="1"/>
                 <ImageView
                     android:layout_width="match_parent"
@@ -258,7 +258,7 @@
                     android:text="Terms of Use"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
                     android:layout_weight="1"/>
                 <ImageView
                     android:layout_width="match_parent"

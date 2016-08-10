@@ -1,6 +1,7 @@
 package com.askhmer.mobileapp.fragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.NetworkInfo;
@@ -8,10 +9,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +32,7 @@ import com.askhmer.mobileapp.network.API;
 import com.askhmer.mobileapp.network.MySingleton;
 import com.askhmer.mobileapp.utils.NetworkUtil;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
+import com.askhmer.mobileapp.utils.TextProgressBar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,6 +48,7 @@ public class OneFragment extends Fragment {
     private SharedPreferencesFile mSharedPreferencesFile;
     private TextView txtMyPoint, txtMyUserName;
     private LinearLayout medayiPage, medayiSharing;
+    private TextProgressBar progressBar;
 
     public OneFragment(){}
 
@@ -60,6 +66,8 @@ public class OneFragment extends Fragment {
         mSharedPreferencesFile = new SharedPreferencesFile(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         txtMyPoint = (TextView) oneFragmentView.findViewById(R.id.tv_mypoint);
         txtMyUserName = (TextView) oneFragmentView.findViewById(R.id.txt_user_name);
+        progressBar = (TextProgressBar) oneFragmentView.findViewById(R.id.progressBar2);
+        ImageView imageView = (ImageView) oneFragmentView.findViewById(R.id.image_view_info);
 
         checkInternetCon();
 
@@ -84,9 +92,24 @@ public class OneFragment extends Fragment {
             }
         });
 
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity())
+                        .setTitle("Medayi")
+                        .setMessage("Coming soon...")
+                        .setCancelable(true)
+                        .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+
         /*set shared preferencesfile of application version for update app*/
-
-
         /*request auto login*/
        /* requestAutoLogin();*/
 
@@ -184,39 +207,27 @@ public class OneFragment extends Fragment {
         MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
     }
 
-    public void requestAutoLogin() {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, API.REQUESTAUTOLOGIN,
+    public void requestCountUser() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, API.COUNTMEMBER,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            int countUser = Math.round(Float.parseFloat(jsonObject.getString("rst")));
+                            progressBar.setProgress(countUser);
+                            progressBar.setMax(100);
+                            progressBar.setText(jsonObject.getString("rst") + " %");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
             }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("cash_slide_id", mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID));
-                params.put("cash_password", mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD));
-                return params;
-            }
-            @Override
-            public void deliverError(VolleyError error) {
-                if (error instanceof NoConnectionError) {
-                    Cache.Entry entry = this.getCacheEntry();
-                    if(entry != null) {
-                        Response<String> response = parseNetworkResponse(new NetworkResponse(entry.data, entry.responseHeaders));
-                        deliverResponse(response.result);
-                        return;
-                    }
-                }
-                super.deliverError(error);
-            }
-        };
+        });
         MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
     }
 
@@ -230,5 +241,8 @@ public class OneFragment extends Fragment {
 
         /*request my point*/
         requestMypointToServer();
+
+          /*request count user*/
+        requestCountUser();
     }
 }

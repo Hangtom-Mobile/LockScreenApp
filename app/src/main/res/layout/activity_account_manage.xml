@@ -59,7 +59,7 @@
                     android:text="My Info"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
                     android:layout_weight="1"/>
                 <ImageView
                     android:layout_width="match_parent"
@@ -93,7 +93,7 @@
                     android:text="Change Password"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
                     android:layout_weight="1"/>
                 <ImageView
                     android:layout_width="match_parent"
@@ -127,7 +127,7 @@
                     android:text="Forget your password"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/black"
                     android:layout_weight="1"/>
                 <ImageView
                     android:layout_width="match_parent"
