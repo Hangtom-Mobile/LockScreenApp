@@ -45,7 +45,7 @@ public class TextProgressBar extends ProgressBar {
         textPaint.getTextBounds(text, 0, text.length(), bounds);
         int x = getWidth() / 2 - bounds.centerX();
         int y = getHeight() / 2 - bounds.centerY();
-        textPaint.setTextSize(50);
+        textPaint.setTextSize(30);
         textPaint.setTypeface(Typeface.DEFAULT_BOLD);
         canvas.drawText(text, x, y, textPaint);
     }

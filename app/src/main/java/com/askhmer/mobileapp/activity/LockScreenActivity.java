@@ -465,7 +465,6 @@ public class LockScreenActivity extends Activity implements
 				new Response.Listener<String>() {
 					@Override
 					public void onResponse(String response) {
-						Toast.makeText(LockScreenActivity.this, response, Toast.LENGTH_LONG).show();
 						try {
 							JSONObject jsonObj = new JSONObject(response);
 							if (jsonObj.getString("rst").equals("110")) {
