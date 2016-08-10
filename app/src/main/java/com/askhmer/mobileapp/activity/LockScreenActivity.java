@@ -457,7 +457,7 @@ public class LockScreenActivity extends Activity implements
 				wakeLock.acquire();
 				wakeLock.release();
 			}
-		}, 1000);
+		}, 1200);
 	}
 
 	private void requestVideo(String url) {

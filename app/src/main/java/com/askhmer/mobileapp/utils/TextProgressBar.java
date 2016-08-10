@@ -9,6 +9,8 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.ProgressBar;
 
+import com.askhmer.mobileapp.R;
+
 /**
  * Created by soklundy on 8/10/2016.
  */
@@ -20,21 +22,18 @@ public class TextProgressBar extends ProgressBar {
         super(context);
         text = "";
         textPaint = new Paint();
-        textPaint.setColor(Color.RED);
     }
 
     public TextProgressBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         text = "";
         textPaint = new Paint();
-        textPaint.setColor(Color.RED);
     }
 
     public TextProgressBar(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         text = "";
         textPaint = new Paint();
-        textPaint.setColor(Color.RED);
     }
 
     @Override
@@ -47,6 +46,7 @@ public class TextProgressBar extends ProgressBar {
         int y = getHeight() / 2 - bounds.centerY();
         textPaint.setTextSize(30);
         textPaint.setTypeface(Typeface.DEFAULT_BOLD);
+        textPaint.setColor(getResources().getColor(R.color.red_light));
         canvas.drawText(text, x, y, textPaint);
     }
 
