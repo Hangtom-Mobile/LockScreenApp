@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Account Management"
+                android:text="@string/acc_man"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -56,7 +56,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="My Info"
+                    android:text="@string/my_info"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
                     android:textColor="@color/black"
@@ -90,7 +90,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Change Password"
+                    android:text="@string/change_pwd"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
                     android:textColor="@color/black"
@@ -124,7 +124,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Forget your password"
+                    android:text="@string/forget_pwd"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
                     android:textColor="@color/black"

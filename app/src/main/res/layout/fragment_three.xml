@@ -94,7 +94,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="FIND MONEY"
+                                android:text="@string/find_money"
                                 android:gravity="center"
                                 android:textSize="16dp"
                                 android:layout_marginTop="10dp"
@@ -126,7 +126,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="HANGTOM"
+                                android:text="@string/hangtom"
                                 android:gravity="center"
                                 android:textSize="16dp"
                                 android:layout_marginTop="10dp"

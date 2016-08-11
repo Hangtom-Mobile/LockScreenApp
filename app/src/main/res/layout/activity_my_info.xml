@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MY INFOMATION"
+                android:text="@string/my_infor"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -69,7 +69,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="Name"
+                            android:text="@string/name"
                             android:gravity="center_vertical"
                             android:textSize="16dp"
                             android:textColor="@color/black"
@@ -100,7 +100,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="ID"
+                            android:text="@string/id"
                             android:gravity="center_vertical"
                             android:textSize="16dp"
                             android:textColor="@color/black"
@@ -130,7 +130,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="Phone"
+                            android:text="@string/phone"
                             android:gravity="center_vertical"
                             android:textSize="16dp"
                             android:textColor="@color/black"
@@ -161,7 +161,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="Date of birth"
+                            android:text="@string/dob"
                             android:gravity="center_vertical"
                             android:textSize="16dp"
                             android:textColor="@color/black"
@@ -193,7 +193,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="Sex"
+                            android:text="@string/sex"
                             android:gravity="center_vertical"
                             android:textSize="16dp"
                             android:textColor="@color/black"
@@ -224,7 +224,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text="City"
+                            android:text="@string/city"
                             android:gravity="center_vertical"
                             android:textSize="16dp"
                             android:textColor="@color/black"
@@ -251,7 +251,7 @@
                         android:id="@+id/btn_ok"
                         android:layout_width="170dp"
                         android:layout_height="40dp"
-                        android:text="OK"
+                        android:text="@string/ok"
                         android:layout_marginTop="15dp"
                         android:textColor="@color/white"
                         android:background="@drawable/btn_selector"

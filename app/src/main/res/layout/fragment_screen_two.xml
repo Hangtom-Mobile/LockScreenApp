@@ -23,7 +23,7 @@
             android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="If you slide, you will earn points"
+            android:text="@string/if_your_slide"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="23dp"
@@ -35,7 +35,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Points will be awarded depending on the number of icons below."
+            android:text="@string/point_will_be"
             android:gravity="center"
             android:textColor="@color/white"/>
 

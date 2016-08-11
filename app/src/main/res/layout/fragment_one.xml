@@ -154,7 +154,7 @@
                                 android:id="@+id/txt_user_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=" YOUR BALANCE"
+                                android:text=" Name"
                                 android:textSize="16dp"
                                 android:textColor="#a6a6a6"/>
 
@@ -192,7 +192,7 @@
                                         android:layout_weight="1"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="Total Point"/>
+                                        android:text="@string/your_balance"/>
                                     <LinearLayout
                                         android:layout_weight="1"
                                         android:layout_width="match_parent"
@@ -254,7 +254,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="MEDAYI NEWS"
+                                android:text="@string/madayi_news"
                                 android:gravity="center"
                                 android:textSize="14dp"
                                 android:layout_marginTop="10dp"
@@ -283,7 +283,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="MEDAYI Sharing"
+                                android:text="@string/medayi_share"
                                 android:gravity="center"
                                 android:textSize="14dp"
                                 android:layout_marginTop="10dp"

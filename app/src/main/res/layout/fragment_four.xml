@@ -25,7 +25,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Unlock screen"
+                    android:text="@string/unlock_scr"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
                     android:textColor="@color/black"
@@ -56,7 +56,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Account Management"
+                    android:text="@string/acc_manage"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
                     android:textColor="@color/black"
@@ -91,7 +91,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Contact Us"
+                    android:text="@string/contact"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
                     android:textColor="@color/black"
@@ -123,7 +123,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Recommend"
+                    android:text="@string/recommend"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
                     android:textColor="@color/black"
@@ -155,7 +155,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Advertising Inquiry "
+                    android:text="@string/ad_inqui"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
                     android:textColor="@color/black"
@@ -189,7 +189,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="How to use App"
+                    android:text="@string/how_to_use"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
                     android:textColor="@color/black"
@@ -222,7 +222,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Privacy Statement"
+                    android:text="@string/privacy1"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
                     android:textColor="@color/black"
@@ -255,7 +255,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Terms of Use"
+                    android:text="@string/terms_of_use"
                     android:gravity="center_vertical"
                     android:textSize="16dp"
                     android:textColor="@color/black"

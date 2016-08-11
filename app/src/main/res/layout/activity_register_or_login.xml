@@ -56,7 +56,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Join MEDAYI"
+                    android:text="@string/join_medayi"
                     android:textColor="@color/white"
                     android:layout_marginLeft="5dp"
                     android:textStyle="bold" />
@@ -70,7 +70,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:textColor="@color/white"
-                android:text="I already have a MEDAYI account"
+                android:text="@string/i_already"
                 android:textStyle="bold"
                 android:background="@drawable/btn_selector_black"/>
 

@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Recommend"
+                android:text="@string/re_com"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -62,7 +62,7 @@
                     <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Please enter a recommend ID"
+                    android:text="@string/pls_recommend_id"
                     android:textSize="15dp"
                     android:textStyle="bold"
                     android:gravity="center"
@@ -99,7 +99,7 @@
                         android:id="@+id/btn_ok"
                         android:layout_width="170dp"
                         android:layout_height="40dp"
-                        android:text="OK"
+                        android:text="@string/ok"
                         android:layout_marginTop="15dp"
                         android:textColor="@color/white"
                         android:background="@drawable/btn_selector"

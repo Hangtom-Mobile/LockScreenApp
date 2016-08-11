@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Information"
+                android:text="@string/information"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -70,7 +70,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Please remember your Medayi Id"/>
+                        android:text="@string/please_rememer_id"/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -86,7 +86,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Medayi ID"
+                        android:text="@string/medayi_id"
                         android:textSize="15dp"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"/>
@@ -123,7 +123,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Password"
+                        android:text="@string/pwd"
                         android:textSize="15dp"
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"
@@ -136,7 +136,7 @@
                         android:background="@color/btn_tap_off"/>
                     <EditText
                         android:id="@+id/e_password"
-                        android:hint="Password at least 4 charactor"
+                        android:hint="@string/pwd_4_char"
                         android:textColorHint="@color/hintColor"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -173,7 +173,7 @@
                         android:inputType="textPassword"
                         android:background="@drawable/radius_ed"
                         android:textColorHint="@color/hintColor"
-                        android:hint="Confirm password"/>
+                        android:hint="@string/conf_pwd"/>
                     <View
                         android:layout_marginBottom="10dp"
                         android:layout_width="match_parent"
@@ -194,7 +194,7 @@
                             android:id="@+id/bttn_next"
                             android:layout_width="170dp"
                             android:layout_height="40dp"
-                            android:text="Next"
+                            android:text="@string/next"
                             android:textColor="@color/white"
                             android:background="@drawable/btn_selector"
                             android:layout_gravity="bottom"/>

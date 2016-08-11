@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CHANG PASSWORD"
+                android:text="@string/chnage_pwd"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -62,7 +62,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="New Password"
+                        android:text="@string/new_pwd"
                         android:textSize="15dp"
                         android:textStyle="bold"
                         android:gravity="center"
@@ -100,7 +100,7 @@
                         android:layout_height="50dp"
                         android:inputType="textPassword"
                         android:gravity="center"
-                        android:hint="Confirm password"
+                        android:hint="@string/con_pwd"
                         android:background="@drawable/radius_ed"/>
                     <View
                         android:layout_marginBottom="10dp"
@@ -121,7 +121,7 @@
                         android:id="@+id/btn_next"
                         android:layout_width="170dp"
                         android:layout_height="40dp"
-                        android:text="OK"
+                        android:text="@string/ok"
                         android:layout_marginTop="15dp"
                         android:textColor="@color/white"
                         android:background="@drawable/btn_selector"

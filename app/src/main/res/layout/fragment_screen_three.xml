@@ -23,7 +23,7 @@
             android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="I collect points"
+            android:text="@string/i_collect"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="25dp"
@@ -35,7 +35,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Total points I collected Medayi News / Share your friends"
+            android:text="@string/total_point"
             android:gravity="center"
             android:textColor="@color/white"/>
 

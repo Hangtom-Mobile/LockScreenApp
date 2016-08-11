@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Get paid by your lock screen"
+            android:text="@string/get_paid_by"
             android:gravity="center"
             android:textColor="@color/colorAccent"
             android:textSize="25dp"
@@ -36,7 +36,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Get paid by your lock screen you can get paid to see our advertising on your lockscreen"
+            android:text="@string/get_paid_by_your"
             android:gravity="center"
             android:textColor="@color/white"/>
 

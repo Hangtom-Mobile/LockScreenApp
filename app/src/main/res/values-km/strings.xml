@@ -3,186 +3,186 @@
 
     <string name="app_name">Medayi</string>
 
-    <string name="instructions">Click on UNLOCK button to unlock the screen</string>
-    <string name="unlock">UNLOCK</string>
-    <string name="title_activity_information">Information</string>
+    <string name="instructions">ចុចប៊ូតុងដោះសោដើម្បីធ្វើការដោះសោ</string>
+    <string name="unlock">ដោះសោ</string>
+    <string name="title_activity_information">ព័ត៌មាន</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
 
     <!-- INTRO SCREEN 1 -->
 
-    <string name="get_paid_by"> Get paid by your lock screen  </string>
-    <string name="get_paid_by_your"> Get paid by your lock screen you can get paid to see our advertising on your lockscreen  </string>
+    <string name="get_paid_by"> ទទួលបានលុយតាមរយះផ្ទាំងដោះសោរបស់អ្នក  </string>
+    <string name="get_paid_by_your"> ទទួលបានលុយតាមរយះផ្ទាំងដោះសោរបស់អ្នក អ្នកអាចទទួលបានលុយដោយគ្រាន់តែមើលផ្ទាំងពាណិជកម្មរបស់យើងនៅលើផ្ទាំងដោះសោរបស់អ្នក  </string>
 
     <!-- INTRO SCREEN 2 -->
 
-    <string name="if_your_slide"> If you slide, you will earn points </string>
-    <string name="point_will_be"> Points will be awarded depending on the number of icons below. </string>
+    <string name="if_your_slide"> ប្រសិនបើអ្នកធ្វើការអូស អ្នកនិងទទួលបានពិន្ទុ </string>
+    <string name="point_will_be"> ពិន្ទុនិងទទួលបានអាស្រ័យលើចំនួនរូបតំណាងខាងក្រោម </string>
 
     <!-- INTRO SCREEN 3 -->
 
-    <string name="i_collect"> I collect points </string>
-    <string name="total_point">Total points I collected Medayi News / Share your friends </string>
+    <string name="i_collect"> ខ្ញុំប្រមូលពិន្ទុ </string>
+    <string name="total_point">ពិន្ទុសរុបដែលខ្ញុំទទួលបានពីMedayi News / ចែករំលែកទៅកាន់មិត្តរបស់អ្នក </string>
 
     <!-- INTRO SCREEN 4 -->
 
-    <string name="portal_in"> Portal in my hand </string>
-    <string name="you_can_look"> You can look at once to useful links, news, local information, shopping, commumity.</string>
+    <string name="portal_in"> អ្វីទាំងអស់នៅក្នុងដៃរបស់ខ្ញុំ </string>
+    <string name="you_can_look"> គេហទំព័រដ៏មានប្រយោជន៏ជាច្រើនត្រូវបានដាក់ចូលទៅក្នុងគេហទំព័ររបស់យើងតែបានដែលមានដូចជា​ ៖  ព័ត៌មាន , ព័ត៌មានក្នុងស្រុក , លក់ទំនិញ online ,​សហគមន៍</string>
 
     <!-- INTRO SCREEN 5 -->
-    <string name="change_the_point"> Change the point of money </string>
-    <string name="enter_the_pwd"> Enter the password and enter the points to change money. Point can be cashed through a Wing account. </string>
+    <string name="change_the_point"> យកពិន្ទុដើម្បីប្តូរយកលុយ </string>
+    <string name="enter_the_pwd"> បញ្ចូលលេខសំងាត់និងពិន្ទុដើម្បីប្តូរយកលុយ​ ហើយយើងអាចដកប្រាក់បានតាមរយះ គណនី Wing </string>
 
     <!-- RegisterOrLogin -->
 
-    <string name="join_medayi"> Join MEDAYI  </string>
-    <string name="i_already"> I already have a MEDAYI account  </string>
+    <string name="join_medayi"> ូលទៅកាន់  MEDAYI  </string>
+    <string name="i_already"> មានគណនី Medayi រួចមកហើយ  </string>
 
     <!-- PhoneNumber -->
-    <string name="phone_no">  Phone number </string>
+    <string name="phone_no">  លេខទូរសព្ទ័ </string>
 
     <!-- Information -->
-    <string name="please_rememer_id"> Please remember your Medayi Id </string>
-    <string name="information">Information</string>
+    <string name="please_rememer_id"> សូមធ្វើការចង់ចាំ Medayi ID របស់អ្នក </string>
+    <string name="information">ព័ត៌មាន</string>
     <string name="medayi_id"> Medayi ID </string>
-    <string name="pwd"> Password </string>
-    <string name="pwd_4_char"> Password at least 4 charactor </string>
-    <string name="conf_pwd"> Confirm password </string>
-    <string name="next"> Next </string>
+    <string name="pwd"> ពាក្យសម្ងាត់ </string>
+    <string name="pwd_4_char"> ពាក្យសំងាត់យ៉ាងហោចណាស់៤តួអក្សរ </string>
+    <string name="conf_pwd"> បញ្ជាក់ពាក្យសំងាត់ម្តងទៀត </string>
+    <string name="next"> បន្ទាប់ </string>
 
     <!-- name -->
-    <string name="your_name"> Your name </string>
+    <string name="your_name"> ឈ្មោះរបស់អ្នក </string>
 
     <!-- Gender -->
-    <string name="select_gender"> Select your Gender </string>
+    <string name="select_gender"> ជ្រើសរើសភេទរបស់អ្នក </string>
 
     <!-- Age -->
-    <string name="age"> Age </string>
+    <string name="age"> អាយុ </string>
 
-    <string name="location"> Location</string>
+    <string name="location"> ទីតាំង </string>
     <string-array name="list_province">
-        <item>Phnom Penh</item>
-        <item>Siem Reap</item>
-        <item>Ta Khmao</item>
-        <item>Battambang</item>
-        <item>Sihanoukville</item>
-        <item>Kampong Cham</item>
-        <item>Tboung Khmum</item>
-        <item>Krong Kep</item>
-        <item>Kampot</item>
-        <item>Koh Kong</item>
-        <item>Banteay Meanchey</item>
-        <item>Kampong Chhnang</item>
-        <item>Kampong Speu</item>
-        <item>Kampong Thom</item>
-        <item>Kratié</item>
-        <item>Mondulkiri</item>
-        <item>Oddar Meanchey</item>
-        <item>Pailin</item>
-        <item>Preah Vihear</item>
-        <item>Pursat</item>
-        <item>Prey Veng</item>
-        <item>Ratanakiri</item>
-        <item>Stung Treng</item>
-        <item>Svay Rieng</item>
-        <item>Takéo</item>
+        <item>ភ្នំពេញ</item>
+        <item>សៀមរាប</item>
+        <item>តាខ្មៅ</item>
+        <item>បាត់ដំបង</item>
+        <item>ព្រះសីហនុ</item>
+        <item>កំពង់ចាម</item>
+        <item>ត្បូងឃ្មុំ</item>
+        <item>កែប</item>
+        <item>កំពត</item>
+        <item>កោះកុង</item>
+        <item>បន្ទាយមានជ័យ</item>
+        <item>កំពង់ឆ្នាំង</item>
+        <item>កំពង់ស្ពឺ</item>
+        <item>កំពង់ធំ</item>
+        <item>ក្រចេះ</item>
+        <item>មណ្ឌលគីរី</item>
+        <item>ឧត្តរមានជ័យ</item>
+        <item>បៃលិន</item>
+        <item>ព្រះវិហារ</item>
+        <item>ពោធិ៍សាត់</item>
+        <item>ព្រៃវែង</item>
+        <item>រតនគីរី</item>
+        <item>ស្ទឹងត្រែង</item>
+        <item>ស្វាយរៀង</item>
+        <item>តាកែវ</item>
     </string-array>
 
     <!-- National -->
-    <string name="national"> National </string>
+    <string name="national"> សញ្ជាតិ </string>
 
     <string-array name="list_national">
-        <item>Cambodian</item>
-        <item>Chinese</item>
-        <item>Korean</item>
-        <item>English</item>
-        <item>Thailand</item>
-        <item>Vietname</item>
+        <item>កម្ពុជា</item>
+        <item>ចិន</item>
+        <item>កូរ៉េ</item>
+        <item>អង់គ្លេស</item>
+        <item>ថៃ</item>
+        <item>វៀតណាម</item>
     </string-array>
 
     <!-- Tab 1 -->
-    <string name="your_balance"> Total Point </string>
-    <string name="madayi_news"> MEDAYI NEWS </string>
-    <string name="medayi_share"> MEDAYI Sharing </string>
+    <string name="your_balance"> សមតុល្យរបស់អ្នក </string>
+    <string name="madayi_news"> MEDAYI ព័ត៌មាន </string>
+    <string name="medayi_share"> ចែករំលែក ​MEDAYI </string>
 
     <!-- Tab 3 -->
 
-    <string name="find_money">  FIND MONEY </string>
+    <string name="find_money">  រកលុយ </string>
     <string name="hangtom">  HANGTOM </string>
 
 
     <!-- Tab 4 -->
-    <string name="unlock_scr"> Unlock screen </string>
-    <string name="acc_manage"> Account Management </string>
-    <string name="contact"> Contact Us </string>
-    <string name="recommend"> Recommend </string>
-    <string name="ad_inqui"> Advertising Inquiry </string>
-    <string name="how_to_use"> How to use App </string>
-    <string name="privacy1"> Privacy Statement </string>
-    <string name="terms_of_use"> Terms of Use </string>
+    <string name="unlock_scr"> ផ្ទាំងដោះសោ </string>
+    <string name="acc_manage"> ការគ្រប់កគ្រងគណនី </string>
+    <string name="contact"> ទំនាក់ទំនង </string>
+    <string name="recommend"> អ្នកនែនាំ </string>
+    <string name="ad_inqui"> សាកសួរពីការផ្សព្វផ្សាយពាណិជ្ជកម្ម </string>
+    <string name="how_to_use"> របៀបប្រើប្រាស់កម្មវិធី </string>
+    <string name="privacy1"> ភាពជាឯកជន </string>
+    <string name="terms_of_use"> លក្ខខណ្ឌនៃការប្រើប្រាស់ </string>
 
 
 
     <!-- PasswordFindMoney -->
-    <string name="enter_new_pwd"> Please enter a password </string>
-    <string name="pwd_title"> PASSWORD </string>
+    <string name="enter_new_pwd"> សូមបញ្ចូលពាក្យសំងាត់ </string>
+    <string name="pwd_title"> ពាក្យសំងាត់ </string>
     <!--<string name="next"> Next </string>-->
 
     <!-- MoneyBalance -->
 
-    <string name="your_balance2"> YOUR BALANCE </string>
-    <string name="balance"> BALANCE </string>
-    <string name="pls_enter_point"> Please enter your point found. </string>
-    <string name="intro_balance"> From 80,000 Points can be withdrawn.\n(4000 points - $1.00)  </string>
-    <string name="Withdrawal_will"> Withdrawal will be converted into US dollars. </string>
-    <string name="pls_enter_wing"> Please enter your Wing account </string>
-    <string name="confirm"> Confirm </string>
+    <string name="your_balance2"> សមតុល្យរបស់អ្នក </string>
+    <string name="balance"> សមតុល្យ </string>
+    <string name="pls_enter_point"> សូមបញ្ចូលពិន្ទុដែលអ្នកទទួលបាន </string>
+    <string name="intro_balance"> ពិន្ទុចាប់ពី​ 80,000​ ទ្បើងទៅអ្នកអាចធ្វើការដកលុយបាន\n(4000 ពិន្ទុ - $1.00)  </string>
+    <string name="Withdrawal_will"> ការដកប្រាក់នឹងត្រូវបានបម្លែងទៅជាប្រាក់ដុល្លារអាមេរិក </string>
+    <string name="pls_enter_wing"> សូមបញ្ចូលលេខគណនីwing របស់អ្នក </string>
+    <string name="confirm"> បញ្ជាក់ </string>
 
     <!-- AccountManage -->
 
-    <string name="my_info"> My Info </string>
-    <string name="acc_man"> Account Management </string>
-    <string name="change_pwd"> Change Password </string>
-    <string name="forget_pwd"> Forget your password </string>
+    <string name="my_info"> ព័ត៌មានរបស់ខ្ញុំ </string>
+    <string name="acc_man"> ការគ្រប់កគ្រងគណនី </string>
+    <string name="change_pwd"> ផ្លាស់ប្តូរពាក្យសំងាត់ </string>
+    <string name="forget_pwd"> ភ្លេចពាក្យសំងាត់ </string>
 
     <!-- MyInfo -->
-    <string name="my_infor"> My Information </string>
-    <string name="name"> Name </string>
-    <string name="id"> ID </string>
-    <string name="phone"> Phone </string>
-    <string name="dob"> Date of birth </string>
-    <string name="sex"> Sex </string>
-    <string name="city"> City </string>
-    <string name="ok"> OK </string>
+    <string name="my_infor"> ព័ត៌មានរបស់ខ្ញុំ​ </string>
+    <string name="name"> ឈ្មោះ </string>
+    <string name="id"> លេខសម្គាល់ </string>
+    <string name="phone"> លេខទូរស័ព្ទ </string>
+    <string name="dob"> ថ្ញៃខែឆ្នាំកំណើត </string>
+    <string name="sex"> ភេទ </string>
+    <string name="city"> ទីក្រុង </string>
+    <string name="ok"> យល់ព្រម </string>
 
     <!-- ChangePwd -->
-    <string name="chnage_pwd"> CHANGE PASSWORD </string>
-    <string name="new_pwd"> New password </string>
-    <string name="con_pwd"> Confirm password </string>
+    <string name="chnage_pwd"> ផ្លាស់ប្ដូរពាក្យសម្ងាត់ </string>
+    <string name="new_pwd"> ពាក្យសំងាត់ថ្មី </string>
+    <string name="con_pwd"> បញ្ជាក់ពាក្យសំងាត់ </string>
     <!--<string name="ok"> OK </string>-->
 
     <!-- ForgetPwd -->
-    <string name="for_pwd"> FORGET PASSWORD </string>
-    <string name="pls_enter_id"> Please enter your ID </string>
-    <string name="pls_enter_phone"> Please enter your phone number </string>
+    <string name="for_pwd"> ភ្លេច​ពាក្យសំងាត់​ </string>
+    <string name="pls_enter_id"> សូមបញ្ចូលលេខសម្គាល់របស់អ្នក </string>
+    <string name="pls_enter_phone"> សូមបញ្ចូលលេខទូស័ព្ទរបស់អ្នក </string>
     <!--<string name="ok"> OK </string>-->
 
 
     <!-- Recommend -->
     <string name="re_com"> RECOMMEND </string>
-    <string name="pls_recommend_id"> Please enter a recommend ID </string>
+    <string name="pls_recommend_id"> សូមបញ្ចូលលេខសម្គាល់របស់អ្នកនែនាំ </string>
     <!--<string name="ok"> OK </string>-->
 
     <!-- SendMail -->
-    <string name="sen_email"> SEND EMAIL </string>
-    <string name="to"> To :  </string>
-    <string name="subject"> Subject : </string>
-    <string name="ad"> Advertising </string>
-    <string name="msg"> Message : </string>
-    <string name="send"> SEND </string>
+    <string name="sen_email"> ផ្ញើអ៊ីម៉ែល </string>
+    <string name="to"> ទៅកាន់ :  </string>
+    <string name="subject"> ប្រធានបទ : </string>
+    <string name="ad"> ការផ្សព្វផ្សាយពាណិជ្ជកម្ម </string>
+    <string name="msg"> សារ : </string>
+    <string name="send"> ផ្ញើ </string>
 
     <!--video-->
-    <string name="skip"> SKIP </string>
+    <string name="skip"> រំលង </string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

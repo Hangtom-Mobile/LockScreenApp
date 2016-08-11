@@ -23,7 +23,7 @@
             android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Portal in my hand"
+            android:text="@string/portal_in"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="25dp"
@@ -35,7 +35,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="You can look at once to useful links, news, local information, shopping, commumity."
+            android:text="@string/you_can_look"
             android:gravity="center"
             android:textColor="@color/white"/>
 
