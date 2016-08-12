@@ -96,7 +96,7 @@ public class Information extends AppCompatActivity {
                 String conPassword = editTextConPassword.getText().toString();
 
                 if(conPassword.length() < 4) {
-                    vePassId.setText("Password at least 4 characters");
+                    vePassId.setText(R.string.pwd_4_char);
                     vePassId.setVisibility(View.VISIBLE);
                 }else {
                     vePassId.setVisibility(View.GONE);

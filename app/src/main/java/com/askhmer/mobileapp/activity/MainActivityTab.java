@@ -19,6 +19,7 @@ import com.askhmer.mobileapp.fragment.OneFragment;
 import com.askhmer.mobileapp.fragment.ThreeFragment;
 import com.askhmer.mobileapp.fragment.TwoFragment;
 import com.askhmer.mobileapp.utils.LockscreenService;
+import com.askhmer.mobileapp.utils.MutiLanguage;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 
 import java.util.ArrayList;
@@ -36,6 +37,10 @@ public class MainActivityTab extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*startup set lanaguage*/
+        new MutiLanguage(getApplicationContext(),this).StartUpCheckLanguage();
+
         setContentView(R.layout.activity_main_activity_tab);
 
         mSharedPref  = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);

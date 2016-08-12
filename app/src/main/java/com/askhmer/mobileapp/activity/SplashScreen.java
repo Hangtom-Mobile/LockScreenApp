@@ -9,6 +9,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import com.askhmer.mobileapp.R;
+import com.askhmer.mobileapp.tutorials.ChooseLanguage;
 import com.askhmer.mobileapp.tutorials.MainPage;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 
@@ -45,7 +46,7 @@ public class SplashScreen extends AppCompatActivity {
                 if(isIntroFinish == true && registerOrLoginScreen == true) {
                     mainIntent = new Intent(SplashScreen.this, MainActivityTab.class);
                 }else if (isIntroFinish == false && registerOrLoginScreen == false) {
-                    mainIntent = new Intent(SplashScreen.this, MainPage.class);
+                    mainIntent = new Intent(SplashScreen.this, ChooseLanguage.class);
                 }else if (isIntroFinish == true && registerOrLoginScreen == false) {
                     mainIntent = new Intent(SplashScreen.this, RegisterOrLogin.class);
                 }

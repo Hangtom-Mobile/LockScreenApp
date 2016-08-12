@@ -33,6 +33,9 @@
     <string name="change_the_point"> Change the point of money </string>
     <string name="enter_the_pwd"> Enter the password and enter the points to change money. Point can be cashed through a Wing account. </string>
 
+    <!--Login-->
+    <string name="login_title"> LOGIN  </string>
+
     <!-- RegisterOrLogin -->
 
     <string name="join_medayi"> Join MEDAYI  </string>
@@ -47,6 +50,7 @@
     <string name="medayi_id"> Medayi ID </string>
     <string name="pwd"> Password </string>
     <string name="pwd_4_char"> Password at least 4 charactor </string>
+    <string name="pwd_4_char_sy"> At Least 4 characters and not allow space, symbol </string>
     <string name="conf_pwd"> Confirm password </string>
     <string name="next"> Next </string>
 

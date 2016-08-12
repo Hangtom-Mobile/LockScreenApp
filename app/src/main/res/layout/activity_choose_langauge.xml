@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="3"
+    android:background="@color/bg_color_img">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center_horizontal">
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <RadioGroup
+            android:id="@+id/radio_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableRight="@drawable/ic_action_cam_flat"
+                android:id="@+id/radio_khmer"
+                android:paddingLeft="5dp"
+                android:layout_marginRight="30dp"
+                android:theme="@style/MyRadioButtonIntro"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/MyRadioButtonIntro"
+                android:drawableRight="@drawable/ic_action_eng_flat"
+                android:paddingLeft="5dp"
+                android:layout_marginRight="30dp"
+                android:id="@+id/radio_english" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/bttn_start"
+            android:layout_width="170dp"
+            android:layout_height="40dp"
+            android:text="Start"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_selector" />
+
+    </LinearLayout>
+
+</LinearLayout>

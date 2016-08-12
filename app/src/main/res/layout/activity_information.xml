@@ -6,6 +6,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         tools:context="com.askhmer.mobileapp.activity.Information">
 
     <android.support.design.widget.AppBarLayout
@@ -114,7 +116,7 @@
                         android:id="@+id/ve_slide_id"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="At Least 4 characters and not allow space, symbol"
+                        android:text="@string/pwd_4_char_sy"
                         android:visibility="gone"
                         android:textColor="@android:color/holo_red_dark" />
 
@@ -155,7 +157,7 @@
                         android:id="@+id/ve_pass_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Password at least 8 characters"
+                        android:text="@string/pwd_4_char"
                         android:visibility="gone"
                         android:textColor="@android:color/holo_red_dark"/>
 

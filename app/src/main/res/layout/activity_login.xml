@@ -23,7 +23,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Login"
+                android:text="@string/login_title"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -76,7 +76,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Medayi ID"
+                        android:text="@string/medayi_id"
                         android:textSize="15dp"
                         android:textStyle="bold"
                         android:layout_marginBottom="5dp"/>
@@ -113,7 +113,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Password"
+                        android:text="@string/pwd"
                         android:textSize="15dp"
                         android:textStyle="bold"
                         android:layout_marginTop="10dp"
@@ -152,7 +152,7 @@
                             android:id="@+id/bttn_next"
                             android:layout_width="170dp"
                             android:layout_height="40dp"
-                            android:text="Next"
+                            android:text="@string/next"
                             android:textColor="@color/white"
                             android:background="@drawable/btn_selector"
                             android:layout_gravity="bottom"/>

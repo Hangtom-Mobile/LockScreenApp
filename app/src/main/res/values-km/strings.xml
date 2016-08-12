@@ -33,9 +33,12 @@
     <string name="change_the_point"> យកពិន្ទុដើម្បីប្តូរយកលុយ </string>
     <string name="enter_the_pwd"> បញ្ចូលលេខសំងាត់និងពិន្ទុដើម្បីប្តូរយកលុយ​ ហើយយើងអាចដកប្រាក់បានតាមរយះ គណនី Wing </string>
 
+    <!--Login-->
+    <string name="login_title"> ចូលប្រែប្រាស់  </string>
+
     <!-- RegisterOrLogin -->
 
-    <string name="join_medayi"> ូលទៅកាន់  MEDAYI  </string>
+    <string name="join_medayi"> ចូលលទៅកាន់  MEDAYI  </string>
     <string name="i_already"> មានគណនី Medayi រួចមកហើយ  </string>
 
     <!-- PhoneNumber -->
@@ -44,9 +47,10 @@
     <!-- Information -->
     <string name="please_rememer_id"> សូមធ្វើការចង់ចាំ Medayi ID របស់អ្នក </string>
     <string name="information">ព័ត៌មាន</string>
-    <string name="medayi_id"> Medayi ID </string>
+    <string name="medayi_id"> លេខសម្គាល់ Medayi </string>
     <string name="pwd"> ពាក្យសម្ងាត់ </string>
     <string name="pwd_4_char"> ពាក្យសំងាត់យ៉ាងហោចណាស់៤តួអក្សរ </string>
+    <string name="pwd_4_char_sy"> យ៉ាងហោចណាស់ 4 តួអក្សរនិងមិនអនុញ្ញាតឱ្យមានចន្លោះ​ និមិត្តសញ្ញា </string>
     <string name="conf_pwd"> បញ្ជាក់ពាក្យសំងាត់ម្តងទៀត </string>
     <string name="next"> បន្ទាប់ </string>
 
