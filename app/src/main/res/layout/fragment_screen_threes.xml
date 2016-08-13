@@ -17,16 +17,16 @@
             android:layout_marginTop="15dp"
             android:layout_width="80dp"
             android:layout_height="100dp"
-            android:src="@drawable/img8"
+            android:src="@drawable/lock_intro"
             android:scaleType="fitCenter"/>
         <TextView
             android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/portal_in"
+            android:text="@string/if_your_slide"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="25dp"
+            android:textSize="23dp"
             android:maxLines="1"
             android:textStyle="bold"/>
         <TextView
@@ -35,7 +35,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/you_can_look"
+            android:text="@string/point_will_be"
             android:gravity="center"
             android:textColor="@color/white"/>
 
@@ -45,7 +45,7 @@
             android:paddingRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/img7"
+            android:src="@drawable/beer"
             android:scaleType="fitCenter"
             android:gravity="bottom"/>
 

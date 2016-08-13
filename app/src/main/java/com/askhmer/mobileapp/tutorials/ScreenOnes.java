@@ -12,11 +12,11 @@ import com.askhmer.mobileapp.R;
 /**
  * Created by Longdy on 6/30/2016.
  */
-public class ScreenFour extends Fragment {
+public class ScreenOnes extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_screen_four, container, false);
+        View v = inflater.inflate(R.layout.fragment_screen_ones, container, false);
         return v;
     }
 }

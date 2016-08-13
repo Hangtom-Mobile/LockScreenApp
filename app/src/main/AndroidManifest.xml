@@ -135,6 +135,9 @@
             android:name=".activity.LoginDob"
             android:theme="@style/AppTheme" />
         <activity
+            android:name=".tutorials.ChooseLanguage"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".activity.YoutubeVideo"
             android:screenOrientation="landscape"
             android:configChanges="orientation|screenSize"

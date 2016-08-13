@@ -11,7 +11,7 @@
 
     <!-- INTRO SCREEN 1 -->
 
-    <string name="get_paid_by"> Get paid by your lock screen  </string>
+    <string name="get_paid_by"> Get paid by \n your lock screen  </string>
     <string name="get_paid_by_your"> Get paid by your lock screen you can get paid to see our advertising on your lockscreen  </string>
 
     <!-- INTRO SCREEN 2 -->
@@ -26,11 +26,11 @@
 
     <!-- INTRO SCREEN 4 -->
 
-    <string name="portal_in"> Portal in my hand </string>
-    <string name="you_can_look"> You can look at once to useful links, news, local information, shopping, commumity.</string>
+    <string name="portal_in"> Local in my hand </string>
+    <string name="you_can_look"> You can look at once to \n useful local informations</string>
 
     <!-- INTRO SCREEN 5 -->
-    <string name="change_the_point"> Change the point of money </string>
+    <string name="change_the_point"> On the First Screen \n Captured all the benefits  </string>
     <string name="enter_the_pwd"> Enter the password and enter the points to change money. Point can be cashed through a Wing account. </string>
 
     <!--Login-->

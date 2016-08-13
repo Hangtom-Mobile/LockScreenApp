@@ -21,10 +21,10 @@ public class MainPage extends AppIntro2 {
 
         // Add your slide's fragments here.
         // AppIntro will automatically generate the dots indicator and buttons.
-        addSlide(new ScreenOne());
-        addSlide(new ScreenTwo());
-        addSlide(new ScreenThree());
-        addSlide(new ScreenFour());
+        addSlide(new ScreenOnes());
+        addSlide(new ScreenTwos());
+        addSlide(new ScreenThrees());
+        addSlide(new ScreenFours());
         addSlide(new ScreenFive());
         setDepthAnimation();
 
