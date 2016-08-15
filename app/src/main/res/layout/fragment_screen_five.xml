@@ -15,7 +15,7 @@
         android:gravity="center_horizontal">
         <ImageView
             android:layout_marginTop="15dp"
-            android:layout_width="95dp"
+            android:layout_width="105dp"
             android:layout_height="100dp"
             android:src="@drawable/key_search"
             android:scaleType="fitCenter"/>
@@ -45,7 +45,7 @@
             android:paddingRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/location"
+            android:src="@drawable/location_phone"
             android:scaleType="fitCenter"
             android:gravity="bottom"/>
 

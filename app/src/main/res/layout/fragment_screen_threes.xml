@@ -30,8 +30,8 @@
             android:maxLines="1"
             android:textStyle="bold"/>
         <TextView
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:paddingRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/beer"
+            android:src="@drawable/bee_phone_new"
             android:scaleType="fitCenter"
             android:gravity="bottom"/>
 
