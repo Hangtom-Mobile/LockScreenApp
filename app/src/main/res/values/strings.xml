@@ -10,7 +10,7 @@
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
 
     <!--choose langauge-->
-    <string name="choose_lang">Your chocie\n\t\t for a better\n\t\t4 life in </string>
+    <string name="choose_lang">Your chocie\n\t\t for a better\n\t\t life in </string>
     <string name="choose_lan_title">Choose Langauge</string>
     <string name="start">START</string>
 
