@@ -23,6 +23,7 @@ public class SharedPreferencesFile {
     public static final String KEY_VERSION_APP = "KEY_VERSION_APP";
     public static final String SERVICELOCK = "SERVICELOCK";
     public static final String REGISTERNLOGIN = "REGISTERNLOGIN";
+    public static final String KEY_VERIFYNUMBER = "VERIFY_PHONE_NUMBER";
 
 
     private Context mContext;

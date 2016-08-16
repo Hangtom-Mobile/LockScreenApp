@@ -48,6 +48,11 @@
 
     <!-- PhoneNumber -->
     <string name="phone_no">  លេខទូរសព្ទ័ </string>
+    <string name="apply">ដាក់បញ្ចូល</string>
+    <string name="welcome">សូមស្វាគមន៏! អ្នកអាចចូលរួមជាមួយ Medayi ដោយគ្រាន់តែបញ្ចូលលេខទូរស័ព្ទរបស់អ្នកដើម្បីចាប់ផ្តើម</string>
+    <string name="validatePhone">សូមបញ្ចូលលេខទូរស័ព្ទរបស់អ្នកអោយបានត្រឹមត្រូវ!</string>
+    <string name="msg_wait">សូមរង់ចាំដើម្បីទទួលបានលេខផ្ទៀងផ្ទាត់</string>
+    <string name="confirmNumber">ផ្ទៀងផ្ទាត់</string>
 
     <!-- Information -->
     <string name="please_rememer_id"> សូមធ្វើការចង់ចាំ Medayi ID របស់អ្នក </string>
