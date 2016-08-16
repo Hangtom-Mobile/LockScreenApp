@@ -48,6 +48,11 @@
 
     <!-- PhoneNumber -->
     <string name="phone_no">  Phone number </string>
+    <string name="apply">APPLY</string>
+    <string name="welcome">Welcome! you\'re Joined Medayi as Enter your phone number to Start</string>
+    <string name="validatePhone">Input your correct phone number!</string>
+    <string name="msg_wait">Please wait to get your verify number</string>
+    <string name="confirmNumber">CONFIRM</string>
 
     <!-- Information -->
     <string name="please_rememer_id"> Please remember your Medayi Id </string>
