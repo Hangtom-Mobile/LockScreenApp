@@ -39,12 +39,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/no_back"
         android:orientation="vertical">
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@drawable/no_back"
             android:fillViewport="true">
 
             <LinearLayout
