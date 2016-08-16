@@ -9,6 +9,11 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
 
+    <!--choose langauge-->
+    <string name="choose_lang">ជម្រើសរបស់អ្នកសម្រាប់ជីវិតល្អប្រសើរជាងមុនមាននៅក្នុង </string>
+    <string name="choose_lan_title">ជ្រើសរើសភាសា</string>
+    <string name="start">ចាប់ផ្ដើម</string>
+
     <!-- INTRO SCREEN 1 -->
 
     <string name="get_paid_by"> ទទួលបានលុយតាមរយះផ្ទាំងដោះសោរបស់អ្នក  </string>

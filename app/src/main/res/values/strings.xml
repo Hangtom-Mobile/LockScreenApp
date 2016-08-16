@@ -9,6 +9,11 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
 
+    <!--choose langauge-->
+    <string name="choose_lang">Your chocie\n\t\t for a better\n\t\t4 life in </string>
+    <string name="choose_lan_title">Choose Langauge</string>
+    <string name="start">START</string>
+
     <!-- INTRO SCREEN 1 -->
 
     <string name="get_paid_by"> Get paid by \n your lock screen  </string>
