@@ -66,6 +66,7 @@
 
     <!-- name -->
     <string name="your_name"> ឈ្មោះរបស់អ្នក </string>
+    <string name="name_title"> តើ​អ្នក​ឈ្មោះ​អ្វី​? </string>
 
     <!-- Gender -->
     <string name="select_gender"> ជ្រើសរើសភេទរបស់អ្នក </string>
@@ -74,6 +75,7 @@
     <string name="age"> អាយុ </string>
 
     <string name="location"> ទីតាំង </string>
+    <string name="location_title"> កន្លែងដែលអ្នករស់នៅ? </string>
     <string-array name="list_province">
         <item>ភ្នំពេញ</item>
         <item>សៀមរាប</item>
@@ -104,6 +106,7 @@
 
     <!-- National -->
     <string name="national"> សញ្ជាតិ </string>
+    <string name="national_title"> តើ​អ្នក​មកពីណា? </string>
 
     <string-array name="list_national">
         <item>កម្ពុជា</item>

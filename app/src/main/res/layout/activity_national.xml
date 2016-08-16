@@ -36,6 +36,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/no_back"
         android:fillViewport="true">
 
         <LinearLayout
@@ -45,26 +46,55 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:background="@drawable/border_shadow"
+                android:weightSum="2"
                 android:gravity="center">
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="130dp"
-                    android:src="@drawable/icon_edit_text"
-                    android:scaleType="fitCenter"/>
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/list6"
-                    android:scaleType="fitCenter"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|right"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:src="@drawable/icon_lock_chang_la"
+                        android:scaleType="fitCenter"/>
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical|left"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:src="@drawable/national"
+                        android:scaleType="fitCenter"
+                        android:id="@+id/imageView" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/national_title"
+                        android:layout_marginTop="27dp"
+                        android:rotation="-12"
+                        android:layout_alignTop="@+id/imageView"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="27dp" />
+
+                </RelativeLayout>
 
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:background="@color/white"
                 android:padding="15dp">
 
                 <LinearLayout
@@ -94,7 +124,7 @@
                     <View
                         android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
+                        android:layout_height="0.5dp"
                         android:background="@color/btn_tap_off"/>
 
                     <Spinner
@@ -108,7 +138,7 @@
                     <View
                         android:layout_marginBottom="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
+                        android:layout_height="0.5dp"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="2dp"
                         android:background="@color/btn_tap_off"/>
