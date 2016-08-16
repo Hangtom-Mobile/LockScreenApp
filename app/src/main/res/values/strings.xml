@@ -61,6 +61,7 @@
 
     <!-- name -->
     <string name="your_name"> Your name </string>
+    <string name="name_title"> What\'s your\n name? </string>
 
     <!-- Gender -->
     <string name="select_gender"> Select your Gender </string>
@@ -69,6 +70,7 @@
     <string name="age"> Age </string>
 
     <string name="location"> Location</string>
+    <string name="location_title"> Where\'re\n you living? </string>
     <string-array name="list_province">
         <item>Phnom Penh</item>
         <item>Siem Reap</item>
@@ -99,6 +101,7 @@
 
     <!-- National -->
     <string name="national"> National </string>
+    <string name="national_title"> Where\'re\n you from? </string>
 
     <string-array name="list_national">
         <item>Cambodian</item>
