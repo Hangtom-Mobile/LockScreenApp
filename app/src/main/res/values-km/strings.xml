@@ -63,6 +63,8 @@
     <string name="pwd_4_char_sy"> យ៉ាងហោចណាស់ 4 តួអក្សរនិងមិនអនុញ្ញាតឱ្យមានចន្លោះ​ និមិត្តសញ្ញា </string>
     <string name="conf_pwd"> បញ្ជាក់ពាក្យសំងាត់ម្តងទៀត </string>
     <string name="next"> បន្ទាប់ </string>
+    <string name="dt_forget">សូមកុំភ្លេច</string>
+    <string name="id_pwd">ID &amp; ពាក្យសម្ងាត់</string>
 
     <!-- name -->
     <string name="your_name"> ឈ្មោះរបស់អ្នក </string>
@@ -70,6 +72,7 @@
 
     <!-- Gender -->
     <string name="select_gender"> ជ្រើសរើសភេទរបស់អ្នក </string>
+    <string name="ask_gender">តើអ្នកជាបុរស\n ឬ ជាស្ត្រី?</string>
 
     <!-- Age -->
     <string name="age"> អាយុ </string>

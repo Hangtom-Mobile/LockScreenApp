@@ -9,7 +9,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    android:background="@drawable/no_back">
+    android:background="@drawable/have_back">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -86,6 +86,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/phone_no"
+                        android:textStyle="bold"
                         android:textSize="15dp"
                         android:gravity="center"
                         android:layout_marginTop="5dp"
@@ -137,11 +138,13 @@
                         android:gravity="center_horizontal"
                         android:textColor="@android:color/holo_orange_light" />
                     <RelativeLayout
+                        android:id="@+id/layout_confirm"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="45dp"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp">
+                        android:layout_marginRight="20dp"
+                        android:visibility="invisible">
                         <EditText
                             android:id="@+id/et_confirm"
                             android:layout_width="match_parent"

@@ -63,6 +63,8 @@
     <string name="pwd_4_char_sy"> At Least 4 characters and not allow space, symbol </string>
     <string name="conf_pwd"> Confirm password </string>
     <string name="next"> Next </string>
+    <string name="dt_forget">Don\'t forget</string>
+    <string name="id_pwd">ID &amp; Password</string>
 
     <!-- name -->
     <string name="your_name"> Your name </string>
@@ -70,6 +72,7 @@
 
     <!-- Gender -->
     <string name="select_gender"> Select your Gender </string>
+    <string name="ask_gender">Are you Man\n or Woman?</string>
 
     <!-- Age -->
     <string name="age"> Age </string>

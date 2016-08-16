@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +43,8 @@ public class PhoneNumber extends AppCompatActivity implements Reciver {
     private String randomNumber;
     private BroadcastReceiver mybroadcast;
     private TextView waitMsg;
-    private  String formatedPhNumber;
+    private String formatedPhNumber;
+    private RelativeLayout layoutConfirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +93,7 @@ public class PhoneNumber extends AppCompatActivity implements Reciver {
                     String ind = String.valueOf(formatedPhNumber.charAt(0));
 
                     waitMsg.setVisibility(View.VISIBLE);
+                    layoutConfirm.setVisibility(View.VISIBLE);
 
                     if (ind.equals("0")) {
                         String fulPhoneNum = "855" + formatedPhNumber.substring(1);
@@ -154,6 +157,7 @@ public class PhoneNumber extends AppCompatActivity implements Reciver {
         verifyNumber = (EditText) findViewById(R.id.et_confirm);
         btnConfirm = (Button) findViewById(R.id.btn_confirm);
         waitMsg = (TextView) findViewById(R.id.tv_wait_msg);
+        layoutConfirm = (RelativeLayout) findViewById(R.id.layout_confirm);
     }
 
 

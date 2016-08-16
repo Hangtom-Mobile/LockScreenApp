@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
  <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        tools:context="com.askhmer.mobileapp.activity.Information">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context="com.askhmer.mobileapp.activity.Information"
+    android:background="@drawable/have_back">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -54,32 +55,70 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
                     android:background="@drawable/border_shadow"
+                    android:weightSum="2"
                     android:gravity="center">
 
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="120dp"
-                        android:src="@drawable/icon_edit_text"
-                        android:scaleType="fitCenter"/>
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/list2"
-                        android:scaleType="fitCenter"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|right"
+                        android:layout_weight="1">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/please_rememer_id"/>
+                        <ImageView
+                            android:layout_width="180dp"
+                            android:layout_height="180dp"
+                            android:src="@drawable/icon_lock_chang_la"
+                            android:scaleType="fitCenter"/>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|left"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="180dp"
+                            android:layout_height="180dp"
+                            android:src="@drawable/medayi_id"
+                            android:scaleType="fitCenter"
+                            android:id="@+id/imageView" />
+
+                        <TextView
+                            android:id="@+id/tv_dont_forget"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/dt_forget"
+                            android:layout_marginTop="27dp"
+                            android:rotation="-12"
+                            android:layout_alignTop="@+id/imageView"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="13dp"
+                            android:textColor="@color/red_btn_bg_color"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/id_pwd"
+                            android:layout_marginTop="43dp"
+                            android:rotation="-12"
+                            android:layout_alignTop="@+id/imageView"
+                            android:layout_alignParentLeft="true"
+                            android:layout_below="@id/tv_dont_forget"
+                            android:layout_marginLeft="12dp"
+                            android:textSize="12dp"
+                            android:textColor="@color/btn_select_tran"/>
+
+                    </RelativeLayout>
 
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:background="@color/white"
                     android:padding="15dp"
                     android:gravity="center_horizontal">
 
@@ -96,7 +135,7 @@
                     <View
                         android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
+                        android:layout_height="0.5dp"
                         android:background="@color/btn_tap_off"/>
                     <EditText
                         android:id="@+id/e_cash_id"
@@ -107,7 +146,7 @@
                     <View
                         android:layout_marginBottom="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
+                        android:layout_height="0.5dp"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="2dp"
                         android:background="@color/btn_tap_off"/>
@@ -134,7 +173,7 @@
                     <View
                         android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
+                        android:layout_height="0.5dp"
                         android:background="@color/btn_tap_off"/>
                     <EditText
                         android:id="@+id/e_password"
@@ -143,12 +182,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="center"
+                        android:textSize="13dp"
                         android:inputType="textPassword"
                         android:background="@drawable/radius_ed"/>
                     <View
                         android:layout_marginBottom="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
+                        android:layout_height="0.5dp"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="2dp"
                         android:background="@color/btn_tap_off"/>
@@ -165,13 +205,14 @@
                     <View
                         android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
+                        android:layout_height="0.5dp"
                         android:background="@color/btn_tap_off"/>
                     <EditText
                         android:id="@+id/e_con_password"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="center"
+                        android:textSize="13dp"
                         android:inputType="textPassword"
                         android:background="@drawable/radius_ed"
                         android:textColorHint="@color/hintColor"
@@ -179,7 +220,7 @@
                     <View
                         android:layout_marginBottom="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="0.1dp"
+                        android:layout_height="0.5dp"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="2dp"
                         android:background="@color/btn_tap_off"/>
@@ -210,8 +251,6 @@
         </ScrollView>
 
     </LinearLayout>
-
-
 
 </LinearLayout>
 
