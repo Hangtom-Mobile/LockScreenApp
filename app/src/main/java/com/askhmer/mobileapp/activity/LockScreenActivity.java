@@ -174,7 +174,6 @@ public class LockScreenActivity extends Activity implements
 			switch (state) {
 			case TelephonyManager.CALL_STATE_RINGING:
 				unlockHomeButton();
-				wakeUp();
 				break;
 			case TelephonyManager.CALL_STATE_OFFHOOK:
 				break;

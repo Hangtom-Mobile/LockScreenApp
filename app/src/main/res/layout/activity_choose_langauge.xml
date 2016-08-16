@@ -22,31 +22,71 @@
         android:layout_weight="1"
         android:gravity="center">
 
-        <RadioGroup
+        <LinearLayout
             android:id="@+id/radio_language"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:weightSum="2"
             android:orientation="horizontal">
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableRight="@drawable/ic_action_cam_flat"
-                android:id="@+id/radio_khmer"
-                android:paddingLeft="5dp"
-                android:layout_marginRight="30dp"
-                android:theme="@style/MyRadioButtonIntro"/>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_weight="1">
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:theme="@style/MyRadioButtonIntro"
-                android:drawableRight="@drawable/ic_action_eng_flat"
-                android:paddingLeft="5dp"
-                android:layout_marginRight="30dp"
-                android:id="@+id/radio_english" />
+                <ImageView
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:src="@drawable/cambodia_ic"/>
 
-        </RadioGroup>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ខ្មែរ"
+                    android:textColor="@color/white"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radio_khmer"
+                    android:theme="@style/MyRadioButtonIntro"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:src="@drawable/eng_ic"/>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="English"
+                    android:textColor="@color/white"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/MyRadioButtonIntro"
+                    android:id="@+id/radio_english" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

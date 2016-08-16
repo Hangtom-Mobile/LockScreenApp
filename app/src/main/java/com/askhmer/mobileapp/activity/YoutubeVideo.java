@@ -180,6 +180,7 @@ public class YoutubeVideo extends YouTubeBaseActivity implements YouTubePlayer.O
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.e("message", response);
                         if (response.contains("113") || response.contains("110")) {
                             txtTimeSkip.setText("Points credited.");
                         }
