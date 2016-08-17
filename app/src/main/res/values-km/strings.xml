@@ -83,6 +83,7 @@
 
     <!-- Age -->
     <string name="age"> អាយុ </string>
+    <string name="ask_age">តើអ្នកមាន\nអាយុប៉ុន្មាន?</string>
 
     <string name="location"> ទីតាំង </string>
     <string name="location_title"> កន្លែងដែលអ្នករស់នៅ? </string>

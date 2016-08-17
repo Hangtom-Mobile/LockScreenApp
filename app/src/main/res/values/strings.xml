@@ -83,6 +83,7 @@
 
     <!-- Age -->
     <string name="age"> Age </string>
+    <string name="ask_age">How old\n are you?</string>
 
     <string name="location"> Location</string>
     <string name="location_title"> Where\'re\n you living? </string>
