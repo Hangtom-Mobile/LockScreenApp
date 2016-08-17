@@ -13,9 +13,12 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,21 +33,24 @@ import com.askhmer.mobileapp.model.Reciver;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 import com.askhmer.mobileapp.utils.SmsBroadcastReceiver;
 
+import org.w3c.dom.Text;
+
 import java.util.regex.Pattern;
 
-public class PhoneNumber extends AppCompatActivity implements Reciver {
+public class PhoneNumber extends AppCompatActivity implements Reciver{
 
     private SharedPreferencesFile mSharedPrefrencesFile;
     private EditText etPhoneNum;
     private EditText verifyNumber;
-    private TextView tvMsg;
+    private TextView tvMsg, txtCode;
     private Button btnApply;
     private Button btnConfirm;
-    private String randomNumber;
+    private String randomNumber, code;
     private BroadcastReceiver mybroadcast;
     private TextView waitMsg;
     private String formatedPhNumber;
     private RelativeLayout layoutConfirm;
+    private Spinner countryCode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +64,34 @@ public class PhoneNumber extends AppCompatActivity implements Reciver {
         mSharedPrefrencesFile = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
 
         init();
+
+
+        countryCode.setPrompt("Select your country");
+
+        // Creating adapter for spinner
+        ArrayAdapter<CharSequence> dataAdapter = ArrayAdapter.createFromResource(this, R.array.country, android.R.layout.simple_spinner_item);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        countryCode.setAdapter(dataAdapter);
+
+        /*listener*/
+        countryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                String item = parent.getItemAtPosition(pos)+"";
+                if (item.equalsIgnoreCase("Cambodia")){
+                    code = "855";
+                }else {
+                    code = "82";
+                }
+                txtCode.setText("+"+code);
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
         etPhoneNum.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
@@ -96,10 +130,10 @@ public class PhoneNumber extends AppCompatActivity implements Reciver {
                     layoutConfirm.setVisibility(View.VISIBLE);
 
                     if (ind.equals("0")) {
-                        String fulPhoneNum = "855" + formatedPhNumber.substring(1);
+                        String fulPhoneNum = code + formatedPhNumber.substring(1);
                         sendSMS(fulPhoneNum, randomNumber);
                     } else {
-                        String fulPhoneNum = "855" + formatedPhNumber;
+                        String fulPhoneNum = code + formatedPhNumber;
                         sendSMS(fulPhoneNum, randomNumber);
                     }
 
@@ -129,7 +163,7 @@ public class PhoneNumber extends AppCompatActivity implements Reciver {
     private boolean isValidMobile(String phone)
     {
         String formatedPhNumber = etPhoneNum.getText().toString();
-        String newPhNumber = phone.replaceAll("[^\\.0123456789]","");
+        String newPhNumber = phone.replaceAll("[^\\.0123456789]", "");
         boolean check=false;
         if(!Pattern.matches("[a-zA-Z]+", formatedPhNumber))
         {
@@ -158,6 +192,8 @@ public class PhoneNumber extends AppCompatActivity implements Reciver {
         btnConfirm = (Button) findViewById(R.id.btn_confirm);
         waitMsg = (TextView) findViewById(R.id.tv_wait_msg);
         layoutConfirm = (RelativeLayout) findViewById(R.id.layout_confirm);
+        countryCode = (Spinner) findViewById(R.id.sp_location);
+        txtCode = (TextView) findViewById(R.id.tv_code);
     }
 
 
@@ -213,5 +249,4 @@ public class PhoneNumber extends AppCompatActivity implements Reciver {
         super.onPause();
         unregisterReceiver(mybroadcast);
     }
-
 }

@@ -56,6 +56,10 @@
     <string name="validatePhone">Input your correct phone number!</string>
     <string name="msg_wait">Please wait to get your verify number</string>
     <string name="confirmNumber">CONFIRM</string>
+    <string-array name="country">
+        <item name="855"> Cambodia </item>
+        <item name="82"> South Korea </item>
+    </string-array>
 
     <!-- Information -->
     <string name="please_rememer_id"> Please remember your Medayi Id </string>

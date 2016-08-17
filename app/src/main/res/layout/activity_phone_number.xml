@@ -47,7 +47,7 @@
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="190dp"
                 android:orientation="horizontal"
                 android:background="@drawable/border_shadow"
                 android:gravity="center">
@@ -89,21 +89,51 @@
                         android:textStyle="bold"
                         android:textSize="15dp"
                         android:gravity="center"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="10dp"/>
+                        android:layout_marginTop="4dp"
+                        android:layout_marginBottom="9dp"/>
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:id="@+id/sp_location"
+                        android:touchscreenBlocksFocus="true"
+                        android:spinnerMode="dialog"
+                        android:textAlignment="center"
+                        android:background="@drawable/radius_ed"/>
 
                     <View
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
                         android:background="@color/btn_tap_off"/>
-                    <EditText
-                        android:id="@+id/et_phone_number"
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:inputType="phone"
-                        android:gravity="center"
-                        android:background="@drawable/radius_ed"/>
+                        android:layout_height="48dp"
+                        android:orientation="horizontal"
+                        android:weightSum="4"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tv_code"
+                            android:layout_weight="3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:textSize="14dp"
+                            android:text="+855"/>
+
+                        <EditText
+                            android:layout_weight="1"
+                            android:id="@+id/et_phone_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:inputType="phone"
+                            android:gravity="left|center"
+                            android:hint="Phone"
+                            android:background="@drawable/radius_ed"/>
+
+                    </LinearLayout>
                     <View
                         android:layout_marginBottom="5dp"
                         android:layout_width="match_parent"
@@ -123,13 +153,13 @@
                     <Button
                         android:id="@+id/bttn_next"
                         android:layout_width="170dp"
-                        android:layout_height="40dp"
+                        android:layout_height="38dp"
                         android:layout_marginTop="10dp"
                         android:text="@string/apply"
                         android:textColor="@color/white"
                         android:background="@drawable/btn_selector"/>
                     <TextView
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="4dp"
                         android:id="@+id/tv_wait_msg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -164,13 +194,13 @@
                             android:layout_alignParentEnd="true"/>
                     </RelativeLayout>
 
-                    <TextView
+                    <!--<TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:gravity="center"
                         android:text="@string/welcome"
-                        android:textColor="@color/colorAccent"/>
+                        android:textColor="@color/colorAccent"/>-->
 
                 </LinearLayout>
 
