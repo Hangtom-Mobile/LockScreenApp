@@ -1,23 +1,22 @@
 package com.askhmer.mobileapp.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.tutorials.ChooseLanguage;
-import com.askhmer.mobileapp.tutorials.MainPage;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 
 
 /**
  * Created by soklundy on 4/20/2016.
  */
-public class SplashScreen extends AppCompatActivity {
+public class SplashScreen extends Activity {
 
     /** Duration of wait **/
     private final int SPLASH_DISPLAY_LENGTH = 1500;
