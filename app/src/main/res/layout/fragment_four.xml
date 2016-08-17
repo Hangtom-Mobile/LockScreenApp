@@ -76,6 +76,38 @@
                 android:layout_height="0.1dp"
                 android:background="@color/btn_tap_off"/>
 
+            <LinearLayout
+                android:id="@+id/li_change_lan"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:clickable="true"
+                android:background="@drawable/bg_selector"
+                android:paddingRight="16dp"
+                android:paddingLeft="16dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/chnage_lan"
+                    android:gravity="center_vertical"
+                    android:textSize="16dp"
+                    android:textColor="@color/black"
+                    android:layout_weight="1"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:src="@drawable/tab_icon_forward"
+                    android:scaleType="fitEnd"
+                    android:paddingTop="20dp"
+                    android:paddingBottom="20dp"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:background="@color/btn_tap_off"/>
+
 
 
 

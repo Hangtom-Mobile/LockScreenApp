@@ -3,9 +3,13 @@ package com.askhmer.mobileapp.fragment;
 
 import android.app.ActivityManager;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,8 +17,13 @@ import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +36,7 @@ import com.askhmer.mobileapp.activity.TermsOfUse;
 import com.askhmer.mobileapp.tutorials.MainPage;
 import com.askhmer.mobileapp.utils.CheckVersionCode;
 import com.askhmer.mobileapp.utils.LockscreenService;
+import com.askhmer.mobileapp.utils.MutiLanguage;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 
 /**
@@ -34,11 +44,15 @@ import com.askhmer.mobileapp.utils.SharedPreferencesFile;
  */
 public class FourFragment extends Fragment {
 
-    private LinearLayout accountManage, contactUs, recommend, advertising, howToUse, privacy, terms;
+    private LinearLayout accountManage, contactUs, recommend, advertising, howToUse, privacy, terms, changeLang;
     private Intent in;
     private SwitchCompat unlock;
     private SharedPreferencesFile mSharedPreferencesFile;
     private TextView verName;
+    RadioButton radioBtnEn;
+    RadioButton radioBtnKm;
+    private MutiLanguage mutiLanguage;
+    private ImageView flatEng, flatKhmer;
 
     public FourFragment(){}
 
@@ -57,6 +71,7 @@ public class FourFragment extends Fragment {
         unlock = (SwitchCompat) fourFragmentView.findViewById(R.id.switch1);
         accountManage = (LinearLayout) fourFragmentView.findViewById(R.id.li_account_manage);
         contactUs = (LinearLayout) fourFragmentView.findViewById(R.id.li_contact_us);
+        changeLang = (LinearLayout) fourFragmentView.findViewById(R.id.li_change_lan);
         recommend = (LinearLayout) fourFragmentView.findViewById(R.id.li_recommend);
         advertising = (LinearLayout) fourFragmentView.findViewById(R.id.li_advertising);
         howToUse = (LinearLayout) fourFragmentView.findViewById(R.id.li_how_to_use);
@@ -103,6 +118,13 @@ public class FourFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 contactUs();
+            }
+        });
+
+        changeLang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDiolag(getContext());
             }
         });
 
@@ -189,5 +211,87 @@ public class FourFragment extends Fragment {
             }
         }
         return false;
+    }
+
+    private void alertDiolag(Context context){
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setContentView(R.layout.alert_dialog_activity_choose_lan);
+
+        radioBtnEn = (RadioButton)dialog.findViewById(R.id.radio_english);
+        radioBtnKm = (RadioButton)dialog.findViewById(R.id.radio_khmer);
+        flatEng = (ImageView) dialog.findViewById(R.id.flat_eng);
+        flatKhmer = (ImageView) dialog.findViewById(R.id.flat_khmer);
+
+        mutiLanguage = new MutiLanguage(getContext(),getActivity());
+        String lang = mutiLanguage.getLanguageCurrent();
+
+        /*check langauge at first time*/
+        selectOnlyOneRadioAtOneTime();
+
+        /*select on flag event*/
+        eventSelectOnFlag();
+
+        if (lang.equals("en") || lang.isEmpty()) {
+            radioBtnEn.setChecked(true);
+        }else {
+            radioBtnKm.setChecked(true);
+        }
+
+        dialog.findViewById(R.id.bttn_ok).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 if (radioBtnKm.isChecked() == true) {
+                    mutiLanguage.setLanguage("km");
+                } else if (radioBtnEn.isChecked() == true) {
+                    mutiLanguage.setLanguage("en");
+                }
+                dialog.dismiss();
+            }
+        });
+        Window window = dialog.getWindow();
+        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        dialog.show();
+    }
+
+    private void selectOnlyOneRadioAtOneTime() {
+        radioBtnKm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked == true) {
+                    radioBtnEn.setChecked(false);
+                }
+            }
+        });
+
+        radioBtnEn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked == true) {
+                    radioBtnKm.setChecked(false);
+                }
+            }
+        });
+    }
+
+    private void eventSelectOnFlag() {
+        flatEng.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioBtnEn.setChecked(true);
+                radioBtnKm.setChecked(false);
+            }
+        });
+
+        flatKhmer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                radioBtnKm.setChecked(true);
+                radioBtnEn.setChecked(false);
+            }
+        });
     }
 }

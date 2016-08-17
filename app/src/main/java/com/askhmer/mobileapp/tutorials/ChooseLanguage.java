@@ -59,9 +59,6 @@ public class ChooseLanguage extends AppCompatActivity {
             radioBtnKm.setChecked(true);
         }
 
-        /*change color in message on choose langauge*/
-        changeColor();
-
         flatEng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,12 +113,5 @@ public class ChooseLanguage extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private void changeColor(){
-        String first = getResources().getString(R.string.choose_lang);
-        TextView textView = (TextView)findViewById(R.id.tv_message);
-        String next = "<font color='#03A9F4'> medayi</font>";
-        textView.setText(Html.fromHtml(first + next));
     }
 }

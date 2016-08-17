@@ -10,7 +10,10 @@
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
 
     <!--choose langauge-->
-    <string name="choose_lang">ជម្រើសរបស់អ្នកសម្រាប់ជីវិតល្អប្រសើរជាងមុនមាននៅក្នុង </string>
+    <string name="choose_lang1">ជម្រើសរបស់អ្នក</string>
+    <string name="choose_lang2">\t\tសម្រាប់ជីវិតល្អប្រសើរ</string>
+    <string name="choose_lang3">មាននៅក្នុង</string>
+    <string name="choose_lang4">Medayi</string>
     <string name="choose_lan_title">ជ្រើសរើសភាសា</string>
     <string name="start">ចាប់ផ្ដើម</string>
 
@@ -135,6 +138,7 @@
     <string name="unlock_scr"> ផ្ទាំងដោះសោ </string>
     <string name="acc_manage"> ការគ្រប់កគ្រងគណនី </string>
     <string name="contact"> ទំនាក់ទំនង </string>
+    <string name="chnage_lan"> ប្ដូរ​ភាសា </string>
     <string name="recommend"> អ្នកនែនាំ </string>
     <string name="ad_inqui"> សាកសួរពីការផ្សព្វផ្សាយពាណិជ្ជកម្ម </string>
     <string name="how_to_use"> របៀបប្រើប្រាស់កម្មវិធី </string>

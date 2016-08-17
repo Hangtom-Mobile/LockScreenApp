@@ -10,7 +10,10 @@
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>
 
     <!--choose langauge-->
-    <string name="choose_lang">Your chocie\n\t\t for a better\n\t\t life in </string>
+    <string name="choose_lang1">Your chocie</string>
+    <string name="choose_lang2">\t\tfor a better</string>
+    <string name="choose_lang3">life in</string>
+    <string name="choose_lang4">Medayi</string>
     <string name="choose_lan_title">Choose Langauge</string>
     <string name="start">START</string>
 
@@ -135,6 +138,7 @@
     <string name="unlock_scr"> Unlock screen </string>
     <string name="acc_manage"> Account Management </string>
     <string name="contact"> Contact Us </string>
+    <string name="chnage_lan"> Change Langauge </string>
     <string name="recommend"> Recommend </string>
     <string name="ad_inqui"> Advertising Inquiry </string>
     <string name="how_to_use"> How to use App </string>
