@@ -30,6 +30,7 @@ import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.constant.Constant;
 import com.askhmer.mobileapp.network.API;
 import com.askhmer.mobileapp.network.MySingleton;
+import com.askhmer.mobileapp.utils.MutiLanguage;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -46,7 +47,8 @@ import java.util.Map;
 public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     private WebView webview;
-    private final String URL_ASKHMER = "http://m.medayi.com/";
+    private final String URL_ASKHMER = "http://m.medayi.com/index.php?language=kh&medayi_app=yes";
+    private final String URL_ASKHMER_EN = "http://m.medayi.com/index.php?language=en&medayi_app=yes";
     private SwipeRefreshLayout swipeRefreshLayout;
     private ProgressBar mProgress;
     private ImageButton btnBack;
@@ -102,7 +104,17 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         token = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_TOKEN);
 
         postData = "cash_slide_id="+mbId+"&cash_password="+password+"&token_id="+token;
-        webview.postUrl(URL_ASKHMER, EncodingUtils.getBytes(postData, "base64"));
+
+        MutiLanguage mutiLanguage = new MutiLanguage(getContext(), getActivity());
+        String lang = mutiLanguage.getLanguageCurrent();
+
+        if (lang.equals("en") || lang.isEmpty()) {
+            webview.postUrl(URL_ASKHMER_EN, EncodingUtils.getBytes(postData, "base64"));
+        }else {
+            webview.postUrl(URL_ASKHMER, EncodingUtils.getBytes(postData, "base64"));
+        }
+
+
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.

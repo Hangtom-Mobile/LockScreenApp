@@ -36,7 +36,7 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
                         String verifyNumber = msgBody.replaceAll("[^\\.0123456789]", "");
 
                         // you have the sms content in the msgBody
-                        if(sender.equals("Hangtom")|| sender == "Hangtom") {
+                        if(sender.equals("MEDAYI")|| sender == "MEDAYI") {
                             reciver.setTextToTextView(verifyNumber);
                         }
                     }

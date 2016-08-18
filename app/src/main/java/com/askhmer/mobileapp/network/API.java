@@ -27,4 +27,5 @@ public class API {
     public static final String CHANGPASSWORD = "http://www.medayi.com/bbs/password_change_api.php";
     public static final String MEMBERINFOAPI = "http://www.medayi.com/bbs/member_info_api.php";
     public static final String CHANGLOCATION = "http://www.medayi.com/bbs/change_location_api.php";
+    public static final String SMSGATEWAY = BASEURL + "locknet_smscode_api.php";
 }
