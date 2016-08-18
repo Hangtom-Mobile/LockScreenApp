@@ -54,11 +54,12 @@
     <string name="apply">ដាក់បញ្ចូល</string>
     <string name="welcome">សូមស្វាគមន៏! អ្នកអាចចូលរួមជាមួយ Medayi ដោយគ្រាន់តែបញ្ចូលលេខទូរស័ព្ទរបស់អ្នកដើម្បីចាប់ផ្តើម</string>
     <string name="validatePhone">សូមបញ្ចូលលេខទូរស័ព្ទរបស់អ្នកអោយបានត្រឹមត្រូវ!</string>
-    <string name="msg_wait">សូមរង់ចាំដើម្បីទទួលបានលេខផ្ទៀងផ្ទាត់</string>
+    <string name="msg_wait">សូមចុចប៊ូតុង Apply ម្តងទៀត បើសិនជាមិនបានទទួលការផ្ញើសារបន្ទាប់ពី </string>
+    <string name="registered">លេខទូរស័ព្ទរបស់អ្នកត្រូវបានគេចុះបញ្ជីរួចហើយ</string>
     <string name="confirmNumber">ផ្ទៀងផ្ទាត់</string>
     <string-array name="country">
-        <item> Cambodia </item>
-        <item> South Korea </item>
+        <item> កម្ពុជា </item>
+        <item> កូរ៉េខាងត្បូង </item>
     </string-array>
 
     <!-- Information -->

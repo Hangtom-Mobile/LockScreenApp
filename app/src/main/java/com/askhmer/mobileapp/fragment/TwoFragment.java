@@ -55,8 +55,6 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private ImageButton btnRefresh;
     private SharedPreferencesFile mSharedPreferencesFile;
     private String mbId,password,token,postData;
-    private int start;
-    private String current_url;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -78,8 +76,6 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View twoFragmentView = inflater.inflate(R.layout.fragment_two, container, false);
-
-        start++;
         webview = (WebView) twoFragmentView.findViewById(R.id.webview);
         webSetting();
 //init
@@ -106,11 +102,8 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         token = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_TOKEN);
 
         postData = "cash_slide_id="+mbId+"&cash_password="+password+"&token_id="+token;
-        if(start==2){
-            webview.postUrl(URL_ASKHMER, EncodingUtils.getBytes(postData, "base64"));
-        }else {
-            webview.postUrl(current_url, EncodingUtils.getBytes(postData, "base64"));
-        }
+        webview.postUrl(URL_ASKHMER, EncodingUtils.getBytes(postData, "base64"));
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(getActivity()).addApi(AppIndex.API).build();
@@ -120,7 +113,6 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        start =1;
     }
 
     private View.OnClickListener btnTouchListener = new View.OnClickListener() {
@@ -366,7 +358,6 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
             // If we are becoming invisible, then...
             if (!isVisibleToUser) {
                 webview.onPause();
-                current_url = webview.getUrl();
             }else {
                 webview.onResume();
             }

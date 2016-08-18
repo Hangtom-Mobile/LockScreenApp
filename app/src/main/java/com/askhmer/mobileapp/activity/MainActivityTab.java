@@ -203,25 +203,4 @@ public class MainActivityTab extends AppCompatActivity {
             startService(new Intent(this, LockscreenService.class));
         }*/
     }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
 }

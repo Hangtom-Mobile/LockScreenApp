@@ -4,7 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.opengl.Visibility;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneNumberFormattingTextWatcher;
@@ -22,6 +24,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -30,11 +33,17 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.askhmer.mobileapp.R;
 import com.askhmer.mobileapp.model.Reciver;
+import com.askhmer.mobileapp.network.API;
+import com.askhmer.mobileapp.network.MySingleton;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 import com.askhmer.mobileapp.utils.SmsBroadcastReceiver;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class PhoneNumber extends AppCompatActivity implements Reciver{
@@ -51,6 +60,7 @@ public class PhoneNumber extends AppCompatActivity implements Reciver{
     private String formatedPhNumber;
     private RelativeLayout layoutConfirm;
     private Spinner countryCode;
+    private CountDownTimer count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +130,7 @@ public class PhoneNumber extends AppCompatActivity implements Reciver{
             public void onClick(View v) {
                 if (isValidMobile(etPhoneNum.getText().toString())) {
                     int randomPIN = (int) (Math.random() * 9000) + 1000;
-                    randomNumber = randomPIN+"";
+                    randomNumber = randomPIN + "";
                     String unformatePhNumber = etPhoneNum.getText().toString();
                     formatedPhNumber = unformatePhNumber.replaceAll("[^\\.0123456789]", "");
 
@@ -130,13 +140,14 @@ public class PhoneNumber extends AppCompatActivity implements Reciver{
                     layoutConfirm.setVisibility(View.VISIBLE);
 
                     if (ind.equals("0")) {
-                        String fulPhoneNum = code + formatedPhNumber.substring(1);
+                        String fulPhoneNum = code + "_" + formatedPhNumber.substring(1);
                         sendSMS(fulPhoneNum, randomNumber);
                     } else {
-                        String fulPhoneNum = code + formatedPhNumber;
+                        String fulPhoneNum = code + "_" + formatedPhNumber;
                         sendSMS(fulPhoneNum, randomNumber);
                     }
 
+                    setButtonApply(false, R.color.hintColor);
                 } else {
                     tvMsg.setVisibility(View.VISIBLE);
                 }
@@ -154,7 +165,7 @@ public class PhoneNumber extends AppCompatActivity implements Reciver{
                     Intent i = new Intent(getApplicationContext(), Information.class);
                     startActivity(i);
                     PhoneNumber.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
-                }else Toast.makeText(PhoneNumber.this, "Wrong number", Toast.LENGTH_SHORT).show();
+                }else Toast.makeText(PhoneNumber.this, "Wrong code", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -167,7 +178,7 @@ public class PhoneNumber extends AppCompatActivity implements Reciver{
         boolean check=false;
         if(!Pattern.matches("[a-zA-Z]+", formatedPhNumber))
         {
-            if(newPhNumber.length() < 9 || newPhNumber.length() > 10)
+            if(newPhNumber.length() < 8 || newPhNumber.length() > 10)
             {
                 check = false;
             }
@@ -198,41 +209,57 @@ public class PhoneNumber extends AppCompatActivity implements Reciver{
 
 
     //send SMS to client
-    public void sendSMS(final String receiver,String verifycode){
+    public void sendSMS(final String receiver, final String verifycode){
         View view = this.getCurrentFocus();
         if (view != null) {
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://chat.askhmer.com/api/verify/phone_number/"+ receiver+"/"+verifycode;
 
-// Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+        /*count down message */
+        waitingMessage(R.string.msg_wait);
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, API.SMSGATEWAY,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        if (response.equals("{\"STATUS\":200}")) {
-                            Toast.makeText(PhoneNumber.this, "request sucessed  :" + response, Toast.LENGTH_SHORT).show();
-                            Log.d("respone", response);
-                        } else {
-                            Toast.makeText(PhoneNumber.this, "request failed", Toast.LENGTH_SHORT).show();
+                        if (!response.isEmpty()) {
+                            try {
+                                JSONObject jsonObj = new JSONObject(response);
+                                String result = jsonObj.getString("rst");
+                                if (result.equals("112")) {
+                                    displayRegisterd();
+                                }else {
+                                    /*invaild*/
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.e("error_testing", error.toString());
             }
-        });
-// Add the request to the RequestQueue.
-        queue.add(stringRequest);
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                Log.e("view_testing2",receiver + "   " + verifycode);
+                params.put("verifyCode", verifycode);
+                params.put("phone", receiver);
+                return params;
+            }
+        };
+        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
     @Override
     public void setTextToTextView(String text) {
         verifyNumber.setText(text);
         waitMsg.setVisibility(View.GONE);
+        count.cancel();
     }
 
     @Override
@@ -248,5 +275,39 @@ public class PhoneNumber extends AppCompatActivity implements Reciver{
     protected void onPause() {
         super.onPause();
         unregisterReceiver(mybroadcast);
+        count.cancel();
+    }
+
+    private void waitingMessage(final int resouId) {
+        if (resouId == R.string.registered) {
+            waitMsg.setText(getResources().getString(resouId));
+            waitMsg.setVisibility(View.VISIBLE);
+        }else {
+            count = new CountDownTimer(120000, 1000) {
+                public void onTick(long millisUntilFinished) {
+                    waitMsg.setText(getResources().getString(resouId) +" "+ millisUntilFinished / 1000 + " seconds");
+                }
+
+                public void onFinish() {
+                    waitMsg.setVisibility(View.GONE);
+                    setButtonApply(true, R.drawable.btn_selector);
+                }
+            };
+
+            count.start();
+        }
+    }
+
+    /*this method use to set button disable or not*/
+    private void setButtonApply(boolean isEnabled, int color) {
+        btnApply.setEnabled(isEnabled);
+        btnApply.setBackgroundResource(color);
+    }
+
+    private void displayRegisterd() {
+        count.cancel();
+        waitMsg.setText(getResources().getString(R.string.registered));
+        waitMsg.setVisibility(View.VISIBLE);
+        setButtonApply(true, R.drawable.btn_selector);
     }
 }

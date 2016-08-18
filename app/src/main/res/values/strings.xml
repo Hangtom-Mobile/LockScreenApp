@@ -54,7 +54,8 @@
     <string name="apply">APPLY</string>
     <string name="welcome">Welcome! you\'re Joined Medayi as Enter your phone number to Start</string>
     <string name="validatePhone">Input your correct phone number!</string>
-    <string name="msg_wait">Please wait to get your verify number</string>
+    <string name="msg_wait">Press button Apply again, If don\'t receive sms after </string>
+    <string name="registered">Your phone number has been register</string>
     <string name="confirmNumber">CONFIRM</string>
     <string-array name="country">
         <item name="855"> Cambodia </item>
