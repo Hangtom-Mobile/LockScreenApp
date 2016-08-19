@@ -91,7 +91,7 @@ public class PhoneNumber extends AppCompatActivity implements Reciver{
         countryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 String item = parent.getItemAtPosition(pos)+"";
-                if (item.equalsIgnoreCase("Cambodia")){
+                if (item.equalsIgnoreCase(getResources().getString(R.string.cam))){
                     code = "855";
                 }else {
                     code = "82";
@@ -259,7 +259,7 @@ public class PhoneNumber extends AppCompatActivity implements Reciver{
     public void setTextToTextView(String text) {
         verifyNumber.setText(text);
         waitMsg.setVisibility(View.GONE);
-        count.cancel();
+        cancelCount();
     }
 
     @Override
@@ -275,7 +275,7 @@ public class PhoneNumber extends AppCompatActivity implements Reciver{
     protected void onPause() {
         super.onPause();
         unregisterReceiver(mybroadcast);
-        count.cancel();
+        cancelCount();
     }
 
     private void waitingMessage(final int resouId) {
@@ -305,9 +305,15 @@ public class PhoneNumber extends AppCompatActivity implements Reciver{
     }
 
     private void displayRegisterd() {
-        count.cancel();
+        cancelCount();
         waitMsg.setText(getResources().getString(R.string.registered));
         waitMsg.setVisibility(View.VISIBLE);
         setButtonApply(true, R.drawable.btn_selector);
+    }
+
+    private void cancelCount() {
+        if (count != null) {
+            count.cancel();
+        }
     }
 }

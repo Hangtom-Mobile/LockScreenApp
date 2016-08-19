@@ -57,9 +57,11 @@
     <string name="msg_wait">Press button Apply again, If don\'t receive sms after </string>
     <string name="registered">Your phone number has been register</string>
     <string name="confirmNumber">CONFIRM</string>
+    <string name="cam">Cambodia</string>
+    <string name="ko">South Korea</string>
     <string-array name="country">
-        <item name="855"> Cambodia </item>
-        <item name="82"> South Korea </item>
+        <item>@string/cam </item>
+        <item>@string/ko</item>
     </string-array>
 
     <!-- Information -->
