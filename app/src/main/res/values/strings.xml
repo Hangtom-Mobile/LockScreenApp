@@ -325,4 +325,11 @@
 
     </string>
 
+    <!--schedule-->
+    <string name="title_sch"> Lock off screen will be displayed \n after your choice as below </string>
+    <string name="one_hour"> After 1 hour</string>
+    <string name="two_hour"> After 2 hour</string>
+    <string name="five_hour"> After 5 hour</string>
+    <string name="never"> turn off until turn on </string>
+
 </resources>

@@ -2,17 +2,20 @@ package com.askhmer.mobileapp.fragment;
 
 
 import android.app.ActivityManager;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +26,6 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,10 +36,15 @@ import com.askhmer.mobileapp.activity.Recommend;
 import com.askhmer.mobileapp.activity.SendMail;
 import com.askhmer.mobileapp.activity.TermsOfUse;
 import com.askhmer.mobileapp.tutorials.MainPage;
+import com.askhmer.mobileapp.utils.AlarmReceiver;
 import com.askhmer.mobileapp.utils.CheckVersionCode;
+import com.askhmer.mobileapp.utils.LockscreenIntentReceiver;
 import com.askhmer.mobileapp.utils.LockscreenService;
 import com.askhmer.mobileapp.utils.MutiLanguage;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
+import com.jaredrummler.materialspinner.MaterialSpinner;
+
+import java.util.Calendar;
 
 /**
  * Created by Longdy on 6/22/2016.
@@ -53,6 +60,9 @@ public class FourFragment extends Fragment {
     RadioButton radioBtnKm;
     private MutiLanguage mutiLanguage;
     private ImageView flatEng, flatKhmer;
+    private PendingIntent pendingIntent;
+    private AlarmManager manager;
+    private int hour;
 
     public FourFragment(){}
 
@@ -86,6 +96,9 @@ public class FourFragment extends Fragment {
         /*check service lock screen work or not*/
         if (isMyServiceRunning(LockscreenService.class) == true){
             unlock.setChecked(true);
+
+            /*stop alarm when lock screen on*/
+            stopAlarm();
         }else {
             unlock.setChecked(false);
         }
@@ -94,13 +107,15 @@ public class FourFragment extends Fragment {
         unlock.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    Toast.makeText(getActivity(), "Unlock on", Toast.LENGTH_SHORT).show();
+                    /*Toast.makeText(getActivity(), "Unlock on", Toast.LENGTH_SHORT).show();*/
                     mSharedPreferencesFile.putBooleanSharedPreference(SharedPreferencesFile.SERVICELOCK, false);
                     getContext().startService(new Intent(getActivity(), LockscreenService.class));
+
+                    /*stop alarm when lock screen on*/
+                    stopAlarm();
                 }else {
-                    Toast.makeText(getActivity(), "Unlock off", Toast.LENGTH_SHORT).show();
-                    mSharedPreferencesFile.putBooleanSharedPreference(SharedPreferencesFile.SERVICELOCK, true);
-                    getContext().stopService(new Intent(getContext().getApplicationContext(), LockscreenService.class));
+                    /*Toast.makeText(getActivity(), "Unlock off", Toast.LENGTH_SHORT).show();*/
+                    dialogSchedule(getContext());
                 }
             }
         });
@@ -293,5 +308,69 @@ public class FourFragment extends Fragment {
                 radioBtnEn.setChecked(false);
             }
         });
+    }
+
+    private void startAlarm(int minute) {
+        // Retrieve a PendingIntent that will perform a broadcast
+        Intent alarmIntent = new Intent(getActivity(), AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        manager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+        manager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + (minute * 60000), pendingIntent);
+    }
+
+    private void stopAlarm() {
+        if (manager != null) {
+            manager.cancel(pendingIntent);
+            Toast.makeText(getContext(), "Alarm Canceled", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void dialogSchedule(Context context) {
+
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                unlock.setChecked(true);
+            }
+        });
+        dialog.setContentView(R.layout.alert_dialog_schedule);
+
+
+        final MaterialSpinner spinner = (MaterialSpinner) dialog.findViewById(R.id.spinner);
+        spinner.setItems(getResources().getString(R.string.one_hour), getResources().getString(R.string.two_hour),
+                getResources().getString(R.string.five_hour), getResources().getString(R.string.never));
+
+        dialog.findViewById(R.id.bttn_ok).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (spinner.getSelectedIndex()) {
+                    case 0:
+                        startAlarm(60);
+                        break;
+                    case 1:
+                        startAlarm(120);
+                        break;
+                    case 2:
+                        startAlarm(300);
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        break;
+                }
+                mSharedPreferencesFile.putBooleanSharedPreference(SharedPreferencesFile.SERVICELOCK, true);
+                getContext().stopService(new Intent(getContext().getApplicationContext(), LockscreenService.class));
+                dialog.dismiss();
+            }
+        });
+        Window window = dialog.getWindow();
+        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        dialog.show();
     }
 }

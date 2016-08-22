@@ -131,6 +131,7 @@
                             android:inputType="phone"
                             android:gravity="left|center"
                             android:hint="Phone"
+                            android:maxLines="1"
                             android:background="@drawable/radius_ed"/>
 
                     </LinearLayout>

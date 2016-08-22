@@ -325,4 +325,11 @@
 
     </string>
 
+    <!--schedule-->
+    <string name="title_sch"> ចាក់សោរបិទអេក្រង់នឹងត្រូវបានបង្ហាញ \ n បន្ទាប់ពីជម្រើសរបស់អ្នកដូចខាងក្រោម </string>
+    <string name="one_hour"> បន្ទាប់ពី 1 ម៉ោង</string>
+    <string name="two_hour"> បន្ទាប់ពី 2 ម៉ោង</string>
+    <string name="five_hour"> បន្ទាប់ពី 5 ម៉ោង</string>
+    <string name="never"> បិទរហូតដល់បើក </string>
+
 </resources>
