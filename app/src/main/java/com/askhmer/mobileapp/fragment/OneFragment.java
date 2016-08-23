@@ -97,6 +97,7 @@ public class OneFragment extends Fragment {
         medayiSharing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*https://github.com/orhanobut/dialogplus*/
                 SimpleAdpter adapter = new SimpleAdpter(getContext());
                 DialogPlus dialog = DialogPlus.newDialog(getContext())
                         .setAdapter(adapter)
