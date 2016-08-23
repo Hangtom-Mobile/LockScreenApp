@@ -22,10 +22,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +44,6 @@ import com.askhmer.mobileapp.utils.LockscreenIntentReceiver;
 import com.askhmer.mobileapp.utils.LockscreenService;
 import com.askhmer.mobileapp.utils.MutiLanguage;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
-import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.util.Calendar;
 
@@ -322,7 +323,6 @@ public class FourFragment extends Fragment {
     private void stopAlarm() {
         if (manager != null) {
             manager.cancel(pendingIntent);
-            Toast.makeText(getContext(), "Alarm Canceled", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -342,14 +342,21 @@ public class FourFragment extends Fragment {
         dialog.setContentView(R.layout.alert_dialog_schedule);
 
 
-        final MaterialSpinner spinner = (MaterialSpinner) dialog.findViewById(R.id.spinner);
-        spinner.setItems(getResources().getString(R.string.one_hour), getResources().getString(R.string.two_hour),
-                getResources().getString(R.string.five_hour), getResources().getString(R.string.never));
+        final Spinner spinner = (Spinner) dialog.findViewById(R.id.spinner);
+
+        // Creating adapter for spinner
+        ArrayAdapter<CharSequence> dataAdapter = ArrayAdapter.createFromResource(context, R.array.hour, android.R.layout.simple_spinner_item);
+
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // attaching data adapter to spinner
+        spinner.setAdapter(dataAdapter);
 
         dialog.findViewById(R.id.bttn_ok).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (spinner.getSelectedIndex()) {
+                switch (spinner.getSelectedItemPosition()) {
                     case 0:
                         startAlarm(60);
                         break;

@@ -1,15 +1,20 @@
 package com.askhmer.mobileapp.fragment;
 
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,12 +37,19 @@ import com.askhmer.mobileapp.network.API;
 import com.askhmer.mobileapp.network.MySingleton;
 import com.askhmer.mobileapp.utils.NetworkUtil;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
+import com.askhmer.mobileapp.utils.SimpleAdpter;
 import com.askhmer.mobileapp.utils.TextProgressBar;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.GridHolder;
+import com.orhanobut.dialogplus.ListHolder;
+import com.orhanobut.dialogplus.OnItemClickListener;
+import com.orhanobut.dialogplus.ViewHolder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -85,10 +97,38 @@ public class OneFragment extends Fragment {
         medayiSharing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                sharingIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.askhmer.lockscreen");
-                startActivity(Intent.createChooser(sharingIntent, "Share via"));
+                SimpleAdpter adapter = new SimpleAdpter(getContext());
+                DialogPlus dialog = DialogPlus.newDialog(getContext())
+                        .setAdapter(adapter)
+                        .setContentHolder(new ListHolder())
+                        .setHeader(R.layout.header)
+                        .setOnItemClickListener(new OnItemClickListener() {
+                            @Override
+                            public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
+                                switch (position) {
+                                    case 0:
+                                        sharedVia("com.facebook.katana");
+                                        dialog.dismiss();
+                                        break;
+                                    case 1:
+                                        sharedVia("com.facebook.orca");
+                                        dialog.dismiss();
+                                        break;
+                                    case 2:
+                                        sharedVia("jp.naver.line.android");
+                                        dialog.dismiss();
+                                        break;
+                                    case 3:
+                                        sharedVia("com.whatsapp");
+                                        dialog.dismiss();
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                        })
+                        .create();
+                dialog.show();
             }
         });
 
@@ -244,5 +284,13 @@ public class OneFragment extends Fragment {
 
           /*request count user*/
         requestCountUser();
+    }
+
+    private void sharedVia(String packageName) {
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.setPackage(packageName);
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.askhmer.lockscreen");
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
 }
