@@ -1,6 +1,7 @@
 package com.askhmer.mobileapp.fragment;
 
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -51,6 +52,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Created by Longdy on 6/22/2016.
@@ -292,6 +295,13 @@ public class OneFragment extends Fragment {
         sharingIntent.setType("text/plain");
         sharingIntent.setPackage(packageName);
         sharingIntent.putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.askhmer.lockscreen");
-        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+        try {
+            startActivity(sharingIntent);
+        }catch (ActivityNotFoundException e) {
+            new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
+                    .setTitleText("Sorry...")
+                    .setContentText("Your device no have this application.")
+                    .show();
+        }
     }
 }
