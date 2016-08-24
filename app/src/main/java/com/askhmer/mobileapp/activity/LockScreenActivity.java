@@ -15,6 +15,7 @@ import android.support.v4.view.ViewPager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -43,6 +44,7 @@ import com.askhmer.mobileapp.utils.LockscreenUtils;
 import com.askhmer.mobileapp.utils.MyBroadCastReciever;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 import com.askhmer.mobileapp.utils.ToggleSwitchButtonByDy;
+import com.thefinestartist.finestwebview.FinestWebView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -526,8 +528,22 @@ public class LockScreenActivity extends Activity implements
 						if (new CheckInternet().isConnect(getApplicationContext()) == true) {
 							requestPointToServer("left", "lock_view_price", urlPrice, uId);
 						}
-						Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-						startActivity(browserIntent);
+						/*https://github.com/TheFinestArtist/FinestWebView-Android*/
+						new FinestWebView.Builder(getApplicationContext())
+								.statusBarColorRes(R.color.colorPrimaryDark)
+								.toolbarColorRes(R.color.colorPrimary)
+								.titleColorRes(R.color.finestWhite)
+								.urlColorRes(R.color.finestWhite)
+								.iconDefaultColorRes(R.color.finestWhite)
+								.progressBarColorRes(R.color.finestWhite)
+								.stringResRefresh(R.string.m_refresh)
+								.stringResShareVia(R.string.m_share)
+								.stringResCopyLink(R.string.m_copy)
+								.stringResOpenWith(R.string.m_open)
+								.menuTextGravity(Gravity.CENTER)
+								.toolbarScrollFlags(0)
+								.showSwipeRefreshLayout(false)
+								.show(url);
 					} else {
 						new SweetAlertDialog(LockScreenActivity.this)
 								.setTitleText("Sorry this banner no link!")

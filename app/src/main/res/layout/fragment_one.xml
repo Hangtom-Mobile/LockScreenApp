@@ -259,7 +259,7 @@
                                 android:gravity="center"
                                 android:textSize="14dp"
                                 android:layout_marginTop="10dp"
-                                android:textColor="@color/common_signin_btn_default_background"/>
+                                android:textColor="@color/red_btn_bg_color"/>
                         </LinearLayout>
                         <LinearLayout
                             android:id="@+id/medayi_sharing"
@@ -288,7 +288,7 @@
                                 android:gravity="center"
                                 android:textSize="14dp"
                                 android:layout_marginTop="10dp"
-                                android:textColor="@color/common_signin_btn_default_background"/>
+                                android:textColor="@color/red_btn_bg_color"/>
 
                         </LinearLayout>
 

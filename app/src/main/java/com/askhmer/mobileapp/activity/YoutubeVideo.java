@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -23,6 +24,7 @@ import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.thefinestartist.finestwebview.FinestWebView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -72,8 +74,9 @@ public class YoutubeVideo extends YouTubeBaseActivity implements YouTubePlayer.O
             @Override
             public void onClick(View v) {
                 if (!movieEndUrl.isEmpty()) {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(movieEndUrl));
-                    startActivity(browserIntent);
+                    /*Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(movieEndUrl));
+                    startActivity(browserIntent);*/
+                    ownWeb(movieEndUrl);
                 }
                 finish();
             }
@@ -161,8 +164,9 @@ public class YoutubeVideo extends YouTubeBaseActivity implements YouTubePlayer.O
                         }
 
                         if ((currentTimeMillis == durationTimeMillis) && (!movieEndUrl.isEmpty())) {
-                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(movieEndUrl));
-                            startActivity(browserIntent);
+                            /*Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(movieEndUrl));
+                            startActivity(browserIntent);*/
+                            ownWeb(movieEndUrl);
                             finish();
                         } else if ((currentTimeMillis == durationTimeMillis) && (movieEndUrl.isEmpty())) {
                             finish();
@@ -204,5 +208,23 @@ public class YoutubeVideo extends YouTubeBaseActivity implements YouTubePlayer.O
             }
         };
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+    private void ownWeb(String url) {
+        new FinestWebView.Builder(getApplicationContext())
+                .statusBarColorRes(R.color.colorPrimaryDark)
+                .toolbarColorRes(R.color.colorPrimary)
+                .titleColorRes(R.color.finestWhite)
+                .urlColorRes(R.color.finestWhite)
+                .iconDefaultColorRes(R.color.finestWhite)
+                .progressBarColorRes(R.color.finestWhite)
+                .stringResRefresh(R.string.m_refresh)
+                .stringResShareVia(R.string.m_share)
+                .stringResCopyLink(R.string.m_copy)
+                .stringResOpenWith(R.string.m_open)
+                .menuTextGravity(Gravity.CENTER)
+                .toolbarScrollFlags(0)
+                .showSwipeRefreshLayout(false)
+                .show(url);
     }
 }

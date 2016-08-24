@@ -34,4 +34,5 @@ dependencies {
     compile 'com.github.paolorotolo:appintro:3.4.0'
     compile files('lib/YouTubeAndroidPlayerApi.jar')
     compile 'com.orhanobut:dialogplus:1.11@aar'
+    compile 'com.thefinestartist:finestwebview:1.2.7'
 }
