@@ -346,4 +346,11 @@
     <string name="ko_line"> Line </string>
     <string name="whatsapp"> Whatsapp </string>
 
+    <!--medayi web-->
+    <string name="m_refresh"> Refresh </string>
+    <string name="m_share"> Share via </string>
+    <string name="m_copy"> Copy link </string>
+    <string name="m_open"> Open with </string>
+
+
 </resources>

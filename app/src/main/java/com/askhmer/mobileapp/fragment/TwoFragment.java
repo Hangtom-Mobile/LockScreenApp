@@ -44,7 +44,7 @@ import java.util.Map;
 /**
  * Created by Longdy on 6/22/2016.
  */
-public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
+public class TwoFragment extends Fragment /*implements SwipeRefreshLayout.OnRefreshListener*/{
 
     private WebView webview;
     private final String URL_ASKHMER = "http://m.medayi.com/index.php?language=kh&medayi_app=yes";
@@ -57,6 +57,7 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private ImageButton btnRefresh;
     private SharedPreferencesFile mSharedPreferencesFile;
     private String mbId,password,token,postData;
+    private MutiLanguage mutiLanguage;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -92,12 +93,12 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         btnRefresh.setOnClickListener(btnTouchListener);
         mSharedPreferencesFile = new SharedPreferencesFile(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
 
-        swipeRefreshLayout = (SwipeRefreshLayout) twoFragmentView.findViewById(R.id.swipe_refresh_layout);
+      /*  swipeRefreshLayout = (SwipeRefreshLayout) twoFragmentView.findViewById(R.id.swipe_refresh_layout);
         // sets the colors used in the refresh animation
         swipeRefreshLayout.setColorSchemeResources(R.color.blue_bright, R.color.green_light,
                 R.color.orange_light, R.color.red_light);
 
-        swipeRefreshLayout.setOnRefreshListener(this);
+        swipeRefreshLayout.setOnRefreshListener(this);*/
 
         mbId = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID);
         password = mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD);
@@ -105,7 +106,7 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
         postData = "cash_slide_id="+mbId+"&cash_password="+password+"&token_id="+token;
 
-        MutiLanguage mutiLanguage = new MutiLanguage(getContext(), getActivity());
+        mutiLanguage = new MutiLanguage(getContext(), getActivity());
         String lang = mutiLanguage.getLanguageCurrent();
 
         if (lang.equals("en") || lang.isEmpty()) {
@@ -136,9 +137,9 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                     if (webview.canGoBack()) {
                         webview.goBack();
                     } else {
-                        if (!webview.getOriginalUrl().contains("bbs")&&webview.getOriginalUrl().contains("m.askhmer.com")) {
+                        /*if (!webview.getOriginalUrl().contains("bbs")&&webview.getOriginalUrl().contains("m.askhmer.com")) {
                             webview.loadUrl(Constant.MAIN_URL);
-                        }
+                        }*/
                     }
                     break;
                 case R.id.btnForward:
@@ -147,7 +148,11 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                     }
                     break;
                 case R.id.btnHome:
-                    webview.loadUrl(Constant.MAIN_URL);
+                    if (mutiLanguage.getLanguageCurrent().equals("en") || mutiLanguage.getLanguageCurrent().isEmpty()) {
+                        webview.postUrl(URL_ASKHMER_EN, EncodingUtils.getBytes(postData, "base64"));
+                    }else {
+                        webview.postUrl(URL_ASKHMER, EncodingUtils.getBytes(postData, "base64"));
+                    }
                     break;
 
                 case R.id.btnRefresh:
@@ -161,14 +166,14 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         }
     };
 
-    @Override
+  /*  @Override
     public void onRefresh() {
 
-        swipeRefreshLayout.setRefreshing(true);
+        *//*swipeRefreshLayout.setRefreshing(true);
         webview.loadUrl(webview.getUrl());
-        swipeRefreshLayout.setRefreshing(false);
+        swipeRefreshLayout.setRefreshing(false);*//*
 
-    }
+    }*/
 
 
     public void webSetting() {
@@ -358,7 +363,7 @@ public class TwoFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     @Override
     public void onDetach() {
         super.onDetach();
-        webview.onPause();
+        /*webview.onPause();*/
     }
 
     @Override

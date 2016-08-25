@@ -346,4 +346,10 @@
     <string name="ko_line"> Line </string>
     <string name="whatsapp"> Whatsapp </string>
 
+    <!--medayi web-->
+    <string name="m_refresh"> ដំណើរការឡើង </string>
+    <string name="m_share"> ចែករំលែកតាម </string>
+    <string name="m_copy"> ចម្លង </string>
+    <string name="m_open"> បើក​ជាមួយ </string>
+
 </resources>
