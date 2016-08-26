@@ -3,14 +3,11 @@ package com.askhmer.mobileapp.activity;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.KeyguardManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.PowerManager;
 import android.support.v4.view.ViewPager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -98,7 +95,6 @@ public class LockScreenActivity extends Activity implements
 		init();
 
 		mSharedPref = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
-		/*mSharedPref.putBooleanSharedPreference(SharedPreferencesFile.PREFER_KEY, true);*/
 		relativeLayout = (RelativeLayout) findViewById(R.id.relative_main);
 
 		// unlock screen in case of app get killed by system
@@ -139,15 +135,12 @@ public class LockScreenActivity extends Activity implements
 		/*request to server*/
 		if (new CheckInternet().isConnect(getApplicationContext()) != true) {
 			relativeLayout.setBackgroundResource(R.drawable.temp);
-		}else {
-			/*pathFile = new ArrayList<LockScreenBackgroundDto>();*/
 		}
+		/*Thread myThread = null;*/
 
-		Thread myThread = null;
-
-		Runnable runnable = new CountDownRunner();
+		/*Runnable runnable = new CountDownRunner();
 		myThread= new Thread(runnable);
-		myThread.start();
+		myThread.start();*/
 
 		switchButtonDefult();
 
@@ -159,11 +152,14 @@ public class LockScreenActivity extends Activity implements
 	private void init() {
 		mLockscreenUtils = new LockscreenUtils();
 		imageViewPager = (ViewPager) findViewById(R.id.view_pager);
+		/*display currrent date*/
+		getCurrentDate();
 	}
 
 	@Override
 	public void displayMessage() {
 		System.gc();
+		getCurrentDate();
 		lockScreenRequestServer("message");
 		imageViewPager.setCurrentItem(position++, false);
 	}
@@ -268,23 +264,13 @@ public class LockScreenActivity extends Activity implements
 		finish();
 	}
 
-
-/*
-	public void listItem(){
-		for (int i = 0; i<15; i++){
-			CompanyDto item = new CompanyDto();
-			item.setImgTest(imgTest);
-			arrList.add(item);
-		}
-	}
-*/
-	public String getShiftOfDate(Calendar cal) {
+	/*public String getShiftOfDate(Calendar cal) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm a");
 		String fullDateFormat = dateFormat.format(cal.getTime());
 		return fullDateFormat.substring(fullDateFormat.length() - 2);
-	}
+	}*/
 
-	public void doWork() {
+	/*public void doWork() {
 		runOnUiThread(new Runnable() {
 			public void run() {
 				try {
@@ -305,9 +291,9 @@ public class LockScreenActivity extends Activity implements
 				}
 			}
 		});
-	}
+	}*/
 
-	class CountDownRunner implements Runnable{
+	/*class CountDownRunner implements Runnable{
 		// @Override
 		public void run() {
 			while(!Thread.currentThread().isInterrupted()){
@@ -320,6 +306,12 @@ public class LockScreenActivity extends Activity implements
 				}
 			}
 		}
+	}*/
+
+	private void getCurrentDate() {
+		TextView txtCurrentDate = (TextView) findViewById(R.id.date);
+		Calendar cal = Calendar.getInstance();
+		txtCurrentDate.setText(new SimpleDateFormat("dd/MM/yy").format(cal.getTime()));
 	}
 
 	public void lockScreenRequestServer(final String note) {
@@ -445,20 +437,6 @@ public class LockScreenActivity extends Activity implements
 			}
 		};
 		MySingleton.getInstance(this).addToRequestQueue(stringRequest);
-	}
-
-	public void wakeUp() {
-
-		/*Delay 1sescond*/
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				PowerManager pm = (PowerManager) getApplicationContext().getSystemService(Context.POWER_SERVICE);
-				PowerManager.WakeLock wakeLock = pm.newWakeLock((PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.FULL_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP), "TAG");
-				wakeLock.acquire();
-				wakeLock.release();
-			}
-		}, 1200);
 	}
 
 	private void requestVideo(String url) {
