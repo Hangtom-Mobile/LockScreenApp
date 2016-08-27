@@ -25,6 +25,7 @@ public class SplashScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+        System.gc();
         StartAnimations();
 
         SharedPreferencesFile mSharedPref  = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
@@ -32,7 +33,6 @@ public class SplashScreen extends Activity {
         // Restore preferences_n
         final boolean registerOrLoginScreen = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.REGISTERNLOGIN);
         final boolean isIntroFinish = mSharedPref.getBooleanSharedPreference(SharedPreferencesFile.IS_KEY_INTRO_FINISH);
-        String b = mSharedPref.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID);
 
 
         /* New Handler to start the Menu-Activity

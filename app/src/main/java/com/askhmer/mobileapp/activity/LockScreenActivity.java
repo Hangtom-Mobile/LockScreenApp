@@ -133,9 +133,9 @@ public class LockScreenActivity extends Activity implements
 		toggleDefult = (ToggleSwitchButtonByDy) findViewById(R.id.toggle_defult);
 
 		/*request to server*/
-		if (new CheckInternet().isConnect(getApplicationContext()) != true) {
+		/*if (new CheckInternet().isConnect(getApplicationContext()) != true) {
 			relativeLayout.setBackgroundResource(R.drawable.temp);
-		}
+		}*/
 		/*Thread myThread = null;*/
 
 		/*Runnable runnable = new CountDownRunner();
@@ -158,10 +158,10 @@ public class LockScreenActivity extends Activity implements
 
 	@Override
 	public void displayMessage() {
-		System.gc();
 		getCurrentDate();
 		lockScreenRequestServer("message");
 		imageViewPager.setCurrentItem(position++, false);
+		System.gc();
 	}
 
 	// Handle events of calls and unlock screen if necessary
