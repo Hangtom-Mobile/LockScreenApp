@@ -41,6 +41,9 @@ import com.askhmer.mobileapp.utils.LockscreenUtils;
 import com.askhmer.mobileapp.utils.MyBroadCastReciever;
 import com.askhmer.mobileapp.utils.SharedPreferencesFile;
 import com.askhmer.mobileapp.utils.ToggleSwitchButtonByDy;
+
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.squareup.picasso.Picasso;
 import com.thefinestartist.finestwebview.FinestWebView;
 
 import org.json.JSONException;
@@ -91,6 +94,7 @@ public class LockScreenActivity extends Activity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Fresco.initialize(this);
 		setContentView(R.layout.activity_lockscreen);
 		init();
 
@@ -661,5 +665,11 @@ public class LockScreenActivity extends Activity implements
 		}else {
 			switchButtonCall();
 		}
+	}
+
+	@Override
+	public void onLowMemory() {
+		super.onLowMemory();
+		System.gc();
 	}
 }
