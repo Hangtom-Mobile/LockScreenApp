@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.askhmer.mobileapp"
+    package="com.askhmer.lockscreen"
     android:versionCode="20"
     android:versionName="3.1.1">
 
@@ -32,7 +32,7 @@
         android:largeHeap="true"
         tools:replace="@android:icon">
         <activity
-            android:name=".activity.LockScreenActivity"
+            android:name="com.askhmer.lockscreen.activity.LockScreenActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:launchMode="singleTask"
@@ -40,41 +40,41 @@
             android:theme="@style/AppTheme" />
 
         <service
-            android:name=".utils.LockscreenService"
+            android:name="com.askhmer.lockscreen.utils.LockscreenService"
             android:exported="false" />
 
-        <receiver android:name=".utils.LockscreenIntentReceiver">
+        <receiver android:name="com.askhmer.lockscreen.utils.LockscreenIntentReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".utils.AlarmReceiver"></receiver>
+        <receiver android:name="com.askhmer.lockscreen.utils.AlarmReceiver"></receiver>
         <activity
-            android:name=".activity.PhoneNumber"
+            android:name="com.askhmer.lockscreen.activity.PhoneNumber"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.Information"
+            android:name="com.askhmer.lockscreen.activity.Information"
             android:label="@string/title_activity_information"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.Age"
+            android:name="com.askhmer.lockscreen.activity.Age"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.Name"
+            android:name="com.askhmer.lockscreen.activity.Name"
             android:label="@string/title_activity_information"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.Gender"
+            android:name="com.askhmer.lockscreen.activity.Gender"
             android:label="@string/title_activity_information"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.National"
+            android:name="com.askhmer.lockscreen.activity.National"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.Location"
+            android:name="com.askhmer.lockscreen.activity.Location"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.SplashScreen"
+            android:name="com.askhmer.lockscreen.activity.SplashScreen"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
@@ -84,66 +84,66 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.MainActivityTab"
+            android:name="com.askhmer.lockscreen.activity.MainActivityTab"
             android:hardwareAccelerated="true"
             android:theme="@style/MyTabTheme" />
         <activity
-            android:name=".activity.PasswordFindMoney"
+            android:name="com.askhmer.lockscreen.activity.PasswordFindMoney"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.Recommend"
+            android:name="com.askhmer.lockscreen.activity.Recommend"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.MoneyBalance"
+            android:name="com.askhmer.lockscreen.activity.MoneyBalance"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.AccountManage"
+            android:name="com.askhmer.lockscreen.activity.AccountManage"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.MyInfo"
+            android:name="com.askhmer.lockscreen.activity.MyInfo"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.ChangePwd"
+            android:name="com.askhmer.lockscreen.activity.ChangePwd"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.ForgetPwd"
+            android:name="com.askhmer.lockscreen.activity.ForgetPwd"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.Withdrawal"
+            android:name="com.askhmer.lockscreen.activity.Withdrawal"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.HowToUseChache"
+            android:name="com.askhmer.lockscreen.activity.HowToUseChache"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.PrivacyStatement"
+            android:name="com.askhmer.lockscreen.activity.PrivacyStatement"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.TermsOfUse"
+            android:name="com.askhmer.lockscreen.activity.TermsOfUse"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.NewPassword"
+            android:name="com.askhmer.lockscreen.activity.NewPassword"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".tutorials.MainPage"
+            android:name="com.askhmer.lockscreen.tutorials.MainPage"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.SendMail"
+            android:name="com.askhmer.lockscreen.activity.SendMail"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name=".activity.RegisterOrLogin"
+            android:name="com.askhmer.lockscreen.activity.RegisterOrLogin"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
-            android:name=".activity.Login"
+            android:name="com.askhmer.lockscreen.activity.Login"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.LoginDob"
+            android:name="com.askhmer.lockscreen.activity.LoginDob"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".tutorials.ChooseLanguage"
+            android:name="com.askhmer.lockscreen.tutorials.ChooseLanguage"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activity.YoutubeVideo"
+            android:name="com.askhmer.lockscreen.activity.YoutubeVideo"
             android:screenOrientation="landscape"
             android:configChanges="orientation|screenSize"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">

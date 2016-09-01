@@ -18,7 +18,7 @@
         -->
 
 
-    <com.askhmer.mobileapp.utils.VerticalViewPager
+    <com.askhmer.lockscreen.utils.VerticalViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
@@ -83,28 +83,28 @@
 
     </LinearLayout>
 
-    <com.askhmer.mobileapp.utils.ToggleSwitchButtonByDy
+    <com.askhmer.lockscreen.utils.ToggleSwitchButtonByDy
         android:id="@+id/toggle_website"
         style="@style/ToggleSwitchButton"
         android:visibility="gone"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="-400dp"/>
 
-    <com.askhmer.mobileapp.utils.ToggleSwitchButtonByDy
+    <com.askhmer.lockscreen.utils.ToggleSwitchButtonByDy
         android:id="@+id/toggle_video"
         style="@style/ToggleSwitchButtonVideo"
         android:visibility="gone"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="-400dp"/>
 
-    <com.askhmer.mobileapp.utils.ToggleSwitchButtonByDy
+    <com.askhmer.lockscreen.utils.ToggleSwitchButtonByDy
         android:id="@+id/toggle_call"
         style="@style/ToggleSwitchButtonCall"
         android:visibility="gone"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="-400dp"/>
 
-    <com.askhmer.mobileapp.utils.ToggleSwitchButtonByDy
+    <com.askhmer.lockscreen.utils.ToggleSwitchButtonByDy
         android:id="@+id/toggle_defult"
         style="@style/ToggleSwitchButtonDefult"
         android:layout_centerHorizontal="true"

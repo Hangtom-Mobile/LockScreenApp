@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="300dp"
     android:layout_height="350dp"
-    tools:context="com.askhmer.mobileapp.tutorials.ChooseLanguage"
+    tools:context="com.askhmer.lockscreen.tutorials.ChooseLanguage"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical">

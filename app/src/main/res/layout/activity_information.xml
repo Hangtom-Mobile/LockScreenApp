@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.askhmer.mobileapp.activity.Information"
+    tools:context="com.askhmer.lockscreen.activity.Information"
     android:background="@drawable/have_back">
 
     <android.support.design.widget.AppBarLayout
