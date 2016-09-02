@@ -1,9 +1,11 @@
 package com.askhmer.lockscreen.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,8 +21,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.askhmer.lockscreen.R;
 import com.askhmer.lockscreen.network.API;
 import com.askhmer.lockscreen.network.MySingleton;
+import com.askhmer.lockscreen.utils.GcmUtil;
 import com.askhmer.lockscreen.utils.SharedPreferencesFile;
 import com.askhmer.lockscreen.utils.TokenGenerator;
+import com.google.android.gcm.GCMRegistrar;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,13 +35,15 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
 
     private Spinner location;
     private SharedPreferencesFile mSharedPreferencesFile;
+    private Context context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 
-
+        context = Location.this;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -55,6 +61,24 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
 
         // attaching data adapter to spinner
         location.setAdapter(dataAdapter);
+
+
+        GCMRegistrar.checkDevice(this);
+        GCMRegistrar.checkManifest(this);
+
+        if (GCMRegistrar.isRegistered(this)) {
+            Log.d("GCM: ", GCMRegistrar.getRegistrationId(this));
+        }
+
+        final String regId = GCMRegistrar.getRegistrationId(this);
+
+        if (regId.equals("")) {
+            GCMRegistrar.register(this, GcmUtil.SENDER_ID);
+            Log.d("GCM: ", "Registration id :  "+GCMRegistrar.getRegistrationId(this));
+        }
+        else {
+            Log.d("info", "already registered as" + regId);
+        }
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,6 +146,10 @@ public class Location extends AppCompatActivity implements AdapterView.OnItemSel
                 params.put("mb_national", mb_national);
                 params.put("mb_location", mb_location);
                 params.put("token_id",tokenId);
+
+                if (GCMRegistrar.isRegistered(context)) {
+                    params.put("gcm_id", GCMRegistrar.getRegistrationId(context));
+                }
                 return params;
             }
         };

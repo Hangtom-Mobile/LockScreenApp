@@ -18,8 +18,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.askhmer.lockscreen.R;
 import com.askhmer.lockscreen.network.API;
 import com.askhmer.lockscreen.network.MySingleton;
+import com.askhmer.lockscreen.utils.GcmUtil;
 import com.askhmer.lockscreen.utils.SharedPreferencesFile;
 import com.askhmer.lockscreen.utils.TokenGenerator;
+import com.google.android.gcm.GCMRegistrar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -86,6 +88,24 @@ public class LoginDob extends AppCompatActivity{
                 requestLogin();
             }
         });
+
+
+        GCMRegistrar.checkDevice(this);
+        GCMRegistrar.checkManifest(this);
+
+        if (GCMRegistrar.isRegistered(this)) {
+            Log.d("GCM: ", GCMRegistrar.getRegistrationId(this));
+        }
+        final String regId = GCMRegistrar.getRegistrationId(this);
+
+        if (regId.equals("")) {
+            GCMRegistrar.register(this, GcmUtil.SENDER_ID);
+            Log.d("GCM: ", "Registration id :  "+GCMRegistrar.getRegistrationId(this));
+        }
+        else {
+            Log.d("info", "already registered as" + regId);
+        }
+
     }
 
     public void requestLogin() {
@@ -142,6 +162,10 @@ public class LoginDob extends AppCompatActivity{
                 params.put("cash_password", password);
                 params.put("token_id", tokenId);
                 params.put("mb_age", dob);
+
+                if (GCMRegistrar.isRegistered(LoginDob.this)) {
+                    params.put("gcm_id", GCMRegistrar.getRegistrationId(LoginDob.this));
+                }
                 return params;
             }
         };

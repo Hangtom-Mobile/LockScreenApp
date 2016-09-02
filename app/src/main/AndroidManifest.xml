@@ -21,6 +21,21 @@
     <uses-permission android:name="android.permission.READ_SMS"/>
     <uses-permission android:name="android.permission.RECEIVE_SMS"/>
 
+
+    <!-- GCM requires a Google account. -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <!-- Creates a custom permission so only this app can receive its messages. -->
+    <permission
+        android:name="com.askhmer.lockscreen.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.askhmer.lockscreen.permission.C2D_MESSAGE" />
+
+    <!-- This app has permission to register and receive data message. -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+
     <!--
 <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -31,8 +46,30 @@
         android:allowBackup="true"
         android:largeHeap="true"
         tools:replace="@android:icon">
+
+        <!-- GCM -->
+        <service android:name="com.askhmer.lockscreen.GCMIntentService" />
+
+        <receiver
+            android:name="com.google.android.gcm.GCMBroadcastReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <!-- Receives the actual messages. -->
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <!-- Receives the registration id. -->
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.askhmer.mobileapp" />
+            </intent-filter>
+        </receiver>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+
         <activity
-            android:name="com.askhmer.lockscreen.activity.LockScreenActivity"
+            android:name=".activity.LockScreenActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:launchMode="singleTask"
@@ -40,41 +77,41 @@
             android:theme="@style/AppTheme" />
 
         <service
-            android:name="com.askhmer.lockscreen.utils.LockscreenService"
+            android:name=".utils.LockscreenService"
             android:exported="false" />
 
-        <receiver android:name="com.askhmer.lockscreen.utils.LockscreenIntentReceiver">
+        <receiver android:name=".utils.LockscreenIntentReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name="com.askhmer.lockscreen.utils.AlarmReceiver"></receiver>
+        <receiver android:name=".utils.AlarmReceiver"></receiver>
         <activity
-            android:name="com.askhmer.lockscreen.activity.PhoneNumber"
+            android:name=".activity.PhoneNumber"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.Information"
+            android:name=".activity.Information"
             android:label="@string/title_activity_information"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.Age"
+            android:name=".activity.Age"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.Name"
+            android:name=".activity.Name"
             android:label="@string/title_activity_information"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.Gender"
+            android:name=".activity.Gender"
             android:label="@string/title_activity_information"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.National"
+            android:name=".activity.National"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.Location"
+            android:name=".activity.Location"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.SplashScreen"
+            android:name=".activity.SplashScreen"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
@@ -84,66 +121,66 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.askhmer.lockscreen.activity.MainActivityTab"
+            android:name=".activity.MainActivityTab"
             android:hardwareAccelerated="true"
             android:theme="@style/MyTabTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.PasswordFindMoney"
+            android:name=".activity.PasswordFindMoney"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.Recommend"
+            android:name=".activity.Recommend"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.MoneyBalance"
+            android:name=".activity.MoneyBalance"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.AccountManage"
+            android:name=".activity.AccountManage"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.MyInfo"
+            android:name=".activity.MyInfo"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.ChangePwd"
+            android:name=".activity.ChangePwd"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.ForgetPwd"
+            android:name=".activity.ForgetPwd"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.Withdrawal"
+            android:name=".activity.Withdrawal"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.HowToUseChache"
+            android:name=".activity.HowToUseChache"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.PrivacyStatement"
+            android:name=".activity.PrivacyStatement"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.TermsOfUse"
+            android:name=".activity.TermsOfUse"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.NewPassword"
+            android:name=".activity.NewPassword"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.tutorials.MainPage"
+            android:name=".tutorials.MainPage"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.SendMail"
+            android:name=".activity.SendMail"
             android:theme="@style/MyAppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.RegisterOrLogin"
+            android:name=".activity.RegisterOrLogin"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.Login"
+            android:name=".activity.Login"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.LoginDob"
+            android:name=".activity.LoginDob"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.tutorials.ChooseLanguage"
+            android:name=".tutorials.ChooseLanguage"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.askhmer.lockscreen.activity.YoutubeVideo"
+            android:name=".activity.YoutubeVideo"
             android:screenOrientation="landscape"
             android:configChanges="orientation|screenSize"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
@@ -154,6 +191,9 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensor"
             android:theme="@style/FinestWebViewTheme.Light" />
+        <activity
+            android:name=".activity.CustomizeWebGCM"
+            android:theme="@style/MyAppTheme" />
     </application>
 
 </manifest>
