@@ -16,8 +16,6 @@ public class CustomizeWebGCM extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(CustomizeWebGCM.this, getIntent().getStringExtra("page"), Toast.LENGTH_SHORT).show();
-
         new FinestWebView.Builder(getApplicationContext())
                 .statusBarColorRes(R.color.colorPrimaryDark)
                 .toolbarColorRes(R.color.colorPrimary)
