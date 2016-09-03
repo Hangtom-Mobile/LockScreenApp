@@ -48,7 +48,7 @@
         tools:replace="@android:icon">
 
         <!-- GCM -->
-        <service android:name="com.askhmer.lockscreen.GCMIntentService" />
+        <service android:name=".utils.GCMIntentService" />
 
         <receiver
             android:name="com.google.android.gcm.GCMBroadcastReceiver"
