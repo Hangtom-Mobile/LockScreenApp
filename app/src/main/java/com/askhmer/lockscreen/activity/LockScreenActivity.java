@@ -36,6 +36,7 @@ import com.askhmer.lockscreen.model.ScreenListener;
 import com.askhmer.lockscreen.network.API;
 import com.askhmer.lockscreen.network.CheckInternet;
 import com.askhmer.lockscreen.network.MySingleton;
+import com.askhmer.lockscreen.utils.CPIservice;
 import com.askhmer.lockscreen.utils.LockscreenService;
 import com.askhmer.lockscreen.utils.LockscreenUtils;
 import com.askhmer.lockscreen.utils.MyBroadCastReciever;
@@ -515,6 +516,11 @@ public class LockScreenActivity extends Activity implements
 								.toolbarScrollFlags(0)
 								.showSwipeRefreshLayout(false)
 								.show(url);
+						/*testing*/
+						stopService(new Intent(getApplicationContext(), CPIservice.class));
+						Intent intent = new Intent(getApplicationContext(), CPIservice.class);
+						intent.putExtra("packageName", "com.hangtom");
+						startService(intent);
 					} else {
 						new SweetAlertDialog(LockScreenActivity.this)
 								.setTitleText("Sorry this banner no link!")

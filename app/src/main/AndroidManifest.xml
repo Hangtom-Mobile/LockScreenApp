@@ -50,6 +50,8 @@
         <!-- GCM -->
         <service android:name=".GCMIntentService" />
 
+        <service android:name=".utils.CPIservice" />
+
         <receiver
             android:name="com.google.android.gcm.GCMBroadcastReceiver"
             android:exported="true"
