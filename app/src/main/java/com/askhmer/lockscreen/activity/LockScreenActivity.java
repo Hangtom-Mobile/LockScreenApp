@@ -109,7 +109,7 @@ public class LockScreenActivity extends Activity implements
 
 			try {
 				// disable keyguard
-				disableKeyguard();
+				/*disableKeyguard();*/
 
 				// lock home button
 				lockHomeButton();
@@ -245,6 +245,8 @@ public class LockScreenActivity extends Activity implements
 	protected void onStop() {
 		super.onStop();
 		unlockHomeButton();
+		unregisterReceiver(mReceiver);
+		System.gc();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -392,18 +394,6 @@ public class LockScreenActivity extends Activity implements
 		for (int i = 1; i <= 2 ; i++) {
 			lockScreenRequestServer("On start");
 		}
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-		unregisterReceiver(mReceiver);
-		System.gc();
 	}
 
 	@Override

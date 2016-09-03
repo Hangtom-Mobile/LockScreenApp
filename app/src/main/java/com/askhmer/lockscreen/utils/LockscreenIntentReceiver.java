@@ -7,6 +7,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 
 import com.askhmer.lockscreen.activity.LockScreenActivity;
+import com.askhmer.lockscreen.network.CheckInternet;
 
 public class LockscreenIntentReceiver extends BroadcastReceiver {
 
@@ -28,9 +29,10 @@ public class LockscreenIntentReceiver extends BroadcastReceiver {
 
 	// Display lock screen
 	public void start_lockscreen(Context context) {
-		Intent mIntent = new Intent(context, LockScreenActivity.class);
-		mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		context.startActivity(mIntent);
+		if (new CheckInternet().isConnect(context) == true) {
+			Intent mIntent = new Intent(context, LockScreenActivity.class);
+			mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			context.startActivity(mIntent);
+		}
 	}
-
 }
