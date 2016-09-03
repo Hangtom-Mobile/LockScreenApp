@@ -1,4 +1,4 @@
-package com.askhmer.lockscreen.utils;
+package com.askhmer.lockscreen;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -12,8 +12,8 @@ import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import com.askhmer.lockscreen.R;
 import com.askhmer.lockscreen.activity.CustomizeWebGCM;
+import com.askhmer.lockscreen.utils.GcmUtil;
 import com.google.android.gcm.GCMBaseIntentService;
 
 import java.io.IOException;
