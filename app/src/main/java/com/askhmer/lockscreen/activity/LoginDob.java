@@ -93,19 +93,11 @@ public class LoginDob extends AppCompatActivity{
         GCMRegistrar.checkDevice(this);
         GCMRegistrar.checkManifest(this);
 
-        if (GCMRegistrar.isRegistered(this)) {
-            Log.d("GCM: ", GCMRegistrar.getRegistrationId(this));
-        }
         final String regId = GCMRegistrar.getRegistrationId(this);
 
         if (regId.equals("")) {
             GCMRegistrar.register(this, GcmUtil.SENDER_ID);
-            Log.d("GCM: ", "Registration id :  "+GCMRegistrar.getRegistrationId(this));
         }
-        else {
-            Log.d("info", "already registered as" + regId);
-        }
-
     }
 
     public void requestLogin() {
