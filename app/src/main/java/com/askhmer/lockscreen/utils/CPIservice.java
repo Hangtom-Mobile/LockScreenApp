@@ -29,7 +29,7 @@ public class CPIservice extends Service{
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.e("show", "service work");
-        cpIreceiver = new CPIreceiver(intent.getStringExtra("packageName"));
+        cpIreceiver = new CPIreceiver(intent.getStringExtra("packageName"), intent.getStringExtra("install_price"), intent.getStringExtra("uId"));
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED);
         intentFilter.addAction(Intent.ACTION_PACKAGE_REMOVED);

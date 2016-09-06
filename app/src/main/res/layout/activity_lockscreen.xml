@@ -105,6 +105,13 @@
         android:layout_marginBottom="-400dp"/>
 
     <com.askhmer.lockscreen.utils.ToggleSwitchButtonByDy
+        android:id="@+id/toggle_install"
+        style="@style/ToggleSwitchButtonInstall"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-400dp"/>
+
+    <com.askhmer.lockscreen.utils.ToggleSwitchButtonByDy
         android:id="@+id/toggle_defult"
         style="@style/ToggleSwitchButtonDefult"
         android:layout_centerHorizontal="true"

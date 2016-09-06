@@ -55,6 +55,15 @@
         <item name="bottom">@drawable/ic_call</item>
     </style>
 
+    <style name="ToggleSwitchButtonInstall">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="outerRadius">130dp</item>
+        <item name="handleDrawable">@drawable/ic_btn_center</item>
+        <item name="upper">@drawable/ic_unlock</item>
+        <item name="bottom">@drawable/ic_install</item>
+    </style>
+
     <style name="ToggleSwitchButtonDefult">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>

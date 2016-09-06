@@ -71,7 +71,7 @@ public class LockScreenActivity extends Activity implements
 	private RelativeLayout relativeLayout;
 	private int position = 1;
 	private SharedPreferencesFile mSharedPref;
-	private ToggleSwitchButtonByDy toggleWebsite, toggleVideo, toggleCall, toggleDefult;
+	private ToggleSwitchButtonByDy toggleWebsite, toggleVideo, toggleCall, toggleInstall, toggleDefult;
 
 //	private ArrayList<CompanyDto> arrList;
 
@@ -134,6 +134,7 @@ public class LockScreenActivity extends Activity implements
 		toggleVideo = (ToggleSwitchButtonByDy) findViewById(R.id.toggle_video);
 		toggleCall = (ToggleSwitchButtonByDy) findViewById(R.id.toggle_call);
 		toggleWebsite = (ToggleSwitchButtonByDy) findViewById(R.id.toggle_website);
+		toggleInstall = (ToggleSwitchButtonByDy) findViewById(R.id.toggle_install);
 		toggleDefult = (ToggleSwitchButtonByDy) findViewById(R.id.toggle_defult);
 
 		/*request to server*/
@@ -341,6 +342,7 @@ public class LockScreenActivity extends Activity implements
 									dto.setImageUrl(jsonObj.getString("image"));
 									dto.setWebUrl(jsonObj.getString("url"));
 									dto.setType(jsonObj.getString("left_type"));
+									dto.setGoogleId(jsonObj.getString("google_id"));
 									pathFile.add(dto);
 									fullScreenImageAdapter.notifyDataSetChanged();
 									selectSwitchButton();
@@ -474,6 +476,7 @@ public class LockScreenActivity extends Activity implements
 		toggleCall.setVisibility(View.GONE);
 		toggleVideo.setVisibility(View.GONE);
 		toggleDefult.setVisibility(View.GONE);
+		toggleInstall.setVisibility(View.GONE);
 		toggleWebsite.setVisibility(View.VISIBLE);
 
 		toggleWebsite.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
@@ -516,11 +519,6 @@ public class LockScreenActivity extends Activity implements
 								.toolbarScrollFlags(0)
 								.showSwipeRefreshLayout(false)
 								.show(url);
-						/*testing*/
-						stopService(new Intent(getApplicationContext(), CPIservice.class));
-						Intent intent = new Intent(getApplicationContext(), CPIservice.class);
-						intent.putExtra("packageName", "com.hangtom");
-						startService(intent);
 					} else {
 						new SweetAlertDialog(LockScreenActivity.this)
 								.setTitleText("Sorry this banner no link!")
@@ -541,6 +539,7 @@ public class LockScreenActivity extends Activity implements
 		toggleCall.setVisibility(View.GONE);
 		toggleWebsite.setVisibility(View.GONE);
 		toggleDefult.setVisibility(View.GONE);
+		toggleInstall.setVisibility(View.GONE);
 		toggleVideo.setVisibility(View.VISIBLE);
 
 		toggleVideo.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
@@ -583,6 +582,7 @@ public class LockScreenActivity extends Activity implements
 		toggleWebsite.setVisibility(View.GONE);
 		toggleVideo.setVisibility(View.GONE);
 		toggleDefult.setVisibility(View.GONE);
+		toggleInstall.setVisibility(View.GONE);
 		toggleCall.setVisibility(View.VISIBLE);
 
 		toggleCall.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
@@ -628,10 +628,68 @@ public class LockScreenActivity extends Activity implements
 		toggleCall.setRotation(90.0f);
 	}
 
+	public void switchButtonInstall() {
+		toggleWebsite.setVisibility(View.GONE);
+		toggleVideo.setVisibility(View.GONE);
+		toggleDefult.setVisibility(View.GONE);
+		toggleCall.setVisibility(View.GONE);
+		toggleInstall.setVisibility(View.VISIBLE);
+
+		toggleInstall.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
+			@Override
+			public void toggledUp() {
+				if (new CheckInternet().isConnect(getApplicationContext()) == true) {
+					if (pathFile.size() > 0) {
+						String unlockPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockBasicPrice();
+						String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
+						requestPointToServer("right", "lock_basic_price", unlockPrice, uId);
+					}
+				}
+				unlockHomeButton();
+			}
+
+			@Override
+			public void toggledDown() {
+				if (pathFile.size() > 0) {
+					String url = pathFile.get(imageViewPager.getCurrentItem()).getWebUrl();
+					String uId = pathFile.get(imageViewPager.getCurrentItem()).getuId();
+					String googleId = pathFile.get(imageViewPager.getCurrentItem()).getGoogleId();
+					String urlPrice = pathFile.get(imageViewPager.getCurrentItem()).getLockViewPrice();
+
+					if (!url.isEmpty()) {
+						if (new CheckInternet().isConnect(getApplicationContext()) == true) {
+							/*testing*/
+							stopService(new Intent(getApplicationContext(), CPIservice.class));
+							Intent intent = new Intent(getApplicationContext(), CPIservice.class);
+							intent.putExtra("packageName", googleId);
+							intent.putExtra("install_price", urlPrice);
+							intent.putExtra("uId", uId);
+							startService(intent);
+
+							/*open play store*/
+							startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+						}
+					} else {
+						new SweetAlertDialog(LockScreenActivity.this)
+								.setTitleText("Sorry this banner no link!")
+								.show();
+					}
+				} else {
+					new SweetAlertDialog(LockScreenActivity.this)
+							.setTitleText("Sorry your phone no internet!")
+							.show();
+				}
+			}
+		});
+
+		toggleInstall.setRotation(90.0f);
+	}
+
 	public void switchButtonDefult() {
 		toggleCall.setVisibility(View.GONE);
 		toggleVideo.setVisibility(View.GONE);
 		toggleWebsite.setVisibility(View.GONE);
+		toggleInstall.setVisibility(View.GONE);
 		toggleDefult.setVisibility(View.VISIBLE);
 
 		toggleDefult.setOnTriggerListener(new ToggleSwitchButtonByDy.OnTriggerListener() {
@@ -657,8 +715,10 @@ public class LockScreenActivity extends Activity implements
 			switchButtonWebsite();
 		}else if (type.equals("2")) {
 			switchButtonVideo();
-		}else {
+		}else if (type.equals("3")){
 			switchButtonCall();
+		}else if (type.equals("4")){
+			switchButtonInstall();
 		}
 	}
 
