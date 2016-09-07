@@ -25,6 +25,9 @@ public class LockScreenBackgroundDto {
     @SerializedName("left_type")
     private String type;
 
+    @SerializedName("google_id")
+    private String googleId;
+
     public String getuId() {
         return uId;
     }
@@ -71,5 +74,13 @@ public class LockScreenBackgroundDto {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getGoogleId() {
+        return googleId;
+    }
+
+    public void setGoogleId(String googleId) {
+        this.googleId = googleId;
     }
 }

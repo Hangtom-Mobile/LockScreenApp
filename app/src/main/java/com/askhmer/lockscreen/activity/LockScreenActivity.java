@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.KeyguardManager;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -104,7 +105,7 @@ public class LockScreenActivity extends Activity implements
 		// unlock screen in case of app get killed by system
 		if (getIntent() != null && getIntent().hasExtra("kill")
 				&& getIntent().getExtras().getInt("kill") == 1) {
-			enableKeyguard();
+			/*enableKeyguard();*/
 			unlockHomeButton();
 		} else {
 
@@ -659,12 +660,14 @@ public class LockScreenActivity extends Activity implements
 					if (!url.isEmpty()) {
 						if (new CheckInternet().isConnect(getApplicationContext()) == true) {
 							/*testing*/
-							stopService(new Intent(getApplicationContext(), CPIservice.class));
-							Intent intent = new Intent(getApplicationContext(), CPIservice.class);
-							intent.putExtra("packageName", googleId);
-							intent.putExtra("install_price", urlPrice);
-							intent.putExtra("uId", uId);
-							startService(intent);
+							if (appInstalledOrNot(googleId) == false) {
+								stopService(new Intent(getApplicationContext(), CPIservice.class));
+								Intent intent = new Intent(getApplicationContext(), CPIservice.class);
+								intent.putExtra("packageName", googleId);
+								intent.putExtra("install_price", urlPrice);
+								intent.putExtra("uId", uId);
+								startService(intent);
+							}
 
 							/*open play store*/
 							startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
@@ -726,5 +729,18 @@ public class LockScreenActivity extends Activity implements
 	public void onLowMemory() {
 		super.onLowMemory();
 		System.gc();
+	}
+
+	private boolean appInstalledOrNot(String uri) {
+		PackageManager pm = getPackageManager();
+		boolean app_installed;
+		try {
+			pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+			app_installed = true;
+		}
+		catch (PackageManager.NameNotFoundException e) {
+			app_installed = false;
+		}
+		return app_installed;
 	}
 }
