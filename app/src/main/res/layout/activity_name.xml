@@ -133,7 +133,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:gravity="center"
-                            android:maxLines="1"
+                            android:singleLine="true"
                             android:background="@drawable/radius_ed"/>
                         <View
                             android:layout_marginBottom="10dp"

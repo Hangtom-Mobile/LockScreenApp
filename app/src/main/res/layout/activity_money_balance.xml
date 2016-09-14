@@ -131,6 +131,7 @@ tools:context="com.askhmer.lockscreen.activity.MoneyBalance">
                         android:layout_height="50dp"
                         android:inputType="number"
                         android:gravity="center"
+                        android:singleLine="true"
                         android:background="@drawable/radius_ed"
                         android:hint="@string/Withdrawal_will"
                         android:textSize="12dp"/>
@@ -164,6 +165,7 @@ tools:context="com.askhmer.lockscreen.activity.MoneyBalance">
                         android:layout_height="50dp"
                         android:inputType="number"
                         android:gravity="center"
+                        android:singleLine="true"
                         android:background="@drawable/radius_ed"/>
                     <View
                         android:layout_marginBottom="10dp"
