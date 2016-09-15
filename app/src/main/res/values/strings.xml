@@ -19,23 +19,23 @@
 
     <!-- INTRO SCREEN 1 -->
 
-    <string name="get_paid_by"> Get paid by \n your lock screen  </string>
-    <string name="get_paid_by_your"> Get paid by your lock screen you can get paid to see our advertising on your lockscreen  </string>
+    <string name="get_paid_by"> Get point by \n your lock screen  </string>
+    <string name="get_paid_by_your"> You can get point after slide to unlock on your lockscreen  </string>
 
     <!-- INTRO SCREEN 2 -->
 
     <string name="if_your_slide"> If you slide, you will earn points </string>
-    <string name="point_will_be"> Points will be awarded depending on the number of icons below. </string>
+    <string name="point_will_be"> Points will be awarded depending on the number below. </string>
 
     <!-- INTRO SCREEN 3 -->
 
-    <string name="i_collect"> I collect points </string>
-    <string name="total_point">Total points I collected Medayi News / Share your friends </string>
+    <string name="i_collect"> I got points </string>
+    <string name="total_point">Total points, I will get from Medayi</string>
 
     <!-- INTRO SCREEN 4 -->
 
     <string name="portal_in"> Local in my hand </string>
-    <string name="you_can_look"> You can look at once to \n useful local informations</string>
+    <string name="you_can_look"> You can know about \n useful local informations</string>
 
     <!-- INTRO SCREEN 5 -->
     <string name="change_the_point"> On the First Screen \n Captured all the benefits  </string>

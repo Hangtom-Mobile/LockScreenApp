@@ -31,6 +31,7 @@ public class LockscreenService extends Service {
 	// Register for Lockscreen event intents
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
+		super.onStartCommand(intent, flags, startId);
 		IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
 		filter.addAction(Intent.ACTION_SCREEN_OFF);
 		mReceiver = new LockscreenIntentReceiver();

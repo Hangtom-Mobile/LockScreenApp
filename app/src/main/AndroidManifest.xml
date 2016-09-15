@@ -80,7 +80,9 @@
 
         <service
             android:name=".utils.LockscreenService"
-            android:exported="false" />
+            android:enabled="true"
+            android:exported="true"
+            android:process=":ServiceProcess"/>
 
         <receiver android:name=".utils.LockscreenIntentReceiver">
             <intent-filter>
