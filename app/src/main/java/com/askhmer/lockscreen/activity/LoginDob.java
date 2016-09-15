@@ -1,5 +1,6 @@
 package com.askhmer.lockscreen.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -101,11 +102,17 @@ public class LoginDob extends AppCompatActivity{
     }
 
     public void requestLogin() {
+        /*loading message*/
+        final ProgressDialog pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Loading...");
+        pDialog.show();
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, API.LOGIN,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         Log.e("login_respone", response);
+                        pDialog.hide();
                         if (!response.isEmpty()) {
                             try {
                                 JSONObject jsonObj = new JSONObject(response);
@@ -123,10 +130,10 @@ public class LoginDob extends AppCompatActivity{
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     LoginDob.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
-                                }else {
+                                }else if (jsonObj.getString("rst").equals("113")) {
                                     new SweetAlertDialog(LoginDob.this, SweetAlertDialog.ERROR_TYPE)
                                             .setTitleText("Sorry...")
-                                            .setContentText("Information are incorrect!")
+                                            .setContentText("Date of birth is incorrect!")
                                             .show();
                                 }
                             } catch (JSONException e) {
@@ -139,6 +146,8 @@ public class LoginDob extends AppCompatActivity{
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                /*hide loading*/
+                pDialog.hide();
                 Toast.makeText(LoginDob.this, "No Connection", Toast.LENGTH_SHORT).show();
             }
         }){

@@ -48,6 +48,11 @@
 
     <string name="join_medayi"> Join MEDAYI  </string>
     <string name="i_already"> I already have a MEDAYI account  </string>
+    <string name="forget_id_pass"> <u>Click here for forget <b>Medayi ID</b> or <b>Password</b></u>  </string>
+
+    <!-- forget_id_pass -->
+    <string name="find_id"> Find Medayi ID  </string>
+    <string name="find_pass"> Find Password  </string>
 
     <!-- PhoneNumber -->
     <string name="phone_no">  Phone number </string>

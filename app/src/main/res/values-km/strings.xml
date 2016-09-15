@@ -48,6 +48,11 @@
 
     <string name="join_medayi"> ចូលលទៅកាន់  MEDAYI  </string>
     <string name="i_already"> មានគណនី Medayi រួចមកហើយ  </string>
+    <string name="forget_id_pass"> <u>សូមចុចទីនេះសម្រាប់ភ្លេច ពាក្យសម្ងាត់ឬ លេខសម្គាល់ Medayi</u>  </string>
+
+    <!-- forget_id_pass -->
+    <string name="find_id"> Find Medayi ID  </string>
+    <string name="find_pass"> Find Password  </string>
 
     <!-- PhoneNumber -->
     <string name="phone_no">  លេខទូរសព្ទ័ </string>
