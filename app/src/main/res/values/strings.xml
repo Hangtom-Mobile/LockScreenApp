@@ -44,6 +44,11 @@
     <!--Login-->
     <string name="login_title"> LOGIN  </string>
 
+    <!--request id-->
+    <string name="request_id"> Find Medayi ID </string>
+    <string name="your_name_here"> Your name here </string>
+    <string name="request"> SUBMIT </string>
+
     <!-- RegisterOrLogin -->
 
     <string name="join_medayi"> Join MEDAYI  </string>
@@ -53,6 +58,14 @@
     <!-- forget_id_pass -->
     <string name="find_id"> Find Medayi ID  </string>
     <string name="find_pass"> Find Password  </string>
+
+    <!-- request_pass -->
+    <string name="request_title"> Find Medayi Password  </string>
+    <string name="your_id_here"> Your Medayi ID </string>
+    <string name="msg_id_no_reg"> No have your ID in Medayi </string>
+    <string name="msg_num_not_sam_id"> Your phone number not same with ID </string>
+    <string name="write_your_password"> Write your \n password </string>
+    <string name="write_pw_com"> Write your new password </string>
 
     <!-- PhoneNumber -->
     <string name="phone_no">  Phone number </string>

@@ -94,6 +94,9 @@
             android:name=".activity.PhoneNumber"
             android:theme="@style/AppTheme" />
         <activity
+            android:name=".activity.RequestPassword"
+            android:theme="@style/AppTheme" />
+        <activity
             android:name=".activity.Information"
             android:label="@string/title_activity_information"
             android:theme="@style/AppTheme" />
@@ -113,6 +116,9 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.Location"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.NewPasswordForFind"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.SplashScreen"
@@ -175,10 +181,17 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
+            android:name=".activity.FogetIDOrPass"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
             android:name=".activity.Login"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".activity.LoginDob"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activity.RequestID"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".tutorials.ChooseLanguage"

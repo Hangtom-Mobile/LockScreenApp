@@ -45,7 +45,7 @@
             android:layout_weight="1">
 
             <LinearLayout
-                android:id="@+id/btn_sign_up"
+                android:id="@+id/find_id"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="40dp"
@@ -67,7 +67,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_login"
+                android:id="@+id/find_pass"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="40dp"

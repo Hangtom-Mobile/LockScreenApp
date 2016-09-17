@@ -87,6 +87,7 @@
                 android:background="@drawable/btn_selector_black"/>
 
             <TextView
+                android:id="@+id/link_to"
                 android:gravity="center"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"

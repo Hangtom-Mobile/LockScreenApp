@@ -12,6 +12,9 @@ public class API {
      */
     public static final String REGISTER = BASEURL + "register_form_api.php";
     public static final String LOGINPW = BASEURL + "locknet_login_pw_api.php";
+    public static final String REQUESTID = BASEURL + "locknet_id_find_api.php";
+    public static final String REQUESTPASSWORDSTEP1 = BASEURL + "locknet_passwd_step1_api.php";
+    public static final String REQUESTPASSWORDSTEP2 = BASEURL + "locknet_passwd_step2_api.php";
     public static final String CHECKCASHSLIDEID = BASEURL + "mb_id_chk_api.php";
     public static final String LOCKSCREENBACKGROUP = BASEURL + "locknet_api.php";
     public static final String REQUESTPOINT = BASEURL + "locknet_point_api.php";
