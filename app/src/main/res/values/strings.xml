@@ -29,8 +29,8 @@
 
     <!-- INTRO SCREEN 3 -->
 
-    <string name="i_collect"> I got points </string>
-    <string name="total_point">Total points, I will get from Medayi</string>
+    <string name="i_collect"> My points </string>
+    <string name="total_point">You can check, The points on medayi Medayi app</string>
 
     <!-- INTRO SCREEN 4 -->
 
@@ -158,6 +158,7 @@
 
     <string name="find_money">  FIND MONEY </string>
     <string name="hangtom">  HANGTOM </string>
+    <string name="top_up"> TOP UP </string>
 
 
     <!-- Tab 4 -->

@@ -52,10 +52,14 @@
                 android:background="@drawable/border_shadow"
                 android:gravity="center">
                 <ImageView
+                    android:layout_marginBottom="14dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginRight="14dp"
+                    android:layout_marginLeft="18dp"
                     android:layout_weight="1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/icon_lock_chang_la"
+                    android:src="@drawable/ic_icon_e"
                     android:scaleType="fitEnd"
                     android:padding="10dp"/>
                 <ImageView

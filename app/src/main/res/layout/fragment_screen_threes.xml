@@ -17,7 +17,7 @@
             android:layout_marginTop="15dp"
             android:layout_width="80dp"
             android:layout_height="100dp"
-            android:src="@drawable/lock_intro"
+            android:src="@drawable/medayi_f"
             android:scaleType="fitCenter"/>
         <TextView
             android:layout_marginTop="15dp"

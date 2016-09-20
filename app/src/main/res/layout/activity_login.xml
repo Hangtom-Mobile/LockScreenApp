@@ -56,9 +56,9 @@
                     android:gravity="center">
 
                     <ImageView
-                        android:layout_width="180dp"
-                        android:layout_height="180dp"
-                        android:src="@drawable/icon_lock_chang_la"
+                        android:layout_width="170dp"
+                        android:layout_height="170dp"
+                        android:src="@drawable/ic_icon_e"
                         android:scaleType="fitCenter"/>
 
                 </LinearLayout>

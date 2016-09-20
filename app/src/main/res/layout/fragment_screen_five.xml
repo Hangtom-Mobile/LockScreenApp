@@ -17,7 +17,7 @@
             android:layout_marginTop="15dp"
             android:layout_width="105dp"
             android:layout_height="100dp"
-            android:src="@drawable/key_search"
+            android:src="@drawable/medayi_t"
             android:scaleType="fitCenter"/>
         <TextView
             android:layout_marginTop="15dp"

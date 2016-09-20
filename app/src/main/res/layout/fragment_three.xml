@@ -20,7 +20,7 @@
             android:weightSum="7">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="175dp"
+                android:layout_height="160dp"
                 android:orientation="horizontal"
                 android:background="@drawable/bg_banner"
                 android:gravity="center_vertical">
@@ -74,7 +74,7 @@
                         <LinearLayout
                             android:id="@+id/find_money"
                             android:layout_width="match_parent"
-                            android:layout_height="180dp"
+                            android:layout_height="match_parent"
                             android:orientation="vertical"
                             android:layout_weight="1"
                             android:gravity="center"
@@ -106,7 +106,7 @@
                         <LinearLayout
                             android:id="@+id/li_hangtom"
                             android:layout_width="match_parent"
-                            android:layout_height="180dp"
+                            android:layout_height="match_parent"
                             android:orientation="vertical"
                             android:layout_weight="1"
                             android:gravity="center"
@@ -132,6 +132,58 @@
                                 android:layout_marginTop="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:textColor="@color/black"/>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:clickable="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="5dp"
+                            android:padding="10dp"
+                            android:background="@drawable/bg_selector">
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/phone_money"
+                                android:layout_marginTop="10dp"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/top_up"
+                                android:gravity="center"
+                                android:textSize="16dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:textColor="@color/black"/>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:padding="10dp">
+
                         </LinearLayout>
 
 

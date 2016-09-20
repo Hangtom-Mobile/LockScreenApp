@@ -17,7 +17,7 @@
             android:layout_marginTop="12dp"
             android:layout_width="180dp"
             android:layout_height="180dp"
-            android:src="@drawable/lock_intro" />
+            android:src="@drawable/medayi_f" />
         <TextView
             android:layout_marginTop="12dp"
             android:layout_width="match_parent"
