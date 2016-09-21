@@ -7,6 +7,7 @@
 
     <color name="yellow">#F5DC49</color>
     <color name="black">#000000</color>
+    <color name="black_70">#7fa3a3a3</color>
     <color name="white">#FFFFFF</color>
     <color name="white_80">#f9f9f9</color>
     <color name="hintColor">#bababa</color>

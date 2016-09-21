@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
@@ -38,6 +40,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.askhmer.lockscreen.R;
+import com.askhmer.lockscreen.activity.LiveStream;
 import com.askhmer.lockscreen.constant.Constant;
 import com.askhmer.lockscreen.network.API;
 import com.askhmer.lockscreen.network.MySingleton;
@@ -338,8 +341,10 @@ public class TwoFragment extends Fragment /*implements SwipeRefreshLayout.OnRefr
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 mProgress.setVisibility(View.GONE);
-                if (url.indexOf("tel:") > -1) {
-                    startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(url)));
+                if (url.contains(".m3u8")) {
+                    Intent intent = new Intent(getContext(), LiveStream.class);
+                    intent.putExtra("url", url);
+                    startActivity(intent);
                     return true;
                 } else {
                     return true;
