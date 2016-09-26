@@ -52,6 +52,7 @@ public class OneFragment extends Fragment {
     private TextView txtMyPoint, txtMyUserName;
     private LinearLayout medayiPage, medayiSharing;
     private TextProgressBar progressBar;
+    private View oneFragmentView;
 
     public OneFragment(){}
 
@@ -65,7 +66,7 @@ public class OneFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View oneFragmentView = inflater.inflate(R.layout.fragment_one, container, false);
+        oneFragmentView = inflater.inflate(R.layout.fragment_one, container, false);
         mSharedPreferencesFile = new SharedPreferencesFile(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         txtMyPoint = (TextView) oneFragmentView.findViewById(R.id.tv_mypoint);
         txtMyUserName = (TextView) oneFragmentView.findViewById(R.id.txt_user_name);
@@ -300,7 +301,7 @@ public class OneFragment extends Fragment {
     }
 
     public void requestMessage() {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://www.medayi.com/locknet/locknet_popup_api.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, API.MESSAGE,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -308,9 +309,16 @@ public class OneFragment extends Fragment {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             if(jsonObject.getString("rst").equals("true")){
-                                new SweetAlertDialog(getActivity())
-                                        .setTitleText(jsonObject.getString("message"))
-                                        .show();
+
+                                final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
+                                final View recipientsLayout = getActivity().getLayoutInflater().inflate(R.layout.popup_message_dialog, null);
+                                final TextView recipientsTextView = (TextView) recipientsLayout.findViewById(R.id.popup_message);
+                                recipientsTextView.setText(jsonObject.getString("message"));
+                                dialogBuilder.setView(recipientsLayout);
+
+                                dialogBuilder.show();
+
+
                             }
 
                         } catch (JSONException e) {
