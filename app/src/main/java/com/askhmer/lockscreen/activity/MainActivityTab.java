@@ -33,6 +33,7 @@ public class MainActivityTab extends AppCompatActivity {
     private Toast toast;
     private SharedPreferencesFile mSharedPref;
     private boolean startService;
+    private ViewPagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +62,7 @@ public class MainActivityTab extends AppCompatActivity {
         tab.select();
 
         setupTabIcons();
-        tabLayout.setOnTabSelectedListener(
+       /* tabLayout.setOnTabSelectedListener(
                 new TabLayout.ViewPagerOnTabSelectedListener(viewPager) {
 
                     @Override
@@ -83,16 +84,16 @@ public class MainActivityTab extends AppCompatActivity {
                         super.onTabReselected(tab);
                     }
                 }
-        );
+        );*/
 
     }
 
     private void setupTabIcons() {
         int[] tabIcons = {
                 R.drawable.ic_home,
-                R.drawable.ic_portal_off,
-                R.drawable.ic_search_off,
-                R.drawable.ic_setting_off
+                R.drawable.ic_portal,
+                R.drawable.ic_search,
+                R.drawable.ic_setting
         };
 
         tabLayout.getTabAt(0).setIcon(tabIcons[0]);
@@ -102,7 +103,7 @@ public class MainActivityTab extends AppCompatActivity {
     }
 
     private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFrag(new OneFragment(), "Add friend");
         adapter.addFrag(new ThreeFragment(), "Chat");
         adapter.addFrag(new TwoFragment(), "Profile");
@@ -159,6 +160,11 @@ public class MainActivityTab extends AppCompatActivity {
     }
 
     public void onBackPressed() {
+        TwoFragment twoFragment = (TwoFragment) adapter.getItem(2);
+        if (viewPager.getCurrentItem() == 2 && twoFragment.canGoOrNot()) {
+            return;
+        }
+
         if (System.currentTimeMillis() > backKeyPressedTime + 2000) {
             backKeyPressedTime = System.currentTimeMillis();
             showGuide();

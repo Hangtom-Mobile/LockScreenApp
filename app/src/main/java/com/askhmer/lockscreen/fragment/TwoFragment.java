@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
@@ -17,7 +18,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.ConsoleMessage;
@@ -90,6 +93,17 @@ public class TwoFragment extends Fragment /*implements SwipeRefreshLayout.OnRefr
     private ValueCallback<Uri[]> mFilePathCallback;
     private String mCameraPhotoPath;
 
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message message) {
+            switch (message.what) {
+                case 1:{
+                    webview.goBack();
+                }break;
+            }
+        }
+    };
+
 
     public TwoFragment(){}
 
@@ -142,7 +156,20 @@ public class TwoFragment extends Fragment /*implements SwipeRefreshLayout.OnRefr
             webview.postUrl(URL_ASKHMER, EncodingUtils.getBytes(postData, "base64"));
         }
 
+        webview.setOnKeyListener(new View.OnKeyListener(){
 
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK
+                        && event.getAction() == MotionEvent.ACTION_UP
+                        && webview.canGoBack()) {
+                    handler.sendEmptyMessage(1);
+                    return true;
+                }
+
+                return false;
+            }
+
+        });
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -581,5 +608,9 @@ public class TwoFragment extends Fragment /*implements SwipeRefreshLayout.OnRefr
         }
 
         return result;
+    }
+
+    public boolean canGoOrNot() {
+        return webview.canGoBack();
     }
 }
