@@ -1,6 +1,7 @@
 package com.askhmer.lockscreen.fragment;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -190,10 +191,16 @@ public class OneFragment extends Fragment {
     }
 
     public void requestMypointToServer() {
+        final ProgressDialog pDialog = new ProgressDialog(getContext());
+        pDialog.setMessage("Loading...");
+        pDialog.setCanceledOnTouchOutside(false);
+        pDialog.show();
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, API.REQUESTMYPOINT,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        pDialog.dismiss();
                         if (!response.isEmpty()) {
                             try {
                                 JSONObject jsonObj = new JSONObject(response);
@@ -212,7 +219,7 @@ public class OneFragment extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                pDialog.dismiss();
             }
         }){
             @Override
