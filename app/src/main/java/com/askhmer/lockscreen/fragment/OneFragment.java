@@ -59,6 +59,7 @@ public class OneFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mSharedPreferencesFile = new SharedPreferencesFile(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         requestMessage();
 
     }
@@ -67,7 +68,6 @@ public class OneFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         oneFragmentView = inflater.inflate(R.layout.fragment_one, container, false);
-        mSharedPreferencesFile = new SharedPreferencesFile(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
         txtMyPoint = (TextView) oneFragmentView.findViewById(R.id.tv_mypoint);
         txtMyUserName = (TextView) oneFragmentView.findViewById(R.id.txt_user_name);
         progressBar = (TextProgressBar) oneFragmentView.findViewById(R.id.progressBar2);
@@ -330,7 +330,14 @@ public class OneFragment extends Fragment {
             public void onErrorResponse(VolleyError error) {
 
             }
-        });
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("cash_slide_id", mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID));
+                return params;
+            }
+        };
         MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
     }
 }
