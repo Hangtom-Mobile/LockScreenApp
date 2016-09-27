@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.transition.Slide;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,10 +28,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.askhmer.lockscreen.R;
 import com.askhmer.lockscreen.network.API;
 import com.askhmer.lockscreen.network.MySingleton;
+import com.askhmer.lockscreen.utils.ImageSliderWithFragment;
 import com.askhmer.lockscreen.utils.NetworkUtil;
 import com.askhmer.lockscreen.utils.SharedPreferencesFile;
 import com.askhmer.lockscreen.utils.SimpleAdpter;
 import com.askhmer.lockscreen.utils.TextProgressBar;
+import com.daimajia.slider.library.SliderLayout;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ListHolder;
 import com.orhanobut.dialogplus.OnItemClickListener;
@@ -53,6 +56,7 @@ public class OneFragment extends Fragment {
     private LinearLayout medayiPage, medayiSharing;
     private TextProgressBar progressBar;
     private View oneFragmentView;
+    private SliderLayout sliderLayout;
 
     public OneFragment(){}
 
@@ -71,8 +75,11 @@ public class OneFragment extends Fragment {
         txtMyPoint = (TextView) oneFragmentView.findViewById(R.id.tv_mypoint);
         txtMyUserName = (TextView) oneFragmentView.findViewById(R.id.txt_user_name);
         progressBar = (TextProgressBar) oneFragmentView.findViewById(R.id.progressBar2);
+        sliderLayout = (SliderLayout) oneFragmentView.findViewById(R.id.slider);
         ImageView imageView = (ImageView) oneFragmentView.findViewById(R.id.image_view_info);
 
+        /*set slide image*/
+        new ImageSliderWithFragment(sliderLayout, getContext());
         checkInternetCon();
 
         medayiPage = (LinearLayout)oneFragmentView.findViewById(R.id.medayi_news);
@@ -339,5 +346,11 @@ public class OneFragment extends Fragment {
             }
         };
         MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
+    }
+
+    @Override
+    public void onStop() {
+        sliderLayout.stopAutoCycle();
+        super.onStop();
     }
 }
