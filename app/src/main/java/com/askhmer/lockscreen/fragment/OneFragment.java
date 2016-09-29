@@ -29,6 +29,7 @@ import com.askhmer.lockscreen.R;
 import com.askhmer.lockscreen.network.API;
 import com.askhmer.lockscreen.network.MySingleton;
 import com.askhmer.lockscreen.utils.ImageSliderWithFragment;
+import com.askhmer.lockscreen.utils.MutiLanguage;
 import com.askhmer.lockscreen.utils.NetworkUtil;
 import com.askhmer.lockscreen.utils.SharedPreferencesFile;
 import com.askhmer.lockscreen.utils.SimpleAdpter;
@@ -341,6 +342,13 @@ public class OneFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+                MutiLanguage mutiLanguage = new MutiLanguage(getContext(),getActivity());
+                String lang = mutiLanguage.getLanguageCurrent();
+                String langSend = "kh";
+                if (lang.equals("en") || lang.isEmpty()) {
+                    langSend = "en";
+                }
+                params.put("language", langSend);
                 params.put("cash_slide_id", mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID));
                 return params;
             }
