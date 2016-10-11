@@ -19,26 +19,26 @@
 
     <!-- INTRO SCREEN 1 -->
 
-    <string name="get_paid_by"> Get point by \n your lock screen  </string>
+    <string name="get_paid_by"> By using our App. we provide variety contents. Such as latest news, local informations and saving points.  </string>
     <string name="get_paid_by_your"> You can get point after slide to unlock on your lockscreen  </string>
 
     <!-- INTRO SCREEN 2 -->
 
-    <string name="if_your_slide"> If you slide, you will earn points </string>
+    <string name="if_your_slide"> By using points. you can buy top-up cards. products from online shopping malls and you can even change the points to real money </string>
     <string name="point_will_be"> Points will be awarded depending on the number below. </string>
 
     <!-- INTRO SCREEN 3 -->
 
-    <string name="i_collect"> My points </string>
+    <string name="i_collect"> Although you don\'t have point. you can enjoy all the latest  news and local informations in Cambodia </string>
     <string name="total_point">You can check, The points on medayi Medayi app</string>
 
     <!-- INTRO SCREEN 4 -->
 
-    <string name="portal_in"> Local in my hand </string>
+    <string name="portal_in"> Share this lovely app with your friends </string>
     <string name="you_can_look"> You can know about \n useful local informations</string>
 
     <!-- INTRO SCREEN 5 -->
-    <string name="change_the_point"> On the First Screen \n Captured all the benefits  </string>
+    <string name="change_the_point"> Medayi slide is the new type of advertisement platform by using lockscreen. </string>
     <string name="enter_the_pwd"> Enter the password and enter the points to change money. Point can be cashed through a Wing account. </string>
 
     <!--Login-->
@@ -91,7 +91,7 @@
     <string name="pwd_4_char_sy"> At Least 4 characters and not allow space, symbol </string>
     <string name="conf_pwd"> Confirm password </string>
     <string name="next"> Next </string>
-    <string name="dt_forget">Don\'t forget</string>
+    <string name="dt_forget">Don\'t forget your</string>
     <string name="id_pwd">ID &amp; Password</string>
 
     <!-- name -->

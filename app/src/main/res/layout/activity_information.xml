@@ -98,6 +98,7 @@
                             android:layout_alignTop="@+id/imageView"
                             android:layout_alignParentLeft="true"
                             android:layout_marginLeft="13dp"
+                            android:textSize="10dp"
                             android:textColor="@color/red_btn_bg_color"/>
 
                         <TextView

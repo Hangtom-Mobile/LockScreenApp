@@ -27,9 +27,9 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="25dp"
-            android:maxLines="1"
             android:textStyle="bold"/>
         <TextView
+            android:visibility="gone"
             android:layout_marginRight="30dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
@@ -45,7 +45,7 @@
             android:paddingRight="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/location_phone"
+            android:src="@drawable/food_pic"
             android:scaleType="fitCenter"
             android:gravity="bottom"/>
 

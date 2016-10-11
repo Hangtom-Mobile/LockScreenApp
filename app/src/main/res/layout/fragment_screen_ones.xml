@@ -35,7 +35,7 @@
              android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/food_pic"
+            android:src="@drawable/bee_phone_new"
             android:scaleType="fitCenter"
             android:gravity="bottom"/>
 
