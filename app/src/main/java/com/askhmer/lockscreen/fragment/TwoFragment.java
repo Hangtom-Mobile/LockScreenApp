@@ -366,14 +366,14 @@ public class TwoFragment extends Fragment /*implements SwipeRefreshLayout.OnRefr
         webview.setWebViewClient(new WebViewClient() {      //prevent open browser
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                mProgress.setVisibility(View.GONE);
                 if (url.contains(".m3u8")) {
                     Intent intent = new Intent(getContext(), LiveStream.class);
                     intent.putExtra("url", url);
                     startActivity(intent);
                     return true;
                 } else {
+                    view.loadUrl(url);
+                    mProgress.setVisibility(View.GONE);
                     return true;
                 }
             }
