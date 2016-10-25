@@ -370,12 +370,15 @@ public class TwoFragment extends Fragment /*implements SwipeRefreshLayout.OnRefr
                     Intent intent = new Intent(getContext(), LiveStream.class);
                     intent.putExtra("url", url);
                     startActivity(intent);
-                    return true;
+                }else if(url.contains("tel:")) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse(url));
+                    startActivity(intent);
                 } else {
                     view.loadUrl(url);
                     mProgress.setVisibility(View.GONE);
-                    return true;
                 }
+                return true;
             }
 
             @Override
