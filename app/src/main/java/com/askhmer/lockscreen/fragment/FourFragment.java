@@ -32,7 +32,6 @@ import com.askhmer.lockscreen.R;
 import com.askhmer.lockscreen.activity.AccountManage;
 import com.askhmer.lockscreen.activity.PrivacyStatement;
 import com.askhmer.lockscreen.activity.Recommend;
-import com.askhmer.lockscreen.activity.SendMail;
 import com.askhmer.lockscreen.activity.TermsOfUse;
 import com.askhmer.lockscreen.tutorials.MainPage;
 import com.askhmer.lockscreen.utils.AlarmReceiver;
@@ -151,9 +150,10 @@ public class FourFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                in = new Intent(getActivity(), SendMail.class);
-                startActivity(in);
-                getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
+                contactUs();
+//                in = new Intent(getActivity(), SendMail.class);
+//                startActivity(in);
+//                getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
 
 //                Intent intent = new Intent(Intent.ACTION_SEND);
 //                intent.setType("text/html");
@@ -202,7 +202,7 @@ public class FourFragment extends Fragment {
 
         new AlertDialog.Builder(getActivity())
                 .setTitle("CONTACT US")
-                .setMessage("Coming soon...")
+                .setMessage(getResources().getString(R.string.contact_us))
                 .setCancelable(true)
                 .setNegativeButton("OK", new DialogInterface.OnClickListener() {
                     @Override
