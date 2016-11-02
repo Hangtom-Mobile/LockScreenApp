@@ -128,14 +128,21 @@
                         android:layout_height="0.5dp"
                         android:background="@color/btn_tap_off"/>
 
-                    <Spinner
+                    <LinearLayout
+                        android:background="@drawable/radius_ed"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:id="@+id/sp_location"
-                        android:touchscreenBlocksFocus="true"
-                        android:spinnerMode="dialog"
-                        android:textAlignment="center"
-                        android:background="@drawable/radius_ed"/>
+                        android:layout_height="50dp">
+
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:id="@+id/sp_location"
+                            android:touchscreenBlocksFocus="true"
+                            android:spinnerMode="dialog"
+                            android:textAlignment="center" />
+
+                    </LinearLayout>
+
                     <View
                         android:layout_marginBottom="10dp"
                         android:layout_width="match_parent"

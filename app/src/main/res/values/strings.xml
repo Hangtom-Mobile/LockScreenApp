@@ -4,7 +4,7 @@
     <string name="app_name">Medayi</string>
 
     <string name="instructions">Click on UNLOCK button to unlock the screen</string>
-    <string name="unlock">UNLOCK</string>
+    <string name="unlock">Unlock Screen</string>
     <string name="title_activity_information">Information</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="error_player">There was an error initializing the YouTubePlayer (%1$s)</string>

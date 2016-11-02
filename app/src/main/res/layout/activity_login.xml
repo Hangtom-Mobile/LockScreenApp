@@ -86,6 +86,7 @@
                         android:background="@color/btn_tap_off"/>
                     <EditText
                         android:id="@+id/e_cash_id"
+                        android:hint="Input your medayi ID here"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="center"
@@ -131,6 +132,7 @@
                         android:layout_height="50dp"
                         android:gravity="center"
                         android:inputType="textPassword"
+                        android:hint="Input your password here"
                         android:maxLines="1"
                         android:singleLine="true"
                         android:background="@drawable/radius_ed"/>

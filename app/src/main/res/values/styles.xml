@@ -100,4 +100,8 @@
         <item name="colorControlActivated">@color/colorPrimary</item>
     </style>
 
+    <style name="x" parent="@android:style/TextAppearance.Small">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>

@@ -141,9 +141,11 @@
                         android:background="@color/btn_tap_off"/>
                     <EditText
                         android:id="@+id/e_cash_id"
+                        android:hint="Input your Medayi ID"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="center"
+                        android:maxLines="1"
                         android:singleLine="true"
                         android:background="@drawable/radius_ed"/>
                     <View

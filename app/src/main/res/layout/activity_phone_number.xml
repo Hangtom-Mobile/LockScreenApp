@@ -6,8 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.askhmer.lockscreen.activity.PhoneNumber"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
     android:orientation="vertical"
     android:background="@drawable/have_back">
 
@@ -96,14 +94,20 @@
                         android:layout_marginTop="4dp"
                         android:layout_marginBottom="9dp"/>
 
-                    <Spinner
+                    <LinearLayout
+                        android:background="@drawable/radius_ed"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:id="@+id/sp_location"
-                        android:touchscreenBlocksFocus="true"
-                        android:spinnerMode="dialog"
-                        android:textAlignment="center"
-                        android:background="@drawable/radius_ed"/>
+                        android:layout_height="48dp">
+
+                        <Spinner
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:id="@+id/sp_location"
+                            android:touchscreenBlocksFocus="true"
+                            android:spinnerMode="dialog"
+                            android:textAlignment="center" />
+
+                    </LinearLayout>
 
                     <View
                         android:layout_marginTop="10dp"
@@ -134,8 +138,9 @@
                             android:layout_height="match_parent"
                             android:inputType="phone"
                             android:gravity="left|center"
-                            android:hint="Phone"
+                            android:hint="Input your phone number"
                             android:maxLines="1"
+                            android:singleLine="true"
                             android:background="@drawable/radius_ed"/>
 
                     </LinearLayout>

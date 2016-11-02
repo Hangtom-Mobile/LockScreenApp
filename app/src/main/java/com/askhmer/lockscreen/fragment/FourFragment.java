@@ -26,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.askhmer.lockscreen.R;
@@ -47,7 +48,7 @@ public class FourFragment extends Fragment {
 
     private LinearLayout accountManage, contactUs, recommend, advertising, howToUse, privacy, terms, changeLang;
     private Intent in;
-    private SwitchCompat unlock;
+    private Switch unlock;
     private SharedPreferencesFile mSharedPreferencesFile;
     private TextView verName;
     RadioButton radioBtnEn;
@@ -72,7 +73,7 @@ public class FourFragment extends Fragment {
 
 //  init
 
-        unlock = (SwitchCompat) fourFragmentView.findViewById(R.id.switch1);
+        unlock = (Switch) fourFragmentView.findViewById(R.id.switch1);
         accountManage = (LinearLayout) fourFragmentView.findViewById(R.id.li_account_manage);
         contactUs = (LinearLayout) fourFragmentView.findViewById(R.id.li_contact_us);
         changeLang = (LinearLayout) fourFragmentView.findViewById(R.id.li_change_lan);
