@@ -131,7 +131,7 @@
                             android:background="@color/btn_tap_off"/>
                         <EditText
                             android:id="@+id/e_name"
-                            android:hint="Input your name"
+                            android:hint="@string/input_your_name"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:gravity="center"

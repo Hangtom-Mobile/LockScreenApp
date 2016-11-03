@@ -99,7 +99,7 @@ public class PhoneNumber extends AppCompatActivity implements Reciver{
             }
         });
 
-        etPhoneNum.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
+        /*etPhoneNum.addTextChangedListener(new PhoneNumberFormattingTextWatcher());*/
 
         etPhoneNum.addTextChangedListener(new TextWatcher() {
             @Override

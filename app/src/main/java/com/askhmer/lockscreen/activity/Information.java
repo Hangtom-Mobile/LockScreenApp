@@ -101,7 +101,7 @@ public class Information extends AppCompatActivity {
                 }else {
                     vePassId.setVisibility(View.GONE);
                     if(!password.equals(conPassword)){
-                        vePassId.setText("Password and Confirm password not match");
+                        vePassId.setText(R.string.pwd_not);
                         vePassId.setVisibility(View.VISIBLE);
                     }else {
                         vePassId.setVisibility(View.GONE);
@@ -128,12 +128,12 @@ public class Information extends AppCompatActivity {
                 String conPassword = editTextConPassword.getText().toString();
 
                 if (password.length() < 4) {
-                    vePassId.setText("Password at least 4 characters");
+                    vePassId.setText(R.string.pwd_4_char);
                     vePassId.setVisibility(View.VISIBLE);
                 } else {
                     vePassId.setVisibility(View.GONE);
                     if (!password.equals(conPassword)) {
-                        vePassId.setText("Password and Confirm password not match");
+                        vePassId.setText(R.string.pwd_not);
                         vePassId.setVisibility(View.VISIBLE);
                     } else {
                         vePassId.setVisibility(View.GONE);

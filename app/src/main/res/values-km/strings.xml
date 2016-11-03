@@ -3,6 +3,12 @@
 
     <string name="app_name">Medayi</string>
 
+    <string name="input_your_number">បញ្ចូលលេខទូរស័ព្ទរបស់អ្នក</string>
+    <string name="input_your_id">បញ្ចូល Medayi ID</string>
+    <string name="input_your_name">បញ្ចូលឈ្មោះរបស់អ្នក</string>
+    <string name="male">បុរស</string>
+    <string name="female">ស្រី</string>
+
     <string name="instructions">ចុចប៊ូតុងដោះសោដើម្បីធ្វើការដោះសោ</string>
     <string name="unlock">ដោះសោ</string>
     <string name="title_activity_information">ព័ត៌មាន</string>
@@ -53,7 +59,7 @@
 
     <string name="join_medayi"> ចូលលទៅកាន់  MEDAYI  </string>
     <string name="i_already"> មានគណនី Medayi រួចមកហើយ  </string>
-    <string name="forget_id_pass"> <u>សូមចុចទីនេះសម្រាប់ភ្លេច ពាក្យសម្ងាត់ឬ លេខសម្គាល់ Medayi</u>  </string>
+    <string name="forget_id_pass"> <u>ភ្លេច ពាក្យសម្ងាត់ឬ លេខសម្គាល់ Medayi ?</u>  </string>
 
     <!-- forget_id_pass -->
     <string name="find_id"> Find Medayi ID  </string>
@@ -88,6 +94,8 @@
     <string name="medayi_id"> លេខសម្គាល់ Medayi </string>
     <string name="pwd"> ពាក្យសម្ងាត់ </string>
     <string name="pwd_4_char"> ពាក្យសំងាត់យ៉ាងហោចណាស់៤តួអក្សរ </string>
+    <string name="pwd_not"> ពាក្យសម្ងាត់និងអះអាងពាក្យសម្ងាត់មិនដូចគ្នា </string>
+    <string name="id_have"> លេខសម្គាល់មានរួចទៅហើយ </string>
     <string name="pwd_4_char_sy"> យ៉ាងហោចណាស់ 4 តួអក្សរនិងមិនអនុញ្ញាតឱ្យមានចន្លោះ​ និមិត្តសញ្ញា </string>
     <string name="conf_pwd"> បញ្ជាក់ពាក្យសំងាត់ម្តងទៀត </string>
     <string name="next"> បន្ទាប់ </string>
@@ -107,7 +115,7 @@
     <string name="ask_age">តើអ្នកមាន\nអាយុប៉ុន្មាន?</string>
 
     <string name="location"> ទីតាំង </string>
-    <string name="location_title"> កន្លែងដែលអ្នករស់នៅ? </string>
+    <string name="location_title"> កន្លែង \n អ្នករស់នៅ? </string>
     <string-array name="list_province">
         <item>ភ្នំពេញ</item>
         <item>សៀមរាប</item>
@@ -138,7 +146,7 @@
 
     <!-- National -->
     <string name="national"> សញ្ជាតិ </string>
-    <string name="national_title"> តើ​អ្នក​មកពីណា? </string>
+    <string name="national_title"> មកពីណា? </string>
 
     <string-array name="list_national">
         <item>កម្ពុជា</item>

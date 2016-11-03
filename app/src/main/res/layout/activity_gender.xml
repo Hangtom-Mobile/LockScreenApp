@@ -87,14 +87,15 @@
                             android:id="@+id/imageView" />
 
                         <TextView
+                            android:textSize="11dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/ask_gender"
-                            android:layout_marginTop="23dp"
+                            android:layout_marginTop="25dp"
                             android:rotation="12"
                             android:layout_alignTop="@+id/imageView"
                             android:layout_alignParentRight="true"
-                            android:layout_marginRight="27dp"
+                            android:layout_marginRight="25dp"
                             android:gravity="center"/>
 
                     </RelativeLayout>
@@ -162,14 +163,14 @@
                                 android:layout_weight="1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Male"/>
+                                android:text="@string/male"/>
 
                             <TextView
                                 android:gravity="center"
                                 android:layout_weight="1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Female"/>
+                                android:text="@string/female"/>
 
                         </LinearLayout>
 

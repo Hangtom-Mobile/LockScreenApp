@@ -71,7 +71,8 @@
                             android:layout_width="160dp"
                             android:layout_height="160dp"
                             android:src="@drawable/ic_icon_e"
-                            android:scaleType="fitCenter"/>
+                            android:scaleType="fitCenter"
+                            android:id="@+id/imageView5" />
 
                     </LinearLayout>
 
@@ -93,12 +94,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/dt_forget"
-                            android:layout_marginTop="27dp"
+                            android:layout_marginTop="30dp"
                             android:rotation="-12"
                             android:layout_alignTop="@+id/imageView"
                             android:layout_alignParentLeft="true"
-                            android:layout_marginLeft="13dp"
-                            android:textSize="10dp"
+                            android:layout_marginLeft="14dp"
+                            android:textSize="9dp"
                             android:textColor="@color/red_btn_bg_color"/>
 
                         <TextView
@@ -110,8 +111,8 @@
                             android:layout_alignTop="@+id/imageView"
                             android:layout_alignParentLeft="true"
                             android:layout_below="@id/tv_dont_forget"
-                            android:layout_marginLeft="12dp"
-                            android:textSize="12dp"
+                            android:layout_marginLeft="15dp"
+                            android:textSize="11dp"
                             android:textColor="@color/btn_select_tran"/>
 
                     </RelativeLayout>
@@ -141,7 +142,7 @@
                         android:background="@color/btn_tap_off"/>
                     <EditText
                         android:id="@+id/e_cash_id"
-                        android:hint="Input your Medayi ID"
+                        android:hint="@string/input_your_id"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="center"

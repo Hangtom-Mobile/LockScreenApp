@@ -3,6 +3,12 @@
 
     <string name="app_name">Medayi</string>
 
+    <string name="input_your_number">Input your phone number</string>
+    <string name="input_your_id">Input your Medayi ID</string>
+    <string name="input_your_name">Input your name</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+
     <string name="instructions">Click on UNLOCK button to unlock the screen</string>
     <string name="unlock">Unlock Screen</string>
     <string name="title_activity_information">Information</string>
@@ -53,7 +59,7 @@
 
     <string name="join_medayi"> Join MEDAYI  </string>
     <string name="i_already"> I already have a MEDAYI account  </string>
-    <string name="forget_id_pass"> <u>Click here for forget <b>Medayi ID</b> or <b>Password</b></u>  </string>
+    <string name="forget_id_pass"> <u>Forget <b>Medayi ID</b> or <b>Password ?</b></u>  </string>
 
     <!-- forget_id_pass -->
     <string name="find_id"> Find Medayi ID  </string>
@@ -88,6 +94,8 @@
     <string name="medayi_id"> Medayi ID </string>
     <string name="pwd"> Password </string>
     <string name="pwd_4_char"> Password at least 4 charactor </string>
+    <string name="pwd_not"> Password at least 4 charactor </string>
+    <string name="id_have"> ID already have </string>
     <string name="pwd_4_char_sy"> At Least 4 characters and not allow space, symbol </string>
     <string name="conf_pwd"> Confirm password </string>
     <string name="next"> Next </string>
@@ -194,7 +202,7 @@
     <string name="my_info"> My Info </string>
     <string name="acc_man"> Account Management </string>
     <string name="change_pwd"> Change Password </string>
-    <string name="forget_pwd"> Forget your password </string>
+    <string name="forget_pwd"> Forget password </string>
 
     <!-- MyInfo -->
     <string name="my_infor"> My Information </string>
@@ -378,3 +386,4 @@
     </string>
 
 </resources>
+
