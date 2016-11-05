@@ -86,7 +86,6 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-
         <receiver android:name=".utils.AlarmReceiver" />
 
         <activity
@@ -200,7 +199,7 @@
             android:name=".activity.YoutubeVideo"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name="com.thefinestartist.finestwebview.FinestWebViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -213,7 +212,10 @@
             android:name=".activity.LiveStream"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+        <activity
+            android:name=".activity.ListTopUpCompany"
+            android:theme="@style/AppTheme">
 
         </activity>
     </application>

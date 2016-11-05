@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.askhmer.lockscreen.R;
+import com.askhmer.lockscreen.activity.ListTopUpCompany;
 import com.askhmer.lockscreen.activity.PasswordFindMoney;
 
 /**
@@ -20,7 +21,7 @@ import com.askhmer.lockscreen.activity.PasswordFindMoney;
  */
 public class ThreeFragment extends Fragment{
 
-    private LinearLayout hangtom, findMoney;
+    private LinearLayout hangtom, findMoney, topUp;
 
     public ThreeFragment(){}
 
@@ -52,7 +53,16 @@ public class ThreeFragment extends Fragment{
                 getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
             }
         });
-        //TODO code
+
+        topUp = (LinearLayout) threeFragmentView.findViewById(R.id.li_top_up);
+        topUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(getActivity(), ListTopUpCompany.class);
+                startActivity(in);
+                getActivity().overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
+            }
+        });
 
         return threeFragmentView;
     }
