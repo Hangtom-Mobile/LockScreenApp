@@ -33,6 +33,7 @@ public class API {
     public static final String CHANGLOCATION = "http://www.medayi.com/bbs/change_location_api.php";
     public static final String SMSGATEWAY = BASEURL + "locknet_smscode_api.php";
     public static final String REQUESTCOMPANYTOPUP = "http://medayi.com/locknet/locknet_topup_category_api.php";
-
+    public static final String REQUESTDETAILTOPUP = "http://medayi.com/locknet/locknet_topup_api.php";
+    public static final String REQUESTBUYTOPUPCARD = BASEURL + "locknet_topup_charge_api.php";
     public static final String MESSAGE = BASEURL + "locknet_popup_api.php";
 }

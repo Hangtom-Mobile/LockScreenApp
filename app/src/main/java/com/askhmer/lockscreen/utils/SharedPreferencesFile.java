@@ -12,6 +12,7 @@ public class SharedPreferencesFile {
     public static final String IS_KEY_INTRO_FINISH = "IS_KEY_INTRO_FINISH";
     public static final String KEY_INFORMATION_TEMP_PHONE = "KEY_INFORMATION_TEMP_PHONE";
     public static final String KEY_INFORMATION_TEMP_CASHID = "KEY_INFORMATION_TEMP_CASHID";
+    public static final String KEY_POINT = "KEY_POINT";
     public static final String KEY_INFORMATION_TEMP_NAME = "KEY_INFORMATION_TEMP_NAME";
     public static final String KEY_INFORMATION_TEMP_PASSWORD = "KEY_INFORMATION_TEMP_PASSWORD";
     public static final String KEY_INFORMATION_TEMP_GENDER = "KEY_INFORMATION_TEMP_GENDER";

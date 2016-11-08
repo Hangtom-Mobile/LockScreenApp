@@ -218,6 +218,7 @@ public class OneFragment extends Fragment {
                                    txtMyPoint.setTextSize(35);
                                 }
                                 txtMyPoint.setText(point);
+                                mSharedPreferencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_POINT, point);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

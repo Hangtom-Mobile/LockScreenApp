@@ -212,12 +212,13 @@
             android:name=".activity.LiveStream"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name=".activity.ListTopUpCompany"
-            android:theme="@style/AppTheme">
-
-        </activity>
+            android:theme="@style/MyAppTheme"></activity>
+        <activity android:name=".activity.DetailTopUp"
+            android:theme="@style/MyAppTheme"></activity>
     </application>
+
 
 </manifest>

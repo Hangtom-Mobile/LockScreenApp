@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="350dp"
+    tools:context="com.askhmer.lockscreen.tutorials.ChooseLanguage"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EEEEEE"
+        android:weightSum="5">
+
+        <LinearLayout
+            android:id="@+id/li_header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="2"
+            android:padding="3dp"
+            android:gravity="left|center">
+
+            <ImageView
+                android:id="@+id/image_head"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_point_gray"/>
+
+            <TextView
+                android:id="@+id/txt_card_price"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center|right"
+                android:textSize="18dp"
+                android:layout_marginRight="10dp"
+                android:text="1 $"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#DEDEDE"
+                android:weightSum="3"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:orientation="vertical"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Receiver :"
+                        android:textSize="16dp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="left|center_vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txt_numb"
+                            android:layout_width="100dp"
+                            android:layout_height="35dp"
+                            android:textSize="16dp"
+                            android:textColor="@color/Color_DarkRed"
+                            android:gravity="center"
+                            android:text="40,0000"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="My point :"
+                        android:textSize="16dp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="left|center_vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txt_mypoint"
+                            android:layout_width="100dp"
+                            android:layout_height="35dp"
+                            android:background="#EEEEEE"
+                            android:textSize="16dp"
+                            android:gravity="center"
+                            android:text="40,0000"/>
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/ic_point_gray"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Used :"
+                        android:textSize="16dp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="left|center_vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txt_used"
+                            android:layout_width="100dp"
+                            android:layout_height="35dp"
+                            android:textColor="@color/Color_DarkRed"
+                            android:background="#EEEEEE"
+                            android:textSize="16dp"
+                            android:gravity="center"
+                            android:text="40,0000"/>
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/ic_point_gray"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:orientation="vertical"
+                android:layout_weight="2">
+
+                <LinearLayout
+                    android:id="@+id/li_total"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Total :"
+                        android:textSize="16dp"
+                        android:gravity="center_vertical"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="left|center_vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/txt_total"
+                            android:layout_width="100dp"
+                            android:layout_height="35dp"
+                            android:background="#DEDEDE"
+                            android:textSize="16dp"
+                            android:gravity="center"
+                            android:text="40,0000"/>
+
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/ic_point_gray"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/vi_txt"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="16dp"
+                    android:gravity="center"
+                    android:textColor="@color/Color_DarkRed"
+                    android:text="Your point not enough to change this top up card"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="2"
+            android:paddingRight="15dp"
+            android:gravity="right|center">
+
+            <Button
+                android:layout_marginRight="10dp"
+                android:id="@+id/bttn_cancel"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:text="CANCEL"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_selector" />
+
+            <Button
+                android:id="@+id/bttn_buy"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:text="BUY"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_selector" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -122,6 +122,7 @@ public class MoneyBalance extends SwipeBackActivity {
                                     txtYourBalance.setTextSize(35);
                                 }
                                 txtYourBalance.setText(point);
+                                mSharedPreferencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_POINT, point);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

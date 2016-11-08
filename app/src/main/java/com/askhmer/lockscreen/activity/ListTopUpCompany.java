@@ -1,5 +1,7 @@
 package com.askhmer.lockscreen.activity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -21,11 +23,13 @@ import com.askhmer.lockscreen.network.API;
 import com.askhmer.lockscreen.network.JsonConverter;
 import com.askhmer.lockscreen.network.MySingleton;
 import com.askhmer.lockscreen.utils.RecyclerItemClickListener;
+import com.liuguangqiang.swipeback.SwipeBackActivity;
+import com.liuguangqiang.swipeback.SwipeBackLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListTopUpCompany extends AppCompatActivity {
+public class ListTopUpCompany extends SwipeBackActivity {
 
     private RecyclerView recyclerViewGrid;
     private List<TopUpCompany> topUpCompanies = new ArrayList<TopUpCompany>();
@@ -36,6 +40,9 @@ public class ListTopUpCompany extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_top_up_company);
+
+        //swipe back
+        setDragEdge(SwipeBackLayout.DragEdge.LEFT);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -56,7 +63,10 @@ public class ListTopUpCompany extends AppCompatActivity {
 
             @Override
             public void onItemClick(View view, int position) {
-                Log.e("show_123", position+"");
+                Intent intent = new Intent(ListTopUpCompany.this, DetailTopUp.class);
+                intent.putExtra("category_id", topUpCompanies.get(position).getCategoryId());
+                startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
             }
 
             @Override
@@ -67,6 +77,11 @@ public class ListTopUpCompany extends AppCompatActivity {
     }
 
     private void setupDataFromServer() {
+        final ProgressDialog pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Loading...");
+        pDialog.setCanceledOnTouchOutside(false);
+        pDialog.show();
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, API.REQUESTCOMPANYTOPUP,
                 new Response.Listener<String>() {
                     @Override
@@ -81,6 +96,7 @@ public class ListTopUpCompany extends AppCompatActivity {
                                     adpter = new TopUpCompanyAdpter(topUpCompanies, ListTopUpCompany.this);
                                     adpter.notifyDataSetChanged();
                                     recyclerViewGrid.setAdapter(adpter);
+                                    pDialog.dismiss();
                                 }
                             }
                         }
@@ -88,7 +104,7 @@ public class ListTopUpCompany extends AppCompatActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                setupDataFromServer();
             }
         });
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);
