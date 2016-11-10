@@ -19,6 +19,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.askhmer.lockscreen.R;
 import com.askhmer.lockscreen.adapter.TopUpCompanyAdpter;
 import com.askhmer.lockscreen.model.TopUpCompany;
+import com.askhmer.lockscreen.model.TopUpDetail;
 import com.askhmer.lockscreen.network.API;
 import com.askhmer.lockscreen.network.JsonConverter;
 import com.askhmer.lockscreen.network.MySingleton;
@@ -57,10 +58,7 @@ public class ListTopUpCompany extends SwipeBackActivity {
         recyclerViewGrid.setLayoutManager(gridLayout);
         recyclerViewGrid.setItemAnimator(new DefaultItemAnimator());
 
-        recyclerViewGrid.addOnItemTouchListener(
-                new RecyclerItemClickListener(this, recyclerViewGrid,
-                        new RecyclerItemClickListener.OnItemClickListener(){
-
+        recyclerViewGrid.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerViewGrid, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(ListTopUpCompany.this, DetailTopUp.class);
@@ -70,7 +68,7 @@ public class ListTopUpCompany extends SwipeBackActivity {
             }
 
             @Override
-            public void onLongItemClick(View view, int position) {
+            public void onItemLongClick(View view, int position) {
 
             }
         }));

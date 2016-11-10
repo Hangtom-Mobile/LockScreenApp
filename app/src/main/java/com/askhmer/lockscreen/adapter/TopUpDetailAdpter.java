@@ -56,6 +56,7 @@ public class TopUpDetailAdpter extends RecyclerView.Adapter<TopUpDetailAdpter.My
     public void onBindViewHolder(MyViewHolder holder, int position) {
         TopUpDetail upDetail = topUpDetails.get(position);
         holder.textView.setText(upDetail.getTopUpCharge() + " $");
+        holder.textView.setTextColor(Color.parseColor(upDetail.gettColor()));
         Picasso.with(holder.imageView.getContext()).load(upDetail.getTopUpImage()).into(holder.imageView);
         holder.linearLayout.setBackgroundColor(Color.parseColor(upDetail.getTopUpColor()));
 

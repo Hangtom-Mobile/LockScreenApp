@@ -385,5 +385,18 @@
         023 987 714
     </string>
 
+    <!--ask password top up-->
+    <string name="note_text">Note** Please make sure that your values of top up card is correct, because you can\'t revert your transaction. \nPlease fill your password below if you want to change.</string>
+    <string name="confirm_pass">Confirmation</string>
+    <string name="fill_pass">Fill your password here</string>
+    <string name="cancel">CANCEL</string>
+
+    <!--alert dialog top up-->
+    <string name="reciever">Receiver :</string>
+    <string name="mypoint">My point :</string>
+    <string name="used">Used :</string>
+    <string name="total">Total :</string>
+    <string name="buy">Buy</string>
+
 </resources>
 

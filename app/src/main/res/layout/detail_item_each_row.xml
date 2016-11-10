@@ -35,13 +35,13 @@
                 android:src="@drawable/bee_phone_new"/>
 
             <TextView
-                android:paddingRight="20dp"
+                android:paddingRight="25dp"
                 android:gravity="right|center_vertical"
                 android:id="@+id/txt_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textColor="@color/black"
-                android:textSize="24dp"
+                android:textSize="26dp"
                 android:text="1 $"/>
 
         </LinearLayout>

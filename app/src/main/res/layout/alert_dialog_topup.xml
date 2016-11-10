@@ -70,7 +70,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Receiver :"
+                        android:text="@string/reciever"
                         android:textSize="16dp"
                         android:gravity="center_vertical"
                         android:layout_weight="1"/>
@@ -104,7 +104,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="My point :"
+                        android:text="@string/mypoint"
                         android:textSize="16dp"
                         android:gravity="center_vertical"
                         android:layout_weight="1"/>
@@ -144,7 +144,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Used :"
+                        android:text="@string/used"
                         android:textSize="16dp"
                         android:gravity="center_vertical"
                         android:layout_weight="1"/>
@@ -194,7 +194,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Total :"
+                        android:text="@string/total"
                         android:textSize="16dp"
                         android:gravity="center_vertical"
                         android:layout_weight="1"/>
@@ -251,7 +251,7 @@
                 android:id="@+id/bttn_cancel"
                 android:layout_width="100dp"
                 android:layout_height="35dp"
-                android:text="CANCEL"
+                android:text="@string/cancel"
                 android:textColor="@color/white"
                 android:background="@drawable/btn_selector" />
 
@@ -259,7 +259,7 @@
                 android:id="@+id/bttn_buy"
                 android:layout_width="100dp"
                 android:layout_height="35dp"
-                android:text="BUY"
+                android:text="@string/buy"
                 android:textColor="@color/white"
                 android:background="@drawable/btn_selector" />
 

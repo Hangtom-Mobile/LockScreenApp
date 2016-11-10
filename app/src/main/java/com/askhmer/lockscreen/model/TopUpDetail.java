@@ -26,6 +26,9 @@ public class TopUpDetail {
     @SerializedName("topup_color")
     private String topUpColor;
 
+    @SerializedName("topup_Tcolor")
+    private String tColor;
+
     public String getTopUpId() {
         return topUpId;
     }
@@ -72,5 +75,13 @@ public class TopUpDetail {
 
     public void setTopUpColor(String topUpColor) {
         this.topUpColor = topUpColor;
+    }
+
+    public String gettColor() {
+        return tColor;
+    }
+
+    public void settColor(String tColor) {
+        this.tColor = tColor;
     }
 }

@@ -167,7 +167,7 @@
 
     <string name="find_money">  រកលុយ </string>
     <string name="hangtom">  HANGTOM </string>
-    <string name="top_up"> TOP UP </string>
+    <string name="top_up">បញ្ចូល​ទឹកប្រាក់</string>
 
 
     <!-- Tab 4 -->
@@ -385,4 +385,18 @@
         ភ្នាក់ងាទូរស័ព្ទ\n\n
         023 987 714
     </string>
+
+    <!--ask password top up-->
+    <string name="note_text">Note** Please make sure that your values of top up card is correct, because you can\'t revert your transaction. \nPlease fill your password below if you want to change.</string>
+    <string name="confirm_pass">ការបញ្ជាក់</string>
+    <string name="fill_pass">បំពេញពាក្យសម្ងាត់របស់អ្នកនៅទីនេះ</string>
+    <string name="cancel">បដិសេធ</string>
+
+    <!--alert dialog top up-->
+    <string name="reciever">អ្នក​ទទួល :</string>
+    <string name="mypoint">ពិន្ទុរបស់ខ្ញុំ :</string>
+    <string name="used">ប្រើ :</string>
+    <string name="total">សរុប :</string>
+    <string name="buy">ទិញ</string>
+
 </resources>
