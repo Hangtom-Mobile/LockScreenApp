@@ -151,7 +151,8 @@ public class DetailTopUp extends SwipeBackActivity {
         /*setup dialog*/
         final Dialog dialog = new Dialog(DetailTopUp.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        /*dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));*/
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(true);
         dialog.setContentView(R.layout.alert_dialog_topup);
@@ -224,7 +225,7 @@ public class DetailTopUp extends SwipeBackActivity {
         /*setup dialog*/
         final Dialog dialog = new Dialog(DetailTopUp.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(true);
         dialog.setContentView(R.layout.ask_password_alert);
@@ -275,14 +276,18 @@ public class DetailTopUp extends SwipeBackActivity {
                             new SweetAlertDialog(DetailTopUp.this)
                                     .setTitleText("Top up success!")
                                     .show();
-                            pDialog.dismiss();
                         }else if (response.contains("112")) {
                             new SweetAlertDialog(DetailTopUp.this, SweetAlertDialog.ERROR_TYPE)
                                     .setTitleText("")
                                     .setContentText("Your information incorrect!")
                                     .show();
-                            pDialog.dismiss();
+                        }else {
+                            new SweetAlertDialog(DetailTopUp.this, SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("")
+                                    .setContentText("System error")
+                                    .show();
                         }
+                        pDialog.dismiss();
                     }
                 }, new Response.ErrorListener() {
             @Override

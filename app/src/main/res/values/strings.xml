@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Medayi</string>
+    <string name="app_name">Medayi Slide</string>
 
     <string name="input_your_number">Input your phone number</string>
     <string name="input_your_id">Input your Medayi ID</string>

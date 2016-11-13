@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Medayi</string>
+    <string name="app_name">Medayi Slide</string>
 
     <string name="input_your_number">បញ្ចូលលេខទូរស័ព្ទរបស់អ្នក</string>
     <string name="input_your_id">បញ្ចូល Medayi ID</string>
