@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,6 +65,10 @@ public class LockScreenActivity extends Activity implements
 
 	// User-interface
 	private Button btnUnlock;
+
+	/*nativagation drawer*/
+	private LinearLayout rightDrawer;
+	private DrawerLayout drawerLayout;
 
 	// Member variables
 	private LockscreenUtils mLockscreenUtils;
@@ -158,12 +164,23 @@ public class LockScreenActivity extends Activity implements
 	private void init() {
 		mLockscreenUtils = new LockscreenUtils();
 		imageViewPager = (ViewPager) findViewById(R.id.view_pager);
+
+		/*set up drawer*/
+		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		rightDrawer = (LinearLayout) findViewById(R.id.right_drawer);
+		drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
 		/*display currrent date*/
 		getCurrentDate();
 	}
 
 	@Override
 	public void displayMessage() {
+		/*close drawer*/
+		/*if (drawerLayout.isDrawerOpen(rightDrawer)) {
+			drawerLayout.closeDrawer(rightDrawer);
+		}*/
+
 		getCurrentDate();
 		lockScreenRequestServer("message");
 		imageViewPager.setCurrentItem(position++, false);

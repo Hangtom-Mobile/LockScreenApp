@@ -159,14 +159,34 @@ tools:context="com.askhmer.lockscreen.activity.MoneyBalance">
                         android:layout_width="match_parent"
                         android:layout_height="0.1dp"
                         android:background="@color/btn_tap_off"/>
-                    <EditText
-                        android:id="@+id/et_wing_account"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:inputType="number"
-                        android:gravity="center"
-                        android:singleLine="true"
-                        android:background="@drawable/radius_ed"/>
+                        android:weightSum="3"
+                        android:orientation="horizontal">
+
+                        <Spinner
+                            android:layout_weight="2"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:id="@+id/sp_type_acc"
+                            android:touchscreenBlocksFocus="true"
+                            android:spinnerMode="dropdown" />
+
+                        <EditText
+                            android:enabled="false"
+                            android:layout_weight="1"
+                            android:id="@+id/et_wing_account"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:inputType="number"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:textSize="14dp"
+                            android:textColor="@color/Color_DarkRed"
+                            android:background="@drawable/radius_ed"/>
+
+                    </LinearLayout>
                     <View
                         android:layout_marginBottom="10dp"
                         android:layout_width="match_parent"

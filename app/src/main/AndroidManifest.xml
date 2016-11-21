@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.askhmer.lockscreen"
-    android:versionCode="34"
-    android:versionName="3.2.6">
+    android:versionCode="35"
+    android:versionName="3.2.7">
 
     <uses-sdk android:minSdkVersion="14" />
 

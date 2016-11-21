@@ -1,9 +1,13 @@
 package com.askhmer.lockscreen.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.askhmer.lockscreen.R;
+import com.askhmer.lockscreen.adapter.SpinnerAdpt;
 import com.askhmer.lockscreen.network.API;
 import com.askhmer.lockscreen.network.CheckInternet;
 import com.askhmer.lockscreen.network.MySingleton;
@@ -29,12 +34,15 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class MoneyBalance extends SwipeBackActivity {
 
     private EditText etPoint, etWingAccount;
     private TextView txtVeri, txtYourBalance;
     private Button btnConfirm;
     private SharedPreferencesFile mSharedPreferencesFile;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +57,18 @@ public class MoneyBalance extends SwipeBackActivity {
         txtVeri = (TextView) findViewById(R.id.ve_password);
         txtYourBalance = (TextView) findViewById(R.id.tv_your_balance);
         btnConfirm = (Button) findViewById(R.id.btn_next_money);
+        spinner = (Spinner) findViewById(R.id.sp_type_acc);
+
+        /*set up spinner account type*/
+        String[] text = {"Wing", "True Money"};
+        int[] image = {R.drawable.ic_wing, R.drawable.icon_true_money};
+        spinner.setAdapter(new SpinnerAdpt(this, R.layout.layout_spinner, text, image));
+
+        /*set number phone*/
+        /*call shared referance file */
+        SharedPreferencesFile sharedPreferencesFile = new SharedPreferencesFile(this, SharedPreferencesFile.FILE_INFORMATION_TEMP);
+        String numberPhone = sharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PHONE);
+        etWingAccount.setText(numberPhone);
 
         /*request my point to server*/
         requestMypointToServer();
@@ -67,12 +87,13 @@ public class MoneyBalance extends SwipeBackActivity {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
+                            Log.e("change", response);
                             try {
                                 if (!response.isEmpty()) {
                                     JSONObject jsonObj = new JSONObject(response);
                                     String result =jsonObj.getString("rst");
                                     if (result.equals("110")) {
-                                        Toast.makeText(MoneyBalance.this, "Exchange point success", Toast.LENGTH_SHORT).show();
+                                        message();
                                     }else if (result.equals("115")) {
                                         txtVeri.setText("Your request point change is bigger than your current point");
                                         txtVeri.setVisibility(View.VISIBLE);
@@ -98,6 +119,7 @@ public class MoneyBalance extends SwipeBackActivity {
                     params.put("cash_password", mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD));
                     params.put("token_id", mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_TOKEN));
                     params.put("withdraw", etPoint.getText().toString());
+                    params.put("wdr_company", spinner.getSelectedItem().toString().toLowerCase().replace(" ",""));
                     params.put("wing_account", etWingAccount.getText().toString());
                     return params;
                 }
@@ -107,6 +129,30 @@ public class MoneyBalance extends SwipeBackActivity {
             txtVeri.setText("Please check your internet connection!");
             txtVeri.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void message() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+
+        // Setting Dialog Title
+        alertDialogBuilder.setTitle("Confirmation");
+
+        // set dialog message
+        alertDialogBuilder
+                .setMessage("Your request exchange money is under our review. We'll send message and notification to your after our review!")
+                .setCancelable(false)
+                .setPositiveButton("OK",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        MoneyBalance.this.finish();
+                    }
+                });
+
+        // create alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // show it
+        alertDialog.show();
     }
 
     public void requestMypointToServer() {
