@@ -40,6 +40,7 @@
         android:fillViewport="true">
 
         <LinearLayout
+            android:background="@color/back_color"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -119,6 +120,7 @@
 
 
                     <DatePicker
+                        android:background="@drawable/radius_ed"
                         android:id="@+id/my_date_picker"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

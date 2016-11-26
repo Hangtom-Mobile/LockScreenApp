@@ -131,9 +131,11 @@ public class RequestPassword extends AppCompatActivity implements Reciver{
                     layoutConfirm.setVisibility(View.VISIBLE);
 
                     if (ind.equals("0")) {
+                        etMedayiID.setText(formatedPhNumber);
                         String fulPhoneNum = code + "_" + formatedPhNumber.substring(1);
                         sendSMS(fulPhoneNum, randomNumber, etMedayiID.getText().toString());
                     } else {
+                        etMedayiID.setText("0" + formatedPhNumber);
                         String fulPhoneNum = code + "_" + formatedPhNumber;
                         sendSMS(fulPhoneNum, randomNumber, etMedayiID.getText().toString());
                     }

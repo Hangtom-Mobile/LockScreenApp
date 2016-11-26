@@ -40,6 +40,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/back_color"
         android:orientation="vertical">
 
         <ScrollView
@@ -128,6 +129,7 @@
                     <!--cash silde id-->
 
                     <TextView
+                        android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/medayi_id"
@@ -136,11 +138,13 @@
                         android:layout_marginBottom="5dp"/>
 
                     <View
+                        android:visibility="gone"
                         android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
                         android:background="@color/btn_tap_off"/>
                     <EditText
+                        android:visibility="gone"
                         android:id="@+id/e_cash_id"
                         android:hint="@string/input_your_id"
                         android:layout_width="match_parent"
@@ -150,6 +154,7 @@
                         android:singleLine="true"
                         android:background="@drawable/radius_ed"/>
                     <View
+                        android:visibility="gone"
                         android:layout_marginBottom="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
@@ -182,6 +187,7 @@
                         android:layout_height="0.5dp"
                         android:background="@color/btn_tap_off"/>
                     <EditText
+                        android:visibility="gone"
                         android:id="@+id/e_password"
                         android:hint="@string/pwd_4_char"
                         android:textColorHint="@color/hintColor"
@@ -190,6 +196,16 @@
                         android:gravity="center"
                         android:textSize="13dp"
                         android:inputType="textPassword"
+                        android:singleLine="true"
+                        android:background="@drawable/radius_ed"/>
+                    <EditText
+                        android:id="@+id/password"
+                        android:hint="@string/pwd_4_char"
+                        android:textColorHint="@color/hintColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:gravity="center"
+                        android:textSize="13dp"
                         android:singleLine="true"
                         android:background="@drawable/radius_ed"/>
                     <View
@@ -210,11 +226,13 @@
 
 
                     <View
+                        android:visibility="gone"
                         android:layout_marginTop="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
                         android:background="@color/btn_tap_off"/>
                     <EditText
+                        android:visibility="gone"
                         android:id="@+id/e_con_password"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
@@ -226,13 +244,13 @@
                         android:singleLine="true"
                         android:hint="@string/conf_pwd"/>
                     <View
+                        android:visibility="gone"
                         android:layout_marginBottom="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="0.5dp"
                         android:layout_marginLeft="2dp"
                         android:layout_marginRight="2dp"
                         android:background="@color/btn_tap_off"/>
-
 
 
                     <LinearLayout

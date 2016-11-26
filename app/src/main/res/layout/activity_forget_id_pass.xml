@@ -45,6 +45,7 @@
             android:layout_weight="1">
 
             <LinearLayout
+                android:visibility="gone"
                 android:id="@+id/find_id"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -62,7 +63,8 @@
                     android:text="@string/find_id"
                     android:textColor="@color/white"
                     android:layout_marginLeft="5dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:id="@+id/textView3" />
 
             </LinearLayout>
 

@@ -51,8 +51,32 @@ public class Information extends AppCompatActivity {
         vePassId = (TextView)findViewById(R.id.ve_pass_id);
         veSlideId = (TextView) findViewById(R.id.ve_slide_id);
 
+        final EditText editTextPassword = (EditText)findViewById(R.id.password);
+        editTextPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String id = editTextPassword.getText().toString();
+                if(editTextPassword.length() < 4) {
+                    vePassId.setText(R.string.pwd_4_char);
+                    vePassId.setVisibility(View.VISIBLE);
+                }else {
+                    vePassId.setVisibility(View.GONE);
+                }
+            }
+        });
+
         /*Cash Slide id*/
-        final EditText editTextCashSlideId = (EditText)findViewById(R.id.e_cash_id);
+        /*final EditText editTextCashSlideId = (EditText)findViewById(R.id.e_cash_id);
         editTextCashSlideId.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -74,10 +98,10 @@ public class Information extends AppCompatActivity {
                     veSlideId.setVisibility(View.GONE);
                 }
             }
-        });
+        });*/
 
          /*con password*/
-        final EditText editTextPassword = (EditText)findViewById(R.id.e_password);
+        /*final EditText editTextPassword = (EditText)findViewById(R.id.e_password);
         final EditText editTextConPassword = (EditText)findViewById(R.id.e_con_password);
         editTextConPassword.addTextChangedListener(new TextWatcher() {
             @Override
@@ -110,7 +134,7 @@ public class Information extends AppCompatActivity {
             }
         });
 
-        /*password*/
+        *//*password*//*
         editTextPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -140,12 +164,12 @@ public class Information extends AppCompatActivity {
                     }
                 }
             }
-        });
+        });*/
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ((vePassId.getVisibility() == View.GONE) && (veSlideId.getVisibility() == View.GONE)) {
+              /*  if ((vePassId.getVisibility() == View.GONE) && (veSlideId.getVisibility() == View.GONE)) {
                     if (editCashId.getText().toString().isEmpty()) {
                         veSlideId.setVisibility(View.VISIBLE);
                     }else if ((editPassword.getText().toString().isEmpty()) || (editTextConPassword.getText().toString().isEmpty())) {
@@ -153,6 +177,12 @@ public class Information extends AppCompatActivity {
                     }else {
                         checkCashSlideId();
                     }
+                }*/
+                if (vePassId.getVisibility() == View.GONE) {
+                    Intent i = new Intent(getApplicationContext(), Gender.class);
+                    mSharedPrefrencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD, editTextPassword.getText().toString());
+                    startActivity(i);
+                    Information.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
                 }
             }
         });
