@@ -162,12 +162,10 @@ tools:context="com.askhmer.lockscreen.activity.MoneyBalance">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:weightSum="3"
                         android:orientation="horizontal">
 
                         <Spinner
-                            android:layout_weight="2"
-                            android:layout_width="match_parent"
+                            android:layout_width="140dp"
                             android:layout_height="50dp"
                             android:id="@+id/sp_type_acc"
                             android:touchscreenBlocksFocus="true"
@@ -175,7 +173,6 @@ tools:context="com.askhmer.lockscreen.activity.MoneyBalance">
 
                         <EditText
                             android:enabled="false"
-                            android:layout_weight="1"
                             android:id="@+id/et_wing_account"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"

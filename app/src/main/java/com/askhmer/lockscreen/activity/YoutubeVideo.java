@@ -210,20 +210,24 @@ public class YoutubeVideo extends YouTubeBaseActivity implements YouTubePlayer.O
     }
 
     private void ownWeb(String url) {
-        new FinestWebView.Builder(getApplicationContext())
-                .statusBarColorRes(R.color.colorPrimaryDark)
-                .toolbarColorRes(R.color.colorPrimary)
-                .titleColorRes(R.color.finestWhite)
-                .urlColorRes(R.color.finestWhite)
-                .iconDefaultColorRes(R.color.finestWhite)
-                .progressBarColorRes(R.color.finestWhite)
-                .stringResRefresh(R.string.m_refresh)
-                .stringResShareVia(R.string.m_share)
-                .stringResCopyLink(R.string.m_copy)
-                .stringResOpenWith(R.string.m_open)
-                .menuTextGravity(Gravity.CENTER)
-                .toolbarScrollFlags(0)
-                .showSwipeRefreshLayout(false)
-                .show(url);
+        try{
+            new FinestWebView.Builder(getApplicationContext())
+                    .statusBarColorRes(R.color.colorPrimaryDark)
+                    .toolbarColorRes(R.color.colorPrimary)
+                    .titleColorRes(R.color.finestWhite)
+                    .urlColorRes(R.color.finestWhite)
+                    .iconDefaultColorRes(R.color.finestWhite)
+                    .progressBarColorRes(R.color.finestWhite)
+                    .stringResRefresh(R.string.m_refresh)
+                    .stringResShareVia(R.string.m_share)
+                    .stringResCopyLink(R.string.m_copy)
+                    .stringResOpenWith(R.string.m_open)
+                    .menuTextGravity(Gravity.CENTER)
+                    .toolbarScrollFlags(0)
+                    .showSwipeRefreshLayout(false)
+                    .show(url);
+        }catch (Exception e){
+
+        }
     }
 }

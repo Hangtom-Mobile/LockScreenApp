@@ -84,6 +84,7 @@ public class Login extends AppCompatActivity {
                             try {
                                 JSONObject jsonObj = new JSONObject(response);
                                 if (jsonObj.getString("rst").equals("110")) {
+                                    mSharedPrefer.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD, editTextPassword.getText().toString());
                                     mSharedPrefer.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_NAME, jsonObj.getString("mb_name"));
                                     mSharedPrefer.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PHONE, jsonObj.getString("mb_hp"));
                                     mSharedPrefer.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_AGE, jsonObj.getString("mb_birth"));

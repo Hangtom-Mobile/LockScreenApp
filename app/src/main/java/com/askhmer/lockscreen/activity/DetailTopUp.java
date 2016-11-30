@@ -85,8 +85,12 @@ public class DetailTopUp extends SwipeBackActivity {
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
+               /* TopUpDetail upDetail = topUpDetails.get(position);
+                alertDialogBuy(upDetail);*/
                 TopUpDetail upDetail = topUpDetails.get(position);
-                alertDialogBuy(upDetail);
+                Intent intent = new Intent(DetailTopUp.this, InformationTopUp.class);
+                intent.putExtra("upDetail", upDetail);
+                startActivity(intent);
             }
 
             @Override

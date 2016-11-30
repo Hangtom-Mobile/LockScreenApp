@@ -386,17 +386,43 @@
     </string>
 
     <!--ask password top up-->
-    <string name="note_text">Note** Please make sure that your values of top up card is correct, because you can\'t revert your transaction. \nPlease fill your password below if you want to change.</string>
-    <string name="confirm_pass">Confirmation</string>
+    <string name="note_text">Are you sure to buy this top up? </string>
+    <string name="confirm_pass">Notice</string>
     <string name="fill_pass">Fill your password here</string>
     <string name="cancel">CANCEL</string>
 
     <!--alert dialog top up-->
     <string name="reciever">Receiver :</string>
     <string name="mypoint">My point :</string>
-    <string name="used">Used :</string>
+    <string name="used">Purchase :</string>
     <string name="total">Total :</string>
     <string name="buy">Buy</string>
+
+    <!--description-->
+    <string name="str1">&#8226; This is for buying top up card</string>
+    <string name="str2">&#8226; Can not refound</string>
+    <string name="str3">&#8226; Check your receiver number carefully</string>
+
+    <!--process-->
+    <string name="str4">&#8226; Insert your requested charge automatically</string>
+    <string name="str5">&#8226; Atfer charged your point, we\'ll send messsage to you</string>
+
+    <!--purchase-->
+    <string name="str6">&#8226; Charge available only Monday to Friday in 8:00 AM to 5:00 PM</string>
+
+    <string name="purchase"> Purchase </string>
+
+    <!--message dialog-->
+    <string name="title_completed"> Your Purchase is Completed </string>
+    <string name="descrip_completed"> The amount will be charge automatically once processing is completed. </string>
+
+    <string name="title_not_com"> Notice </string>
+    <string name="descrip_not_com"> Your point is not enough. </string>
+
+    <string name="your_information_incorrect"> Your information or password is incorrect! </string>
+
+    <string name="system_error"> System error </string>
+    <string name="please_request_again"> Sorry! Please request again! </string>
 
 </resources>
 

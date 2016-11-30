@@ -2,11 +2,13 @@ package com.askhmer.lockscreen.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by soklundy on 11/6/2016.
  */
 
-public class TopUpDetail {
+public class TopUpDetail implements Serializable {
 
     @SerializedName("topup_id")
     private String topUpId;
