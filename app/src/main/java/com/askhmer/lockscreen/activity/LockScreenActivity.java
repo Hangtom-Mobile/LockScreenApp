@@ -266,6 +266,7 @@ public class LockScreenActivity extends Activity implements
 		super.onStop();
 		unlockHomeButton();
 		unregisterReceiver(mReceiver);
+		pathFile.clear();
 		System.gc();
 	}
 

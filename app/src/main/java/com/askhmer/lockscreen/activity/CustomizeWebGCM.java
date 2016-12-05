@@ -16,20 +16,24 @@ public class CustomizeWebGCM extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        new FinestWebView.Builder(getApplicationContext())
-                .statusBarColorRes(R.color.colorPrimaryDark)
-                .toolbarColorRes(R.color.colorPrimary)
-                .titleColorRes(R.color.finestWhite)
-                .urlColorRes(R.color.finestWhite)
-                .iconDefaultColorRes(R.color.finestWhite)
-                .progressBarColorRes(R.color.finestWhite)
-                .stringResRefresh(R.string.m_refresh)
-                .stringResShareVia(R.string.m_share)
-                .stringResCopyLink(R.string.m_copy)
-                .stringResOpenWith(R.string.m_open)
-                .menuTextGravity(Gravity.CENTER)
-                .toolbarScrollFlags(0)
-                .showSwipeRefreshLayout(false)
-                .show(getIntent().getStringExtra("page"));
+        try {
+            new FinestWebView.Builder(getApplicationContext())
+                    .statusBarColorRes(R.color.colorPrimaryDark)
+                    .toolbarColorRes(R.color.colorPrimary)
+                    .titleColorRes(R.color.finestWhite)
+                    .urlColorRes(R.color.finestWhite)
+                    .iconDefaultColorRes(R.color.finestWhite)
+                    .progressBarColorRes(R.color.finestWhite)
+                    .stringResRefresh(R.string.m_refresh)
+                    .stringResShareVia(R.string.m_share)
+                    .stringResCopyLink(R.string.m_copy)
+                    .stringResOpenWith(R.string.m_open)
+                    .menuTextGravity(Gravity.CENTER)
+                    .toolbarScrollFlags(0)
+                    .showSwipeRefreshLayout(false)
+                    .show(getIntent().getStringExtra("page"));
+        }catch (Exception e) {
+
+        }
     }
 }

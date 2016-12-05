@@ -193,7 +193,7 @@
     <string name="balance"> BALANCE </string>
     <string name="pls_enter_point"> Please enter your point found. </string>
     <string name="intro_balance"> From 80,000 Points can be withdrawn.\n(4000 points - $1.00)  </string>
-    <string name="Withdrawal_will"> Withdrawal will be converted into US dollars. </string>
+    <string name="Withdrawal_will"> Point will convert to money </string>
     <string name="pls_enter_wing"> Please select withdraw company</string>
     <string name="confirm"> Confirm </string>
 

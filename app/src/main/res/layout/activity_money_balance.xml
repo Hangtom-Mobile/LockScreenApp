@@ -125,16 +125,30 @@ tools:context="com.askhmer.lockscreen.activity.MoneyBalance">
                         android:layout_width="match_parent"
                         android:layout_height="0.1dp"
                         android:background="@color/btn_tap_off"/>
-                    <EditText
-                        android:id="@+id/et_point"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:inputType="number"
+
+                    <LinearLayout
                         android:gravity="center"
-                        android:singleLine="true"
-                        android:background="@drawable/radius_ed"
-                        android:hint="@string/Withdrawal_will"
-                        android:textSize="12dp"/>
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="50dp">
+
+                        <EditText
+                            android:id="@+id/et_point"
+                            android:layout_width="270dp"
+                            android:layout_height="50dp"
+                            android:inputType="number"
+                            android:gravity="center"
+                            android:singleLine="true"
+                            android:background="@drawable/radius_ed"
+                            android:hint="@string/Withdrawal_will"
+                            android:textSize="12dp"/>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:src="@drawable/point_icon"/>
+
+                    </LinearLayout>
                     <View
                         android:layout_marginBottom="10dp"
                         android:layout_width="match_parent"
