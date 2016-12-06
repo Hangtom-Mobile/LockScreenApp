@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.askhmer.lockscreen.R;
 import com.askhmer.lockscreen.model.LockScreenBackgroundDto;
+import com.facebook.cache.common.CacheKey;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 
@@ -26,6 +28,7 @@ public class FullScreenImageAdapter extends PagerAdapter {
     private Activity _activity;
     private ArrayList<LockScreenBackgroundDto> _imagePaths;
     private LayoutInflater inflater;
+    private Uri uri;
 
     // constructor
     public FullScreenImageAdapter(Activity activity,
@@ -59,7 +62,7 @@ public class FullScreenImageAdapter extends PagerAdapter {
         txtViewPoint = (TextView) viewLayout.findViewById(R.id.txt_view_point);
 
         SimpleDraweeView draweeView = (SimpleDraweeView) viewLayout.findViewById(R.id.imgDisplay);
-        Uri uri = Uri.parse(_imagePaths.get(position).getImageUrl());
+        uri = Uri.parse(_imagePaths.get(position).getImageUrl());
         draweeView.setImageURI(uri);
 
         /*Picasso.with(container.getContext()).load(_imagePaths.get(position).getImageUrl()).placeholder(R.drawable.no_inte_slow).skipMemoryCache().into(imgDisplay);*/
@@ -77,5 +80,10 @@ public class FullScreenImageAdapter extends PagerAdapter {
     public void destroyItem(ViewGroup container, int position, Object object) {
         ((ViewPager) container).removeView((RelativeLayout) object);
 
+    }
+
+    public void clearData() {
+        Fresco.getImagePipelineFactory().getMainDiskStorageCache().clearAll();
+        Fresco.getImagePipelineFactory().getSmallImageDiskStorageCache().clearAll();
     }
 }

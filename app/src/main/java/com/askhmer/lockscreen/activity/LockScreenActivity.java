@@ -185,6 +185,7 @@ public class LockScreenActivity extends Activity implements
 		lockScreenRequestServer("message");
 		imageViewPager.setCurrentItem(position++, false);
 		System.gc();
+		Runtime.getRuntime().gc();
 	}
 
 	// Handle events of calls and unlock screen if necessary
@@ -267,7 +268,11 @@ public class LockScreenActivity extends Activity implements
 		unlockHomeButton();
 		unregisterReceiver(mReceiver);
 		pathFile.clear();
+		if (fullScreenImageAdapter != null) {
+			fullScreenImageAdapter.clearData();
+		}
 		System.gc();
+		Runtime.getRuntime().gc();
 	}
 
 	@SuppressWarnings("deprecation")
@@ -751,6 +756,7 @@ public class LockScreenActivity extends Activity implements
 	public void onLowMemory() {
 		super.onLowMemory();
 		System.gc();
+		Runtime.getRuntime().gc();
 	}
 
 	private boolean appInstalledOrNot(String uri) {
