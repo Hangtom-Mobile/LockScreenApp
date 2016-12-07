@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -54,7 +55,7 @@ public class PhoneNumber extends AppCompatActivity implements Reciver{
     private BroadcastReceiver mybroadcast;
     private TextView waitMsg;
     private String formatedPhNumber;
-    private RelativeLayout layoutConfirm;
+    private LinearLayout layoutConfirm;
     private Spinner countryCode;
     private CountDownTimer count;
 
@@ -198,7 +199,7 @@ public class PhoneNumber extends AppCompatActivity implements Reciver{
         verifyNumber = (EditText) findViewById(R.id.et_confirm);
         btnConfirm = (Button) findViewById(R.id.btn_confirm);
         waitMsg = (TextView) findViewById(R.id.tv_wait_msg);
-        layoutConfirm = (RelativeLayout) findViewById(R.id.layout_confirm);
+        layoutConfirm = (LinearLayout) findViewById(R.id.layout_confirm);
         countryCode = (Spinner) findViewById(R.id.sp_location);
         txtCode = (TextView) findViewById(R.id.tv_code);
     }

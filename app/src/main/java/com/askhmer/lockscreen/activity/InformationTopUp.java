@@ -96,6 +96,11 @@ public class InformationTopUp extends AppCompatActivity {
         txtPurchase.setText(upDetail.getTopUpPoint());
         txtTotal.setText(String.valueOf(myPoint - purChase));
 
+        if (myPoint < purChase) {
+            btnPurChase.setEnabled(false);
+            btnPurChase.setBackgroundResource(R.color.hintColor);
+        }
+
         btnPurChase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

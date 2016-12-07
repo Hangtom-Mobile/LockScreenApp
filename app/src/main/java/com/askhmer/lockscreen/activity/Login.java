@@ -36,6 +36,7 @@ public class Login extends AppCompatActivity {
     private EditText editTextId, editTextPassword;
     private Button btnNext;
     private SharedPreferencesFile mSharedPrefer;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class Login extends AppCompatActivity {
 
     public void requestLogin() {
         /*loading message*/
-        final ProgressDialog pDialog = new ProgressDialog(this);
+        pDialog= new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.show();
 
@@ -207,4 +208,10 @@ public class Login extends AppCompatActivity {
             };
             MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }*/
+
+    @Override
+    protected void onDestroy() {
+        pDialog.dismiss();
+        super.onDestroy();
+    }
 }

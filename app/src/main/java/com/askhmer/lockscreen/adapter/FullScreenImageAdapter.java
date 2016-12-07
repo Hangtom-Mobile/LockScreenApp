@@ -86,4 +86,8 @@ public class FullScreenImageAdapter extends PagerAdapter {
         Fresco.getImagePipelineFactory().getMainDiskStorageCache().clearAll();
         Fresco.getImagePipelineFactory().getSmallImageDiskStorageCache().clearAll();
     }
+
+    public void delete() {
+        _imagePaths.clear();
+    }
 }

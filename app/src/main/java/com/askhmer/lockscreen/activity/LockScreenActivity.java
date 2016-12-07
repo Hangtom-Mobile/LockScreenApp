@@ -180,12 +180,29 @@ public class LockScreenActivity extends Activity implements
 		/*if (drawerLayout.isDrawerOpen(rightDrawer)) {
 			drawerLayout.closeDrawer(rightDrawer);
 		}*/
+		if (new CheckInternet().isConnect(this)) {
+			/*get time*/
+			getCurrentDate();
 
-		getCurrentDate();
-		lockScreenRequestServer("message");
-		imageViewPager.setCurrentItem(position++, false);
-		System.gc();
-		Runtime.getRuntime().gc();
+			/*check if bigger then 10 recreate*/
+			if (position > 10) {
+				position = 1;
+				fullScreenImageAdapter.delete();
+				fullScreenImageAdapter = null;
+				imageViewPager.removeAllViews();
+				for (int i = 1; i <= 2 ; i++) {
+					lockScreenRequestServer("On start");
+				}
+			}else {
+				lockScreenRequestServer("message");
+			}
+			imageViewPager.setCurrentItem(position++, false);
+			System.gc();
+			Runtime.getRuntime().gc();
+		}else {
+			Log.e("response", "false no internet");
+			this.finish();
+		}
 	}
 
 	// Handle events of calls and unlock screen if necessary
@@ -391,6 +408,8 @@ public class LockScreenActivity extends Activity implements
 				}
 				@Override
 				public void deliverError(VolleyError error) {
+					Toast.makeText(LockScreenActivity.this, "Your phone no have internet connection", Toast.LENGTH_LONG).show();
+					finish();
 					if (error instanceof NoConnectionError) {
 						Cache.Entry entry = this.getCacheEntry();
 						if(entry != null) {
