@@ -211,7 +211,9 @@ public class Login extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        pDialog.dismiss();
+        if (pDialog != null) {
+            pDialog.dismiss();
+        }
         super.onDestroy();
     }
 }

@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    <!--fresco:failureImage="@drawable/no_inte_slow"-->
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/imgDisplay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        fresco:failureImage="@drawable/no_inte_slow"
         fresco:fadeDuration="1"
         android:scaleType="centerCrop" />
 

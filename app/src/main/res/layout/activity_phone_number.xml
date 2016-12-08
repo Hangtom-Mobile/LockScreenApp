@@ -187,6 +187,7 @@
                         android:layout_marginRight="20dp"
                         android:orientation="horizontal"
                         android:weightSum="2"
+                        android:visibility="invisible"
                         android:background="@drawable/radius_ed">
 
                         <EditText

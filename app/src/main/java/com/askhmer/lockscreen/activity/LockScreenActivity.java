@@ -185,11 +185,11 @@ public class LockScreenActivity extends Activity implements
 			getCurrentDate();
 
 			/*check if bigger then 10 recreate*/
-			if (position > 10) {
+			if (position > 5) {
 				position = 1;
+				Log.e("response________", position +"");
 				fullScreenImageAdapter.delete();
 				fullScreenImageAdapter = null;
-				imageViewPager.removeAllViews();
 				for (int i = 1; i <= 2 ; i++) {
 					lockScreenRequestServer("On start");
 				}

@@ -52,9 +52,14 @@ public class FullScreenImageAdapter extends PagerAdapter {
         /*final ImageView imgDisplay;*/
         TextView txtViewPoint;
         TextView txtBasicPoint;
+        View viewLayout = null;
 
-        inflater = (LayoutInflater) _activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View viewLayout = inflater.inflate(R.layout.item_image_viewer, container, false);
+        try{
+            inflater = (LayoutInflater) _activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            viewLayout = inflater.inflate(R.layout.item_image_viewer, container, false);
+        }catch (Exception e) {
+
+        }
 
         /*imgDisplay = (ImageView) viewLayout.findViewById(R.id.imgDisplay);*/
 
@@ -89,5 +94,7 @@ public class FullScreenImageAdapter extends PagerAdapter {
 
     public void delete() {
         _imagePaths.clear();
+        Fresco.getImagePipelineFactory().getMainDiskStorageCache().clearAll();
+        Fresco.getImagePipelineFactory().getSmallImageDiskStorageCache().clearAll();
     }
 }
