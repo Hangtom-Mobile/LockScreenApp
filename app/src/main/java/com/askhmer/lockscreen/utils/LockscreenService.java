@@ -35,7 +35,11 @@ public class LockscreenService extends Service {
 		IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_ON);
 		filter.addAction(Intent.ACTION_SCREEN_OFF);
 		mReceiver = new LockscreenIntentReceiver();
-		registerReceiver(mReceiver, filter);
+		try{
+			registerReceiver(mReceiver, filter);
+		}catch (Exception e) {
+
+		}
 		startForeground();
 		return START_STICKY;
 	}

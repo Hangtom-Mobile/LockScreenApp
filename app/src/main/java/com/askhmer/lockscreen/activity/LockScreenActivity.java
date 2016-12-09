@@ -759,15 +759,19 @@ public class LockScreenActivity extends Activity implements
 	}
 
 	public void selectSwitchButton() {
-		String type = pathFile.get(imageViewPager.getCurrentItem()).getType();
-		if (type.equals("1")) {
+		try{
+			String type = pathFile.get(imageViewPager.getCurrentItem()).getType();
+			if (type.equals("1")) {
+				switchButtonWebsite();
+			}else if (type.equals("2")) {
+				switchButtonVideo();
+			}else if (type.equals("3")){
+				switchButtonCall();
+			}else if (type.equals("4")){
+				switchButtonInstall();
+			}
+		}catch (Exception e) {
 			switchButtonWebsite();
-		}else if (type.equals("2")) {
-			switchButtonVideo();
-		}else if (type.equals("3")){
-			switchButtonCall();
-		}else if (type.equals("4")){
-			switchButtonInstall();
 		}
 	}
 
