@@ -1,10 +1,16 @@
 package com.askhmer.lockscreen.activity;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -24,6 +30,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Recommend extends SwipeBackActivity {
 
@@ -50,7 +58,6 @@ public class Recommend extends SwipeBackActivity {
             @Override
             public void onClick(View v) {
                 requestRecommendId();
-                finish();
             }
         });
 
@@ -99,9 +106,21 @@ public class Recommend extends SwipeBackActivity {
                     @Override
                     public void onResponse(String response) {
                         if (response.contains("110")) {
-                            Toast.makeText(Recommend.this, "Recommend id has been submit", Toast.LENGTH_SHORT).show();
-                        }else {
-                            Toast.makeText(Recommend.this, "Fail to submit recommend id", Toast.LENGTH_SHORT).show();
+                            messageDialog(getString(R.string.title_not_com), "Recommend id has been submit");
+                        }else if(response.contains("111")) {
+                            messageDialog(getString(R.string.title_not_com), "No Data");
+                        }else if (response.contains("112")){
+                            messageDialog(getString(R.string.title_not_com), "No have User Id");
+                        }else if (response.contains("113")){
+                            messageDialog(getString(R.string.title_not_com), "Your recommend id already submit for this user");
+                        }else if (response.contains("114")){
+                            messageDialog(getString(R.string.title_not_com), "No have recommend id");
+                        }else if (response.contains("115")){
+                            messageDialog(getString(R.string.title_not_com), "Can't submit your own id");
+                        }else if (response.contains("116")){
+                            messageDialog(getString(R.string.title_not_com), "One recommend id can apply only 10time per day");
+                        }else if (response.contains("117")){
+                            messageDialog(getString(R.string.title_not_com), "Your recommend id already submit for this user or can't recommend each other");
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -121,5 +140,41 @@ public class Recommend extends SwipeBackActivity {
             }
         };
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+    private void messageDialog(String title, String desricption) {
+        /*setup dialog*/
+        final Dialog dialog = new Dialog(Recommend.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setContentView(R.layout.message_dialog);
+
+        /*blind view*/
+        Button button = (Button)  dialog.findViewById(R.id.bttn_buy);
+        TextView textView = (TextView) dialog.findViewById(R.id.txt_description);
+        TextView txtTitle = (TextView) dialog.findViewById(R.id.txt_title);
+
+        txtTitle.setText(title);
+        textView.setText(desricption);
+
+        /*listener*/
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                dialog.dismiss();
+            }
+        });
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        Window window = dialog.getWindow();
+        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        dialog.show();
     }
 }

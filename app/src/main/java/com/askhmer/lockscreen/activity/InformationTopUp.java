@@ -119,7 +119,7 @@ public class InformationTopUp extends AppCompatActivity {
         dialog.setContentView(R.layout.ask_password_alert);
 
         /*blind view*/
-        Button button = (Button)  dialog.findViewById(R.id.bttn_buy);
+        final Button button = (Button)  dialog.findViewById(R.id.bttn_buy);
         final EditText editTxtPassword = (EditText) dialog.findViewById(R.id.ed_password);
 
         /*listener*/
@@ -140,6 +140,7 @@ public class InformationTopUp extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                button.setEnabled(false);
                 requestBuyTopUp(topUpDetail, editTxtPassword.getText().toString());
                 dialog.dismiss();
             }

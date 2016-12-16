@@ -171,7 +171,6 @@
                 android:background="@color/btn_tap_off"/>
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/li_recommend"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
