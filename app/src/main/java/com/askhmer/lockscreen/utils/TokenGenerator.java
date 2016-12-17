@@ -22,4 +22,12 @@ public class TokenGenerator {
         return String.valueOf(result);
     }
 
+    public String timeStamp(){
+        Date date= new Date();
+        Random rand = new Random();
+
+        //getTime() returns current time in milliseconds
+        long time = date.getTime();
+        return String.valueOf(time);
+    }
 }

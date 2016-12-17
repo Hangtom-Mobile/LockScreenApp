@@ -18,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -29,6 +30,7 @@ import com.askhmer.lockscreen.model.TopUpDetail;
 import com.askhmer.lockscreen.network.API;
 import com.askhmer.lockscreen.network.MySingleton;
 import com.askhmer.lockscreen.utils.SharedPreferencesFile;
+import com.askhmer.lockscreen.utils.TokenGenerator;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -104,12 +106,13 @@ public class InformationTopUp extends AppCompatActivity {
         btnPurChase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                passwordDialog(upDetail);
+                Toast.makeText(InformationTopUp.this, new TokenGenerator().timeStamp(), Toast.LENGTH_SHORT).show();
+                passwordDialog(upDetail, new TokenGenerator().timeStamp());
             }
         });
     }
 
-    private void passwordDialog(final TopUpDetail topUpDetail) {
+    private void passwordDialog(final TopUpDetail topUpDetail, final String timeStamp) {
         /*setup dialog*/
         final Dialog dialog = new Dialog(InformationTopUp.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -141,7 +144,7 @@ public class InformationTopUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 button.setEnabled(false);
-                requestBuyTopUp(topUpDetail, editTxtPassword.getText().toString());
+                requestBuyTopUp(topUpDetail, editTxtPassword.getText().toString(), timeStamp);
                 dialog.dismiss();
             }
         });
@@ -150,7 +153,7 @@ public class InformationTopUp extends AppCompatActivity {
         dialog.show();
     }
 
-    private void requestBuyTopUp(final TopUpDetail topUpDetail, final String password) {
+    private void requestBuyTopUp(final TopUpDetail topUpDetail, final String password, final String timeStamp) {
         final ProgressDialog pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.setCanceledOnTouchOutside(false);
@@ -187,6 +190,7 @@ public class InformationTopUp extends AppCompatActivity {
                 params.put("cash_slide_id", sharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID));
                 params.put("token_id", sharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_TOKEN));
                 params.put("cash_password", password);
+                params.put("secretKEY", timeStamp);
                 return params;
             }
         };
