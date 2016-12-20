@@ -178,11 +178,15 @@ public class Information extends AppCompatActivity {
                         checkCashSlideId();
                     }
                 }*/
-                if (vePassId.getVisibility() == View.GONE) {
-                    Intent i = new Intent(getApplicationContext(), Gender.class);
-                    mSharedPrefrencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD, editTextPassword.getText().toString());
-                    startActivity(i);
-                    Information.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
+                if (editTextPassword.getText().toString().isEmpty()) {
+                    vePassId.setVisibility(View.VISIBLE);
+                }else {
+                    if (vePassId.getVisibility() == View.GONE) {
+                        Intent i = new Intent(getApplicationContext(), Gender.class);
+                        mSharedPrefrencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD, editTextPassword.getText().toString());
+                        startActivity(i);
+                        Information.this.overridePendingTransition(R.anim.fade_in, R.anim.fade_in);
+                    }
                 }
             }
         });
