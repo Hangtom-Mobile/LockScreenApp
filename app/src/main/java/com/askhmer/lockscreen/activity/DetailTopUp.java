@@ -46,6 +46,8 @@ import com.liuguangqiang.swipeback.SwipeBackActivity;
 import com.liuguangqiang.swipeback.SwipeBackLayout;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -87,10 +89,7 @@ public class DetailTopUp extends SwipeBackActivity {
             public void onItemClick(View view, int position) {
                /* TopUpDetail upDetail = topUpDetails.get(position);
                 alertDialogBuy(upDetail);*/
-                TopUpDetail upDetail = topUpDetails.get(position);
-                Intent intent = new Intent(DetailTopUp.this, InformationTopUp.class);
-                intent.putExtra("upDetail", upDetail);
-                startActivity(intent);
+                requestMypointToServer(position);
             }
 
             @Override
@@ -129,7 +128,12 @@ public class DetailTopUp extends SwipeBackActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                setupDataFromServer();
+                pDialog.dismiss();
+                new SweetAlertDialog(DetailTopUp.this, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Check your connection")
+                        .setContentText("Not internet connect")
+                        .show();
+
             }
         }){
             @Override
@@ -313,6 +317,54 @@ public class DetailTopUp extends SwipeBackActivity {
                 params.put("cash_slide_id", sharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID));
                 params.put("token_id", sharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_TOKEN));
                 params.put("cash_password", password);
+                return params;
+            }
+        };
+        MySingleton.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+    public void requestMypointToServer(final int position) {
+        final ProgressDialog pDialog = new ProgressDialog(this);
+        pDialog.setMessage("Loading...");
+        pDialog.setCanceledOnTouchOutside(false);
+        pDialog.show();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, API.REQUESTMYPOINT,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        pDialog.dismiss();
+                        if (!response.isEmpty()) {
+                            try {
+                                JSONObject jsonObj = new JSONObject(response);
+                                String point = jsonObj.getString("rst");
+                                sharedPreferencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_POINT, point);
+
+                                TopUpDetail upDetail = topUpDetails.get(position);
+                                Intent intent = new Intent(DetailTopUp.this, InformationTopUp.class);
+                                intent.putExtra("upDetail", upDetail);
+                                startActivity(intent);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                pDialog.dismiss();
+                new SweetAlertDialog(DetailTopUp.this, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Check your connection")
+                        .setContentText("Not internet connect")
+                        .show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                sharedPreferencesFile = new SharedPreferencesFile(DetailTopUp.this,SharedPreferencesFile.FILE_INFORMATION_TEMP);
+                params.put("cash_slide_id", sharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID));
                 return params;
             }
         };

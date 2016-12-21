@@ -3,9 +3,11 @@ package com.askhmer.lockscreen.activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -33,6 +35,8 @@ import com.askhmer.lockscreen.utils.SharedPreferencesFile;
 import com.askhmer.lockscreen.utils.TokenGenerator;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.util.HashMap;
@@ -106,7 +110,6 @@ public class InformationTopUp extends AppCompatActivity {
         btnPurChase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(InformationTopUp.this, new TokenGenerator().timeStamp(), Toast.LENGTH_SHORT).show();
                 passwordDialog(upDetail, new TokenGenerator().timeStamp());
             }
         });
@@ -124,6 +127,7 @@ public class InformationTopUp extends AppCompatActivity {
         /*blind view*/
         final Button button = (Button)  dialog.findViewById(R.id.bttn_buy);
         final EditText editTxtPassword = (EditText) dialog.findViewById(R.id.ed_password);
+        final TextView txtFillPassword = (TextView) dialog.findViewById(R.id.fill_password);
 
         /*listener*/
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -143,9 +147,13 @@ public class InformationTopUp extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                button.setEnabled(false);
-                requestBuyTopUp(topUpDetail, editTxtPassword.getText().toString(), timeStamp);
-                dialog.dismiss();
+                if (editTxtPassword.getText().toString().isEmpty()) {
+                    txtFillPassword.setVisibility(View.VISIBLE);
+                }else {
+                    button.setEnabled(false);
+                    requestBuyTopUp(topUpDetail, editTxtPassword.getText().toString(), timeStamp);
+                    dialog.dismiss();
+                }
             }
         });
         Window window = dialog.getWindow();
@@ -165,13 +173,16 @@ public class InformationTopUp extends AppCompatActivity {
                     public void onResponse(String response) {
                         Log.e("show_123", response);
                         if (response.contains("110")) {
-                            messageDialog(getString(R.string.title_completed), getString(R.string.descrip_completed));
+                            messageDialog(getString(R.string.title_completed), getString(R.string.descrip_completed), false);
                         }else if (response.contains("112")) {
-                            messageDialog(getString(R.string.title_not_com), getString(R.string.your_information_incorrect));
+                            messageDialog(getString(R.string.title_not_com), getString(R.string.your_information_incorrect), false);
                         }else if (response.contains("114")) {
-                            messageDialog(getString(R.string.title_not_com), getString(R.string.descrip_not_com));
-                        }else {
-                            messageDialog(getString(R.string.title_not_com), getString(R.string.system_error));
+                            messageDialog(getString(R.string.title_not_com), getString(R.string.descrip_not_com), false);
+                        }else if (response.contains("111")) {
+                            messageDialog(getString(R.string.title_not_com), getString(R.string.request_111),true);
+                        }
+                        else {
+                            messageDialog(getString(R.string.title_not_com), getString(R.string.system_error), false);
                         }
                         pDialog.dismiss();
                     }
@@ -180,7 +191,7 @@ public class InformationTopUp extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 /*dismiss loading*/
                 pDialog.dismiss();
-                messageDialog(getString(R.string.title_not_com), getString(R.string.please_request_again));
+                messageDialog(getString(R.string.title_not_com), getString(R.string.please_request_again),false);
             }
         }){
             @Override
@@ -197,18 +208,18 @@ public class InformationTopUp extends AppCompatActivity {
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-    private void messageDialog(String title, String desricption) {
+    private void messageDialog(String title, String desricption, final boolean link) {
         /*setup dialog*/
         final Dialog dialog = new Dialog(InformationTopUp.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(true);
+        dialog.setCanceledOnTouchOutside(false);
         dialog.setContentView(R.layout.message_dialog);
 
         /*blind view*/
         Button button = (Button)  dialog.findViewById(R.id.bttn_buy);
-        TextView textView = (TextView) dialog.findViewById(R.id.txt_description);
+        final TextView textView = (TextView) dialog.findViewById(R.id.txt_description);
         TextView txtTitle = (TextView) dialog.findViewById(R.id.txt_title);
 
         txtTitle.setText(title);
@@ -225,7 +236,16 @@ public class InformationTopUp extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (link == true) {
+                    final String appPackageName = getPackageName(); // getPackageName() from Context or Activity object
+                    try {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                    } catch (android.content.ActivityNotFoundException anfe) {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                    }
+                }
                 dialog.dismiss();
+                finish();
             }
         });
         Window window = dialog.getWindow();

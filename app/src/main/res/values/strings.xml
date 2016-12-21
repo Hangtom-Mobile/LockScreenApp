@@ -424,5 +424,7 @@
     <string name="system_error"> System error </string>
     <string name="please_request_again"> Sorry! Please request again! </string>
 
+    <string name="request_111"> No have data, Please Update your application before request top up.</string>
+
 </resources>
 

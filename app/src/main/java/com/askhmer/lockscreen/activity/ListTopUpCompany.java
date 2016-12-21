@@ -102,7 +102,7 @@ public class ListTopUpCompany extends SwipeBackActivity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                /*setupDataFromServer();*/
+                pDialog.dismiss();
             }
         });
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);

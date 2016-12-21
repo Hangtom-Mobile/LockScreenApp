@@ -425,4 +425,6 @@
     <string name="system_error"> System error </string>
     <string name="please_request_again"> Sorry! Please request again! </string>
 
+    <string name="request_111">គ្មានទិន្នន័យ, សូមធ្វើឱ្យទាន់សម័យកម្មវិធីរបស់អ្នកមុនពេលដែលការស្នើរសុំបញ្ចូលទឹកប្រាក់</string>
+
 </resources>
