@@ -191,7 +191,10 @@ public class InformationTopUp extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 /*dismiss loading*/
                 pDialog.dismiss();
-                messageDialog(getString(R.string.title_not_com), getString(R.string.please_request_again),false);
+                new SweetAlertDialog(InformationTopUp.this, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Check your connection")
+                        .setContentText("Not internet connect")
+                        .show();
             }
         }){
             @Override
