@@ -28,18 +28,32 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.askhmer.lockscreen.R;
 import com.askhmer.lockscreen.activity.AccountManage;
 import com.askhmer.lockscreen.activity.PrivacyStatement;
 import com.askhmer.lockscreen.activity.Recommend;
 import com.askhmer.lockscreen.activity.TermsOfUse;
+import com.askhmer.lockscreen.network.API;
+import com.askhmer.lockscreen.network.MySingleton;
 import com.askhmer.lockscreen.tutorials.MainPage;
 import com.askhmer.lockscreen.utils.AlarmReceiver;
 import com.askhmer.lockscreen.utils.CheckVersionCode;
 import com.askhmer.lockscreen.utils.LockscreenService;
 import com.askhmer.lockscreen.utils.MutiLanguage;
 import com.askhmer.lockscreen.utils.SharedPreferencesFile;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Longdy on 6/22/2016.
@@ -48,6 +62,7 @@ public class FourFragment extends Fragment {
 
     private LinearLayout accountManage, contactUs, recommend, advertising, howToUse, privacy, terms, changeLang;
     private Intent in;
+    private View view;
     private Switch unlock;
     private SharedPreferencesFile mSharedPreferencesFile;
     private TextView verName;
@@ -72,7 +87,7 @@ public class FourFragment extends Fragment {
         View fourFragmentView = inflater.inflate(R.layout.fragment_four, container, false);
 
 //  init
-
+        view = (View) fourFragmentView.findViewById(R.id.view_link);
         unlock = (Switch) fourFragmentView.findViewById(R.id.switch1);
         accountManage = (LinearLayout) fourFragmentView.findViewById(R.id.li_account_manage);
         contactUs = (LinearLayout) fourFragmentView.findViewById(R.id.li_contact_us);
@@ -84,6 +99,8 @@ public class FourFragment extends Fragment {
         terms = (LinearLayout) fourFragmentView.findViewById(R.id.li_term_of_use);
         verName = (TextView) fourFragmentView.findViewById(R.id.ver_name);
         mSharedPreferencesFile = new SharedPreferencesFile(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
+
+        checkRecommendId();
 
         /*display version name*/
         verName.setText("Version " + new CheckVersionCode().checkVersionCode(getContext()));
@@ -374,5 +391,39 @@ public class FourFragment extends Fragment {
         Window window = dialog.getWindow();
         window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
         dialog.show();
+    }
+
+    public void checkRecommendId() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, API.CHECKRECOMMEND,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if (response.contains("112")) {
+                            try {
+                                JSONObject jsonObj = new JSONObject(response);
+                                if (!jsonObj.getString("mb_recommend").isEmpty()) {
+                                    recommend.setVisibility(View.GONE);
+                                    view.setVisibility(View.GONE);
+
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), "No internet connection!", Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("cash_slide_id", mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID));
+                return params;
+            }
+        };
+        MySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 }

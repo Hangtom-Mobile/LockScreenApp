@@ -166,6 +166,7 @@
 
             </LinearLayout>
             <View
+                android:id="@+id/view_link"
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
                 android:background="@color/btn_tap_off"/>
