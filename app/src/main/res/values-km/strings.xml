@@ -427,4 +427,34 @@
 
     <string name="request_111">គ្មានទិន្នន័យ, សូមធ្វើឱ្យទាន់សម័យកម្មវិធីរបស់អ្នកមុនពេលដែលការស្នើរសុំបញ្ចូលទឹកប្រាក់</string>
 
+    <!--english history-->
+    <string name="my_point"> ពិន្ទុខ្ងុំ </string>
+    <string name="Point_History"> ប្រវត្តិពិន្ទុ </string>
+    <string name="used_point"> ពិន្ទុដែលបានប្រើ </string>
+    <string name="unlock_point"> ពិន្ទុបានពីដោះសោ </string>
+    <string name="regis_point"> ពិន្ទុបានពីចុះឈ្មោះ </string>
+    <string name="recom_point"> ពិន្ទុបានពីណែនាំ </string>
+    <string name="medayi_gift"> កាដូរបស់មេដៃ </string>
+    <string name="action_point"> ពិន្ទុបានពីធ្វើសកម្មភាព </string>
+
+    <!--explain history-->
+    <string name="my_point_ex"> [ពិន្ទុខ្ងុំ] </string>
+    <string name="Point_History_ex"> ពន្យល់ </string>
+    <string name="used_point_ex"> [ពិន្ទុដែលបានប្រើ] </string>
+    <string name="unlock_point_ex"> [ពិន្ទុបានពីដោះសោ] </string>
+    <string name="regis_point_ex"> [ពិន្ទុបានពីចុះឈ្មោះ] </string>
+    <string name="recom_point_ex"> [ពិន្ទុបានពីណែនាំ] </string>
+    <string name="medayi_gift_ex"> [កាដូរបស់មេដៃ] </string>
+    <string name="action_point_ex"> [ពិន្ទុបានពីធ្វើសកម្មភាព] </string>
+
+
+    <!--detail-->
+    <string name="my_point_ex_de"> ពិន្ទុដែលអ្នកអាចប្រើវាឥឡូវនេះ។ </string>
+    <string name="used_point_ex_de"> ពិន្ទុដែលអ្នកបានប្រើពីមុន។ </string>
+    <string name="unlock_point_ex_de"> ពិន្ទុបានពីការដោះសោអេក្រង់។ </string>
+    <string name="regis_point_ex_de"> ពិន្ទុបានពីចុះបញ្ជីនៅលើកទីមួយ។ </string>
+    <string name="recom_point_ex_de"> ពិន្ទុដែលបានពីការណែនាំ។ </string>
+    <string name="medayi_gift_ex_de"> ពិន្ទុដែលជាកាដូរបស់មដៃ។ </string>
+    <string name="action_point_ex_de"> ពិន្ទុដែលបានពីមើលវីដេអូ ភ្ចាប់ទៅកាន់គេហទំព័រនិង ដំឡើងកម្មវិធីដែលបានបញ្ចូលនៅក្នុងការផ្សព្វផ្សាយ។ </string>
+
 </resources>

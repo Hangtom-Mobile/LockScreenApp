@@ -426,5 +426,35 @@
 
     <string name="request_111"> No have data, Please Update your application before request top up.</string>
 
+    <!--english history-->
+    <string name="my_point"> My points </string>
+    <string name="Point_History"> Points History </string>
+    <string name="used_point"> Used point </string>
+    <string name="unlock_point"> Unlock points </string>
+    <string name="regis_point"> Register points </string>
+    <string name="recom_point"> Recommend points </string>
+    <string name="medayi_gift"> Medayi gift </string>
+    <string name="action_point"> Action points </string>
+
+    <!--explain history-->
+    <string name="my_point_ex"> [MY POINTS] </string>
+    <string name="Point_History_ex"> Explain </string>
+    <string name="used_point_ex"> [USED POINTS] </string>
+    <string name="unlock_point_ex"> [UNLOCK POINTS] </string>
+    <string name="regis_point_ex"> [RESGISTER POINT] </string>
+    <string name="recom_point_ex"> [RECOMMEND POINTS] </string>
+    <string name="medayi_gift_ex"> [MEDAYI GIFT] </string>
+    <string name="action_point_ex"> [ACTION POINTS] </string>
+
+
+    <!--detail-->
+    <string name="my_point_ex_de"> The points that you can use it now. </string>
+    <string name="used_point_ex_de"> The points that you used before. </string>
+    <string name="unlock_point_ex_de"> The points taken by unlock screen. </string>
+    <string name="regis_point_ex_de"> The points taken by registered at first time. </string>
+    <string name="recom_point_ex_de"> The points taken by recommended. </string>
+    <string name="medayi_gift_ex_de"> The points taken by medayi\'s gift. </string>
+    <string name="action_point_ex_de"> The points taken by watching the video, moving the web and install the application included in the adverting. </string>
+
 </resources>
 

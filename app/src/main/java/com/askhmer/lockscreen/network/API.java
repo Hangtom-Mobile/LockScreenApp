@@ -36,4 +36,5 @@ public class API {
     public static final String REQUESTDETAILTOPUP = "http://medayi.com/locknet/locknet_topup_api.php";
     public static final String REQUESTBUYTOPUPCARD = BASEURL + "locknet_topup_charge_api.php";
     public static final String MESSAGE = BASEURL + "locknet_popup_api.php";
+    public static final String POINTLIST = BASEURL + "my_point_list.php";
 }

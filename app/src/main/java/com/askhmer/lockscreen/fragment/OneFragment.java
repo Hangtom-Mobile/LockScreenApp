@@ -1,10 +1,12 @@
 package com.askhmer.lockscreen.fragment;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,10 +17,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -26,6 +32,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.askhmer.lockscreen.R;
+import com.askhmer.lockscreen.activity.DetailTopUp;
+import com.askhmer.lockscreen.model.TopUpDetail;
 import com.askhmer.lockscreen.network.API;
 import com.askhmer.lockscreen.network.MySingleton;
 import com.askhmer.lockscreen.utils.ImageSliderWithFragment;
@@ -38,6 +46,7 @@ import com.daimajia.slider.library.SliderLayout;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ListHolder;
 import com.orhanobut.dialogplus.OnItemClickListener;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -85,6 +94,13 @@ public class OneFragment extends Fragment {
 
         medayiPage = (LinearLayout)oneFragmentView.findViewById(R.id.medayi_news);
         medayiSharing = (LinearLayout) oneFragmentView.findViewById(R.id.medayi_sharing);
+
+        txtMyPoint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                history();
+            }
+        });
 
         medayiPage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,17 +152,7 @@ public class OneFragment extends Fragment {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(getActivity())
-                        .setTitle("Medayi")
-                        .setMessage("Coming soon...")
-                        .setCancelable(true)
-                        .setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        })
-                        .show();
+                history();
             }
         });
 
@@ -361,5 +367,131 @@ public class OneFragment extends Fragment {
     public void onStop() {
         sliderLayout.stopAutoCycle();
         super.onStop();
+    }
+
+    private void alertPointHistory(String response) {
+        /*repair data*/
+
+        /*setup dialog*/
+        final Dialog dialog = new Dialog(getContext());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        /*dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));*/
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setContentView(R.layout.alert_dialog_history);
+
+        /*blind view*/
+        TextView mypoint = (TextView) dialog.findViewById(R.id.txt_mypoint);
+        TextView actionPoint = (TextView) dialog.findViewById(R.id.act_point);
+        TextView unlockPoint = (TextView) dialog.findViewById(R.id.unlock_point);
+        TextView registerPoint = (TextView) dialog.findViewById(R.id.register_point);
+        TextView recomPoint = (TextView) dialog.findViewById(R.id.recom_point);
+        TextView giftPoint = (TextView) dialog.findViewById(R.id.medayi_gift);
+        TextView usedPoint = (TextView) dialog.findViewById(R.id.used_point);
+
+        final ViewFlipper viewFlipper = (ViewFlipper) dialog.findViewById(R.id.view_flipper);
+
+        // Setting IN and OUT animation for view flipper
+        viewFlipper.setInAnimation(getContext(), R.anim.right_enter);
+        viewFlipper.setOutAnimation(getContext(), R.anim.left_out);
+
+        try {
+            if (!response.contains("rst")) {
+                JSONObject jsonObj = new JSONObject(response);
+                mypoint.setText(jsonObj.getString("my_app_point"));
+                actionPoint.setText(jsonObj.getString("action_point"));
+                unlockPoint.setText(jsonObj.getString("expose_point"));
+                registerPoint.setText(jsonObj.getString("member_register_point"));
+                recomPoint.setText(jsonObj.getString("member_Recommended_point"));
+                giftPoint.setText(jsonObj.getString("admin_special_point"));
+                usedPoint.setText(jsonObj.getString("use_point"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        dialog.findViewById(R.id.back_btn_explain).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (viewFlipper.isFlipping()) {
+                    viewFlipper.stopFlipping();
+                }
+                viewFlipper.showNext();
+            }
+        });
+
+        dialog.findViewById(R.id.image_explain).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (viewFlipper.isFlipping()) {
+                    viewFlipper.stopFlipping();
+                }
+                viewFlipper.showNext();
+            }
+        });
+
+        dialog.findViewById(R.id.back_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        /*listener*/
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                dialog.dismiss();
+            }
+        });
+
+        Window window = dialog.getWindow();
+        window.setLayout(WindowManager.LayoutParams.WRAP_CONTENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        dialog.show();
+    }
+
+    public void history() {
+        final ProgressDialog pDialog = new ProgressDialog(getContext());
+        pDialog.setMessage("Loading...");
+        pDialog.setCanceledOnTouchOutside(false);
+        pDialog.show();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, API.POINTLIST,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        pDialog.dismiss();
+                        if (!response.isEmpty()) {
+                            alertPointHistory(response);
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                pDialog.dismiss();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                mSharedPreferencesFile = new SharedPreferencesFile(getContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
+                params.put("cash_slide_id", mSharedPreferencesFile.getStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_CASHID));
+                return params;
+            }
+           /* @Override
+            public void deliverError(VolleyError error) {
+                if (error instanceof NoConnectionError) {
+                    Cache.Entry entry = this.getCacheEntry();
+                    if(entry != null) {
+                        Response<String> response = parseNetworkResponse(new NetworkResponse(entry.data, entry.responseHeaders));
+                        deliverResponse(response.result);
+                        return;
+                    }
+                }
+                super.deliverError(error);
+            }*/
+        };
+        MySingleton.getInstance(getContext()).addToRequestQueue(stringRequest);
     }
 }

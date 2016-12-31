@@ -14,6 +14,8 @@
 
     <color name="btn_tap_off">#d9d9d9</color>
 
+    <color name="ruler">#a1a1a1</color>
+
     <color name="blue_bright">#5f84fc</color>
     <color name="green_light">#5ffc62</color>
     <color name="orange_light">#fcb35f</color>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="340dp"
+    android:layout_height="490dp"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EEEEEE">
+
+        <LinearLayout
+            android:weightSum="5"
+            android:id="@+id/li_header"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/back_btn_explain"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:src="@drawable/back"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:gravity="center"
+                    android:id="@+id/txt_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:text="@string/Point_History_ex"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_weight="2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:textSize="16dp"
+                        android:textColor="#68849a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/my_point_ex"/>
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textSize="15dp"
+                        android:textColor="#a6a6a6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/my_point_ex_de"/>
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:textSize="16dp"
+                        android:textColor="#68849a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/used_point_ex"/>
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textSize="15dp"
+                        android:textColor="#a6a6a6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/used_point_ex_de"/>
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:textSize="16dp"
+                        android:textColor="#68849a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/action_point_ex"/>
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textSize="15dp"
+                        android:textColor="#a6a6a6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/action_point_ex_de"/>
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:textSize="16dp"
+                        android:textColor="#68849a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/unlock_point_ex"/>
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textSize="15dp"
+                        android:textColor="#a6a6a6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/unlock_point_ex_de"/>
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:textSize="16dp"
+                        android:textColor="#68849a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/regis_point_ex"
+                        android:id="@+id/textView6" />
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textSize="15dp"
+                        android:textColor="#a6a6a6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/regis_point_ex_de"/>
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:textSize="16dp"
+                        android:textColor="#68849a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/recom_point_ex"
+                        android:id="@+id/textView5" />
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textSize="15dp"
+                        android:textColor="#a6a6a6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/recom_point_ex_de"/>
+
+                    <TextView
+                        android:layout_marginTop="10dp"
+                        android:textSize="16dp"
+                        android:textColor="#68849a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/medayi_gift_ex"/>
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:textSize="15dp"
+                        android:textColor="#a6a6a6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/medayi_gift_ex_de"/>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
