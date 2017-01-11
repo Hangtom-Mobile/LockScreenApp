@@ -374,6 +374,13 @@ public class TwoFragment extends Fragment /*implements SwipeRefreshLayout.OnRefr
                     Intent intent = new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse(url));
                     startActivity(intent);
+                } else if (url.contains("mdrdstrm")){
+                    String[] strmUrl=url.split("#");
+                    Log.e("RadioStrm",strmUrl[0]);
+                    Uri myUri = Uri.parse(strmUrl[0]);
+                    Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+                    intent.setDataAndType(myUri, "audio/*");
+                    startActivity(intent);
                 } else {
                     view.loadUrl(url);
                     mProgress.setVisibility(View.GONE);

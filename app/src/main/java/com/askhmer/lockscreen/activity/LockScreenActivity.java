@@ -168,7 +168,7 @@ public class LockScreenActivity extends Activity implements
 		/*set up drawer*/
 		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		rightDrawer = (LinearLayout) findViewById(R.id.right_drawer);
-		drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+		/*drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);*/
 
 		/*display currrent date*/
 		getCurrentDate();
@@ -177,9 +177,9 @@ public class LockScreenActivity extends Activity implements
 	@Override
 	public void displayMessage() {
 		/*close drawer*/
-		/*if (drawerLayout.isDrawerOpen(rightDrawer)) {
+		if (drawerLayout.isDrawerOpen(rightDrawer)) {
 			drawerLayout.closeDrawer(rightDrawer);
-		}*/
+		}
 		if (new CheckInternet().isConnect(this)) {
 			/*get time*/
 			getCurrentDate();
