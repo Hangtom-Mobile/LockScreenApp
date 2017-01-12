@@ -28,4 +28,5 @@
     <color name="btn_blackground_tran">#ab4e4e4e</color>
     <color name="btn_select_tran">#ab9b9b9b</color>
     <color name="back_color">#65696969</color>
+    <color name="back">#e8e8e8</color>
 </resources>
