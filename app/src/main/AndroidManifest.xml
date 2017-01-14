@@ -200,6 +200,12 @@
             android:configChanges="orientation|screenSize"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <activity
+            android:name=".activity.YoutubePlayerNewFeed"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/MyAppTheme" />
+
         <activity
             android:name="com.thefinestartist.finestwebview.FinestWebViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

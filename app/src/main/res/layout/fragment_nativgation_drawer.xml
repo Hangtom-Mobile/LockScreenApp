@@ -39,22 +39,6 @@
 
             </android.support.v7.widget.RecyclerView>
 
-            <LinearLayout
-                android:id="@+id/top"
-                android:background="@drawable/new_feed_color"
-                android:layout_width="match_parent"
-                android:rotation="180"
-                android:layout_height="160dp"
-                android:orientation="vertical" />
-
-            <LinearLayout
-                android:layout_alignParentBottom="true"
-                android:id="@+id/bottom"
-                android:background="@drawable/new_feed_color"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:orientation="vertical" />
-
         </RelativeLayout>
 
     </LinearLayout>

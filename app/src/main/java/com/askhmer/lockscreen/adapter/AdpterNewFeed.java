@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.askhmer.lockscreen.R;
+import com.askhmer.lockscreen.activity.YoutubePlayerNewFeed;
 import com.askhmer.lockscreen.model.VideoNewFeed;
 import com.askhmer.lockscreen.utils.Config;
 import com.google.android.youtube.player.YouTubeInitializationResult;
@@ -62,19 +63,21 @@ public class AdpterNewFeed extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             title = (TextView) view.findViewById(R.id.txt_des);
             btnPlay = (ImageView) view.findViewById(R.id.play_btn);
             youTubeThumbnailView = (YouTubeThumbnailView) view.findViewById(R.id.youtube_thumbnail);
-
             btnPlay.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             String position = v.getTag().toString();
-            Intent intent = YouTubeStandalonePlayer.createVideoIntent((Activity) context,
+            /*Intent intent = YouTubeStandalonePlayer.createVideoIntent((Activity) context,
                     Config.DEVELOPER_KEY,
                     position,//video id
-                    100,     //after this time, video will start automatically
+                    1000,     //after this time, video will start automatically
                     true,               //autoplay or not
-                    false);             //lightbox mode or not; show the video in a small box
+                    true);             //lightbox mode or not; show the video in a small box
+            context.startActivity(intent);*/
+            Intent intent = new Intent(context, YoutubePlayerNewFeed.class);
+            intent.putExtra("video_id", position);
             context.startActivity(intent);
         }
     }

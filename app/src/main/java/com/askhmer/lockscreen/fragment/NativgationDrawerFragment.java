@@ -1,10 +1,11 @@
 package com.askhmer.lockscreen.fragment;
 
 
-import android.app.ProgressDialog;
-import android.os.Bundle;
+
 import android.app.Fragment;
-import android.provider.MediaStore;
+import android.os.Bundle;
+
+
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,19 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.askhmer.lockscreen.R;
 import com.askhmer.lockscreen.adapter.AdpterNewFeed;
 import com.askhmer.lockscreen.model.VideoNewFeed;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class NativgationDrawerFragment extends Fragment {
 
@@ -61,10 +55,8 @@ public class NativgationDrawerFragment extends Fragment {
         videoNewFeeds.add(new VideoNewFeed("oVm7FkQI4BM", "SHAMPOO PRANK PART 7! | HoomanTV2", "https://img.youtube.com/vi/oVm7FkQI4BM/0.jpg", "oVm7FkQI4BM"));
         videoNewFeeds.add(new VideoNewFeed("oVm7FkQI4BM", "SHAMPOO PRANK PART 7! | HoomanTV3", "https://img.youtube.com/vi/oVm7FkQI4BM/0.jpg", "oVm7FkQI4BM"));
 
-        AdpterNewFeed adpterNewFeed = new AdpterNewFeed(videoNewFeeds);
+        AdpterNewFeed adpterNewFeed = new AdpterNewFeed(videoNewFeeds, getActivity());
         adpterNewFeed.notifyDataSetChanged();
         recyclerView.setAdapter(adpterNewFeed);
     }
-
-
 }

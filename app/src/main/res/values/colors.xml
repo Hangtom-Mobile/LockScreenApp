@@ -32,4 +32,5 @@
     <color name="new_back_color">#dcdcdc</color>
     <color name="shadow">#689c9c9c</color>
     <color name="back_color2">#313131</color>
+    <color name="tran_back">#c5202020</color>
 </resources>
