@@ -5,11 +5,10 @@
     android:layout_height="match_parent" >
 
     <!--fresco:failureImage="@drawable/no_inte_slow"-->
-    <com.facebook.drawee.view.SimpleDraweeView
+    <ImageView
         android:id="@+id/imgDisplay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        fresco:fadeDuration="1"
         android:scaleType="centerCrop" />
 
     <LinearLayout

@@ -105,7 +105,7 @@ public class LockScreenActivity extends Activity implements
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Fresco.initialize(this);
+		/*Fresco.initialize(this);*/
 		setContentView(R.layout.activity_lockscreen);
 		init();
 

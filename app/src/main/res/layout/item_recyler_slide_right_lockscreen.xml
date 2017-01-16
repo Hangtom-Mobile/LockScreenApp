@@ -22,12 +22,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
 
-                <com.google.android.youtube.player.YouTubeThumbnailView
-                    android:id="@+id/youtube_thumbnail"
-                    android:layout_width="match_parent"
-                    android:layout_height="190dp"
+                <ImageView
                     android:scaleType="centerCrop"
-                    android:visibility="visible"/>
+                    android:id="@+id/image_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="190dp" />
 
                 <ImageView
                     android:id="@+id/play_btn"
