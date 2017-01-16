@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,7 @@ public class NativgationDrawerFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private ArrayList<VideoNewFeed> videoNewFeeds = new ArrayList<>();;
-
+    private AdpterNewFeed adpterNewFeed;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,7 @@ public class NativgationDrawerFragment extends Fragment {
         videoNewFeeds.add(new VideoNewFeed("oVm7FkQI4BM", "SHAMPOO PRANK PART 7! | HoomanTV2", "https://img.youtube.com/vi/oVm7FkQI4BM/0.jpg", "oVm7FkQI4BM"));
         videoNewFeeds.add(new VideoNewFeed("oVm7FkQI4BM", "SHAMPOO PRANK PART 7! | HoomanTV3", "https://img.youtube.com/vi/oVm7FkQI4BM/0.jpg", "oVm7FkQI4BM"));
 
-        AdpterNewFeed adpterNewFeed = new AdpterNewFeed(videoNewFeeds, getActivity());
+        adpterNewFeed = new AdpterNewFeed(videoNewFeeds, getActivity());
         adpterNewFeed.notifyDataSetChanged();
         recyclerView.setAdapter(adpterNewFeed);
     }

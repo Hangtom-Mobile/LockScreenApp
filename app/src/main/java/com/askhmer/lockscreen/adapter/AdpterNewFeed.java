@@ -55,27 +55,19 @@ public class AdpterNewFeed extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public class MyViewHolderItem extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView title;
-        public ImageView btnPlay;
-        public YouTubeThumbnailView youTubeThumbnailView;
+        public ImageView btnPlay, imageThumnail;
 
         public MyViewHolderItem(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.txt_des);
             btnPlay = (ImageView) view.findViewById(R.id.play_btn);
-            youTubeThumbnailView = (YouTubeThumbnailView) view.findViewById(R.id.youtube_thumbnail);
+            imageThumnail = (ImageView) view.findViewById(R.id.image_view);
             btnPlay.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             String position = v.getTag().toString();
-            /*Intent intent = YouTubeStandalonePlayer.createVideoIntent((Activity) context,
-                    Config.DEVELOPER_KEY,
-                    position,//video id
-                    1000,     //after this time, video will start automatically
-                    true,               //autoplay or not
-                    true);             //lightbox mode or not; show the video in a small box
-            context.startActivity(intent);*/
             Intent intent = new Intent(context, YoutubePlayerNewFeed.class);
             intent.putExtra("video_id", position);
             context.startActivity(intent);
@@ -105,36 +97,11 @@ public class AdpterNewFeed extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof MyViewHolderItem) {
             MyViewHolderItem myViewHolderItem = (MyViewHolderItem)holder;
-            final VideoNewFeed videoNewFeed = getItem(position);
+            VideoNewFeed videoNewFeed = getItem(position);
 
             myViewHolderItem.title.setText(videoNewFeed.getTitle());
             myViewHolderItem.btnPlay.setTag(videoNewFeed.getVideoId());
-
-            final YouTubeThumbnailLoader.OnThumbnailLoadedListener  onThumbnailLoadedListener = new YouTubeThumbnailLoader.OnThumbnailLoadedListener(){
-                @Override
-                public void onThumbnailError(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader.ErrorReason errorReason) {
-
-                }
-
-                @Override
-                public void onThumbnailLoaded(YouTubeThumbnailView youTubeThumbnailView, String s) {
-                    youTubeThumbnailView.setVisibility(View.VISIBLE);
-                }
-            };
-
-
-            myViewHolderItem.youTubeThumbnailView.initialize(Config.DEVELOPER_KEY, new YouTubeThumbnailView.OnInitializedListener() {
-                @Override
-                public void onInitializationSuccess(YouTubeThumbnailView youTubeThumbnailView, YouTubeThumbnailLoader youTubeThumbnailLoader) {
-                    youTubeThumbnailLoader.setVideo(videoNewFeed.getVideoId());
-                    youTubeThumbnailLoader.setOnThumbnailLoadedListener(onThumbnailLoadedListener);
-                }
-
-                @Override
-                public void onInitializationFailure(YouTubeThumbnailView youTubeThumbnailView, YouTubeInitializationResult youTubeInitializationResult) {
-
-                }
-            });
+            Picasso.with(myViewHolderItem.imageThumnail.getContext()).load("https://img.youtube.com/vi/" + videoNewFeed.getVideoId() + "/0.jpg").into(myViewHolderItem.imageThumnail);
         }
         else if(holder instanceof MyViewHolderloading) {
             MyViewHolderloading myViewHolderloading = (MyViewHolderloading) holder;
