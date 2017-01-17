@@ -3,6 +3,7 @@ package com.askhmer.lockscreen.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -80,6 +81,7 @@ public class PasswordFindMoney extends SwipeBackActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.e("log_show", "checkPasswordFromServer ->"+ response);
                         if (response.contains("110")) {
                             try {
                                 JSONObject jsonObj = new JSONObject(response);

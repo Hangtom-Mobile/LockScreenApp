@@ -81,17 +81,20 @@ public class FullScreenImageAdapter extends PagerAdapter {
         txtBasicPoint = (TextView) viewLayout.findViewById(R.id.txt_basic_point);
         txtViewPoint = (TextView) viewLayout.findViewById(R.id.txt_view_point);
         imageView = (ImageView) viewLayout.findViewById(R.id.imgDisplay);
-
-        /*try {
+        long total = 0;
+        try {
             File f = new File("/data/data/com.askhmer.lockscreen/app_medayi_image_caching") ;
             File list[] = f.listFiles();
 
             for( int i=0; i < list.length; i++) {
-                Log.e("show_list", list[i].getName());
+                /*Log.e("show_list", list[i].getName());*/
+                total+=list[i].length();
+                /*Log.e("testing", "File name: " + list[i].getName() + " || size: " + list[i].length());*/
             }
+            Log.e("testing", total+"");
         }catch (Exception e) {
 
-        }*/
+        }
 
         if (isHasImageInDirectory("/data/data/com.askhmer.lockscreen/app_medayi_image_caching",
                 getFileNameFromUrl(_imagePaths.get(position).getImageUrl()))) {
@@ -99,6 +102,7 @@ public class FullScreenImageAdapter extends PagerAdapter {
                     getFileNameFromUrl(_imagePaths.get(position).getImageUrl()));
             imageView.setImageBitmap(bitmap);
         }else {
+            Log.e("testing_view", "load image from url");
             Glide.with(container.getContext())
                     .load(_imagePaths.get(position).getImageUrl())
                     .into(imageView);
@@ -164,6 +168,7 @@ public class FullScreenImageAdapter extends PagerAdapter {
     private String getFileNameFromUrl(String url) {
         Uri u = Uri.parse(url);
         File f = new File("" + u);
+        Log.e("testing", f.getName().replaceAll("\\..*", ""));
         return f.getName().replaceAll("\\..*", "");
     }
 }
