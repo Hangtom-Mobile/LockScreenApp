@@ -19,7 +19,8 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         File f = new File("/data/data/com.askhmer.lockscreen/app_medayi_image_caching") ;
-        if (folderSize(f) > 20000000) {
+        /*note ** bit*/
+        if (folderSize(f) > 167772160) {
             try {
                 FileUtils.deleteDirectory(f);
             } catch (IOException e) {

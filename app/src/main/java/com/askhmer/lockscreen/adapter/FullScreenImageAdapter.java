@@ -86,12 +86,11 @@ public class FullScreenImageAdapter extends PagerAdapter {
             File f = new File("/data/data/com.askhmer.lockscreen/app_medayi_image_caching") ;
             File list[] = f.listFiles();
 
-            for( int i=0; i < list.length; i++) {
-                /*Log.e("show_list", list[i].getName());*/
-                total+=list[i].length();
-                /*Log.e("testing", "File name: " + list[i].getName() + " || size: " + list[i].length());*/
+            for (File file : f.listFiles()) {
+                total += file.length();
+                Log.e("one_by_one",file.getName() + " || size: " + file.length() );
             }
-            Log.e("testing", total+"");
+            Log.e("total in bit", total +"");
         }catch (Exception e) {
 
         }
@@ -168,7 +167,6 @@ public class FullScreenImageAdapter extends PagerAdapter {
     private String getFileNameFromUrl(String url) {
         Uri u = Uri.parse(url);
         File f = new File("" + u);
-        Log.e("testing", f.getName().replaceAll("\\..*", ""));
         return f.getName().replaceAll("\\..*", "");
     }
 }
