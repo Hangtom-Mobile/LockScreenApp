@@ -12,10 +12,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.askhmer.lockscreen.R;
 import com.askhmer.lockscreen.adapter.AdpterNewFeed;
 import com.askhmer.lockscreen.model.VideoNewFeed;
+import com.askhmer.lockscreen.network.JsonConverter;
+import com.askhmer.lockscreen.network.MySingleton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -23,8 +33,12 @@ import java.util.ArrayList;
 public class NativgationDrawerFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private ArrayList<VideoNewFeed> videoNewFeeds = new ArrayList<>();;
+    private ArrayList<VideoNewFeed> videoNewFeeds = new ArrayList<>();
     private AdpterNewFeed adpterNewFeed;
+    private int currentPage = 1;
+    private boolean loading = true;
+    private int pastVisiblesItems, visibleItemCount, totalItemCount;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +50,32 @@ public class NativgationDrawerFragment extends Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler);
 
-        setupDataFromServer();
-
          /*set up recyler*/
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        final LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if(dy > 0) //check for scroll down{
+                    visibleItemCount = mLayoutManager.getChildCount();
+                    totalItemCount = mLayoutManager.getItemCount();
+                    pastVisiblesItems = mLayoutManager.findFirstVisibleItemPosition();
+
+                    if (loading) {
+                        if ( (visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+                            loading = false;
+                            adpterNewFeed.isDisplayLoading(true);
+                            requestLoadData(true);
+                        }
+                    }
+                }
+
+            });
+
+        requestLoadData(false);
 
         return view;
     }
@@ -49,14 +83,43 @@ public class NativgationDrawerFragment extends Fragment {
     /***
      * request new data to server
      */
-    private void setupDataFromServer() {
-        videoNewFeeds.add(new VideoNewFeed("oVm7FkQI4BM", "SHAMPOO PRANK PART 7! | HoomanTV", "https://img.youtube.com/vi/oVm7FkQI4BM/0.jpg", "oVm7FkQI4BM"));
-        videoNewFeeds.add(new VideoNewFeed("oVm7FkQI4BM", "SHAMPOO PRANK PART 7! | HoomanTV1", "https://img.youtube.com/vi/oVm7FkQI4BM/0.jpg", "oVm7FkQI4BM"));
-        videoNewFeeds.add(new VideoNewFeed("oVm7FkQI4BM", "SHAMPOO PRANK PART 7! | HoomanTV2", "https://img.youtube.com/vi/oVm7FkQI4BM/0.jpg", "oVm7FkQI4BM"));
-        videoNewFeeds.add(new VideoNewFeed("oVm7FkQI4BM", "SHAMPOO PRANK PART 7! | HoomanTV3", "https://img.youtube.com/vi/oVm7FkQI4BM/0.jpg", "oVm7FkQI4BM"));
-
-        adpterNewFeed = new AdpterNewFeed(videoNewFeeds, getActivity());
-        adpterNewFeed.notifyDataSetChanged();
-        recyclerView.setAdapter(adpterNewFeed);
+    private void requestLoadData(final boolean isPagination) {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://testpotal.medayi.com/listyoutubevideosapi.php?rows=5&page="+ currentPage ++,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        boolean dataNotFound = false;
+                        try {
+                            JSONObject jsonObj = new JSONObject(response);
+                            if (jsonObj.getString("STATUS").contains("200")) {
+                                String data = jsonObj.getString("data");
+                                videoNewFeeds = new JsonConverter().toArrayList(data, VideoNewFeed.class);
+                            }else {
+                                dataNotFound = true;
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        } finally {
+                            if (!isPagination) {
+                                adpterNewFeed = new AdpterNewFeed(videoNewFeeds, getActivity());
+                                recyclerView.setAdapter(adpterNewFeed);
+                            }else {
+                                if (dataNotFound) {
+                                     adpterNewFeed.isDisplayLoading(false);
+                                }else {
+                                    adpterNewFeed.setData(videoNewFeeds);
+                                    loading = true;
+                                }
+                            }
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), "error loading", Toast.LENGTH_SHORT).show();
+                loading = true;
+            }
+        });
+        MySingleton.getInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 }
