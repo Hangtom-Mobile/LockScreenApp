@@ -457,7 +457,7 @@
     <string name="action_point_ex_de"> The points taken by watching the video, moving the web and install the application included in the adverting. </string>
 
     <!--add more -->
-    <string name="history_str"> History </string>
+    <string name="history_str"> HISTORY </string>
     <string name="success_pass">Change password Success</string>
     <string name="pass_not_mat">Password not match!</string>
     <string name="p_after_pur">Point after purchase</string>

@@ -174,6 +174,14 @@ public class LockScreenActivity extends Activity implements
 		rightDrawer = (LinearLayout) findViewById(R.id.right_drawer);
 		/*drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);*/
 
+		LinearLayout btnDrawable = (LinearLayout) findViewById(R.id.btn_drawbler);
+		btnDrawable.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				drawerLayout.openDrawer(rightDrawer);
+			}
+		});
+
 		/*display currrent date*/
 		getCurrentDate();
 	}

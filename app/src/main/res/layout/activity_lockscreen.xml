@@ -91,10 +91,11 @@
         android:layout_alignParentLeft="true">
 
         <LinearLayout
-            android:visibility="gone"
-            android:background="@drawable/drawer_btn"
+            android:id="@+id/btn_drawbler"
+            android:background="@drawable/slide_selector"
             android:layout_marginRight="-1dp"
             android:layout_width="13dp"
+            android:clickable="true"
             android:gravity="center"
             android:layout_height="70dp">
 
