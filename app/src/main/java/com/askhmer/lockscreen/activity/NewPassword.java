@@ -60,7 +60,7 @@ public class NewPassword extends AppCompatActivity {
                                 JSONObject jsonObj = new JSONObject(response);
                                 String result = jsonObj.getString("rst");
                                 if (result.equals("110")) {
-                                    Toast.makeText(NewPassword.this, "Reset password Success", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(NewPassword.this, getString(R.string.re_pas_succ), Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(getApplicationContext(), AccountManage.class));
                                     finish();
                                 }else {

@@ -426,7 +426,7 @@
 
     <string name="request_111"> No have data, Please Update your application before request top up.</string>
 
-    <!--english history-->
+    <!--english History-->
     <string name="my_point"> My points </string>
     <string name="Point_History"> Points History </string>
     <string name="used_point"> Used point </string>
@@ -436,7 +436,7 @@
     <string name="medayi_gift"> Medayi gift </string>
     <string name="action_point"> Action points </string>
 
-    <!--explain history-->
+    <!--explain History-->
     <string name="my_point_ex"> [MY POINTS] </string>
     <string name="Point_History_ex"> Explain </string>
     <string name="used_point_ex"> [USED POINTS] </string>
@@ -455,6 +455,14 @@
     <string name="recom_point_ex_de"> The points taken by recommended. </string>
     <string name="medayi_gift_ex_de"> The points taken by medayi\'s gift. </string>
     <string name="action_point_ex_de"> The points taken by watching the video, moving the web and install the application included in the adverting. </string>
+
+    <!--add more -->
+    <string name="history_str"> History </string>
+    <string name="success_pass">Change password Success</string>
+    <string name="pass_not_mat">Password not match!</string>
+    <string name="p_after_pur">Point after purchase</string>
+    <string name="re_pas_succ">Reset password Success</string>
+
 
 </resources>
 

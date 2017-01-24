@@ -61,7 +61,7 @@ public class ChangePwd extends SwipeBackActivity {
                                 JSONObject jsonObj = new JSONObject(response);
                                 String result = jsonObj.getString("rst");
                                 if (result.equals("110")) {
-                                    Toast.makeText(getApplicationContext(), "Change password Success", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), getString(R.string.success_pass), Toast.LENGTH_SHORT).show();
                                     mSharedPreferencesFile.putStringSharedPreference(SharedPreferencesFile.KEY_INFORMATION_TEMP_PASSWORD, txtPassword.getText().toString());
                                     startActivity(new Intent(getApplicationContext(), AccountManage.class));
                                     finish();

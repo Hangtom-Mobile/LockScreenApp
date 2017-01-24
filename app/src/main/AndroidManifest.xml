@@ -131,8 +131,8 @@
         </activity>
         <activity
             android:name=".activity.MainActivityTab"
-            android:screenOrientation="portrait"
             android:hardwareAccelerated="true"
+            android:screenOrientation="portrait"
             android:theme="@style/MyTabTheme" />
         <activity
             android:name=".activity.PasswordFindMoney"
@@ -201,12 +201,10 @@
             android:configChanges="orientation|screenSize"
             android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-
         <activity
             android:name=".activity.YoutubePlayerNewFeed"
             android:configChanges="orientation|screenSize"
             android:theme="@style/MyAppTheme" />
-
         <activity
             android:name="com.thefinestartist.finestwebview.FinestWebViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -226,10 +224,13 @@
         <activity
             android:name=".activity.DetailTopUp"
             android:theme="@style/MyAppTheme" />
-
         <activity
             android:name=".activity.InformationTopUp"
-            android:theme="@style/MyAppTheme"/>
+            android:theme="@style/MyAppTheme" />
+        <activity android:name=".activity.History"
+            android:theme="@style/MyAppTheme">
+
+        </activity>
     </application>
 
 </manifest>

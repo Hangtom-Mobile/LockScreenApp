@@ -173,16 +173,16 @@ public class InformationTopUp extends AppCompatActivity {
                     public void onResponse(String response) {
                         Log.e("show_123", response);
                         if (response.contains("110")) {
-                            messageDialog(getString(R.string.title_completed), getString(R.string.descrip_completed), false);
+                            messageDialog(getString(R.string.title_completed), getString(R.string.descrip_completed), false, true);
                         }else if (response.contains("112")) {
-                            messageDialog(getString(R.string.title_not_com), getString(R.string.your_information_incorrect), false);
+                            messageDialog(getString(R.string.title_not_com), getString(R.string.your_information_incorrect), false, false);
                         }else if (response.contains("114")) {
-                            messageDialog(getString(R.string.title_not_com), getString(R.string.descrip_not_com), false);
+                            messageDialog(getString(R.string.title_not_com), getString(R.string.descrip_not_com), false, false);
                         }else if (response.contains("111")) {
-                            messageDialog(getString(R.string.title_not_com), getString(R.string.request_111),true);
+                            messageDialog(getString(R.string.title_not_com), getString(R.string.request_111),true, false);
                         }
                         else {
-                            messageDialog(getString(R.string.title_not_com), getString(R.string.system_error), false);
+                            messageDialog(getString(R.string.title_not_com), getString(R.string.system_error), false, false);
                         }
                         pDialog.dismiss();
                     }
@@ -211,7 +211,7 @@ public class InformationTopUp extends AppCompatActivity {
         MySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-    private void messageDialog(String title, String desricption, final boolean link) {
+    private void messageDialog(String title, String desricption, final boolean link, boolean isCompleted) {
         /*setup dialog*/
         final Dialog dialog = new Dialog(InformationTopUp.this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -224,9 +224,13 @@ public class InformationTopUp extends AppCompatActivity {
         Button button = (Button)  dialog.findViewById(R.id.bttn_buy);
         final TextView textView = (TextView) dialog.findViewById(R.id.txt_description);
         TextView txtTitle = (TextView) dialog.findViewById(R.id.txt_title);
+        if (isCompleted) {
+            textView.setTextColor(Color.parseColor("#5CB488"));
+        }
 
         txtTitle.setText(title);
         textView.setText(desricption);
+
 
         /*listener*/
         dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
