@@ -81,7 +81,7 @@ public class FullScreenImageAdapter extends PagerAdapter {
         txtBasicPoint = (TextView) viewLayout.findViewById(R.id.txt_basic_point);
         txtViewPoint = (TextView) viewLayout.findViewById(R.id.txt_view_point);
         imageView = (ImageView) viewLayout.findViewById(R.id.imgDisplay);
-        long total = 0;
+       /* long total = 0;
         try {
             File f = new File("/data/data/com.askhmer.lockscreen/app_medayi_image_caching") ;
             File list[] = f.listFiles();
@@ -93,7 +93,7 @@ public class FullScreenImageAdapter extends PagerAdapter {
             Log.e("total in bit", total +"");
         }catch (Exception e) {
 
-        }
+        }*/
 
         if (isHasImageInDirectory("/data/data/com.askhmer.lockscreen/app_medayi_image_caching",
                 getFileNameFromUrl(_imagePaths.get(position).getImageUrl()))) {

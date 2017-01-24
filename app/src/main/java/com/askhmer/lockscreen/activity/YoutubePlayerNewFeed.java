@@ -66,6 +66,7 @@ public class YoutubePlayerNewFeed extends YouTubeBaseActivity implements YouTube
 
             // Hiding player controls
             youTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT);
+            youTubePlayer.setShowFullscreenButton(false);
         }
     }
 
