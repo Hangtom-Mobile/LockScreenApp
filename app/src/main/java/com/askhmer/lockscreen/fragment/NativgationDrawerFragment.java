@@ -82,9 +82,10 @@ public class NativgationDrawerFragment extends Fragment {
 
     /***
      * request new data to server
+     * http://testpotal.medayi.com/funapi.php?rows=5&page=2
      */
     private void requestLoadData(final boolean isPagination) {
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://testpotal.medayi.com/listyoutubevideosapi.php?rows=5&page="+ currentPage ++,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://testpotal.medayi.com/funapi.php?rows=5&page="+ currentPage ++,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

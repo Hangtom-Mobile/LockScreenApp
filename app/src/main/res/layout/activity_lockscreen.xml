@@ -97,7 +97,6 @@
             android:layout_width="13dp"
             android:clickable="true"
             android:gravity="center"
-            android:visibility="gone"
             android:layout_height="70dp">
 
             <ImageView

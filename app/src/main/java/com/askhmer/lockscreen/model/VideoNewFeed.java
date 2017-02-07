@@ -8,41 +8,31 @@ import com.google.gson.annotations.SerializedName;
 
 public class VideoNewFeed {
 
-    @SerializedName("id")
+    @SerializedName("wr_id")
     private String id;
 
-    @SerializedName("ch_id")
-    private String chId;
+    @SerializedName("wr_subject")
+    private String subject;
 
-    @SerializedName("vd_code")
-    private String videoId;
+    @SerializedName("wr_hit")
+    private String hit;
 
-    @SerializedName("vd_title")
-    private String title;
+    @SerializedName("wr_name")
+    private String uploadName;
 
-    @SerializedName("thumail1")
-    private String thumnail1;
+    @SerializedName("wr_datetime")
+    private String datatime;
 
-    @SerializedName("thumail2")
-    private String thumail2;
+    @SerializedName("thumbnail")
+    private String image;
 
-    @SerializedName("duration")
-    private String duration;
-
-    @SerializedName("vd_desc")
-    private String VideoDesc;
-
-    @SerializedName("create_date")
-    private String createDate;
-
-    public VideoNewFeed(String videoId, String title, String thumnail, String thumail2) {
-        this.videoId = videoId;
-        this.title = title;
-        this.thumnail1 = thumnail;
-        this.thumail2 = thumail2;
-    }
-
-    public VideoNewFeed() {
+    public VideoNewFeed(String id, String subject, String hit, String uploadName, String datatime, String image) {
+        this.id = id;
+        this.subject = subject;
+        this.hit = hit;
+        this.uploadName = uploadName;
+        this.datatime = datatime;
+        this.image = image;
     }
 
     public String getId() {
@@ -53,67 +43,43 @@ public class VideoNewFeed {
         this.id = id;
     }
 
-    public String getChId() {
-        return chId;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setChId(String chId) {
-        this.chId = chId;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
-    public String getVideoId() {
-        return videoId;
+    public String getHit() {
+        return hit;
     }
 
-    public void setVideoId(String videoId) {
-        this.videoId = videoId;
+    public void setHit(String hit) {
+        this.hit = hit;
     }
 
-    public String getTitle() {
-        return title;
+    public String getUploadName() {
+        return uploadName;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setUploadName(String uploadName) {
+        this.uploadName = uploadName;
     }
 
-    public String getThumnail1() {
-        return thumnail1;
+    public String getDatatime() {
+        return datatime;
     }
 
-    public void setThumnail1(String thumnail1) {
-        this.thumnail1 = thumnail1;
+    public void setDatatime(String datatime) {
+        this.datatime = datatime;
     }
 
-    public String getThumail2() {
-        return thumail2;
+    public String getImage() {
+        return image;
     }
 
-    public void setThumail2(String thumail2) {
-        this.thumail2 = thumail2;
-    }
-
-    public String getDuration() {
-        return duration;
-    }
-
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
-
-    public String getVideoDesc() {
-        return VideoDesc;
-    }
-
-    public void setVideoDesc(String videoDesc) {
-        VideoDesc = videoDesc;
-    }
-
-    public String getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(String createDate) {
-        this.createDate = createDate;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

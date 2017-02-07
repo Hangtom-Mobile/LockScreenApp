@@ -16,6 +16,8 @@ import com.askhmer.lockscreen.activity.YoutubePlayerNewFeed;
 import com.askhmer.lockscreen.model.VideoNewFeed;
 import com.squareup.picasso.Picasso;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,12 +51,15 @@ public class AdpterNewFeed extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         public TextView title;
         public ImageView btnPlay, imageThumnail;
+        public TextView uploadName, uploadDate;
 
         public MyViewHolderItem(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.txt_des);
             btnPlay = (ImageView) view.findViewById(R.id.play_btn);
             imageThumnail = (ImageView) view.findViewById(R.id.image_view);
+            uploadName = (TextView) view.findViewById(R.id.txt_upload_name);
+            uploadDate = (TextView) view.findViewById(R.id.txt_upload_date);
             btnPlay.setOnClickListener(this);
         }
 
@@ -92,9 +97,11 @@ public class AdpterNewFeed extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             MyViewHolderItem myViewHolderItem = (MyViewHolderItem)holder;
             VideoNewFeed videoNewFeed = getItem(position);
 
-            myViewHolderItem.title.setText(videoNewFeed.getTitle());
-            myViewHolderItem.btnPlay.setTag(videoNewFeed.getVideoId());
-            Picasso.with(myViewHolderItem.imageThumnail.getContext()).load("https://img.youtube.com/vi/" + videoNewFeed.getVideoId() + "/0.jpg").into(myViewHolderItem.imageThumnail);
+            myViewHolderItem.uploadName.setText(videoNewFeed.getUploadName());
+            myViewHolderItem.uploadDate.setText(videoNewFeed.getDatatime());
+            myViewHolderItem.title.setText(videoNewFeed.getSubject());
+            myViewHolderItem.btnPlay.setTag(videoNewFeed.getId());
+            Picasso.with(myViewHolderItem.imageThumnail.getContext()).load(videoNewFeed.getImage()).into(myViewHolderItem.imageThumnail);
         }
         else if(holder instanceof MyViewHolderloading) {
             MyViewHolderloading myViewHolderloading = (MyViewHolderloading) holder;
