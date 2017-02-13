@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.askhmer.lockscreen.R;
+import com.askhmer.lockscreen.activity.WebviewFun;
 import com.askhmer.lockscreen.activity.YoutubePlayerNewFeed;
 import com.askhmer.lockscreen.model.VideoNewFeed;
 import com.squareup.picasso.Picasso;
@@ -51,7 +52,7 @@ public class AdpterNewFeed extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         public TextView title;
         public ImageView btnPlay, imageThumnail;
-        public TextView uploadName, uploadDate;
+        public TextView uploadName, uploadDate, txtHit;
 
         public MyViewHolderItem(View view) {
             super(view);
@@ -60,14 +61,15 @@ public class AdpterNewFeed extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             imageThumnail = (ImageView) view.findViewById(R.id.image_view);
             uploadName = (TextView) view.findViewById(R.id.txt_upload_name);
             uploadDate = (TextView) view.findViewById(R.id.txt_upload_date);
+            txtHit = (TextView) view.findViewById(R.id.txt_hit);
             btnPlay.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             String position = v.getTag().toString();
-            Intent intent = new Intent(context, YoutubePlayerNewFeed.class);
-            intent.putExtra("video_id", position);
+            Intent intent = new Intent(context, WebviewFun.class);
+            intent.putExtra("wr_id", position);
             context.startActivity(intent);
         }
     }
@@ -101,7 +103,8 @@ public class AdpterNewFeed extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             myViewHolderItem.uploadDate.setText(videoNewFeed.getDatatime());
             myViewHolderItem.title.setText(videoNewFeed.getSubject());
             myViewHolderItem.btnPlay.setTag(videoNewFeed.getId());
-            Picasso.with(myViewHolderItem.imageThumnail.getContext()).load(videoNewFeed.getImage()).into(myViewHolderItem.imageThumnail);
+            myViewHolderItem.txtHit.setText("Hit: " +  videoNewFeed.getHit());
+            Picasso.with(myViewHolderItem.imageThumnail.getContext()).load("http://medayi.com/data/file/new_fun/" + videoNewFeed.getImage()).placeholder(R.drawable.medayi_id).into(myViewHolderItem.imageThumnail);
         }
         else if(holder instanceof MyViewHolderloading) {
             MyViewHolderloading myViewHolderloading = (MyViewHolderloading) holder;

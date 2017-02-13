@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_webview_fun"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.askhmer.lockscreen.activity.WebviewFun"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <WebView
+            android:id="@+id/webview"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarStyle="outsideOverlay"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_alignParentTop="true"
+            android:progress="0"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+</LinearLayout>

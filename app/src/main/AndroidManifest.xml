@@ -227,7 +227,12 @@
         <activity
             android:name=".activity.InformationTopUp"
             android:theme="@style/MyAppTheme" />
-        <activity android:name=".activity.History"
+        <activity
+            android:name=".activity.History"
+            android:theme="@style/MyAppTheme"></activity>
+        <activity
+            android:hardwareAccelerated="true"
+            android:name=".activity.WebviewFun"
             android:theme="@style/MyAppTheme">
 
         </activity>

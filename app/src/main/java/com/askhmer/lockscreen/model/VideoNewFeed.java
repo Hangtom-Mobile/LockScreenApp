@@ -23,7 +23,7 @@ public class VideoNewFeed {
     @SerializedName("wr_datetime")
     private String datatime;
 
-    @SerializedName("thumbnail")
+    @SerializedName("bf_file")
     private String image;
 
     public VideoNewFeed(String id, String subject, String hit, String uploadName, String datatime, String image) {

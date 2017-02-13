@@ -81,34 +81,7 @@
         android:layout_toRightOf="@+id/shift"
         android:textColor="@color/white"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:background="@drawable/black_transparate"
-        android:layout_height="210dp"
-        android:orientation="horizontal"
-        android:gravity="right"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true">
-
-        <LinearLayout
-            android:id="@+id/btn_drawbler"
-            android:background="@drawable/slide_selector"
-            android:layout_marginRight="-1dp"
-            android:layout_width="13dp"
-            android:clickable="true"
-            android:gravity="center"
-            android:layout_height="70dp">
-
-            <ImageView
-                android:src="@drawable/ic_play_arrow"
-                android:layout_width="10dp"
-                android:layout_height="10dp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <com.askhmer.lockscreen.utils.ToggleSwitchButtonByDy
+        <com.askhmer.lockscreen.utils.ToggleSwitchButtonByDy
         android:id="@+id/toggle_website"
         style="@style/ToggleSwitchButton"
         android:visibility="gone"
@@ -142,7 +115,68 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="-400dp"/>
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:background="@drawable/black_transparate"
+            android:layout_height="210dp"
+            android:orientation="horizontal"
+            android:gravity="right"
+            android:weightSum="1"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true">
+
+            <LinearLayout
+                android:id="@+id/btn_drawbler"
+                android:background="@drawable/slide_selector"
+                android:layout_marginRight="-1dp"
+                android:clickable="true"
+                android:gravity="right|center_vertical"
+                android:paddingRight="8dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_height="55dp"
+                android:orientation="vertical"
+                android:layout_width="26dp">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="8dp"
+                    android:text="O"/>
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="8dp"
+                    android:text="P"/>
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="8dp"
+                    android:text="E"/>
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="8dp"
+                    android:text="N"/>
+
+                <!--<ImageView
+                    android:src="@drawable/ic_play_arrow"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp" />-->
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
     
     <LinearLayout
         android:id="@+id/right_drawer"
