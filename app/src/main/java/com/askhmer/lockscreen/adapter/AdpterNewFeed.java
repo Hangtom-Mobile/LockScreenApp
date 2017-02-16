@@ -63,14 +63,25 @@ public class AdpterNewFeed extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             uploadDate = (TextView) view.findViewById(R.id.txt_upload_date);
             txtHit = (TextView) view.findViewById(R.id.txt_hit);
             btnPlay.setOnClickListener(this);
+            imageThumnail.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            String position = v.getTag().toString();
-            Intent intent = new Intent(context, WebviewFun.class);
-            intent.putExtra("wr_id", position);
-            context.startActivity(intent);
+            switch(v.getId()){
+                case R.id.play_btn:
+                    String position = v.getTag(R.id.play_btn).toString();
+                    Intent intent = new Intent(context, WebviewFun.class);
+                    intent.putExtra("wr_id", position);
+                    context.startActivity(intent);
+                    break;
+                case R.id.image_view:
+                    String position1 = v.getTag(R.id.image_view).toString();
+                    Intent intent1 = new Intent(context, WebviewFun.class);
+                    intent1.putExtra("wr_id", position1);
+                    context.startActivity(intent1);
+                    break;
+            }
         }
     }
 
@@ -102,8 +113,12 @@ public class AdpterNewFeed extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             myViewHolderItem.uploadName.setText(videoNewFeed.getUploadName());
             myViewHolderItem.uploadDate.setText(videoNewFeed.getDatatime());
             myViewHolderItem.title.setText(videoNewFeed.getSubject());
-            myViewHolderItem.btnPlay.setTag(videoNewFeed.getId());
+            if (!videoNewFeed.getIsVideo().contains("1")) {
+                myViewHolderItem.btnPlay.setVisibility(View.GONE);
+            }
+            myViewHolderItem.btnPlay.setTag(R.id.play_btn ,videoNewFeed.getId());
             myViewHolderItem.txtHit.setText("Hit: " +  videoNewFeed.getHit());
+            myViewHolderItem.imageThumnail.setTag(R.id.image_view, videoNewFeed.getId());
             Picasso.with(myViewHolderItem.imageThumnail.getContext()).load("http://medayi.com/data/file/new_fun/" + videoNewFeed.getImage()).placeholder(R.drawable.medayi_id).into(myViewHolderItem.imageThumnail);
         }
         else if(holder instanceof MyViewHolderloading) {

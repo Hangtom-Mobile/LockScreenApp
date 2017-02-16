@@ -26,6 +26,9 @@ public class VideoNewFeed {
     @SerializedName("bf_file")
     private String image;
 
+    @SerializedName("is_video")
+    private String isVideo;
+
     public VideoNewFeed(String id, String subject, String hit, String uploadName, String datatime, String image) {
         this.id = id;
         this.subject = subject;
@@ -81,5 +84,13 @@ public class VideoNewFeed {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getIsVideo() {
+        return isVideo;
+    }
+
+    public void setIsVideo(String isVideo) {
+        this.isVideo = isVideo;
     }
 }

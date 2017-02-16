@@ -34,7 +34,7 @@ public class RegisterOrLogin extends Activity {
         imageView = (ImageView) findViewById(R.id.image_gif);
 
         GlideDrawableImageViewTarget imageViewTarget = new GlideDrawableImageViewTarget(imageView);
-        Glide.with(this).load(R.drawable.medayi_login)
+        Glide.with(this).load(R.drawable.medayi_login_no_sky)
                 .into(imageViewTarget);
 
         /*btn sign up*/
