@@ -12,6 +12,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -38,6 +40,8 @@ public class NativgationDrawerFragment extends Fragment {
     private int currentPage = 1;
     private boolean loading = true;
     private int pastVisiblesItems, visibleItemCount, totalItemCount;
+    private LinearLayout retryLinearLayout;
+    private Button btnRetry;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,8 @@ public class NativgationDrawerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_nativgation_drawer, container, false);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycler);
+        retryLinearLayout = (LinearLayout) view.findViewById(R.id.retry_layout);
+        btnRetry = (Button) view.findViewById(R.id.btn_retry);
 
          /*set up recyler*/
         final LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
@@ -118,6 +124,18 @@ public class NativgationDrawerFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getActivity(), "error loading", Toast.LENGTH_SHORT).show();
+                if (isPagination == false) {
+                    recyclerView.setVisibility(View.GONE);
+                    retryLinearLayout.setVisibility(View.VISIBLE);
+                    btnRetry.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            recyclerView.setVisibility(View.VISIBLE);
+                            retryLinearLayout.setVisibility(View.GONE);
+                            requestLoadData(false);
+                        }
+                    });
+                }
                 loading = true;
             }
         });

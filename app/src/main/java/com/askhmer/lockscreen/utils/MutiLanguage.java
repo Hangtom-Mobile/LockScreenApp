@@ -59,7 +59,7 @@ public class MutiLanguage {
         Locale.setDefault(locale);
         config.locale = locale;
         context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
-        activity.recreate();;
+        activity.recreate();
     }
 
     /***

@@ -108,12 +108,13 @@ public class AdpterNewFeed extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if(holder instanceof MyViewHolderItem) {
             MyViewHolderItem myViewHolderItem = (MyViewHolderItem)holder;
+            myViewHolderItem.setIsRecyclable(false);
             VideoNewFeed videoNewFeed = getItem(position);
 
             myViewHolderItem.uploadName.setText(videoNewFeed.getUploadName());
             myViewHolderItem.uploadDate.setText(videoNewFeed.getDatatime());
             myViewHolderItem.title.setText(videoNewFeed.getSubject());
-            if (!videoNewFeed.getIsVideo().contains("1")) {
+            if (videoNewFeed.getIsVideo().equals("0")) {
                 myViewHolderItem.btnPlay.setVisibility(View.GONE);
             }
             myViewHolderItem.btnPlay.setTag(R.id.play_btn ,videoNewFeed.getId());

@@ -2,6 +2,8 @@ package com.askhmer.lockscreen.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+
 
 /**
  * Created by Longdy on 6/15/2016.
@@ -35,7 +37,7 @@ public class SharedPreferencesFile {
 
     public SharedPreferencesFile(Context context, String sharedPrefName) {
         mContext = context;
-        mSettings = context.getSharedPreferences(sharedPrefName, Context.MODE_PRIVATE);
+        mSettings = context.getSharedPreferences(sharedPrefName, Context.MODE_WORLD_READABLE);
         mEditor = mSettings.edit();
     }
 
