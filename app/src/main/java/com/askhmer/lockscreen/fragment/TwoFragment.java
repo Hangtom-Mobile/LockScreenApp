@@ -50,6 +50,7 @@ import com.askhmer.lockscreen.network.MySingleton;
 import com.askhmer.lockscreen.utils.MutiLanguage;
 import com.askhmer.lockscreen.utils.RealPathUtil;
 import com.askhmer.lockscreen.utils.SharedPreferencesFile;
+import com.askhmer.lockscreen.utils.WebAppInterface;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -69,8 +70,8 @@ import java.util.Map;
 public class TwoFragment extends Fragment /*implements SwipeRefreshLayout.OnRefreshListener*/{
 
     private WebView webview;
-    private final String URL_ASKHMER = "http://m.medayi.com/index.php?language=kh&medayi_app=yes";
-    private final String URL_ASKHMER_EN = "http://m.medayi.com/index.php?language=en&medayi_app=yes";
+    private final String URL_ASKHMER = "http://m.medayi.com/index.php?language=kh&medayi_app=yes&os=androidslide";
+    private final String URL_ASKHMER_EN = "http://m.medayi.com/index.php?language=en&medayi_app=yes&os=androidslide";
     private SwipeRefreshLayout swipeRefreshLayout;
     private ProgressBar mProgress;
     private ImageButton btnBack;
@@ -234,11 +235,12 @@ public class TwoFragment extends Fragment /*implements SwipeRefreshLayout.OnRefr
 
         WebSettings webSettings = webview2.getSettings();
         /*webview.addJavascriptInterface(true);*/
+        webview2.addJavascriptInterface(new WebAppInterface(getContext(), getActivity()), "Android");
         webSettings.setBuiltInZoomControls(true);
         webSettings.setSupportZoom(true);
         webSettings.setJavaScriptEnabled(true);                        // javascript use flag
         webSettings.setSavePassword(false);                            // web password auto save
-//        webSettings.setSupportMultipleWindows(true);                    // new window
+        //webSettings.setSupportMultipleWindows(true);                    // new window
         webSettings.setDatabaseEnabled(false);                            // html5 Web DB
         webSettings.setAppCacheEnabled(true);                            // html5 AppCache
         webSettings.setDomStorageEnabled(true);                            // html5 DOM key/value store -> not delete
@@ -280,6 +282,7 @@ public class TwoFragment extends Fragment /*implements SwipeRefreshLayout.OnRefr
                 WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
                 transport.setWebView(view);
                 resultMsg.sendToTarget();
+
                 return false;
             }
 
