@@ -134,7 +134,6 @@ public class NativgationDrawerFragment extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                /*Toast.makeText(getActivity(), "error loading", Toast.LENGTH_SHORT).show();*/
                 if (isPagination == false) {
                     recyclerView.setVisibility(View.GONE);
                     retryLinearLayout.setVisibility(View.VISIBLE);
