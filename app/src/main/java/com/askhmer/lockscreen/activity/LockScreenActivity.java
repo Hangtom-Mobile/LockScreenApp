@@ -296,7 +296,11 @@ public class LockScreenActivity extends Activity implements
 	protected void onStop() {
 		super.onStop();
 		unlockHomeButton();
-		unregisterReceiver(mReceiver);
+		try {
+			unregisterReceiver(mReceiver);
+		}catch (NullPointerException e) {
+
+		}
 		pathFile.clear();
 		if (fullScreenImageAdapter != null) {
 			fullScreenImageAdapter.clearData();
