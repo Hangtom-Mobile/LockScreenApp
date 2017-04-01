@@ -6,7 +6,17 @@ import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Point;
+import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
@@ -36,6 +46,7 @@ import com.askhmer.lockscreen.activity.DetailTopUp;
 import com.askhmer.lockscreen.model.TopUpDetail;
 import com.askhmer.lockscreen.network.API;
 import com.askhmer.lockscreen.network.MySingleton;
+import com.askhmer.lockscreen.utils.Config;
 import com.askhmer.lockscreen.utils.ImageSliderWithFragment;
 import com.askhmer.lockscreen.utils.MutiLanguage;
 import com.askhmer.lockscreen.utils.NetworkUtil;
@@ -63,10 +74,13 @@ public class OneFragment extends Fragment {
 
     private SharedPreferencesFile mSharedPreferencesFile;
     private TextView txtMyPoint, txtMyUserName;
-    private LinearLayout medayiPage, medayiSharing;
+    private LinearLayout medayiPage;
+    private TextView medayiSharing;
     private TextProgressBar progressBar;
     private View oneFragmentView;
     private SliderLayout sliderLayout;
+    private ImageView imageView;
+    private ImageView imageViewProcess, imageViewOver;
 
     public OneFragment(){}
 
@@ -87,13 +101,15 @@ public class OneFragment extends Fragment {
         progressBar = (TextProgressBar) oneFragmentView.findViewById(R.id.progressBar2);
         sliderLayout = (SliderLayout) oneFragmentView.findViewById(R.id.slider);
         ImageView imageView = (ImageView) oneFragmentView.findViewById(R.id.image_view_info);
+        imageViewProcess = (ImageView) oneFragmentView.findViewById(R.id.image_process);
+        imageViewOver = (ImageView) oneFragmentView.findViewById(R.id.image_process_over);
 
         /*set slide image*/
         new ImageSliderWithFragment(sliderLayout, getContext());
         checkInternetCon();
 
         medayiPage = (LinearLayout)oneFragmentView.findViewById(R.id.medayi_news);
-        medayiSharing = (LinearLayout) oneFragmentView.findViewById(R.id.medayi_sharing);
+        medayiSharing = (TextView) oneFragmentView.findViewById(R.id.medayi_sharing);
 
         txtMyPoint.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -298,6 +314,50 @@ public class OneFragment extends Fragment {
 
           /*request count user*/
         requestCountUser();
+
+        /*process*/
+        Bitmap bitmap = Bitmap.createBitmap(500,500, Bitmap.Config.ARGB_8888);
+        int radius = 250;
+        int center_x = bitmap.getWidth()/2;
+        int center_y = bitmap.getHeight()/2;
+
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+
+        paint.setShader(new LinearGradient(220, 0, 0, bitmap.getHeight(), getResources().getColor(R.color.yellow_pro),
+                getResources().getColor(R.color.blue_pro), Shader.TileMode.MIRROR));
+        paint.setStyle(Paint.Style.FILL);
+
+
+        Canvas canvas = new Canvas(bitmap);
+
+        final RectF oval = new RectF();
+        oval.set(center_x - radius, center_y - radius, center_x + radius, center_y + radius);
+        Path path = new Path();
+        path.addArc(oval, 90, 230);
+
+        canvas.drawPath(path, paint);
+
+        imageViewProcess.setImageBitmap(bitmap);
+        circleImageOver();
+    }
+
+    private void circleImageOver(){
+        Bitmap bitmap = Bitmap.createBitmap(500,500, Bitmap.Config.ARGB_8888);
+        int radius = 240;
+        int center_x = bitmap.getWidth()/2;
+        int center_y = bitmap.getHeight()/2;
+
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        paint.setColor(getResources().getColor(R.color.cc_color));
+        paint.setStyle(Paint.Style.FILL);
+
+        Canvas canvas = new Canvas(bitmap);
+
+        canvas.drawCircle(center_x, center_y, radius, paint);
+
+        imageViewOver.setImageBitmap(bitmap);
     }
 
     private void sharedVia(String packageName) {
