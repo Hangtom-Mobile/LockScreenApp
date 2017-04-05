@@ -1,37 +1,28 @@
 package com.askhmer.lockscreen.fragment;
 
+import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Point;
-import android.graphics.RectF;
-import android.graphics.Shader;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.GradientDrawable;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.transition.Slide;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -42,11 +33,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.askhmer.lockscreen.R;
-import com.askhmer.lockscreen.activity.DetailTopUp;
-import com.askhmer.lockscreen.model.TopUpDetail;
 import com.askhmer.lockscreen.network.API;
 import com.askhmer.lockscreen.network.MySingleton;
-import com.askhmer.lockscreen.utils.Config;
 import com.askhmer.lockscreen.utils.ImageSliderWithFragment;
 import com.askhmer.lockscreen.utils.MutiLanguage;
 import com.askhmer.lockscreen.utils.NetworkUtil;
@@ -57,7 +45,6 @@ import com.daimajia.slider.library.SliderLayout;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ListHolder;
 import com.orhanobut.dialogplus.OnItemClickListener;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -80,7 +67,8 @@ public class OneFragment extends Fragment {
     private View oneFragmentView;
     private SliderLayout sliderLayout;
     private ImageView imageView;
-    private ImageView imageViewProcess, imageViewOver;
+    private ImageView imageViewProcess/*, imageViewOver*/;
+    private ProgressBar mprogressBar;
 
     public OneFragment(){}
 
@@ -101,8 +89,9 @@ public class OneFragment extends Fragment {
         progressBar = (TextProgressBar) oneFragmentView.findViewById(R.id.progressBar2);
         sliderLayout = (SliderLayout) oneFragmentView.findViewById(R.id.slider);
         ImageView imageView = (ImageView) oneFragmentView.findViewById(R.id.image_view_info);
-        imageViewProcess = (ImageView) oneFragmentView.findViewById(R.id.image_process);
-        imageViewOver = (ImageView) oneFragmentView.findViewById(R.id.image_process_over);
+        /*imageViewProcess = (ImageView) oneFragmentView.findViewById(R.id.image_process);*/
+        /*imageViewOver = (ImageView) oneFragmentView.findViewById(R.id.image_process_over);*/
+        mprogressBar = (ProgressBar) oneFragmentView.findViewById(R.id.circular_progress_bar);
 
         /*set slide image*/
         new ImageSliderWithFragment(sliderLayout, getContext());
@@ -316,8 +305,8 @@ public class OneFragment extends Fragment {
         requestCountUser();
 
         /*process*/
-        Bitmap bitmap = Bitmap.createBitmap(500,500, Bitmap.Config.ARGB_8888);
-        int radius = 250;
+       /* Bitmap bitmap = Bitmap.createBitmap(500,500, Bitmap.Config.ARGB_8888);
+        int radius = 240;
         int center_x = bitmap.getWidth()/2;
         int center_y = bitmap.getHeight()/2;
 
@@ -326,8 +315,8 @@ public class OneFragment extends Fragment {
 
         paint.setShader(new LinearGradient(220, 0, 0, bitmap.getHeight(), getResources().getColor(R.color.yellow_pro),
                 getResources().getColor(R.color.blue_pro), Shader.TileMode.MIRROR));
-        paint.setStyle(Paint.Style.FILL);
-
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(12);
 
         Canvas canvas = new Canvas(bitmap);
 
@@ -338,11 +327,15 @@ public class OneFragment extends Fragment {
 
         canvas.drawPath(path, paint);
 
-        imageViewProcess.setImageBitmap(bitmap);
-        circleImageOver();
+        imageViewProcess.setImageBitmap(bitmap);*/
+        /*circleImageOver();*/
+        ObjectAnimator anim = ObjectAnimator.ofInt(mprogressBar, "progress", 0, 65);
+        anim.setDuration(2500);
+        /*anim.setInterpolator(new DecelerateInterpolator());*/
+        anim.start();
     }
 
-    private void circleImageOver(){
+    /*private void circleImageOver(){
         Bitmap bitmap = Bitmap.createBitmap(500,500, Bitmap.Config.ARGB_8888);
         int radius = 240;
         int center_x = bitmap.getWidth()/2;
@@ -358,7 +351,7 @@ public class OneFragment extends Fragment {
         canvas.drawCircle(center_x, center_y, radius, paint);
 
         imageViewOver.setImageBitmap(bitmap);
-    }
+    }*/
 
     private void sharedVia(String packageName) {
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
