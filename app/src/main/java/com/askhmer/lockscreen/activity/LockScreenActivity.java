@@ -725,12 +725,16 @@ public class LockScreenActivity extends Activity implements
 						if (new CheckInternet().isConnect(getApplicationContext()) == true) {
 							/*testing*/
 							if (appInstalledOrNot(googleId) == false) {
-								stopService(new Intent(getApplicationContext(), CPIservice.class));
-								Intent intent = new Intent(getApplicationContext(), CPIservice.class);
-								intent.putExtra("packageName", googleId);
-								intent.putExtra("install_price", urlPrice);
-								intent.putExtra("uId", uId);
-								startService(intent);
+								try {
+									stopService(new Intent(getApplicationContext(), CPIservice.class));
+									Intent intent = new Intent(getApplicationContext(), CPIservice.class);
+									intent.putExtra("packageName", googleId);
+									intent.putExtra("install_price", urlPrice);
+									intent.putExtra("uId", uId);
+									startService(intent);
+								} catch (NullPointerException e) {
+									Toast.makeText(LockScreenActivity.this, "Please do it again! error!", Toast.LENGTH_SHORT).show();
+								}
 							}
 
 							/*open play store*/
