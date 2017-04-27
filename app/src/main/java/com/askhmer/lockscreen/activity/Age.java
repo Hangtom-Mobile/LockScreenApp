@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -176,9 +177,13 @@ public class Age extends AppCompatActivity{
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                new SweetAlertDialog(Age.this)
-                        .setTitleText("Sorry your phone no internet!")
-                        .show();
+                try {
+                    new SweetAlertDialog(Age.this)
+                            .setTitleText("Sorry your phone no internet!")
+                            .show();
+                } catch (Exception e) {
+                    Toast.makeText(context, "Sorry your phone no internet", Toast.LENGTH_SHORT).show();
+                }
             }
         }){
             @Override
