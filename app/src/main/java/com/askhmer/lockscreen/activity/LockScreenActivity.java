@@ -2,26 +2,27 @@ package com.askhmer.lockscreen.activity;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.DialogFragment;
-import android.app.FragmentTransaction;
 import android.app.KeyguardManager;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -37,7 +38,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.askhmer.lockscreen.R;
 import com.askhmer.lockscreen.adapter.FullScreenImageAdapter;
-import com.askhmer.lockscreen.fragment.NativgationDrawerFragment;
 import com.askhmer.lockscreen.model.LockScreenBackgroundDto;
 import com.askhmer.lockscreen.model.ScreenListener;
 import com.askhmer.lockscreen.network.API;
@@ -50,7 +50,7 @@ import com.askhmer.lockscreen.utils.MyBroadCastReciever;
 import com.askhmer.lockscreen.utils.SharedPreferencesFile;
 import com.askhmer.lockscreen.utils.ToggleSwitchButtonByDy;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
+import com.askhmer.lockscreen.utils.VerticalViewPager;
 import com.thefinestartist.finestwebview.FinestWebView;
 
 import org.json.JSONException;
@@ -67,9 +67,6 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class LockScreenActivity extends Activity implements
 		LockscreenUtils.OnLockStatusChangedListener,ScreenListener {
 
-	// User-interface
-	private Button btnUnlock;
-
 	/*nativagation drawer*/
 	private LinearLayout rightDrawer;
 	private DrawerLayout drawerLayout;
@@ -79,12 +76,11 @@ public class LockScreenActivity extends Activity implements
 	private ViewPager imageViewPager;
 	private FullScreenImageAdapter fullScreenImageAdapter;
 	private MyBroadCastReciever mReceiver;
-	private RelativeLayout relativeLayout;
+	private RelativeLayout relativeLayout, rootView;
 	private int position = 1;
 	private SharedPreferencesFile mSharedPref;
 	private ToggleSwitchButtonByDy toggleWebsite, toggleVideo, toggleCall, toggleInstall, toggleDefult;
-
-//	private ArrayList<CompanyDto> arrList;
+	private ImageView btnUnlock, btnCenter, btnAction;
 
 	private ArrayList<LockScreenBackgroundDto> pathFile;
 	// Set appropriate flags to make the screen appear over the keyguard
@@ -110,7 +106,17 @@ public class LockScreenActivity extends Activity implements
 		init();
 
 		mSharedPref = new SharedPreferencesFile(getApplicationContext(),SharedPreferencesFile.FILE_INFORMATION_TEMP);
-		relativeLayout = (RelativeLayout) findViewById(R.id.relative_main);
+		relativeLayout = (RelativeLayout) findViewById(R.id.testing);
+		rootView = (RelativeLayout) findViewById(R.id.relative_main);
+		btnUnlock = (ImageView) findViewById(R.id.btn_unlock);
+		btnCenter = (ImageView) findViewById(R.id.btn_center);
+		btnAction = (ImageView) findViewById(R.id.btn_action);
+
+
+		// Gesture detection
+		ActivitySwipeDetector activitySwipeDetector = new ActivitySwipeDetector(this);
+		relativeLayout.setOnTouchListener(activitySwipeDetector);
+		setRelativeLayout(relativeLayout, activitySwipeDetector, weightOfScreen(), heightOfScreen());
 
 		// unlock screen in case of app get killed by system
 		if (getIntent() != null && getIntent().hasExtra("kill")
@@ -815,5 +821,178 @@ public class LockScreenActivity extends Activity implements
 			app_installed = false;
 		}
 		return app_installed;
+	}
+
+	class ActivitySwipeDetector implements View.OnTouchListener {
+
+		static final String logTag = "ActivitySwipeDetector";
+		private Activity activity;
+		static final int MIN_DISTANCE = 100;
+		private float downX, downY, upX, upY;
+		private float _xDelta;
+		private int lefMarginLocalVideo;
+		private int t = 1;
+
+		public ActivitySwipeDetector(Activity activity){
+			this.activity = activity;
+		}
+
+		public void onRightSwipe(){
+			Log.i(logTag, "RightToLeftSwipe!");
+		}
+
+		public void onLeftSwipe(){
+			Log.i(logTag, "LeftToRightSwipe!");
+		}
+
+		public void onDownSwipe(){
+			Log.i(logTag, "onTopToBottomSwipe!");
+		}
+
+		public void onUpSwipe(){
+			Log.i(logTag, "onBottomToTopSwipe!");
+		}
+
+		public boolean onTouch(View v, MotionEvent event) {
+			int rawX = (int) event.getRawX();
+			switch(event.getAction()){
+				case MotionEvent.ACTION_DOWN: {
+					downX = event.getX();
+					downY = event.getY();
+					RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) v.getLayoutParams();
+					_xDelta = rawX - params.leftMargin;
+					return true;
+				}
+				case MotionEvent.ACTION_UP: {
+					upX = event.getX();
+					upY = event.getY();
+					float deltaX = downX - upX;
+					float deltaY = downY - upY;
+
+					RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) v.getLayoutParams();
+					if(lefMarginLocalVideo < weightOfScreen()/2 && lefMarginLocalVideo > weightOfScreen()/(-2)) {
+						layoutParams.leftMargin = 0;
+						layoutParams.rightMargin = 0;
+						lefMarginLocalVideo = 0;
+						btnCenter.setAlpha(1.0f);
+						btnUnlock.setAlpha(1.0f);
+						btnAction.setAlpha(1.0f);
+						t = 1;
+					}else {
+						/*unlock*/
+						if(lefMarginLocalVideo > weightOfScreen()/2) {
+							Toast.makeText(activity, "unlock", Toast.LENGTH_SHORT).show();
+							finish();
+						}else {
+						/*action*/
+							Toast.makeText(activity, "action", Toast.LENGTH_SHORT).show();
+						}
+					}
+					Log.e("left", lefMarginLocalVideo+"");
+					v.setLayoutParams(layoutParams);
+					rootView.invalidate();
+
+					// swipe horizontal?
+					if(Math.abs(deltaX) > Math.abs(deltaY))
+					{
+						if(Math.abs(deltaX) > MIN_DISTANCE){
+							// left or right
+							if(deltaX > 0) { this.onRightSwipe(); return true; }
+							if(deltaX < 0) { this.onLeftSwipe(); return true; }
+						}
+						else {
+							Log.i(logTag, "Horizontal Swipe was only " + Math.abs(deltaX) + " long, need at least " + MIN_DISTANCE);
+							return false; // We don't consume the event
+						}
+					}
+					// swipe vertical?
+					else
+					{
+						if(Math.abs(deltaY) > MIN_DISTANCE){
+							// top or down
+							if(deltaY < 0) { this.onDownSwipe(); return true; }
+							if(deltaY > 0) { this.onUpSwipe(); return true; }
+						}
+						else {
+							Log.i(logTag, "Vertical Swipe was only " + Math.abs(deltaX) + " long, need at least " + MIN_DISTANCE);
+							return false; // We don't consume the event
+						}
+					}
+
+					return true;
+				}
+				case MotionEvent.ACTION_MOVE:{
+					RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) v.getLayoutParams();
+					lefMarginLocalVideo = (int) (rawX - _xDelta);
+					int numOfHalfScreen = weightOfScreen()/2;
+					int numOfHalfSu10 = numOfHalfScreen/10;
+					int xOfImage = 40;
+					int numForCenterScreen = weightOfScreen()/ (weightOfScreen()/xOfImage);
+					if(lefMarginLocalVideo <= ((weightOfScreen()/2)-numForCenterScreen) && lefMarginLocalVideo >= ((weightOfScreen()/(-2))+numForCenterScreen)) {
+						if (lefMarginLocalVideo > 0) {
+							layoutParams.leftMargin = lefMarginLocalVideo;
+							layoutParams.rightMargin = 0;
+							/*unlock*/
+							if ((numOfHalfSu10 * t) <= lefMarginLocalVideo) {
+								float numAlpha = 1.0f - (t/(float)10);
+								if (numAlpha < 0.6f) {
+									numAlpha = 0.0f;
+								}
+								btnCenter.setAlpha(numAlpha);
+								btnAction.setAlpha(numAlpha);
+								t++;
+							}
+							/*action*/
+						}else {
+							int temp = lefMarginLocalVideo;
+							layoutParams.rightMargin = temp = temp * (-1);
+							layoutParams.leftMargin = 0;
+							if ((numOfHalfSu10 * t) <= temp) {
+								float numAlpha = 1.0f - (t/(float)10);
+								if (numAlpha < 0.6f) {
+									numAlpha = 0.0f;
+								}
+								btnCenter.setAlpha(numAlpha);
+								btnUnlock.setAlpha(numAlpha);
+								t++;
+							}
+						}
+					}
+					layoutParams.bottomMargin = 0;
+					v.setLayoutParams(layoutParams);
+					rootView.invalidate();
+					return true;
+				}
+			}
+			return false;
+		}
+
+	}
+
+	private void setRelativeLayout(View view, View.OnTouchListener onTouchListener, int w, int h) {
+		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(w, h);
+		layoutParams.leftMargin = 0;
+		layoutParams.topMargin = 0;
+		layoutParams.bottomMargin = 0;
+		layoutParams.rightMargin = 0;
+
+		if(view != null){
+			view.setLayoutParams(layoutParams);
+			view.setOnTouchListener(onTouchListener);
+		}
+	}
+
+	private int weightOfScreen() {
+		Display display = getWindowManager().getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		return size.x;
+	}
+
+	private int heightOfScreen() {
+		Display display = getWindowManager().getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		return size.y;
 	}
 }

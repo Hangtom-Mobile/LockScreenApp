@@ -59,6 +59,7 @@ public class LockscreenService extends Service {
 				.setSmallIcon(R.drawable.ic_medayi_noti)
 				.setLargeIcon(bm)
 				.setOngoing(true)
+				.setPriority(Notification.PRIORITY_MIN)
 				.setContentIntent(intent2)
 				.build();
 		 startForeground(1,notification);

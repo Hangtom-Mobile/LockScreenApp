@@ -140,7 +140,7 @@ public class FullScreenImageAdapter extends PagerAdapter {
         Fresco.getImagePipelineFactory().getSmallImageDiskStorageCache().clearAll();*/
     }
 
-    private Bitmap loadImageFromStorage(String path, String name) {
+    private Bitmap  loadImageFromStorage(String path, String name) {
         Bitmap b;
         String name_="foldername";
         try {
