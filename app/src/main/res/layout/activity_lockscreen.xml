@@ -39,12 +39,6 @@
         android:orientation="horizontal">
     </LinearLayout>
 
-        <ImageView
-            android:scaleType="centerCrop"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/test_screen"/>
-
     <!--<TextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
